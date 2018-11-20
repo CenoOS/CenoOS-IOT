@@ -11,8 +11,8 @@
 * https://www.cenocloud.com
 ****************************************************/
 
-#ifndef __CENO_RTOS_H__
-#define __CENO_RTOS_H__
+#ifndef __CENO_RTOS_THREAD_H__
+#define __CENO_RTOS_THREAD_H__
 
 /* Thread Control Block (TCB) */
 typedef struct {
@@ -45,4 +45,4 @@ void OSThread_start(
     OSThreadHandler threadHandler,
     void *stkSto, uint32_t stkSize);
 
-#endif // __CENO_ROS_H__
+#endif // __CENO_RTOS_THREAD_H__

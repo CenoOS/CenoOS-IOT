@@ -12,7 +12,7 @@
 ****************************************************/
 
 #include <stdint.h>
-#include "os_thread.h"
+#include "../include/os_thread.h"
 #include "qassert.h"
 
 
@@ -25,7 +25,7 @@ OSThread *OS_thread[32+1];
 uint32_t OS_readySet;/*bit mask of thread that are ready to run */
 uint32_t OS_delayedSet;/*bit mask of thread that are delayed */
 
-#define LOG2(x)(32U - __clz(x))
+#define LOG2(x)(32U - __clz(x))/*00000000 11000000 11000000 11000000 = (32-8) = 24*/
 
 OSThread idleThread;
 void main_idleThread() {
@@ -80,9 +80,9 @@ void OS_delay(uint32_t ticks) {
 void OS_run(void){
 	OS_onStartup();
 	
-	 __disable_irq();
-   OS_sched();
-   __enable_irq();
+	__disable_irq();
+    OS_sched();
+    __enable_irq();
 	
 	Q_ERROR();
 }
@@ -202,26 +202,3 @@ PendSV_restore
     /* return to the next thread */
     BX            lr    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,5 @@
+{
+    "files.associations": {
+        "os_semaphore.h": "c"
+    }
+}
