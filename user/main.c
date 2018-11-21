@@ -1,6 +1,6 @@
 #include <stdint.h>
-#include "os_thread.h"
-#include "bsp.h"
+#include "../include/os_thread.h"
+#include "../bsp/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/bsp.H"
 
 uint32_t stack_blinky1[40];
 OSThread blinky1;
@@ -58,11 +58,6 @@ int main() {
     OS_run();
     //return 0;
 }
-
-
-
-
-
 
 
 

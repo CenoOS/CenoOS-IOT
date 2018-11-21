@@ -13,7 +13,7 @@
 
 #include <stdint.h>
 #include "../include/os_thread.h"
-#include "qassert.h"
+#include "../lib/qpc/include/qassert.h"
 
 
 Q_DEFINE_THIS_FILE
