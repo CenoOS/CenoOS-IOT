@@ -2,10 +2,19 @@
 #include "../include/os_thread.h"
 #include "../bsp/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/bsp.H"
 
+#include "../include/os_semaphore.h"
+
+/* define binary semaphore */
+OSBinarySemaphore* binSem;
+
 uint32_t stack_blinky1[40];
 OSThread blinky1;
 void main_blinky1() {
     while (1) {
+
+        /* wait */
+        OSBinarySemaphore_acquire(binSem);
+
         BSP_ledGreenOn();
         OS_delay(BSP_TICKS_PER_SEC / 4U);
         BSP_ledGreenOff();
@@ -21,6 +30,9 @@ void main_blinky2() {
         OS_delay(BSP_TICKS_PER_SEC / 2U);
         BSP_ledBlueOff();
         OS_delay(BSP_TICKS_PER_SEC / 3U);
+
+        /* enable binsem */
+        OSBinarySemaphore_release(binSem);
     }
 }
 
@@ -39,6 +51,9 @@ uint32_t stack_idleThread[40];
 int main() {
     BSP_init();
     OS_init(&stack_idleThread,sizeof(stack_idleThread));
+
+    /* create binary semaphore */
+    OSBinarySemaphore_create(binSem,DISABLE);
 
     OSThread_start(&blinky1,
 										5U,
