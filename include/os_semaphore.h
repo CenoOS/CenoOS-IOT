@@ -18,7 +18,7 @@
 
 typedef enum BINARY_SEMAPHORE_STATE{
     AVIALIABLE = 0x01,
-    DISABLE = 0x00
+    NOT_AVIALIABLE = 0x00
 } BINARY_SEMAPHORE_STATE;
 
 typedef struct{
