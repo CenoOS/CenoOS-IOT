@@ -12,18 +12,18 @@
 ****************************************************/
 
 
-#ifndef __CENO_RTOS_MAIL_H__
-#define __CENO_RTOS_MAIL_H__
+#ifndef __CENO_RTOS_MQ_H__
+#define __CENO_RTOS_MQ_H__
 
 
 typedef struct{
     uint32_t count;
-} OSMailBox;
+} OSMQ;
 
-void OSMail_create();
+void OSMQ_create();
 
-void OSMail_post();
+void OSMQ_post();
 
-void OSMail_accept();
+void OSMQ_accept();
 
-#endif // __CENO_RTOS_MAIL_H__
+#endif // __CENO_RTOS_MQ_H__

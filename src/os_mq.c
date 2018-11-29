@@ -11,19 +11,14 @@
 * https://www.cenocloud.com
 ****************************************************/
 
+void OSMQ_create(){
+    
+}
 
-#ifndef __CENO_RTOS_MAIL_H__
-#define __CENO_RTOS_MAIL_H__
+void OSMQ_post(){
 
+}
 
-typedef struct{
-    uint32_t count;
-} OSMailBox;
+void OSMQ_accept(){
 
-void OSMail_create();
-
-void OSMail_post();
-
-void OSMail_accept();
-
-#endif // __CENO_RTOS_MAIL_H__
+}
