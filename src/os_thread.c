@@ -38,9 +38,8 @@ void OS_init(void *stkSto, uint32_t stkSize) {
     /* set the PendSV interrupt priority to the lowest level 0xFF */
     *(uint32_t volatile *)0xE000ED20 |= (0xFFU << 16);
 	
-	
-	 OSThread_start(&idleThread,
-									0U,
+	OSThread_start(&idleThread,
+					0U,
                    &main_idleThread,
                    stkSto, stkSize);
 }
@@ -53,8 +52,7 @@ void OS_sched(void) {
 			OS_next = OS_thread[LOG2(OS_readySet)];
 			Q_ASSERT(OS_next != (OSThread*)0);
 		}
-		
-	
+
     if (OS_next != OS_curr) {
         *(uint32_t volatile *)0xE000ED04 = (1U << 28);
     }
@@ -118,8 +116,8 @@ void OSThread_start(
     uint32_t *sp = (uint32_t *)((((uint32_t)stkSto + stkSize) / 8) * 8);
     uint32_t *stk_limit;
 	
-		Q_REQUIRE((prio<Q_DIM(OS_thread)) 
-							&& (OS_thread[prio] == (OSThread*)0));
+	Q_REQUIRE((prio<Q_DIM(OS_thread)) 
+		   && (OS_thread[prio] == (OSThread*)0));
     
     *(--sp) = (1U << 24);  /* xPSR */
     *(--sp) = (uint32_t)threadHandler; /* PC */

@@ -56,17 +56,17 @@ int main() {
     OSBinarySemaphore_create(binSem,NOT_AVIALIABLE);
 
     OSThread_start(&blinky1,
-										5U,
+				    5U,
                    &main_blinky1,
                    stack_blinky1, sizeof(stack_blinky1));
 
     OSThread_start(&blinky2,
-										2U,
+					2U,
                    &main_blinky2,
                    stack_blinky2, sizeof(stack_blinky2));
 	
     OSThread_start(&blinky3,
-										3U,
+					3U,
                    &main_blinky3,
                    stack_blinky3, sizeof(stack_blinky3));
 
