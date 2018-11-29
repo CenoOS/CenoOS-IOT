@@ -26,4 +26,6 @@ void OSMQ_post();
 
 void OSMQ_accept();
 
+void OSMQ_flush();
+
 #endif // __CENO_RTOS_MQ_H__

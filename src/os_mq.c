@@ -12,7 +12,7 @@
 ****************************************************/
 
 void OSMQ_create(){
-    
+
 }
 
 void OSMQ_post(){
@@ -21,4 +21,8 @@ void OSMQ_post(){
 
 void OSMQ_accept(){
 
+}
+
+void OSMQ_flush(){
+    
 }
