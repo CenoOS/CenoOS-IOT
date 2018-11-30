@@ -11,7 +11,7 @@
 * https://www.cenocloud.com
 ****************************************************/
 
-#include <stdint.h>
+#include "../include/os.h"
 #include "../include/os_thread.h"
 #include "../lib/qpc/include/qassert.h"
 

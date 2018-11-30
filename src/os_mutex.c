@@ -10,8 +10,10 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
+#include "../include/os.h"
+#include "../include/os_thread.h"
 #include "../include/os_mutex.h"
-#include "stdint.h"
+
 
 void OSMutex_create(OSMutex *mutex){
     if(mutex == NULL){
@@ -23,7 +25,11 @@ void OSMutex_create(OSMutex *mutex){
     }
 }
 void OSMutex_delete(OSMutex *mutex){
-
+     if(mutex == NULL){
+        /* bad mutex pointer */
+    }else{
+       
+    }
 }
 void OSMutex_acquire(OSMutex *mutex,uint32_t timeout){
 

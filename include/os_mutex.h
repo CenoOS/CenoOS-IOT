@@ -10,8 +10,6 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
-
-
 #ifndef __CENO_RTOS_MUTEX_H__
 #define __CENO_RTOS_MUTEX_H__
 

@@ -10,9 +10,10 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
-#include "../include/os_mq.h"
+#include "../include/os.h"
 #include "../include/os_thread.h"
-#include <stdint.h>
+#include "../include/os_mq.h"
+
 
 
 static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr);
@@ -68,7 +69,7 @@ static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr){
     }else{
         /* copy in */
         memcpy(msgPtr,(mqPtr->buff_ptr+mqPtr->remove_index),mqPtr->unit_size);
-        mqPtr->remove_index+=msgPtr->unit_size;
+        mqPtr->remove_index+=mqPtr->unit_size;
         mqPtr->num_msgs_stored--;
 
         /* circle */
@@ -93,7 +94,7 @@ static uint8_t queue_insert (OSMQ *mqPtr, uint8_t* msgPtr){
     }else{
         /* copy in */
         memcpy((mqPtr->buff_ptr+mqPtr->insert_index),msgPtr,mqPtr->unit_size);
-        mqPtr->insert_index+=msgPtr->unit_size;
+        mqPtr->insert_index+=mqPtr->unit_size;
         mqPtr->num_msgs_stored++;
 
         /* circle */

@@ -10,8 +10,8 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
-
-#include <stdint.h>
+#include "../include/os.h"
+#include "../include/os_thread.h"
 #include "../include/os_semaphore.h"
 
 
