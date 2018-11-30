@@ -67,6 +67,31 @@ static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr){
         /* bad pointer */
     }else{
         /* copy in */
+        memcpy(msgPtr,(mqPtr->buff_ptr+mqPtr->remove_index),mqPtr->unit_size);
+        mqPtr->remove_index+=msgPtr->unit_size;
+        mqPtr->num_msgs_stored--;
+
+        /* circle */
+        if(mqPtr->remove_index >= (mqPtr->unit_size * mqPtr->max_num_msgs)){
+            mqPtr->remove_index = 0;
+        }
+
+        /* get header of suspend thread in queue */
+
+
+    }
+
+}
+
+
+static uint8_t queue_insert (OSMQ *mqPtr, uint8_t* msgPtr){
+    uint8_t status;
+    OSThread *tcbPtr;
+    
+    if((mqPtr==NULL)||(msgPtr==NULL)){
+        /* bad pointer */
+    }else{
+        /* copy in */
         memcpy((mqPtr->buff_ptr+mqPtr->insert_index),msgPtr,mqPtr->unit_size);
         mqPtr->insert_index+=msgPtr->unit_size;
         mqPtr->num_msgs_stored++;
@@ -75,9 +100,10 @@ static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr){
         if(mqPtr->insert_index >= (mqPtr->unit_size * mqPtr->max_num_msgs)){
             mqPtr->insert_index = 0;
         }
-    }
 
-}
-static uint8_t queue_insert (OSMQ *mqPtr, uint8_t* msgPtr){
+        /* get header of suspend thread in queue */
+
+
+    }
 
 }
