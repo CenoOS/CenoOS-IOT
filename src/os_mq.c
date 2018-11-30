@@ -71,7 +71,10 @@ static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr){
         mqPtr->insert_index+=msgPtr->unit_size;
         mqPtr->num_msgs_stored++;
 
-        
+        /* circle */
+        if(mqPtr->insert_index >= (mqPtr->unit_size * mqPtr->max_num_msgs)){
+            mqPtr->insert_index = 0;
+        }
     }
 
 }
