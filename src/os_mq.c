@@ -10,19 +10,26 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
+#include "../include/os_mq.h"
+#include <stdint.h>
 
-void OSMQ_create(){
 
-}
-
-void OSMQ_post(){
-
-}
-
-void OSMQ_accept(){
+void OSMQ_create(OSMQ *mqPtr,uint8_t *buffer_ptr, uint32_t unit_size, uint32_t max_num_msgs){
 
 }
 
-void OSMQ_flush(){
+void OSMQ_delete(OSMQ *mqPtr){
+
+}
+
+void OSMQ_send(OSMQ *mqPtr, uint32_t timeout, uint8_t *msgPtr){
+
+}
+
+void OSMQ_recive(OSMQ *mqPtr, uint32_t timeout, uint8_t *msgPtr){
+
+}
+
+void OSMQ_flush(OSMQ *mqPtr){
     
 }

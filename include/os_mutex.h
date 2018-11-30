@@ -15,10 +15,17 @@
 #ifndef __CENO_RTOS_MUTEX_H__
 #define __CENO_RTOS_MUTEX_H__
 
-void OSMutex_create();
+typedef struct{
+    OSThread * suspQ;
+    OSThread * owner;
+    uint8_t    count;
+}OSMutex;
 
-void OSMutex_acquire();
+void OSMutex_create(OSMutex *mutex);
+void OSMutex_delete(OSMutex *mutex);
 
-void OSMutex_release();
+void OSMutex_acquire(OSMutex *mutex,uint32_t timeout);
+
+void OSMutex_release(OSMutex *mutex);
 
 #endif // __CENO_RTOS_MUTEX_H__

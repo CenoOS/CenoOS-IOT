@@ -10,3 +10,24 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
+#include "../include/os_mutex.h"
+#include "stdint.h"
+
+void OSMutex_create(OSMutex *mutex){
+    if(mutex == NULL){
+        /* bad mutex pointer */
+    }else{
+        mutex->owner = NULL;
+        mutex->count = 0;
+        mutex->suspQ = NULL;
+    }
+}
+void OSMutex_delete(OSMutex *mutex){
+
+}
+void OSMutex_acquire(OSMutex *mutex,uint32_t timeout){
+
+}
+void OSMutex_release(OSMutex *mutex){
+
+}
