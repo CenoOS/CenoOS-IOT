@@ -11,7 +11,15 @@
 * https://www.cenocloud.com
 ****************************************************/
 #include "../include/os_mq.h"
+#include "../include/os_thread.h"
 #include <stdint.h>
+
+
+static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr);
+static uint8_t queue_insert (OSMQ *mqPtr, uint8_t* msgPtr);
+
+static void OSMQTimerCallback ();
+
 
 
 void OSMQ_create(OSMQ *mqPtr,uint8_t *buffer_ptr, uint32_t unit_size, uint32_t max_num_msgs){
@@ -46,5 +54,27 @@ void OSMQ_recive(OSMQ *mqPtr, uint32_t timeout, uint8_t *msgPtr){
 }
 
 void OSMQ_flush(OSMQ *mqPtr){
+
+}
+
+
+
+static uint8_t queue_remove (OSMQ *mqPtr, uint8_t* msgPtr){
+    uint8_t status;
+    OSThread *tcbPtr;
+    
+    if((mqPtr==NULL)||(msgPtr==NULL)){
+        /* bad pointer */
+    }else{
+        /* copy in */
+        memcpy((mqPtr->buff_ptr+mqPtr->insert_index),msgPtr,mqPtr->unit_size);
+        mqPtr->insert_index+=msgPtr->unit_size;
+        mqPtr->num_msgs_stored++;
+
+        
+    }
+
+}
+static uint8_t queue_insert (OSMQ *mqPtr, uint8_t* msgPtr){
 
 }
