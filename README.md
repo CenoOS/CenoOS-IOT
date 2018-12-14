@@ -16,7 +16,7 @@
 
 #### 1. 选择开发版
 
-##### 在根目录makefile.conf中修改如下配置:
+##### 在根目录/conf/makefile.conf中修改如下配置:
 
 ```makefile
 # 开发板支持
