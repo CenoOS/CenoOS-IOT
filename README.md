@@ -1,6 +1,8 @@
 ![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
 
-## CenoOS
+#### CenoOS is a real time operating system for IOT devices from cenocloud.
+
+
 
 ## Architecture Overview
 
