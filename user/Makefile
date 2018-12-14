@@ -1,4 +1,5 @@
-include ../makefile.conf
+include ../conf/makefile.conf
+include ../conf/git.conf
 
 MATCH="match"
 
