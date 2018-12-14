@@ -67,3 +67,8 @@ make flash
 > ### last
 
 #### have a good trial!
+
+## Community
+
+## License
+#### CenoOS is released under the Apache 2.0 license
