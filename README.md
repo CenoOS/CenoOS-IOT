@@ -1,4 +1,6 @@
-## CenoRTOS
+![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
+
+## CenoOS
 
 ## Architecture Overview
 
