@@ -6,6 +6,10 @@
 
 ## Architecture Overview
 
+![Architecture](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/arch.png)
+
+
+
 ## Documentation
 
 > ### Prepare
