@@ -335,4 +335,3 @@ void Q_onAssert(char_t const * const module, int_t location);
 #define Q_DIM(array_) (sizeof(array_) / sizeof((array_)[0]))
 
 #endif /* qassert_h */
-

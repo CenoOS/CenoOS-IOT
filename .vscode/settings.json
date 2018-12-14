@@ -1,4 +1,15 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "files.associations": {
+        "lm4f120h5qr.h": "c",
+        "bsp.h": "c",
+        "startup.h": "c",
+        "tm4c123gh6pm.h": "c",
+        "core_cm4.h": "c",
+        "system_tm4c123gh6pm.h": "c",
+        "cenoros.h": "c",
+        "thread.h": "c",
+        "qassert.h": "c"
+    }
 }

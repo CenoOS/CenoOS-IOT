@@ -1,0 +1,33 @@
+bj/bsp.o: In function `SysTick_Handler':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:19: multiple definition of `SysTick_Handler'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:19: first defined here
+obj/bsp.o: In function `BSP_init':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:27: multiple definition of `BSP_init'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:27: first defined here
+obj/bsp.o: In function `BSP_ledRedOn':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:35: multiple definition of `BSP_ledRedOn'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:35: first defined here
+obj/bsp.o: In function `BSP_ledRedOff':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:39: multiple definition of `BSP_ledRedOff'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:39: first defined here
+obj/bsp.o: In function `BSP_ledBlueOn':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:43: multiple definition of `BSP_ledBlueOn'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:43: first defined here
+obj/bsp.o: In function `BSP_ledBlueOff':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:47: multiple definition of `BSP_ledBlueOff'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:47: first defined here
+obj/bsp.o: In function `BSP_ledGreenOn':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:51: multiple definition of `BSP_ledGreenOn'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:51: first defined here
+obj/bsp.o: In function `BSP_ledGreenOff':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:55: multiple definition of `BSP_ledGreenOff'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:55: first defined here
+obj/bsp.o: In function `OS_onStartup':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:59: multiple definition of `OS_onStartup'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:59: first defined here
+obj/bsp.o: In function `OS_onIdle':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:69: multiple definition of `OS_onIdle'
+obj/thread.o:/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:69: first defined here
+obj/thread.o: In function `SysTick_Handler':
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:20: undefined reference to `OS_tick'
+/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c:22: undefined reference to `OS_sched'
