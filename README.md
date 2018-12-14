@@ -1,12 +1,61 @@
-## CenoRTOS 
+## CenoRTOS
 
 ## Architecture Overview
 
 ## Documentation
-### build
+
+> ### Prepare
+
+#### 1. 选择开发版
+
+##### 在根目录makefile.conf中修改如下配置:
+
+```makefile
+# 开发板支持
+ARCH=arm32
+BOARD=ek-TM4C123gxl
+MCU=TM4C123GH6PM
+LINK_FILE=link.ld
+OCD_CFG_FILE=ek-tm4c123gxl.cfg
+```
+
+##### 其中选项对应board下支持的开发版
+
+#### 2. 配置openOCD script目录:
+
+```makefile
+OPENOCD_SCRIPT_DIR=/usr/local/share/openocd/scripts/board
+```
+
+#### 3. 配置项目跟目录:
+
+```makefile
+BASE_DIR=/Users/neroyang/project/Ceno-RTOS
 
 ```
-	cd user
-	make clean
-	make build
+
+> ### build
+
+#### 1. openOCD启动:
+
 ```bash
+cd user
+make openOCD_connect
+```
+
+#### 2. 构建
+
+```bash
+make clean
+make build
+```
+
+#### 3. 烧写
+
+```bash
+make flash
+```
+
+> ### last
+
+#### have a good trial!
