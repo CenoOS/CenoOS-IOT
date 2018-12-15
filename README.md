@@ -21,7 +21,7 @@ OCD_CFG_FILE=ek-tm4c123gxl.cfg
 ```
 其中选项对应board下支持的开发版
 
-### 配置openOCD
+### 配置OPENOCD
 
 ```makefile
 OPENOCD_SCRIPT_DIR=/usr/local/share/openocd/scripts/board
@@ -36,7 +36,7 @@ BASE_DIR=/Users/neroyang/project/Ceno-RTOS
 
 ### 构建
 
-#### openOCD启动
+#### OPENOCD启动
 
 ```bash
 cd user

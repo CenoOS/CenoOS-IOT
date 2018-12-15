@@ -1,9 +1,8 @@
 /* Board Support Package (BSP) for the EK-TM4C123GXL board */
 #include <stdint.h>  /* Standard integers. WG14/N843 C99 Standard */
-
-#include "../../include/TM4C123GH6PM.h" /* the TM4C MCU Peripheral Access Layer (TI) */
 #include "../include/bsp.h" /* the TM4C MCU Peripheral Access Layer (TI) */
 #include "../../../../../../../kernel/ceno/include/thread.h" /* the TM4C MCU Peripheral Access Layer (TI) */
+#include "../../include/TM4C123GH6PM.h" /* the TM4C MCU Peripheral Access Layer (TI) */
 
 /* on-board LEDs */
 #define LED_RED   (1U << 1)
@@ -11,6 +10,7 @@
 #define LED_GREEN (1U << 3)
 
 static uint32_t volatile l_tickCtr;
+
 
 void SysTick_Handler(void) {
     OS_tick();
@@ -53,7 +53,7 @@ void BSP_ledGreenOff(void) {
 
 /*callback to configure and start interrupts */
 void OS_onStartup(void){
-	
+
     SystemCoreClockUpdate();
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
 
@@ -65,10 +65,10 @@ void OS_onIdle(void){
 	__WFI(); /* stop the cpu and wait for interrupt */
 }
 
-//void Q_onAssert(char const *module, int loc) {
+void Q_onAssert(char const *module, int loc) {
     /* TBD: damage control */
-  //  (void)module; /* avoid the "unused parameter" compiler warning */
-    //(void)loc;    /* avoid the "unused parameter" compiler warning */
-   // NVIC_SystemReset();
-//}
+  	(void)module; /* avoid the "unused parameter" compiler warning */
+    (void)loc;    /* avoid the "unused parameter" compiler warning */
+    NVIC_SystemReset();
+}
 

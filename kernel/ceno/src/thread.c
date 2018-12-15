@@ -11,8 +11,11 @@
 * https://www.cenocloud.com
 ****************************************************/
 
-#include "thread.h"
 #include <stdint.h>
+#include "thread.h"
+#include "qassert.h"
+
+Q_DEFINE_THIS_FILE
 
 OSThread * volatile OS_curr; /* pointer to the current thread */
 OSThread * volatile OS_next; /* pointer to the next thread to run */
@@ -23,11 +26,6 @@ uint32_t OS_delayedSet;/*bit mask of thread that are delayed */
 
 #define LOG2(x)(32U - __clz(x))/*00000000 11000000 11000000 11000000 = (32-8) = 24*/
 
-extern void __disable_irq(void);
-extern void __enable_irq(void);
-extern void Q_REQUIRE(void);
-extern void Q_ASSERT(void);
-extern void Q_ERROR(void);
 
 OSThread idleThread;
 void main_idleThread() {

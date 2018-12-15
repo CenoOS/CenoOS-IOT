@@ -12,4 +12,7 @@ void BSP_ledBlueOff(void);
 void BSP_ledGreenOn(void);
 void BSP_ledGreenOff(void);
 
+extern void OS_tick(void);
+extern void OS_sched(void);
+
 #endif // __BSP_H__

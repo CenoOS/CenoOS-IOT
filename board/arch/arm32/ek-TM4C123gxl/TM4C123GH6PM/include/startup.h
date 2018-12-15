@@ -4,7 +4,6 @@
 //main() of your program
 extern int main(void);
 
-extern void SysTick_Handler(void);
 
 //stack pointer
 extern uint32_t _stack_ptr;
@@ -25,7 +24,7 @@ void MemManage_Handler(void);
 void BusFault_Handler(void);
 void UsageFault_Handler(void);
 void HardFault_Handler(void);
-
+extern void SysTick_Handler(void);
 void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);

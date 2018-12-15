@@ -1,4 +1,4 @@
-include ../conf/makefile.conf
+include ../conf/conf.mk
 
 MATCH="match"
 

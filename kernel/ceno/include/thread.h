@@ -26,8 +26,6 @@ typedef void (*OSThreadHandler)();
 
 void OS_init(void *stkSto, uint32_t stkSize);
 
-void OS_onIdle(void);
-
 /* this function must be called with interrupts DISABLED */ 
 void OS_sched(void);
 
@@ -35,7 +33,8 @@ void OS_delay(uint32_t ticks);
 
 void OS_tick(void);
 
-static void OS_onStartup(void);
+extern void OS_onStartup(void);
+extern void OS_onIdle(void);
 
 void OS_run(void);
 
