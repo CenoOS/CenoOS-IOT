@@ -1,23 +1,16 @@
+# Introduction
 ![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
+CenoOS is a real time operating system for IOT devices from cenocloud.
 
-#### CenoOS is a real time operating system for IOT devices from cenocloud.
-
-
+# Docuemnt
 
 ## Architecture Overview
-
 ![Architecture](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/arch2.png)
+ 
+## Prepare
 
-
-
-## Documentation
-
-> ### Prepare
-
-#### 1. 选择开发版
-
-##### 在根目录/conf/makefile.conf中修改如下配置:
-
+### 开发版
+在根目录/conf/makefile.conf中修改如下配置:
 ```makefile
 # 开发板支持
 ARCH=arm32
@@ -26,49 +19,47 @@ MCU=TM4C123GH6PM
 LINK_FILE=link.ld
 OCD_CFG_FILE=ek-tm4c123gxl.cfg
 ```
+其中选项对应board下支持的开发版
 
-##### 其中选项对应board下支持的开发版
-
-#### 2. 配置openOCD script目录:
+### 配置openOCD
 
 ```makefile
 OPENOCD_SCRIPT_DIR=/usr/local/share/openocd/scripts/board
 ```
 
-#### 3. 配置项目跟目录:
+### 配置项目
 
 ```makefile
 BASE_DIR=/Users/neroyang/project/Ceno-RTOS
 
 ```
 
-> ### build
+### 构建
 
-#### 1. openOCD启动:
+#### openOCD启动
 
 ```bash
 cd user
 make openOCD_connect
 ```
 
-#### 2. 构建
+#### 构建
 
 ```bash
 make clean
 make build
 ```
 
-#### 3. 烧写
+#### 烧写
 
 ```bash
 make flash
 ```
 
-> ### last
+### 写在最后
+have a good trial!
 
-#### have a good trial!
+# Community
 
-## Community
-
-## License
-#### CenoOS is released under the Apache 2.0 license
+# License
+CenoOS is released under the Apache 2.0 license
