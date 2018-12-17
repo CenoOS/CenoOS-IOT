@@ -11,6 +11,7 @@
         "cenoros.h": "c",
         "thread.h": "c",
         "qassert.h": "c",
-        "net.h": "c"
+        "net.h": "c",
+        "os.h": "c"
     }
 }

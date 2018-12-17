@@ -27,7 +27,7 @@ void HardFault_Handler(void);
 extern void SysTick_Handler(void);
 void SVC_Handler(void);
 void DebugMon_Handler(void);
-void PendSV_Handler(void);
+extern void PendSV_Handler(void);
 
 void GPIOPortA_IRQHandler(void);
 void GPIOPortB_IRQHandler(void);

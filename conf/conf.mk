@@ -47,7 +47,7 @@ CENO_KERNEL=$(BASE_DIR)/kernel/ceno/include
 # drivers
 DRIVERS=$(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/include
 # bsp
-BSP=$(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/include
+# BSP=$(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/include
 # include
 CPPFLAGS=-I include
 CPPFLAGS += -I ${DRIVERS}

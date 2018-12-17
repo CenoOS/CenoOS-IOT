@@ -14,6 +14,8 @@
 #ifndef __CENO_RTOS_OS_H__
 #define __CENO_RTOS_OS_H__
 
-#define OSTaskID uint32_t
+#define os_task_id_t 	uint32_t
+#define time_t 			uint32_t
+#define os_state_t 		uint32_t
 
 #endif //! __CENO_RTOS_OS_H__

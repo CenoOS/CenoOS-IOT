@@ -33,9 +33,6 @@ void OS_delay(uint32_t ticks);
 
 void OS_tick(void);
 
-extern void OS_onStartup(void);
-extern void OS_onIdle(void);
-
 void OS_run(void);
 
 void OSThread_start(
@@ -43,5 +40,21 @@ void OSThread_start(
 		uint8_t prio,
     OSThreadHandler threadHandler,
     void *stkSto, uint32_t stkSize);
+
+
+void OS_onStartup(void);
+void OS_onIdle(void);
+
+
+
+void BSP_init(void);
+
+void BSP_ledRedOn(void);
+void BSP_ledRedOff(void);
+void BSP_ledBlueOn(void);
+void BSP_ledBlueOff(void);
+void BSP_ledGreenOn(void);
+void BSP_ledGreenOff(void);
+
 
 #endif // __CENO_RTOS_THREAD_H__

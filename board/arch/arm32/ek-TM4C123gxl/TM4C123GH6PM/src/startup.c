@@ -23,7 +23,7 @@ const vector_table_t vectors[] = {
     Reset_Handler,              // 1    Reset handler is called when the <RESET> button is pressed
     NMI_Handler,                // 2    Non-Maskable Interrupt handler
     HardFault_Handler,          // 3    Hard Fault Handler
-    MemManage_Handler,     // 4    Memory management fault Handler
+    MemManage_Handler,          // 4    Memory management fault Handler
     BusFault_Handler,           // 5    Bus Fault Handler
     UsageFault_Handler,         // 6    Usage Fault Handler
     0,                          // 7    Reserved
@@ -31,7 +31,7 @@ const vector_table_t vectors[] = {
     0,                          // 9    Reserved
     0,                          // 10   Reserved
     SVC_Handler,                // 11   SuperVisor Call Handler
-    DebugMon_Handler,       // 12   Debug Monitor Handler
+    DebugMon_Handler,           // 12   Debug Monitor Handler
     0,                          // 13   Reserved
     PendSV_Handler,             // 14   Pendeable interrupt driven request
     SysTick_Handler,            // 15   SysTick Timer handler
@@ -210,7 +210,6 @@ void UsageFault_Handler(void){}
 void HardFault_Handler(void){}
 void SVC_Handler(void){}
 void DebugMon_Handler(void){}
-void PendSV_Handler(void){}
 void GPIOPortA_IRQHandler(void){}
 void GPIOPortB_IRQHandler(void){}
 void GPIOPortC_IRQHandler(void){}
