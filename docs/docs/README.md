@@ -57,7 +57,7 @@ make flash
 ```
 
 ### 写在最后
-have a good trial!
+!> 多喝热水,早睡早起.
 
 ## Drivers+BSP
 
@@ -67,58 +67,137 @@ have a good trial!
 ### Common
 #### 基础定义
 ```c
-#define os_thread_control_block_id_t unsigned int //线程ID
-#define time_t unsigned int //时间
+typedef	unsigned int os_task_id_t;
+typedef	unsigned int os_time_t;
+
+typedef	unsigned int os_state_t;
+#define OS_STATE_DORMANT 		1;
+#define OS_STATE_READY 			2;
+#define OS_STATE_RUNNING 		1;
+#define OS_STATE_PENDING 		4;
+#define OS_STATE_INTERRUPTED 	4;
+
+
+typedef	unsigned int os_err_t;
+#define OS_ERR 		1
+#define OS_ERR_NONE 0
+
+
+typedef void* cpu_stk_t;
+typedef unsigned int cpu_stk_size_t;
+typedef char cpu_char_t;
+
+typedef unsigned int priority_t;
+
+
+typedef unsigned int queue_size_t;
 ```
+#### 队列
+队列定义
+```c
+typedef struct queue{
+	uint32_t size;
+	uint32_t start;
+	uint32_t end;
+
+	uint32_t front;
+	uint32_t rear;
+
+	void* elems;
+	void* ext; // you can write a message queue based on it
+}queue_t;
+```
+##### 环形缓冲区
+```c
+os_err_t queue_create(queue_t me,uint32_t size);
+
+os_err_t queue_add_item(queue_t* queue, void* itemPtr);
+
+os_err_t queue_remove();
+```
+
 ### Task
 #### TCB
-线程控制块定义
+
+task函数
 ```c
-
 typedef void (*os_task_handler_t)();
+```
 
+task定义
+```c
 typedef struct os_task{
-	os_task_id_t id;
-	void* stackPointer;
-	os_state_t state;		// 32 bit maybe more, but can be faster.
-	
-	#ifdef __CENO_RTOS_CONFIG_MEM_ON__
-		uint32_t stackSize;
-	#else
-		uint32_t stackSize;
-	#endif
+	os_task_id_t 	id;
+	cpu_char_t*   	name;
 
+	cpu_stk_t 		stkPtr;
+	cpu_stk_size_t 		stackSize;
 	os_task_handler_t taskHandler;
-	time_t timeout;
-	uint16_t priority;
 
-	queue_t taskQueue;
-	os_task_t* nextTask;
-	os_task_t* prevTask;
-	
-	#ifdef __CENO_RTOS_CONFIG_SEM_ON__
-		queue_t semphoreQueue;
-	#endif
+	os_state_t 		state;		// 32 bit maybe more, but can be faster.
+	os_time_t 		timeout;
+	priority_t 		priority;
 
-	#ifdef __CENO_RTOS_CONFIG_MSG_ON__
-		queue_t msgQueue;
-	#endif
+	os_task_t* 		nextTask;
+	os_task_t* 		prevTask;
 
 }os_task_t;
+```
 
+创建task
+```c
+os_err_t os_task_create(os_task_t *me,
+					cpu_char_t *name, 
+					priority_t priority, 
+					cpu_stk_t stkPtr, 
+					cpu_stk_size_t stackSize,
+					os_task_handler_t taskHandler){
+	
+	/* round down the stack top to the 8-byte boundary
+    * NOTE: ARM Cortex-M stack grows down from hi -> low memory
+    */
+    uint32_t *sp = (uint32_t *)((((uint32_t)stkPtr + stackSize) / 8) * 8);
+    uint32_t *stk_limit;
 
-void os_init(void);
+ 	*(--sp) = (1U << 24);  /* xPSR */
+    *(--sp) = (uint32_t)taskHandler; /* PC */
+    *(--sp) = 0x0000000EU; /* LR  */
+    *(--sp) = 0x0000000CU; /* R12 */
+    *(--sp) = 0x00000003U; /* R3  */
+    *(--sp) = 0x00000002U; /* R2  */
+    *(--sp) = 0x00000001U; /* R1  */
+    *(--sp) = 0x00000000U; /* R0  */
+    /* additionally, fake registers R4-R11 */
+    *(--sp) = 0x0000000BU; /* R11 */
+    *(--sp) = 0x0000000AU; /* R10 */
+    *(--sp) = 0x00000009U; /* R9 */
+    *(--sp) = 0x00000008U; /* R8 */
+    *(--sp) = 0x00000007U; /* R7 */
+    *(--sp) = 0x00000006U; /* R6 */
+    *(--sp) = 0x00000005U; /* R5 */
+    *(--sp) = 0x00000004U; /* R4 */
 
-void os_task_add(void);
+    /* save the top of the stack in the thread's attibute */
+    me->stkPtr = sp;
+    
+    /* round up the bottom of the stack to the 8-byte boundary */
+    stk_limit = (uint32_t *)(((((uint32_t)stackSize - 1U) / 8) + 1U) * 8);
 
-void os_task_switch_next(void);
+    /* pre-fill the unused part of the stack with 0xDEADBEEF */
+    for (sp = sp - 1U; sp >= stk_limit; --sp) {
+        *sp = 0xDEADBEEFU;
+    }
 
-void os_task_exit(void);
+	/* 将线程放到线程数组里*/
+	me->id = 1;
+	me->name = name;
+	me->priority = priority;
+	if(priority > 0U ){
+		me->state=OS_STATE_READY;
+	}
 
-void os_run(void);
-
-void os_idle_task(void);
-
+	taskQueue->add_task(me)
+}
 ```
 
 

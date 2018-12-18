@@ -1,72 +1,37 @@
-#include <stdint.h>
-#include "../../kernel/ceno/include/thread.h"
-
-
-#define BSP_TICKS_PER_SEC 1000U
-
-uint32_t stack_blinky1[40];
-OSThread blinky1;
-void main_blinky1() {
-    while (1) {
-        uint32_t volatile i;
-        for (i = 1500U; i != 0U; --i) {
-            BSP_ledGreenOn();
-            BSP_ledGreenOff();
-        }
-        OS_delay(1U); /* block for 1 tick */
-    }
+//---SYSTEM CONTROL REGISTERS---//
+#define SYS_CTRL_RCGC2  (*((volatile unsigned long *)0x400FE108))   //offset of RCGC2 register is 0x108
+#define CLK_GPIOF   0x20
+//---GPIO-F REGISTER---//
+#define PORTF_DATA  (*((volatile unsigned long *)0x40025038))   //offset of DATA register for PF1, PF2, PF3 is 0x38 [PF7:PF0::9:2]
+#define PORTF_DIR   (*((volatile unsigned long *)0x40025400))   //offset of DIR register is 0x400
+#define PORTF_DEN   (*((volatile unsigned long *)0x4002551C))   //offset of DEN register is 0x51C
+//---PORT-F I/O---//
+#define PF1 0x02
+#define PF2 0x04
+#define PF3 0x08
+//---FUNCTION PROTOTYPE---//
+void delay(unsigned long);
+int main(void)
+{
+   SYS_CTRL_RCGC2 |= CLK_GPIOF;
+   PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
+   PORTF_DEN |= 0x0000000E;    //enable PF1, PF2, PF3
+   PORTF_DATA = 0;
+   while(1)
+   {
+      PORTF_DATA |= (PF1);
+       delay(100000);
+      PORTF_DATA |= (PF2);
+       delay(100000);
+      PORTF_DATA |= (PF3);
+       delay(100000);
+        PORTF_DATA &= ~(PF3|PF2|PF1);
+   }
+	//return 0;
 }
-
-uint32_t stack_blinky2[40];
-OSThread blinky2;
-void main_blinky2() {
-    while (1) {
-        uint32_t volatile i;
-        for (i = 3*1500U; i != 0U; --i) {
-            BSP_ledBlueOn();
-            BSP_ledBlueOff();
-        }
-        OS_delay(50U); /* block for 50 ticks */
-    }
-}
-
-uint32_t stack_blinky3[40];
-OSThread blinky3;
-void main_blinky3() {
-    while (1) {
-        BSP_ledRedOn();
-        OS_delay(BSP_TICKS_PER_SEC / 3U);
-        BSP_ledRedOff();
-        OS_delay(BSP_TICKS_PER_SEC * 3U / 5U);
-    }
-}
-
-uint32_t stack_idleThread[40];
-
-int main() {
-    BSP_init();
-    OS_init(stack_idleThread, sizeof(stack_idleThread));
-
-    /* start blinky1 thread */
-    OSThread_start(&blinky1,
-                   5U, /* priority */
-                   &main_blinky1,
-                   stack_blinky1, sizeof(stack_blinky1));
-
-    /* start blinky2 thread */
-    OSThread_start(&blinky2,
-                   2U, /* priority */
-                   &main_blinky2,
-                   stack_blinky2, sizeof(stack_blinky2));
-
-    /* start blinky3 thread */
-    OSThread_start(&blinky3,
-                  1U, /* priority */
-                  &main_blinky3,
-                  stack_blinky3, sizeof(stack_blinky3));
-
-    /* transfer control to the RTOS to run the threads */
-    OS_run();
-
-    //return 0;
+volatile unsigned long i;
+void delay(unsigned long count)
+{
+  i = 0;
+  for(i=0; i<count; i++);
 }
