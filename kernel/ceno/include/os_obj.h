@@ -16,6 +16,7 @@
 
 typedef enum obj_type{
 	OS_OBJ_TYPE_NONE = 0,
+	OS_OBJ_TASK_TYPE,
 	OS_OBJ_SEM_TYPE,
 	OS_OBJ_MUTEX_TYPE,
 	OS_OBJ_QUEUE_TYPE,

@@ -16,11 +16,11 @@
 typedef void (*os_task_handler_t)();
 
 typedef	enum task_state{
- 	OS_STATE_DORMANT 		= 1,
-	OS_STATE_READY 			= 2,
-	OS_STATE_RUNNING 		= 1,
-	OS_STATE_PENDING 		= 4,
-	OS_STATE_INTERRUPTED 	= 4
+ 	OS_STATE_DORMANT 		=	1,
+	OS_STATE_READY 			= 	2,
+	OS_STATE_RUNNING 		= 	1,
+	OS_STATE_PENDING 		= 	4,
+	OS_STATE_INTERRUPTED 	= 	4
 }task_state_t;
 
 typedef struct os_task{
@@ -39,9 +39,6 @@ typedef struct os_task{
 	os_task_t* 		prevTask;
 
 }os_task_t;
-
-
-
 
 os_err_t os_task_create(os_task_t *me,
 					cpu_char_t *name, 

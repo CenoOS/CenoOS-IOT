@@ -16,7 +16,10 @@
 #define __CENO_RTOS_MUTEX_H__
 
 typedef struct os_mutex{
-
+	os_obj_t obj;
+	os_task_t *mutexTask;
+	struct os_mutex *mutexList;
+	
 }os_mutex_t;
 
 os_err_t os_mutex_create(os_mutex_t mutex, cpu_char_t cpu);

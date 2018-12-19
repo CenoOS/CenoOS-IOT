@@ -17,12 +17,10 @@
 typedef	unsigned int os_task_id_t;
 typedef	unsigned int os_time_t;
 
-
 typedef	enum os_err{
-	OS_ERR 		=1,
-	OS_ERR_NONE =0
+	OS_ERR 		=	1,
+	OS_ERR_NONE =	0
 }os_err_t;
-
 
 typedef void* cpu_stk_t;
 typedef unsigned int cpu_stk_size_t;
@@ -32,6 +30,7 @@ typedef unsigned int priority_t;
 
 
 typedef unsigned int queue_size_t;
+#define MAX_QUEUE_SIZE 256
 
 
 typedef unsigned int sem_count_t;
