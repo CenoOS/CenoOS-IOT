@@ -117,6 +117,7 @@ os_err_t queue_remove();
 ```
 
 ### Task
+![Task](/img/execution_graph.png)
 #### TCB
 
 task函数

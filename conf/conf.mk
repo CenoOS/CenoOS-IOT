@@ -23,7 +23,7 @@ SRC=$(wildcard src/*.c)
 # 板载C代码
 SRC+=$(wildcard $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/*.c)
 # 内核C代码
-SRC+=$(wildcard $(BASE_DIR)/kernel/ceno/src/*.c)
+# SRC+=$(wildcard $(BASE_DIR)/kernel/ceno/src/*.c)
 # 硬件抽象层C代码
 SRC+=$(wildcard $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/src/*.c)
 

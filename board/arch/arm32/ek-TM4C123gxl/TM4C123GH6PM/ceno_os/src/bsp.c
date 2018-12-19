@@ -1,11 +1,17 @@
 #include "../include/bsp.h"
 
 
+void SysTick_Handler(void){
+	(*((volatile unsigned long *)0x400FE108)) |= 0x20;
+    (*((volatile unsigned long *)0x40025400)) |= 0x0000000E;
+    (*((volatile unsigned long *)0x4002551C)) |= 0x0000000E;
+    (*((volatile unsigned long *)0x40025038)) = 0;
+    (*((volatile unsigned long *)0x40025038))|=0x02;
+}
 
-void SysTick_Handler(void){}
+void PendSV_Handler(void){
 
-
-
+}
 
 void NMI_Handler(void){}
 void MemManage_Handler(void){}

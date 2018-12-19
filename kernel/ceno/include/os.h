@@ -17,12 +17,13 @@
 typedef	unsigned int os_task_id_t;
 typedef	unsigned int os_time_t;
 
-typedef	unsigned int os_state_t;
-#define OS_STATE_DORMANT 		1;
-#define OS_STATE_READY 			2;
-#define OS_STATE_RUNNING 		1;
-#define OS_STATE_PENDING 		4;
-#define OS_STATE_INTERRUPTED 	4;
+typedef	enum task_state{
+ 		OS_STATE_DORMANT 		= 1,
+		OS_STATE_READY 			= 2,
+		OS_STATE_RUNNING 		= 1,
+		OS_STATE_PENDING 		= 4,
+		OS_STATE_INTERRUPTED 	= 4
+}task_state_t;
 
 
 typedef	unsigned int os_err_t;
@@ -38,5 +39,10 @@ typedef unsigned int priority_t;
 
 
 typedef unsigned int queue_size_t;
+
+
+typedef unsigned int sem_count_t;
+
+typedef unsigned int tick_t;
 
 #endif //! __CENO_RTOS_OS_H__

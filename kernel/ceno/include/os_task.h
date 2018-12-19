@@ -15,6 +15,14 @@
 
 typedef void (*os_task_handler_t)();
 
+typedef	enum task_state{
+ 	OS_STATE_DORMANT 		= 1,
+	OS_STATE_READY 			= 2,
+	OS_STATE_RUNNING 		= 1,
+	OS_STATE_PENDING 		= 4,
+	OS_STATE_INTERRUPTED 	= 4
+}task_state_t;
+
 typedef struct os_task{
 	os_task_id_t 	id;
 	cpu_char_t*   	name;
@@ -23,7 +31,7 @@ typedef struct os_task{
 	cpu_stk_size_t 		stackSize;
 	os_task_handler_t taskHandler;
 
-	os_state_t 		state;		// 32 bit maybe more, but can be faster.
+	task_state_t 		state;		// 32 bit maybe more, but can be faster.
 	os_time_t 		timeout;
 	priority_t 		priority;
 
