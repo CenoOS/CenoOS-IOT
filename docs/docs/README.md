@@ -92,6 +92,26 @@ typedef unsigned int priority_t;
 
 typedef unsigned int queue_size_t;
 ```
+#### 对象
+对象类型
+```c
+typedef enum obj_type{
+	OS_OBJ_TYPE_NONE = 0,
+	OS_OBJ_SEM_TYPE,
+	OS_OBJ_MUTEX_TYPE,
+	OS_OBJ_QUEUE_TYPE,
+	OS_OBJ_BUFFER_TYPE,
+}obj_type_t;
+```
+
+对象定义
+```c
+typedef struct os_obj{
+	const cpu_char_t* name;
+	obj_type_t objType;
+}os_obj_t;
+```
+
 #### 队列
 队列定义
 ```c
@@ -124,6 +144,16 @@ task函数
 ```c
 typedef void (*os_task_handler_t)();
 ```
+task 状态
+```c
+typedef	enum task_state{
+ 	OS_STATE_DORMANT 		= 1,
+	OS_STATE_READY 			= 2,
+	OS_STATE_RUNNING 		= 1,
+	OS_STATE_PENDING 		= 4,
+	OS_STATE_INTERRUPTED 	= 4
+}task_state_t;
+```
 
 task定义
 ```c
@@ -135,7 +165,7 @@ typedef struct os_task{
 	cpu_stk_size_t 		stackSize;
 	os_task_handler_t taskHandler;
 
-	os_state_t 		state;		// 32 bit maybe more, but can be faster.
+	task_state_t 		state;		// 32 bit maybe more, but can be faster.
 	os_time_t 		timeout;
 	priority_t 		priority;
 
