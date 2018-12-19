@@ -23,8 +23,26 @@ typedef enum obj_type{
 }obj_type_t;
 
 typedef struct os_obj{
+	os_list_t list;
 	const cpu_char_t* name;
 	obj_type_t objType;
 }os_obj_t;
+
+typedef struct os_obj_list{
+	os_list_t tashHead;
+	os_list_t mutexHead;
+	
+	#ifdef __CENO_RTOS_CONFIG_SEM_ON__
+		os_list_t semHead;
+	#endif
+
+	#ifdef __CENO_RTOS_CONFIG_QUEUE_ON__
+		os_list_t queueHead;
+	#endif
+
+	#ifdef __CENO_RTOS_CONFIG_RING_BUFFER_ON__
+		os_list_t bufferHead;
+	#endif
+}os_obj_list_t;
 
 #endif // !__CENO_RTOS_OBJ_H__

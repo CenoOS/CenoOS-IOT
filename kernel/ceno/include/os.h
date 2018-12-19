@@ -17,18 +17,11 @@
 typedef	unsigned int os_task_id_t;
 typedef	unsigned int os_time_t;
 
-typedef	enum task_state{
- 		OS_STATE_DORMANT 		= 1,
-		OS_STATE_READY 			= 2,
-		OS_STATE_RUNNING 		= 1,
-		OS_STATE_PENDING 		= 4,
-		OS_STATE_INTERRUPTED 	= 4
-}task_state_t;
 
-
-typedef	unsigned int os_err_t;
-#define OS_ERR 		1
-#define OS_ERR_NONE 0
+typedef	enum os_err{
+	OS_ERR 		=1,
+	OS_ERR_NONE =0
+}os_err_t;
 
 
 typedef void* cpu_stk_t;
