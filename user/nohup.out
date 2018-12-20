@@ -19377,3 +19377,463 @@ Examination failed, GDB will be halted. Polling again in 6300ms
 Error: jtag status contains invalid mode value - communication failure
 Polling target tm4c123gh6pm.cpu failed, trying to reexamine
 Examination failed, GDB will be halted. Polling again in 6300ms
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000027a msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.036189s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20007ff8
+wrote 1336 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.290045s (4.498 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x000002c2 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.033940s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007fb8
+erased sectors 0 through 255 on flash bank 0 in 0.030663s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 1340 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 1.409686s (0.928 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x000002c2 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.036084s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007fb8
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x010060b2 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030372s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1336 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.290927s (4.485 KiB/s)
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x000002c2 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.036200s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+Error: Target not halted
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007fb8
+erased sectors 0 through 255 on flash bank 0 in 0.030285s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 1352 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 1.419959s (0.930 KiB/s)
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x0000028e msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.036661s
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0100609a msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030288s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1352 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.288878s (4.570 KiB/s)
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x0000028e msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.036171s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0100609a msp: 0x20000fc8
+adapter speed: 1 kHz
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x010060d4 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030609s
+erased sectors 0 through 255 on flash bank 0 in 0.030114s
+erased sectors 0 through 255 on flash bank 0 in 0.030303s
+invalid command name "hal"
+erased sectors 0 through 255 on flash bank 0 in 0.029356s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1412 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.294205s (4.687 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000040e msp: 0x20007ff8
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x00000410 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.035316s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x010060da msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030347s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1408 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.296512s (4.637 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000040a msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.035620s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0100609a msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030295s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1352 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.291729s (4.526 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000040c msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.036112s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x010060a4 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.029118s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1352 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.278384s (4.743 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000040a msp: 0x20007ff8
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000040a msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.035299s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x010060a4 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.029145s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1364 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.289421s (4.602 KiB/s)
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+shutdown command invoked
+Info : dropped 'telnet' connection

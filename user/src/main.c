@@ -9,10 +9,15 @@
 #define PF1 0x02
 #define PF2 0x04
 #define PF3 0x08
+
+#include <stdint.h>
+#include "bsp.h"
 //---FUNCTION PROTOTYPE---//
-void delay(unsigned long);
+extern void delay(uint32_t tick);
 int main(void)
 {
+
+
    SYS_CTRL_RCGC2 |= CLK_GPIOF;
 
    PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
@@ -20,21 +25,16 @@ int main(void)
    PORTF_DATA = 0;
    while(1)
    {
-      PORTF_DATA |= (PF1);
-       delay(1000000);
-      PORTF_DATA &= ~(PF1);
+      
+       
+      //PORTF_DATA &= ~(PF1);
       PORTF_DATA |= (PF2);
-       delay(1000000);
-        PORTF_DATA &= ~(PF2);
-      PORTF_DATA |= (PF3);
-       delay(1000000);
-      PORTF_DATA &= ~(PF3);
+      delay(1000);
+      PORTF_DATA &= ~(PF2);
+      delay(1000);
+      //PORTF_DATA |= (PF3);
+      // delay(1000000);
+      //PORTF_DATA &= ~(PF3);
    }
 	//return 0;
-}
-volatile unsigned long i;
-void delay(unsigned long count)
-{
-  i = 0;
-  for(i=0; i<count; i++);
 }
