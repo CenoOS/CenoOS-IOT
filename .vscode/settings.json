@@ -38,6 +38,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "os_obj.h": "c",
+        "os_api.h": "c"
     }
 }

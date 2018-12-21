@@ -10,10 +10,7 @@
  * nerosoft@outlook.com
  * https://www.cenocloud.com
  */
-#include <stdint.h>
-#include "../include/os.h"
-#include "../include/os_task.h"
-#include "../include/os_queue.h"
+#include "../include/os_api.h"
 
 static os_queue_t* taskQueue;
 
@@ -61,7 +58,7 @@ os_err_t os_task_create(os_task_t *me,
   
 	/* 将线程放到线程数组里*/
 	me->id = 1;
-	me->name = name;
+	me->obj.name = name;
 	me->priority = priority;
 	if(priority > 0U ){
 		me->state=OS_STATE_READY;

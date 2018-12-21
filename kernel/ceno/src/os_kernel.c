@@ -10,8 +10,7 @@
  * nerosoft@outlook.com
  * https://www.cenocloud.com
  */
-#include "../include/os.h"
-#include "../include/os_kernel.h"
+#include "../include/os_api.h"
 
 os_err_t os_init(void){
 

@@ -25,7 +25,7 @@ typedef	enum task_state{
 
 typedef struct os_task{
 	os_task_id_t 	id;
-	cpu_char_t*   	name;
+	os_obj_t obj;
 
 	cpu_stk_t 		stkPtr;
 	cpu_stk_size_t 		stackSize;
@@ -35,8 +35,7 @@ typedef struct os_task{
 	os_time_t 		timeout;
 	priority_t 		priority;
 
-	os_task_t* 		nextTask;
-	os_task_t* 		prevTask;
+	os_list_t taskList;
 
 }os_task_t;
 

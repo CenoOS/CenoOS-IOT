@@ -1,6 +1,4 @@
-#include <stdint.h>
-#include "../include/os.h"
-#include "../include/os_list.h"
+#include "../include/os_api.h"
 
 os_err_t os_list_init(os_list_t* head){
 	head->next  = head;

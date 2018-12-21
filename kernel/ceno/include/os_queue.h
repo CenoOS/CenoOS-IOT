@@ -14,10 +14,8 @@
 #ifndef __CENO_RTOS_QUEUE_H__
 #define __CENO_RTOS_QUEUE_H__
 
-#define MAX_QUEUE_SIZE 256
-
 typedef struct os_queue{
-	os_obj_t obj,
+	os_obj_t obj;
 
 	uint32_t size;
 	uint32_t start;
@@ -35,7 +33,7 @@ typedef struct os_msg{
 }os_msg_t;
 
 
-os_err_t os_queue_create(os_queue_t* me,const cpu_char_t* name, uint32_t size);
+os_err_t os_queue_create(os_queue_t* me, const cpu_char_t* name, uint32_t size);
 
 os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr);
 
