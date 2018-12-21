@@ -15,12 +15,12 @@ $(OBJ)%.o: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/%.c
 	$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS)
 
 # 板子硬件抽象层C代码
-$(OBJ)%.o: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/src/*.c
+$(OBJ)%.o: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/src/%.c
 	$(MKDIR)
 	$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS)
 
 # 内核C代码
-$(OBJ)%.o: $(BASE_DIR)/kernel/ceno/src/*.c
+$(OBJ)%.o: $(BASE_DIR)/kernel/ceno/src/%.c
 	$(MKDIR)
 	$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS)
 

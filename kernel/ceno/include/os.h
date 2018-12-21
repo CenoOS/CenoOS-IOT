@@ -37,4 +37,6 @@ typedef unsigned int sem_count_t;
 
 typedef unsigned int tick_t;
 
+typedef long clock_t;
+
 #endif //! __CENO_RTOS_OS_H__

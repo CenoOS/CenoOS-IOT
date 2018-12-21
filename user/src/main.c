@@ -1,3 +1,6 @@
+#include <stdint.h>
+#include "bsp.h"
+
 //---SYSTEM CONTROL REGISTERS---//
 #define SYS_CTRL_RCGC2  (*((volatile unsigned long *)0x400FE108))   //offset of RCGC2 register is 0x108
 #define CLK_GPIOF   0x20
@@ -10,8 +13,6 @@
 #define PF2 0x04
 #define PF3 0x08
 
-#include <stdint.h>
-#include "bsp.h"
 //---FUNCTION PROTOTYPE---//
 extern void delay(uint32_t tick);
 int main(void)

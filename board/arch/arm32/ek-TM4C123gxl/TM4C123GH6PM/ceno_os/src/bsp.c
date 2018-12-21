@@ -1,9 +1,6 @@
-#include "../include/bsp.h"
 #include <stdint.h>
+#include "../include/bsp.h"
 #include "TM4C123GH6PM.h"
-
-#define BSP_TICKS_PER_SEC 1000U
-static uint32_t volatile l_tickCtr = 0;
 
 void system_init(void){
     SystemCoreClockUpdate();

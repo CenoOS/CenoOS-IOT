@@ -1,13 +1,10 @@
-#include "../include/interrupt.h"
 #include <stdint.h>
+#include "../include/bsp.h"
+#include "../include/interrupt.h"
 
+extern volatile clock_t l_tickCtr;
 void SysTick_Handler(void){
 	l_tickCtr+=1;
-    //  (*((volatile unsigned long *)0x400FE108)) |= 0x20;
-    //  (*((volatile unsigned long *)0x40025400)) |= 0x0000000E;
-    //  (*((volatile unsigned long *)0x4002551C)) |= 0x0000000E;
-    //  (*((volatile unsigned long *)0x40025038)) = 0;
-    //  (*((volatile unsigned long *)0x40025038))|=0x02;
 }
 
 void PendSV_Handler(void){
