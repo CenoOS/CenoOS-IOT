@@ -3,6 +3,7 @@
 
 //main() of your program
 extern int main(void);
+extern void system_init(void);
 
 
 //stack pointer
