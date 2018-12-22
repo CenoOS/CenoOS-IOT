@@ -1,0 +1,45 @@
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Error: open failed
+in procedure 'init' 
+in procedure 'ocd_bouncer'
+
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x00000412 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.036030s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x010060b2 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030645s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1432 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.290436s (4.815 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x00000456 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.035700s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x010060de msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030675s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1432 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.294274s (4.752 KiB/s)
+adapter speed: 1 kHz
+shutdown command invoked
+Info : dropped 'telnet' connection

@@ -19,7 +19,10 @@ MCU=TM4C123GH6PM
 LINK_FILE=link.ld
 OCD_CFG_FILE=ek-tm4c123gxl.cfg
 ```
-!> 其中选项对应board下支持的开发版
+!> 其中选项对应board目录下支持的开发版
+
+本人目前使用的开发板为:
+![TivaC](/img/tivac.jpg)
 
 ### 配置OPENOCD
 
