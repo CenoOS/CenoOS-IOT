@@ -63,3 +63,5 @@ have a good trial!
 
 # License
 CenoOS is released under the Apache 2.0 license
+
+# 我的FPGA到了,真开心
