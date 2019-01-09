@@ -181,13 +181,6 @@ MIPS 给每个程序32位(2^32^ bytes = 4GB)的地址空间,也就是说程序�
 所以如何解决这个问题? 就是在使用全部内存的情况下能不能给每一个程序它自己的虚拟内存,如果可以的话我们可以将每个程序的内存映射到整个内存上,甚至我们可以将磁盘作为虚拟内存,虽然它会慢.
 
 
-
-那什么是虚拟内存?
-
-- 非直接
-
-
-
 ##### 如何解决
 
 - 1. 如果我们没有足够的RAM怎么办?
@@ -311,7 +304,7 @@ typedef struct os_obj{
 }os_obj_t;
 ```
 对象容器
-![KernelObjectContainer](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/kernel_obj_manager.png)
+![KernelObjectContainer](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/object_container.png)
 ```c
 typedef struct os_obj_list{
 	os_list_t tashHead;
