@@ -305,7 +305,7 @@ typedef struct os_obj{
 ```
 对象容器
 
-![KernelObjectContainer](/img/object_container.png)
+![KernelObjectContainer](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/object_container.png)
 
 ```c
 typedef struct os_obj_list{
