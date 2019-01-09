@@ -304,7 +304,9 @@ typedef struct os_obj{
 }os_obj_t;
 ```
 对象容器
+
 ![KernelObjectContainer](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/object_container.png)
+
 ```c
 typedef struct os_obj_list{
 	os_list_t tashHead;
