@@ -18,7 +18,8 @@ typedef struct os_semphore{
 	os_obj_t obj;
 	sem_count_t count;
 	sem_count_t peakCount;
-	os_list_t semList;
+	os_queue_t blockTasks; //the queue should be sorted by priorities
+	os_list_t semList; 
 }os_semphore_t;
 
 
@@ -30,9 +31,9 @@ os_err_t os_sem_give(os_semphore_t* sem);
 
 os_err_t os_sem_take(os_semphore_t* sem,  tick_t ticks);
 
-os_err_t os_sem_count_get(os_semphore_t* sem,sem_count_t* count);
+os_err_t os_sem_count_get(os_semphore_t* sem, sem_count_t* count);
 
-os_err_t os_sem_count_set(os_semphore_t* sem,sem_count_t count);
+os_err_t os_sem_count_set(os_semphore_t* sem, sem_count_t count);
 
 #endif // ! __CENO_RTOS_SEMPHORE_H__
 
