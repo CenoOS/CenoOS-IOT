@@ -22,7 +22,7 @@ OCD_CFG_FILE=ek-tm4c123gxl.cfg
 !> 其中选项对应board目录下支持的开发版
 
 本人目前使用的开发板为:
-![TivaC](/img/tivac.jpg)
+![TivaC](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/tivac.jpg)
 
 ### 配置OPENOCD
 
@@ -149,21 +149,21 @@ MIPS 给每个程序32位(2^32^ bytes = 4GB)的地址空间,也就是说程序�
 
 假设我们的物理内存只有1G
 
-![问题1](/img/vm_01.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_01.png)
 
 - 2. 多个程序之间怎么分配,产生的巨大碎片怎么办?
 
 假设我们有三个程序,Program 1需要1GB, Program 2需要2GB, Program 3需要2GB
 
-![问题1](/img/vm_02.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_02.png)
 
 如果我们直接进行分配:
 
-![问题1](/img/vm_03.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_03.png)
 
 这样的话Program 1和Program 2正常运行, Program3内存不够,如果将Program 1退出,就会出现如下情况:
 
-![问题1](/img/vm_04.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_04.png)
 
 虽然有了2GB的空闲内存,但是还是无法运行Program 3
 
@@ -171,7 +171,7 @@ MIPS 给每个程序32位(2^32^ bytes = 4GB)的地址空间,也就是说程序�
 
 如果Program 1 在0x1024的地方存了数据4700, 而Program 2同样在0x1024的位置存了数据80210000
 
-![问题1](/img/vm_05.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_05.png)
 
 所以,如果所有的程序都去访问32位内存空间,就会出现如下情况:
 - 如果内存小与4GB会 crash
@@ -194,19 +194,19 @@ MIPS 给每个程序32位(2^32^ bytes = 4GB)的地址空间,也就是说程序�
 
 在没有虚拟内存的情况下,程序地址就是RAM地址,如下图
 
-![问题1](/img/vm_06.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_06.png)
 
 如果我们试图访问比我们实际拥有的RAM更多的时候,程序就会Crash
 
 而虚拟内存通过逻辑映射的方式,将程序地址,映射到RAM地址上.
 
-![问题1](/img/vm_07.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_07.png)
 
 这种映射使得我们使用RAM的方式更加灵活,如果物理内存不够的时候,可以将虚拟内存映射到相对廉价的磁盘上.这样就解决了第一个问题.
 
 - 2. 多个程序之间怎么分配,产生的巨大碎片怎么办?
 
-![问题1](/img/vm_08.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_08.png)
 
 这样每个程序都有他的映射, 这个映射使得每个程序的数据可以放在任何地方.
 
@@ -214,13 +214,13 @@ MIPS 给每个程序32位(2^32^ bytes = 4GB)的地址空间,也就是说程序�
 
 因为每个程序都有了自己的映射,所以上面的对于同一个地址的存储操作将会变成如下:
 
-![问题1](/img/vm_09.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_09.png)
 
 Program 2 将数据4700存在了地址1024上,然后映射表将映射到物理内存地址1上,同样Program 3 将数据80210000存在了地址1024上,然后映射表将映射到物理内存地址3上.这样就避免了多个程序对同一个物理地址操作的风险.
 
 当然了,也有一些公共资源是需要共享的,比如字体等,重复存储只会造成内存的浪费,对于这种情况,映射的方式也可以解决:
 
-![问题1](/img/vm_10.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_10.png)
 
 ##### 如何工作
 
