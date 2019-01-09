@@ -311,7 +311,7 @@ typedef struct os_obj{
 }os_obj_t;
 ```
 对象容器
-![KernelObjectContainer](/img/kernel_obj_manager.png)
+![KernelObjectContainer](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/kernel_obj_manager.png)
 ```c
 typedef struct os_obj_list{
 	os_list_t tashHead;
@@ -369,7 +369,7 @@ os_err_t os_queue_clear();
 ```
 
 ### 线程
-![Task](/img/execution_graph.png)
+![Task](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/execution_graph.png)
 #### TCB
 
 task函数
