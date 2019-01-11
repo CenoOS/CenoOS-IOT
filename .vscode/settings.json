@@ -41,6 +41,7 @@
         "stdint.h": "c",
         "os_obj.h": "c",
         "os_api.h": "c",
-        "os_ring_buffer.h": "c"
+        "os_ring_buffer.h": "c",
+        "os_list.h": "c"
     }
 }

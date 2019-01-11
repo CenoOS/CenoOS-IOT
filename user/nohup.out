@@ -1,0 +1,117 @@
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x00000458 msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.034772s
+erased sectors 0 through 255 on flash bank 0 in 0.029298s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+Error: Target not halted
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007fb8
+erased sectors 0 through 255 on flash bank 0 in 0.029087s
+erased sectors 0 through 255 on flash bank 0 in 0.029188s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 1336 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 1.507329s (0.866 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0xfffffffe msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.035873s
+adapter speed: 1 kHz
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0100609a msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.028760s
+erased sectors 0 through 255 on flash bank 0 in 0.030016s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1336 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.279896s (4.661 KiB/s)
+adapter speed: 1 kHz
+invalid command name "quit"
+Info : dropped 'telnet' connection
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0xfffffffe msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.036002s
+erased sectors 0 through 255 on flash bank 0 in 0.029450s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x010060da msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030898s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1392 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.288438s (4.713 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x81000000 pc: 0x0000042e msp: 0x20007ff8
+erased sectors 0 through 255 on flash bank 0 in 0.037328s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007fb8
+erased sectors 0 through 255 on flash bank 0 in 0.030165s
+erased sectors 0 through 255 on flash bank 0 in 0.030310s
+erased sectors 0 through 255 on flash bank 0 in 0.029542s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 1336 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 1.536292s (0.849 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x41000003 pc: 0x00000422 msp: 0x20007fe0
+erased sectors 0 through 255 on flash bank 0 in 0.036908s
+erased sectors 0 through 255 on flash bank 0 in 0.030453s
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fe0
+wrote 1384 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.301955s (4.476 KiB/s)
+adapter speed: 1 kHz
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+adapter speed: 1 kHz
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x61000000 pc: 0xfffffffe msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.036710s
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x01007218 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030603s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 1384 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.291621s (4.635 KiB/s)
+adapter speed: 1 kHz

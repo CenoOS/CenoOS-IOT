@@ -1,3 +1,4 @@
+
 #if !defined  (HSE_VALUE)
   #define HSE_VALUE    8000000U  /*!< Value of the External oscillator in Hz */
 #endif /* HSE_VALUE */

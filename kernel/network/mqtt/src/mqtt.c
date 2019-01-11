@@ -6,7 +6,7 @@ int mqtt_packetid(connection_t *nc){
 }
 
 int mqtt_connect(connection_t *nc, mqtt_connect_opt_t *options){
-
+	
 }
 
 int mqtt_publish(connection_t *nc, mqtt_publish_opt_t *options){

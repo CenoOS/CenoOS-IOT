@@ -16,7 +16,7 @@
 
 typedef struct os_ring_buffer{
 	uint8_t *buffer;
-
+	
 }os_ring_buffer_t;
 
 

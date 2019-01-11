@@ -37,6 +37,14 @@ os_err_t os_sem_create(os_semphore_t* sem, const cpu_char_t *name, sem_count_t c
 
 os_err_t os_sem_del(os_semphore_t* sem){
 	__DISABLE_IRQ();
+	
+	if(sem->count>0){
+		sem->count--;
+	}else{
+		os_task_t* currentTask;
+		currentTask->state = OS_STATE_BLOCKED;
+		os_queue_add_item(&sem->blockTasks,currentTask);
+	}
 
 	__ENABLE_IRQ();
 }

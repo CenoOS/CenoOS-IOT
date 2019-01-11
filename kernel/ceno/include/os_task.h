@@ -18,7 +18,8 @@ typedef void (*os_task_handler_t)();
 typedef	enum task_state{
  	OS_STATE_DORMANT 		=	1,
 	OS_STATE_READY 			= 	2,
-	OS_STATE_RUNNING 		= 	1,
+	OS_STATE_BLOCKED 		= 	3,
+	OS_STATE_RUNNING 		= 	5,
 	OS_STATE_PENDING 		= 	4,
 	OS_STATE_INTERRUPTED 	= 	4
 }task_state_t;

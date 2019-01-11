@@ -14,5 +14,6 @@ obj/os_ring_buffer.o: \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_queue.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_mutex.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_kernel.h

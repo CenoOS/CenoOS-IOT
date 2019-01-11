@@ -2,7 +2,7 @@
 #define __CENO_NET_NET_H__
 
 typedef struct connection{
-
+	
 }connection_t;
 
 

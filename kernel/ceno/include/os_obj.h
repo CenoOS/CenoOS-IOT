@@ -30,8 +30,11 @@ typedef struct os_obj{
 }os_obj_t;
 
 typedef struct os_obj_list{
-	os_list_t tashHead;
-	os_list_t mutexHead;
+	os_list_t taskHead;
+
+	#ifdef __CENO_RTOS_CONFIG_MUTEX_ON__
+		os_list_t mutexHead;
+	#endif
 	
 	#ifdef __CENO_RTOS_CONFIG_SEM_ON__
 		os_list_t semHead;
@@ -45,5 +48,8 @@ typedef struct os_obj_list{
 		os_list_t bufferHead;
 	#endif
 }os_obj_list_t;
+
+
+os_err_t os_obj_container_init(void);
 
 #endif // !__CENO_RTOS_OBJ_H__

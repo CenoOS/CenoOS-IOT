@@ -6,4 +6,14 @@ obj/main.o: src/main.c \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_newlib_version.h \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_intsup.h \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_stdint.h \
- /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/bsp.h
+ /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/bsp.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_list.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_obj.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_queue.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_ring_buffer.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_task.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_semphore.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_mutex.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_kernel.h

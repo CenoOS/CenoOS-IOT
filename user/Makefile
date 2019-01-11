@@ -74,5 +74,6 @@ usb:
 	# system_profiler SPUSBDataType
 	lsusb
 
+all: clean build
 # doc:
  	# /usr/local/Cellar/node/7.4.0/lib/node_modules/docsify-cli/bin/docsify serve ../docs/docs
