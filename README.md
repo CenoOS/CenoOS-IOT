@@ -63,3 +63,6 @@ have a good trial!
 
 # License
 CenoOS is released under the Apache 2.0 license
+
+
+[![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/157975898)
