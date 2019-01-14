@@ -1,3 +1,16 @@
+
+<p align="center">
+  <a href="http://www.cenocloud.com">
+    <img width="200" src="https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/logo.png">
+  </a>
+</p>
+
+<h1 align="center">CenoOS-IOT</h1>
+
+<div align="center">
+CenoOS is a real time operating system for IOT devices from cenocloud.
+</div>
+
 # Introduction
 ![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
 CenoOS is a real time operating system for IOT devices from cenocloud.
