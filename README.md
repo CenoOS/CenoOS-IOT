@@ -1,8 +1,3 @@
-![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
-
-# 
-#
-
 <p align="center">
   <a href="http://www.cenocloud.com">
     <img width="200" src="https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/logo.png">
@@ -91,3 +86,5 @@ CenoOS is released under the Apache 2.0 license
 
 
 [![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/157975898)
+
+![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
