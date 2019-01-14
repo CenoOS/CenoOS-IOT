@@ -22,7 +22,12 @@ CenoOS is a real time operating system for IOT devices from cenocloud.
 # Docuemnt
 
 ## Architecture Overview
+
+<p align="center">
+
 ![Architecture](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/arch2.png)
+
+</p>
  
 ## Prepare
 
