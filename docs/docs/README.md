@@ -230,15 +230,15 @@ Program 2 将数据4700存在了地址1024上,然后映射表将映射到物理�
 
 - 计算机将虚拟地址(VA)转换为物理地址(PA),如果物理地址不在内存里的话,操作系统会从磁盘上加载,然后计算机通过物理地址将数据返回给程序,如下:
 
-![问题1](/img/vm_11.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_11.png)
 
 对于一个加法操作,大致如下:
 
-![问题1](/img/vm_12.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_12.png)
 
 从磁盘加载数据到内存,并更新映射中内存地址:
 
-![问题1](/img/vm_13.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/vm_13.png)
 
 ##### 页表(Page Table)
 
@@ -251,22 +251,22 @@ Program 2 将数据4700存在了地址1024上,然后映射表将映射到物理�
 
 所以好的方案是把内存分为块(pages)来代替words,如下:
 
-![问题1](/img/pt_01.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/pt_01.png)
 
 每一个Entry 覆盖 4KB 的数据,现在一般是4KB的pages(每一页1024words)
 
-![问题1](/img/pt_02.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/pt_02.png)
 
 VA 4 是位于VA 0 的虚拟页偏移4字节,同样它的映射也是对应的物理地址偏移4字节
 
-![问题1](/img/pt_03.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/pt_03.png)
 
 ##### 地址转换 (address translate)
 
 在一个只有256MB内存的32位机器上用4KB分页的话?
 
 
-![问题1](/img/pt_04.png)
+![问题1](https://raw.githubusercontent.com/CenoOS/CenoOS-IOT/master/docs/docs/img/pt_04.png)
 
 
 #### 补充
