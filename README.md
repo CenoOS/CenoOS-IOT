@@ -76,6 +76,9 @@ make flash
 have a good trial!
 
 # Community
+discord
+
+twitch
 
 # License
 CenoOS is released under the Apache 2.0 license
