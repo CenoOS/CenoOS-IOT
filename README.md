@@ -10,7 +10,7 @@
 <div align="center">
 CenoOS is a real time operating system for IOT devices from cenocloud.
 
-[![CircleCI branch](https://img.shields.io/appveyor/ci/CenoOS/CenoOS-IOT.svg?style=for-the-badge)](https://img.shields.io/appveyor/ci/CenoOS/CenoOS-IOT.svg?style=for-the-badge)
+[![CircleCI branch](https://img.shields.io/appveyor/ci/CenoOS/CenoOS-IOT.svg?style=flat-square)](https://img.shields.io/appveyor/ci/CenoOS/CenoOS-IOT.svg?style=for-the-badge)
 </div>
 
 # Introduction
