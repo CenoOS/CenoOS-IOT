@@ -17,7 +17,6 @@ CenoOS is a real time operating system for IOT devices from cenocloud.
 
 # Introduction
 ![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
-CenoOS is a real time operating system for IOT devices from cenocloud.
 
 # Docuemnt
 
@@ -26,7 +25,7 @@ CenoOS is a real time operating system for IOT devices from cenocloud.
  
 ## Prepare
 
-### 开发版
+### 开发板
 在根目录/conf/makefile.conf中修改如下配置:
 ```makefile
 # 开发板支持
