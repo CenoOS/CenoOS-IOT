@@ -1,3 +1,5 @@
+![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
+
 
 <p align="center">
   <a href="http://www.cenocloud.com">
@@ -14,9 +16,6 @@ CenoOS is a real time operating system for IOT devices from cenocloud.
 [![closed issues](https://img.shields.io/github/issues-closed/badges/shields.svg?style=flat-square)](https://github.com/CenoOS/CenoOS-IOT/issues)
 [![Discord](https://img.shields.io/discord/534285557157855232.svg?style=flat-square)](https://discordapp.com/channels/534285557157855232/534285557157855234)
 </div>
-
-# Introduction
-![CenoOS](https://raw.githubusercontent.com/CenoOS/Ceno-RTOS/master/docs/assets/twitter_header_photo_1.png)
 
 # Docuemnt
 
