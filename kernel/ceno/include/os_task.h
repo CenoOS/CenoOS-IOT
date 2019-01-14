@@ -49,6 +49,8 @@ os_err_t os_task_create(os_task_t *me,
 
 os_err_t os_task_switch_next(void);
 
+os_err_t os_task_switch_context(os_task_t *next);
+
 os_err_t os_task_exit(void);
 
 

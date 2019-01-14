@@ -57,7 +57,8 @@ CPPFLAGS += -I ${CENO_KERNEL}
 CPPFLAGS += -I ${BSP}
 # ====================================================================
 CFLAGS=-ggdb -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
-CFLAGS += -Os -ffunction-sections -fdata-sections -MD -std=c99
+# CFLAGS += -Os -ffunction-sections -fdata-sections -MD -std=c99
+CFLAGS += -MD -std=c99
 CFLAGS += -pedantic -DPART_${MCU} -c 
 CFLAGS += -DTARGET_IS_BLIZZARD_RA1
 CFLAGS += -w

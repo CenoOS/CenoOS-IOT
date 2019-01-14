@@ -22,18 +22,19 @@ int main(void)
 
    system_init();
 
-   //SYS_CTRL_RCGC2 |= CLK_GPIOF;
-   //PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
-   //PORTF_DEN |= 0x0000000E;    //enable PF1, PF2, PF3
-   //PORTF_DATA = 0;
-   // while(1)
-   // {
+   SYS_CTRL_RCGC2 |= CLK_GPIOF;
+   PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
+   PORTF_DEN |= 0x0000000E;    //enable PF1, PF2, PF3
+   PORTF_DATA = 0;
+    while(1)
+    {
       
-   //   PORTF_DATA |= (PF3);
-   //   delay(1000);
-   //   PORTF_DATA &= ~(PF3);
-   //   delay(1000);
-   // }
+      PORTF_DATA |= (PF3);
+      delay(1000);
+      // PORTF_DATA &= ~(PF3);
+       PORTF_DATA = 0;
+      delay(1000);
+    }
 
 
 	return 0;
