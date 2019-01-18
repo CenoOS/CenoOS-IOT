@@ -13,9 +13,8 @@ void system_init(void){
 }
 
 void delay(uint32_t tick){
-    while(l_tickCtr<tick){
-    }
-    l_tickCtr = 0;
+    l_tickCtr = tick;
+    while(l_tickCtr!=0);
 }
 
 
@@ -31,18 +30,18 @@ void light_red_on(void){
 	PORTF_DATA |= (PF1);
 }
 void light_green_on(void){
-	PORTF_DATA |= (PF2);
+	PORTF_DATA |= (PF3);
 }
 void light_blue_on(void){
-	PORTF_DATA |= (PF3);
+	PORTF_DATA |= (PF2);
 }
 
 void light_red_off(void){
 	PORTF_DATA &= ~(PF1);
 }
 void light_green_off(void){
-	PORTF_DATA &= ~(PF2);
+	PORTF_DATA &= ~(PF3);
 }
 void light_blue_off(void){
-	PORTF_DATA &= ~(PF3);
+	PORTF_DATA &= ~(PF2);
 }

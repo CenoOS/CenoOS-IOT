@@ -23,7 +23,6 @@ void light_red_off(void);
 void light_green_off(void);
 void light_blue_off(void);
 
-
 #define BSP_TICKS_PER_SEC 1000U
 
 typedef long clock_t;

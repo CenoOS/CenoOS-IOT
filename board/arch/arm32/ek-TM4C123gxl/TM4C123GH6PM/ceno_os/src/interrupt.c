@@ -2,8 +2,19 @@
 #include "../include/bsp.h"
 
 // extern volatile clock_t l_tickCtr;
+static volatile int light_state = 1;
 void SysTick_Handler(void){
-	l_tickCtr++;
+	if(light_state == 1){
+		light_blue_on();
+		light_state = 0;
+	}else{
+		light_blue_off();
+		light_state = 1;
+	}
+
+	if (l_tickCtr != 0x00){
+		l_tickCtr--;
+	}
 }
 
 void PendSV_Handler(void){
