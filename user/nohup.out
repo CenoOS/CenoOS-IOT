@@ -5258,3 +5258,53 @@ wrote 4128 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.b
 adapter speed: 1 kHz
 shutdown command invoked
 Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x00000932 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036798s
+erased sectors 0 through 255 on flash bank 0 in 0.032061s
+erased sectors 0 through 255 on flash bank 0 in 0.031769s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.029324s
+erased sectors 0 through 255 on flash bank 0 in 0.029576s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4128 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.336965s (0.930 KiB/s)
+adapter speed: 1 kHz
+Info : dropped 'telnet' connection
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x00000932 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036136s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030451s
+invalid command name "reet"
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x01007218 msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.030387s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 4328 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.442495s (9.552 KiB/s)
+adapter speed: 1 kHz
