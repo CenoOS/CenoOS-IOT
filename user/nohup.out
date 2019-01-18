@@ -5468,3 +5468,48 @@ Error: Target is already running an algorithm
 Error: error starting target flash write algorithm
 wrote 4364 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.590800s (0.928 KiB/s)
 adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008fe msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036208s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.031050s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4332 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.556603s (0.928 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008fa msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036059s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.031357s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4332 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.553679s (0.929 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008fa msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.035761s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030211s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4320 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.527843s (0.932 KiB/s)
+adapter speed: 1 kHz

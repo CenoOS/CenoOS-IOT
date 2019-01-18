@@ -8,7 +8,6 @@ void system_init(void){
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
     /* set the SysTick interrupt priority (highest) */
     NVIC_SetPriority(SysTick_IRQn, 0U);
-
     os_init();
 }
 
