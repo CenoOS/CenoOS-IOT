@@ -36,7 +36,7 @@ $(OBJ)%.o: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/%.s
 
 # ==================================================================
 optimize: $(OPTMIZES) 
-# 优化
+# 优化c代码
 $(OPTMIZE)%.i: src/%.c
 	$(MKDIR)
 	$(CC) -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
