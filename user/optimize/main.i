@@ -215,8 +215,10 @@ void light_blue_off(void);
 
 
 
+
+
 typedef long clock_t;
-static volatile clock_t* l_tickCtr = 0;
+extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
@@ -439,10 +441,9 @@ int main(void)
 
   while(1){
     light_green_on();
-    delay_block(100);
+    delay_block(1000);
 
     light_green_off();
-    delay_block(100);
+    delay_block(1000);
   }
-
 }

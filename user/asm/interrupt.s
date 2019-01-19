@@ -10,16 +10,6 @@
 	.eabi_attribute 18, 4
 	.file	"interrupt.c"
 	.text
-	.bss
-	.align	2
-l_tickCtr:
-	.space	4
-	.size	l_tickCtr, 4
-	.align	2
-light_state:
-	.space	4
-	.size	light_state, 4
-	.text
 	.align	2
 	.global	SysTick_Handler
 	.syntax unified
@@ -40,10 +30,9 @@ SysTick_Handler:
 	ble	.L3
 	ldr	r3, .L4
 	ldr	r3, [r3]
-	sub	r2, r3, #4
-	ldr	r1, .L4
-	str	r2, [r1]
-	ldr	r3, [r3]
+	ldr	r2, [r3]
+	sub	r2, r2, #1
+	str	r2, [r3]
 .L3:
 	nop
 	add	sp, fp, #0

@@ -10,18 +10,6 @@
 	.eabi_attribute 18, 4
 	.file	"bsp.c"
 	.text
-	.bss
-	.align	2
-tickCtr:
-	.space	4
-	.size	tickCtr, 4
-	.data
-	.align	2
-	.type	l_tickCtr, %object
-	.size	l_tickCtr, 4
-l_tickCtr:
-	.word	tickCtr
-	.text
 	.align	2
 	.syntax unified
 	.arm
@@ -118,6 +106,19 @@ SysTick_Config:
 .L10:
 	.word	-536813552
 	.size	SysTick_Config, .-SysTick_Config
+	.bss
+	.align	2
+tickCtr:
+	.space	4
+	.size	tickCtr, 4
+	.global	l_tickCtr
+	.data
+	.align	2
+	.type	l_tickCtr, %object
+	.size	l_tickCtr, 4
+l_tickCtr:
+	.word	tickCtr
+	.text
 	.align	2
 	.global	system_init
 	.syntax unified
@@ -135,7 +136,7 @@ system_init:
 	ldr	r2, [r3]
 	ldr	r1, .L13+4
 	umull	r3, r4, r2, r1
-	lsr	r3, r4, #3
+	lsr	r3, r4, #6
 	mov	r0, r3
 	bl	SysTick_Config
 	mov	r1, #0
@@ -151,7 +152,7 @@ system_init:
 	.align	2
 .L13:
 	.word	SystemCoreClock
-	.word	-858993459
+	.word	274877907
 	.size	system_init, .-system_init
 	.global	counter
 	.bss

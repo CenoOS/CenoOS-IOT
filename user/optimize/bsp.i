@@ -218,9 +218,7 @@ void light_blue_off(void);
 
 
 typedef long clock_t;
-
-static clock_t tickCtr = 0;
-static volatile clock_t* l_tickCtr = &tickCtr;
+extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
@@ -3036,10 +3034,14 @@ typedef struct {
 } UDMA_Type;
 # 4 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 
+
+static clock_t tickCtr = 0;
+volatile clock_t* l_tickCtr = &tickCtr;
+
 extern void os_init(void);
 void system_init(void){
     SystemCoreClockUpdate();
-    SysTick_Config(SystemCoreClock / 10U);
+    SysTick_Config(SystemCoreClock / 1000U);
 
     __NVIC_SetPriority(SysTick_IRQn, 0U);
     os_init();
@@ -3049,17 +3051,7 @@ int volatile counter = 0;
 
 void delay_block(clock_t tick){
    *l_tickCtr = tick;
-
-
-    while(*l_tickCtr>0){
-
-
-
-
-
-
-    }
-
+    while((*l_tickCtr)>0);
 }
 
 

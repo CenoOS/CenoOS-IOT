@@ -145,19 +145,19 @@ void light_blue_off(void);
 
 
 
+
+
 typedef long clock_t;
-static volatile clock_t* l_tickCtr = 0;
+extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/interrupt.c" 2
 
 
-static int light_state = 0;
 void SysTick_Handler(void){
-# 15 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/interrupt.c"
  if (*l_tickCtr > 0x00){
-  *l_tickCtr--;
+  (*l_tickCtr)--;
  }
 }
 

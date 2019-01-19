@@ -42,8 +42,9 @@ OPTMIZE=optimize/
 OPTMIZES=$(addprefix $(OPTMIZE),$(notdir $(SRC:.c=.i)))
 OPTMIZES+=$(addprefix $(OPTMIZE),$(notdir $(ASM:.s=.i)))
 
+OPTMIZE_PATH=$(wildcard optimize/*.i)
 ASMCODE=asm/
-ASMCODES=$(addprefix $(ASMCODE),$(notdir $(OPTMIZE:.i=.s)))
+ASMCODES=$(addprefix $(ASMCODE),$(notdir $(OPTMIZE_PATH:.i=.s)))
 # ASMCODES+=$(addprefix $(ASMCODE),$(notdir $(ASM:.s=.i)))
 
 # ====================================================================

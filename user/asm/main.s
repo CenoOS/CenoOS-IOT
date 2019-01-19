@@ -10,12 +10,6 @@
 	.eabi_attribute 18, 4
 	.file	"main.c"
 	.text
-	.bss
-	.align	2
-l_tickCtr:
-	.space	4
-	.size	l_tickCtr, 4
-	.text
 	.align	2
 	.global	main
 	.syntax unified
@@ -32,10 +26,10 @@ main:
 	bl	bsp_init
 .L2:
 	bl	light_green_on
-	mov	r0, #100
+	mov	r0, #1000
 	bl	delay_block
 	bl	light_green_off
-	mov	r0, #100
+	mov	r0, #1000
 	bl	delay_block
 	b	.L2
 	.size	main, .-main

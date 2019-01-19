@@ -15,5 +15,4 @@ int main(void)
     light_green_off();
     delay_block(1000);
   }
-
 }

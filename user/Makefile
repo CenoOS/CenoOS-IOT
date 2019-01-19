@@ -94,11 +94,12 @@ verify:
 clean:
 	rm -rf ${BASE_DIR}/user/bin
 	rm -rf ${BASE_DIR}/user/obj
-
+	rm -rf ${BASE_DIR}/user/asm
+	rm -rf ${BASE_DIR}/user/optimize
 usb:
 	# system_profiler SPUSBDataType
 	lsusb
 
-all: clean build
+all: clean optimize asm_gen  build
 # doc:
  	# /usr/local/Cellar/node/7.4.0/lib/node_modules/docsify-cli/bin/docsify serve ../docs/docs
