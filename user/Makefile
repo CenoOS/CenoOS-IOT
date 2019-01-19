@@ -8,7 +8,7 @@ build: $(OBJS) bin/$(PROJECT_NAME).bin
 $(OBJ)%.o: src/%.c
 	$(MKDIR)
 	$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS)
-
+	
 # 板载C代码
 $(OBJ)%.o: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/%.c
 	$(MKDIR)
@@ -24,7 +24,6 @@ $(OBJ)%.o: $(BASE_DIR)/kernel/ceno/src/%.c
 	$(MKDIR)
 	$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS)
 
-
 # 用户汇编代码
 $(OBJ)%.o: src/%.s
 	$(MKDIR)
@@ -36,6 +35,31 @@ $(OBJ)%.o: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/%.s
 	$(AS) -o $@ $^ $(CPPFLAGS) $(ASFLAGS)
 
 # ==================================================================
+optimize: $(OPTMIZES) 
+# 优化
+$(OPTMIZE)%.i: src/%.c
+	$(MKDIR)
+	$(CC) -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
+
+$(OPTMIZE)%.i: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/%.c
+	$(MKDIR)
+	$(CC)  -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
+
+$(OPTMIZE)%.i: $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/src/%.c
+	$(MKDIR)
+	$(CC) -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
+
+$(OPTMIZE)%.i: $(BASE_DIR)/kernel/ceno/src/%.c
+	$(MKDIR)
+	$(CC) -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
+
+# ==================================================================
+asm_gen: $(ASMCODES) 
+# 汇编代码生成
+$(ASMCODE)%.s: $(OPTMIZE)/%.i
+	$(MKDIR)
+	$(CC)  -S $^ -o $@
+# ==================================================================
 
 bin/$(PROJECT_NAME).elf: $(OBJS)
 	$(MKDIR)              
@@ -45,6 +69,7 @@ bin/$(PROJECT_NAME).bin: bin/$(PROJECT_NAME).elf
 	$(OBJCOPY) -O binary $< $@
 
 # ==================================================================
+
 
 read:
 	${ELFREAD}  -h  ${BASE_DIR}/${BUILD_DIR}/os.elf

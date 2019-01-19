@@ -1,11 +1,10 @@
 #include "../include/interrupt.h"
 #include "../include/bsp.h"
 
-// extern volatile clock_t l_tickCtr;
+
 void SysTick_Handler(void){
-	light_green_on();
-	if (l_tickCtr != 0x00){
-		l_tickCtr--;
+	if (*l_tickCtr > 0x00){
+		(*l_tickCtr)--;
 	}
 }
 

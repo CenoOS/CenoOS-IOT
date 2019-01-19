@@ -25,9 +25,12 @@ void light_blue_off(void);
 
 #define BSP_TICKS_PER_SEC 1000U
 
+
+
 typedef long clock_t;
-static volatile clock_t l_tickCtr = 0;
+extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
+void delay_block(clock_t tick);
 
 #endif

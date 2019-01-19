@@ -2,6 +2,10 @@
 #include "../include/bsp.h"
 #include "TM4C123GH6PM.h"
 
+
+static clock_t tickCtr = 0;
+volatile clock_t* l_tickCtr = &tickCtr;
+
 extern void os_init(void);
 void system_init(void){
     SystemCoreClockUpdate();
@@ -11,11 +15,12 @@ void system_init(void){
     os_init();
 }
 
-void delay(uint32_t tick){
-    l_tickCtr = tick;
-    while(l_tickCtr!=0);
-}
+int volatile counter = 0;
 
+void delay_block(clock_t tick){
+   *l_tickCtr = tick;
+    while((*l_tickCtr)>0);
+}
 
 
 void bsp_init(void){

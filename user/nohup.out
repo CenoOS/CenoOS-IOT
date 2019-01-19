@@ -5513,3 +5513,507 @@ Error: Target is already running an algorithm
 Error: error starting target flash write algorithm
 wrote 4320 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.527843s (0.932 KiB/s)
 adapter speed: 1 kHz
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f0 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.037130s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.029744s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4332 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.837337s (0.875 KiB/s)
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008fc msp: 0x20007fd8
+invalid command name "erase_sector"
+erased sectors 0 through 255 on flash bank 0 in 0.037010s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030884s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4336 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.746057s (0.892 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x00000274 msp: 0x20007fe8
+erased sectors 0 through 255 on flash bank 0 in 0.036606s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007fa8
+erased sectors 0 through 255 on flash bank 0 in 0.031690s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4324 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.612353s (0.916 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x00000274 msp: 0x20007fe8
+erased sectors 0 through 255 on flash bank 0 in 0.036725s
+erased sectors 0 through 255 on flash bank 0 in 0.031267s
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20007fe8
+wrote 4328 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.449256s (9.408 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f4 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.037096s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+Error: Target not halted
+Error: failed erasing sectors 0 to 255
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030050s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4328 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.641249s (0.911 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f6 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036663s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+invalid command name "reet"
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.029570s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4328 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.696752s (0.900 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f8 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036900s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030487s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4360 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.807589s (0.886 KiB/s)
+adapter speed: 1 kHz
+Info : Halt timed out, wake up GDB.
+Error: timed out while waiting for target halted
+
+Info : Halt timed out, wake up GDB.
+Error: timed out while waiting for target halted
+
+Info : Halt timed out, wake up GDB.
+Error: timed out while waiting for target halted
+
+invalid command name "shutsown"
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x00000914 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036874s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+Error: Target not halted
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030132s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4380 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.726119s (0.905 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x00000904 msp: 0x20007fd0
+erased sectors 0 through 255 on flash bank 0 in 0.035915s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f90
+erased sectors 0 through 255 on flash bank 0 in 0.030083s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4388 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.725189s (0.907 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000aba msp: 0x20007f88
+erased sectors 0 through 255 on flash bank 0 in 0.036737s
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007f88
+wrote 4388 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.458190s (9.352 KiB/s)
+adapter speed: 1 kHz
+Error: memory read failed: 0x7
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Error: memory read failed: 0x7
+Examination failed, GDB will be halted. Polling again in 100ms
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Error: memory read failed: 0x7
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Error: memory read failed: 0x7
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Error: memory read failed: 0x7
+Examination failed, GDB will be halted. Polling again in 100ms
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Info : tm4c123gh6pm.cpu: hardware has 0 breakpoints, 0 watchpoints
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000ac6 msp: 0x20007f88
+erased sectors 0 through 255 on flash bank 0 in 0.038080s
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007f88
+wrote 4368 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.458310s (9.307 KiB/s)
+adapter speed: 1 kHz
+Info : Halt timed out, wake up GDB.
+Error: timed out while waiting for target halted
+
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0x00000aa6 msp: 0x20007f90
+erased sectors 0 through 255 on flash bank 0 in 0.036676s
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007f90
+wrote 4372 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.459972s (9.282 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0x00000aaa msp: 0x20007f90
+erased sectors 0 through 255 on flash bank 0 in 0.036007s
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007f90
+wrote 4376 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.458121s (9.328 KiB/s)
+adapter speed: 1 kHz
+shutdown command invoked
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 1263
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Handler SysTick
+xPSR: 0x2100000f pc: 0x00000a48 msp: 0x20007fb4
+erased sectors 0 through 255 on flash bank 0 in 0.037355s
+target halted due to breakpoint, current mode: Handler SysTick
+xPSR: 0x6100000f pc: 0x20000042 msp: 0x20007fb4
+wrote 4344 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.461243s (9.197 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f8 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036161s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030314s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4384 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.823236s (0.888 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x00000906 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036701s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.029369s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4344 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.903555s (0.865 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f6 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.035983s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.029978s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4372 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.849488s (0.880 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008fa msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.037988s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x21000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.030495s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4380 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.938502s (0.866 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008fc msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.036156s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.031214s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4376 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.956739s (0.862 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x21000000 pc: 0x000008f8 msp: 0x20007fd8
+erased sectors 0 through 255 on flash bank 0 in 0.038511s
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007f98
+erased sectors 0 through 255 on flash bank 0 in 0.029607s
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 4340 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 4.782366s (0.886 KiB/s)
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms

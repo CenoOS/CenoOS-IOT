@@ -37,6 +37,15 @@ ASM+=$(wildcard $(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/src/*.s)
 OBJ=obj/
 OBJS=$(addprefix $(OBJ),$(notdir $(SRC:.c=.o)))
 OBJS+=$(addprefix $(OBJ),$(notdir $(ASM:.s=.o)))
+
+OPTMIZE=optimize/
+OPTMIZES=$(addprefix $(OPTMIZE),$(notdir $(SRC:.c=.i)))
+OPTMIZES+=$(addprefix $(OPTMIZE),$(notdir $(ASM:.s=.i)))
+
+ASMCODE=asm/
+ASMCODES=$(addprefix $(ASMCODE),$(notdir $(OPTMIZE:.i=.s)))
+# ASMCODES+=$(addprefix $(ASMCODE),$(notdir $(ASM:.s=.i)))
+
 # ====================================================================
 # CMSMS
 CMSIS=$(BASE_DIR)/lib/SMSIS/Include
