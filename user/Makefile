@@ -54,7 +54,7 @@ $(OPTMIZE)%.i: $(BASE_DIR)/kernel/ceno/src/%.c
 	$(CC) -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
 
 # ==================================================================
-asm_gen: $(ASMCODES) 
+asm: $(ASMCODES) 
 # 汇编代码生成
 $(ASMCODE)%.s: $(OPTMIZE)/%.i
 	$(MKDIR)
@@ -100,6 +100,6 @@ usb:
 	# system_profiler SPUSBDataType
 	lsusb
 
-all: clean optimize asm_gen  build
+all: clean optimize asm  build
 # doc:
  	# /usr/local/Cellar/node/7.4.0/lib/node_modules/docsify-cli/bin/docsify serve ../docs/docs
