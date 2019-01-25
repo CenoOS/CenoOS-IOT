@@ -73,7 +73,7 @@ os_err_t os_task_create(os_task_t *me,
 
 os_err_t os_task_switch_next(void){
 	/* context switch */
-    asm  (
+    __asm  (
 		/* __disable_irq(); */
 		"CPSID         I"
 
