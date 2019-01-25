@@ -12,6 +12,8 @@
  */
 #include "../include/os_api.h"
 
+os_task_t* volatile osIdleTask;
+uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
 
@@ -29,10 +31,29 @@ os_err_t os_init(void){
 	if(isOsObjectContainerInit==OS_ERR){
 		return isOsObjectContainerInit;
 	}
+
+	/**
+	 * os idle task init
+	 */
+	os_err_t isOsIdleTaskInit = os_task_create(
+		osIdleTask,
+    	"taskIdle",
+    	0,
+    	stackTaskIdle,
+    	sizeof(stackTaskIdle),
+    	os_idle
+	);
+	if(isOsIdleTaskInit==OS_ERR){
+		return isOsIdleTaskInit;
+	}
 }
 
 os_err_t os_run(void){
-	// (*((volatile unsigned long *)0x40025038)) |= 0x08;
+	/* callback to configure and start interrupts */
+	os_on_startup();
+    disable_irq();
+    os_sched();
+    enable_irq();
 }
 
 os_err_t os_idle(void){
@@ -44,5 +65,7 @@ os_err_t os_tick(void){
 }
 
 os_err_t os_sched(void){
-	
+	if(os_queue_size(osTaskQueue)<=0U){
+		osTaskNext = osIdleTask;
+	}
 }

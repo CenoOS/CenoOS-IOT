@@ -199,7 +199,7 @@ void Reset_Handler(void)
   }
 
   /* your program's main() called */
-  system_init();
+  os_on_startup();
   main();
 }
 /*****************************************END OF FILE*********************************************/

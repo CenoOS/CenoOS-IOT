@@ -12,11 +12,10 @@
  */
 #include "../include/os_api.h"
 
-os_task_t* volatile OS_curr;
-os_task_t* volatile OS_next;
+os_task_t* volatile osTaskCurr;
+os_task_t* volatile osTaskNext;
 
-
-static os_queue_t* taskQueue;
+os_queue_t*  osTaskQueue;
 
 os_err_t os_task_create(os_task_t *me,
 					cpu_char_t *name, 
@@ -25,9 +24,10 @@ os_err_t os_task_create(os_task_t *me,
 					cpu_stk_size_t stackSize,
 					os_task_handler_t taskHandler){
 	
-	/* round down the stack top to the 8-byte boundary
-    * NOTE: ARM Cortex-M stack grows down from hi -> low memory
-    */
+	/**
+	 * round down the stack top to the 8-byte boundary
+     * NOTE: ARM Cortex-M stack grows down from hi -> low memory
+     */
     uint32_t *sp = (uint32_t *)((((uint32_t)stkPtr + stackSize) / 8) * 8);
     uint32_t *stk_limit;
 
@@ -69,7 +69,7 @@ os_err_t os_task_create(os_task_t *me,
 	}
 
 
-	os_err_t err = os_queue_add_item(taskQueue,me);
+	os_err_t err = os_queue_add_item(osTaskQueue,me);
 	if(err==OS_ERR){
 		/* add to task queue failed */
 	}
@@ -82,7 +82,7 @@ os_err_t os_task_switch_next(void){
 		"CPSID         I\n\t"
 
     	/* if (OS_curr != (OSThread *)0) { */ 
-    	"LDR           r1,=OS_curr\n\t"
+    	"LDR           r1,=osTaskCurr\n\t"
     	"LDR           r1,[r1,#0x00]\n\t"
     	"CBZ           r1,PendSV_restore\n\t"
 
@@ -90,21 +90,21 @@ os_err_t os_task_switch_next(void){
     	"PUSH          {r4-r11}\n\t"   
 
     	/*     OS_curr->sp = sp; */ 
-    	"LDR           r1,=OS_curr\n\t"
+    	"LDR           r1,=osTaskCurr\n\t"
     	"LDR           r1,[r1,#0x00]\n\t"
     	"STR           sp,[r1,#0x00]\n\t"
     	/* } */
 
 		"PendSV_restore:\n\t"   
     	/* sp = OS_next->sp; */
-    	"LDR           r1,=OS_next\n\t"
+    	"LDR           r1,=osTaskNext\n\t"
     	"LDR           r1,[r1,#0x00]\n\t"
     	"LDR           sp,[r1,#0x00]\n\t"
 
     	/* OS_curr = OS_next; */
-		"LDR           r1,=OS_next\n\t"
+		"LDR           r1,=osTaskNext\n\t"
    		"LDR           r1,[r1,#0x00]\n\t"
-   		"LDR           r2,=OS_curr\n\t"
+   		"LDR           r2,=osTaskCurr\n\t"
    		"STR           r1,[r2,#0x00]\n\t"
 
     	/* pop registers r4-r11 */ 

@@ -15,10 +15,8 @@ void task_01_thread(){
 
 int main(void)
 {
-
-  system_init();
   bsp_init();
-
+  
   os_err_t task_01_err = os_task_create(
     task_01,
     "task_01",

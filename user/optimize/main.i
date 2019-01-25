@@ -220,7 +220,11 @@ void light_blue_off(void);
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
-void system_init(void);
+void os_on_startup(void);
+
+void disable_irq(void);
+void enable_irq(void);
+
 void delay_block(clock_t tick);
 # 3 "src/main.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 1
@@ -324,6 +328,8 @@ os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr);
 os_err_t os_queue_remove();
 
 os_err_t os_queue_clear();
+
+uint32_t os_queue_size(os_queue_t* queue);
 # 23 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_ring_buffer.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_ring_buffer.h"
@@ -344,7 +350,7 @@ uint8_t os_ring_buffer_is_full(os_ring_buffer_t* buffer);
 uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 24 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_task.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_task.h"
+# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_task.h"
 typedef void (*os_task_handler_t)();
 
 typedef enum task_state{
@@ -384,6 +390,13 @@ os_err_t os_task_switch_next(void);
 os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
+
+
+extern os_queue_t* osTaskQueue;
+
+
+extern os_task_t* volatile osTaskCurr;
+extern os_task_t* volatile osTaskNext;
 # 25 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_semphore.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_semphore.h"
@@ -430,6 +443,9 @@ os_err_t os_idle(void);
 os_err_t os_tick(void);
 
 os_err_t os_sched(void);
+
+
+extern os_task_t* volatile osIdleTask;
 # 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 4 "src/main.c" 2
 
@@ -446,8 +462,6 @@ void task_01_thread(){
 
 int main(void)
 {
-
-  system_init();
   bsp_init();
 
   os_err_t task_01_err = os_task_create(

@@ -7,12 +7,23 @@ static clock_t tickCtr = 0;
 volatile clock_t* l_tickCtr = &tickCtr;
 
 extern void os_init(void);
-void system_init(void){
+void os_on_startup(void){
     SystemCoreClockUpdate();
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
     /* set the SysTick interrupt priority (highest) */
     NVIC_SetPriority(SysTick_IRQn, 0U);
-    os_init();
+}
+
+
+void disable_irq(void){
+	__asm	(
+		"CPSID	I\n\t"
+	);
+}
+void enable_irq(void){
+	__asm	(
+		"CPSIE	I\n\t"
+	);
 }
 
 int volatile counter = 0;

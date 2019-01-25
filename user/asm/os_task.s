@@ -10,14 +10,9 @@
 	.eabi_attribute 18, 4
 	.file	"os_task.c"
 	.text
-	.comm	OS_curr,4,4
-	.comm	OS_next,4,4
-	.bss
-	.align	2
-taskQueue:
-	.space	4
-	.size	taskQueue, 4
-	.text
+	.comm	osTaskCurr,4,4
+	.comm	osTaskNext,4,4
+	.comm	osTaskQueue,4,4
 	.align	2
 	.global	os_task_create
 	.syntax unified
@@ -193,7 +188,7 @@ os_task_create:
 	.align	2
 .L5:
 	.word	-559038737
-	.word	taskQueue
+	.word	osTaskQueue
 	.size	os_task_create, .-os_task_create
 	.align	2
 	.global	os_task_switch_next
@@ -211,20 +206,20 @@ os_task_switch_next:
 	.syntax divided
 @ 80 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID         I
-	LDR           r1,=OS_curr
+	LDR           r1,=osTaskCurr
 	LDR           r1,[r1,#0x00]
 	CBZ           r1,PendSV_restore
 	PUSH          {r4-r11}
-	LDR           r1,=OS_curr
+	LDR           r1,=osTaskCurr
 	LDR           r1,[r1,#0x00]
 	STR           sp,[r1,#0x00]
 	PendSV_restore:
-	LDR           r1,=OS_next
+	LDR           r1,=osTaskNext
 	LDR           r1,[r1,#0x00]
 	LDR           sp,[r1,#0x00]
-	LDR           r1,=OS_next
+	LDR           r1,=osTaskNext
 	LDR           r1,[r1,#0x00]
-	LDR           r2,=OS_curr
+	LDR           r2,=osTaskCurr
 	STR           r1,[r2,#0x00]
 	POP           {r4-r11}
 	CPSIE         I

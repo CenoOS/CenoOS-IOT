@@ -54,7 +54,6 @@ main:
 	push	{fp, lr}
 	add	fp, sp, #4
 	sub	sp, sp, #16
-	bl	system_init
 	bl	bsp_init
 	ldr	r3, .L4
 	ldr	r0, [r3]

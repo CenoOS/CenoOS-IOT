@@ -304,6 +304,8 @@ os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr);
 os_err_t os_queue_remove();
 
 os_err_t os_queue_clear();
+
+uint32_t os_queue_size(os_queue_t* queue);
 # 23 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h"
@@ -324,7 +326,7 @@ uint8_t os_ring_buffer_is_full(os_ring_buffer_t* buffer);
 uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 24 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
+# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
 typedef void (*os_task_handler_t)();
 
 typedef enum task_state{
@@ -364,6 +366,13 @@ os_err_t os_task_switch_next(void);
 os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
+
+
+extern os_queue_t* osTaskQueue;
+
+
+extern os_task_t* volatile osTaskCurr;
+extern os_task_t* volatile osTaskNext;
 # 25 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h"
@@ -410,14 +419,16 @@ os_err_t os_idle(void);
 os_err_t os_tick(void);
 
 os_err_t os_sched(void);
+
+
+extern os_task_t* volatile osIdleTask;
 # 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 2
 
-os_task_t* volatile OS_curr;
-os_task_t* volatile OS_next;
+os_task_t* volatile osTaskCurr;
+os_task_t* volatile osTaskNext;
 
-
-static os_queue_t* taskQueue;
+os_queue_t* osTaskQueue;
 
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
@@ -425,6 +436,7 @@ os_err_t os_task_create(os_task_t *me,
      cpu_stk_t stkPtr,
      cpu_stk_size_t stackSize,
      os_task_handler_t taskHandler){
+
 
 
 
@@ -470,7 +482,7 @@ os_err_t os_task_create(os_task_t *me,
  }
 
 
- os_err_t err = os_queue_add_item(taskQueue,me);
+ os_err_t err = os_queue_add_item(osTaskQueue,me);
  if(err==OS_ERR){
 
  }
@@ -483,7 +495,7 @@ os_err_t os_task_switch_next(void){
   "CPSID         I\n\t"
 
 
-     "LDR           r1,=OS_curr\n\t"
+     "LDR           r1,=osTaskCurr\n\t"
      "LDR           r1,[r1,#0x00]\n\t"
      "CBZ           r1,PendSV_restore\n\t"
 
@@ -491,21 +503,21 @@ os_err_t os_task_switch_next(void){
      "PUSH          {r4-r11}\n\t"
 
 
-     "LDR           r1,=OS_curr\n\t"
+     "LDR           r1,=osTaskCurr\n\t"
      "LDR           r1,[r1,#0x00]\n\t"
      "STR           sp,[r1,#0x00]\n\t"
 
 
   "PendSV_restore:\n\t"
 
-     "LDR           r1,=OS_next\n\t"
+     "LDR           r1,=osTaskNext\n\t"
      "LDR           r1,[r1,#0x00]\n\t"
      "LDR           sp,[r1,#0x00]\n\t"
 
 
-  "LDR           r1,=OS_next\n\t"
+  "LDR           r1,=osTaskNext\n\t"
      "LDR           r1,[r1,#0x00]\n\t"
-     "LDR           r2,=OS_curr\n\t"
+     "LDR           r2,=osTaskCurr\n\t"
      "STR           r1,[r2,#0x00]\n\t"
 
 

@@ -30,7 +30,11 @@ void light_blue_off(void);
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
-void system_init(void);
+void os_on_startup(void);
+
+void disable_irq(void);
+void enable_irq(void);
+
 void delay_block(clock_t tick);
 
 #endif

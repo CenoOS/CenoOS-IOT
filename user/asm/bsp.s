@@ -120,12 +120,12 @@ l_tickCtr:
 	.word	tickCtr
 	.text
 	.align	2
-	.global	system_init
+	.global	os_on_startup
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	system_init, %function
-system_init:
+	.type	os_on_startup, %function
+os_on_startup:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
@@ -142,7 +142,6 @@ system_init:
 	mov	r1, #0
 	mvn	r0, #0
 	bl	__NVIC_SetPriority
-	bl	os_init
 	nop
 	sub	sp, fp, #12
 	@ sp needed
@@ -153,7 +152,59 @@ system_init:
 .L13:
 	.word	SystemCoreClock
 	.word	274877907
-	.size	system_init, .-system_init
+	.size	os_on_startup, .-os_on_startup
+	.align	2
+	.global	disable_irq
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	disable_irq, %function
+disable_irq:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
+	.syntax divided
+@ 19 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+	CPSID	I
+	
+@ 0 "" 2
+	.arm
+	.syntax unified
+	nop
+	add	sp, fp, #0
+	@ sp needed
+	ldr	fp, [sp], #4
+	bx	lr
+	.size	disable_irq, .-disable_irq
+	.align	2
+	.global	enable_irq
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	enable_irq, %function
+enable_irq:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
+	.syntax divided
+@ 24 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+	CPSIE	I
+	
+@ 0 "" 2
+	.arm
+	.syntax unified
+	nop
+	add	sp, fp, #0
+	@ sp needed
+	ldr	fp, [sp], #4
+	bx	lr
+	.size	enable_irq, .-enable_irq
 	.global	counter
 	.bss
 	.align	2
@@ -177,25 +228,25 @@ delay_block:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	ldr	r3, .L17
+	ldr	r3, .L19
 	ldr	r3, [r3]
 	ldr	r2, [fp, #-8]
 	str	r2, [r3]
 	nop
-.L16:
-	ldr	r3, .L17
+.L18:
+	ldr	r3, .L19
 	ldr	r3, [r3]
 	ldr	r3, [r3]
 	cmp	r3, #0
-	bgt	.L16
+	bgt	.L18
 	nop
 	add	sp, fp, #0
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L18:
+.L20:
 	.align	2
-.L17:
+.L19:
 	.word	l_tickCtr
 	.size	delay_block, .-delay_block
 	.align	2
@@ -211,22 +262,22 @@ bsp_init:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L20
+	ldr	r3, .L22
 	ldr	r3, [r3]
-	ldr	r2, .L20
+	ldr	r2, .L22
 	orr	r3, r3, #32
 	str	r3, [r2]
-	ldr	r3, .L20+4
+	ldr	r3, .L22+4
 	ldr	r3, [r3]
-	ldr	r2, .L20+4
+	ldr	r2, .L22+4
 	orr	r3, r3, #14
 	str	r3, [r2]
-	ldr	r3, .L20+8
+	ldr	r3, .L22+8
 	ldr	r3, [r3]
-	ldr	r2, .L20+8
+	ldr	r2, .L22+8
 	orr	r3, r3, #14
 	str	r3, [r2]
-	ldr	r3, .L20+12
+	ldr	r3, .L22+12
 	mov	r2, #0
 	str	r2, [r3]
 	nop
@@ -234,9 +285,9 @@ bsp_init:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L21:
+.L23:
 	.align	2
-.L20:
+.L22:
 	.word	1074782472
 	.word	1073894400
 	.word	1073894684
@@ -255,9 +306,9 @@ light_red_on:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L23
+	ldr	r3, .L25
 	ldr	r3, [r3]
-	ldr	r2, .L23
+	ldr	r2, .L25
 	orr	r3, r3, #2
 	str	r3, [r2]
 	nop
@@ -265,9 +316,9 @@ light_red_on:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L24:
+.L26:
 	.align	2
-.L23:
+.L25:
 	.word	1073893432
 	.size	light_red_on, .-light_red_on
 	.align	2
@@ -283,9 +334,9 @@ light_green_on:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L26
+	ldr	r3, .L28
 	ldr	r3, [r3]
-	ldr	r2, .L26
+	ldr	r2, .L28
 	orr	r3, r3, #8
 	str	r3, [r2]
 	nop
@@ -293,9 +344,9 @@ light_green_on:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L27:
+.L29:
 	.align	2
-.L26:
+.L28:
 	.word	1073893432
 	.size	light_green_on, .-light_green_on
 	.align	2
@@ -311,9 +362,9 @@ light_blue_on:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L29
+	ldr	r3, .L31
 	ldr	r3, [r3]
-	ldr	r2, .L29
+	ldr	r2, .L31
 	orr	r3, r3, #4
 	str	r3, [r2]
 	nop
@@ -321,9 +372,9 @@ light_blue_on:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L30:
+.L32:
 	.align	2
-.L29:
+.L31:
 	.word	1073893432
 	.size	light_blue_on, .-light_blue_on
 	.align	2
@@ -339,9 +390,9 @@ light_red_off:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L32
+	ldr	r3, .L34
 	ldr	r3, [r3]
-	ldr	r2, .L32
+	ldr	r2, .L34
 	bic	r3, r3, #2
 	str	r3, [r2]
 	nop
@@ -349,9 +400,9 @@ light_red_off:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L33:
+.L35:
 	.align	2
-.L32:
+.L34:
 	.word	1073893432
 	.size	light_red_off, .-light_red_off
 	.align	2
@@ -367,9 +418,9 @@ light_green_off:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L35
+	ldr	r3, .L37
 	ldr	r3, [r3]
-	ldr	r2, .L35
+	ldr	r2, .L37
 	bic	r3, r3, #8
 	str	r3, [r2]
 	nop
@@ -377,9 +428,9 @@ light_green_off:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L36:
+.L38:
 	.align	2
-.L35:
+.L37:
 	.word	1073893432
 	.size	light_green_off, .-light_green_off
 	.align	2
@@ -395,9 +446,9 @@ light_blue_off:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L38
+	ldr	r3, .L40
 	ldr	r3, [r3]
-	ldr	r2, .L38
+	ldr	r2, .L40
 	bic	r3, r3, #4
 	str	r3, [r2]
 	nop
@@ -405,9 +456,9 @@ light_blue_off:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L39:
+.L41:
 	.align	2
-.L38:
+.L40:
 	.word	1073893432
 	.size	light_blue_off, .-light_blue_off
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

@@ -25,4 +25,7 @@ os_err_t os_tick(void);
 
 os_err_t os_sched(void);
 
+
+extern os_task_t* volatile osIdleTask;
+
 #endif

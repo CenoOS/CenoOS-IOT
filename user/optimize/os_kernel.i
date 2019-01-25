@@ -304,6 +304,8 @@ os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr);
 os_err_t os_queue_remove();
 
 os_err_t os_queue_clear();
+
+uint32_t os_queue_size(os_queue_t* queue);
 # 23 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h"
@@ -324,7 +326,7 @@ uint8_t os_ring_buffer_is_full(os_ring_buffer_t* buffer);
 uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 24 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
+# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
 typedef void (*os_task_handler_t)();
 
 typedef enum task_state{
@@ -364,6 +366,13 @@ os_err_t os_task_switch_next(void);
 os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
+
+
+extern os_queue_t* osTaskQueue;
+
+
+extern os_task_t* volatile osTaskCurr;
+extern os_task_t* volatile osTaskNext;
 # 25 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h"
@@ -410,20 +419,44 @@ os_err_t os_idle(void);
 os_err_t os_tick(void);
 
 os_err_t os_sched(void);
+
+
+extern os_task_t* volatile osIdleTask;
 # 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c" 2
 
+os_task_t* volatile osIdleTask;
+uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
-# 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+# 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
  os_err_t isOsObjectContainerInit = os_obj_container_init();
  if(isOsObjectContainerInit==OS_ERR){
   return isOsObjectContainerInit;
+ }
+
+
+
+
+ os_err_t isOsIdleTaskInit = os_task_create(
+  osIdleTask,
+     "taskIdle",
+     0,
+     stackTaskIdle,
+     sizeof(stackTaskIdle),
+     os_idle
+ );
+ if(isOsIdleTaskInit==OS_ERR){
+  return isOsIdleTaskInit;
  }
 }
 
 os_err_t os_run(void){
 
+ os_on_startup();
+    disable_irq();
+    os_sched();
+    enable_irq();
 }
 
 os_err_t os_idle(void){
@@ -435,5 +468,7 @@ os_err_t os_tick(void){
 }
 
 os_err_t os_sched(void){
-
+ if(os_queue_size(osTaskQueue)<=0U){
+  osTaskNext = osIdleTask;
+ }
 }

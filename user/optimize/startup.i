@@ -548,6 +548,6 @@ void Reset_Handler(void)
   }
 
 
-  system_init();
+  os_on_startup();
   main();
 }

@@ -217,7 +217,7 @@ Reset_Handler:
 	ldr	r2, .L6+16
 	cmp	r3, r2
 	bcc	.L5
-	bl	system_init
+	bl	os_on_startup
 	bl	main
 	nop
 	sub	sp, fp, #4
