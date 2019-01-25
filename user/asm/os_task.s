@@ -10,6 +10,8 @@
 	.eabi_attribute 18, 4
 	.file	"os_task.c"
 	.text
+	.comm	OS_curr,4,4
+	.comm	OS_next,4,4
 	.bss
 	.align	2
 taskQueue:
@@ -207,8 +209,27 @@ os_task_switch_next:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 76 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
-	CPSID         ILDR           r1,=OS_currLDR           r1,[r1,#0x00]CBZ           r1,PendSV_restorePUSH          {r4-r11}LDR           r1,=OS_currLDR           r1,[r1,#0x00]STR           sp,[r1,#0x00]PendSV_restore:LDR           r1,=OS_nextLDR           r1,[r1,#0x00]LDR           sp,[r1,#0x00]LDR           r1,=OS_nextLDR           r1,[r1,#0x00]LDR           r2,=OS_currSTR           r1,[r2,#0x00]POP           {r4-r11}CPSIE         IBX            lr
+@ 80 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+	CPSID         I
+	LDR           r1,=OS_curr
+	LDR           r1,[r1,#0x00]
+	CBZ           r1,PendSV_restore
+	PUSH          {r4-r11}
+	LDR           r1,=OS_curr
+	LDR           r1,[r1,#0x00]
+	STR           sp,[r1,#0x00]
+	PendSV_restore:
+	LDR           r1,=OS_next
+	LDR           r1,[r1,#0x00]
+	LDR           sp,[r1,#0x00]
+	LDR           r1,=OS_next
+	LDR           r1,[r1,#0x00]
+	LDR           r2,=OS_curr
+	STR           r1,[r2,#0x00]
+	POP           {r4-r11}
+	CPSIE         I
+	BX            lr
+	
 @ 0 "" 2
 	.arm
 	.syntax unified

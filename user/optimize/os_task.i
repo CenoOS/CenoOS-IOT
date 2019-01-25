@@ -413,6 +413,10 @@ os_err_t os_sched(void);
 # 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 2
 
+os_task_t* volatile OS_curr;
+os_task_t* volatile OS_next;
+
+
 static os_queue_t* taskQueue;
 
 os_err_t os_task_create(os_task_t *me,
@@ -476,42 +480,42 @@ os_err_t os_task_switch_next(void){
 
     __asm (
 
-  "CPSID         I"
+  "CPSID         I\n\t"
 
 
-     "LDR           r1,=OS_curr"
-     "LDR           r1,[r1,#0x00]"
-     "CBZ           r1,PendSV_restore"
+     "LDR           r1,=OS_curr\n\t"
+     "LDR           r1,[r1,#0x00]\n\t"
+     "CBZ           r1,PendSV_restore\n\t"
 
 
-     "PUSH          {r4-r11}"
+     "PUSH          {r4-r11}\n\t"
 
 
-     "LDR           r1,=OS_curr"
-     "LDR           r1,[r1,#0x00]"
-     "STR           sp,[r1,#0x00]"
+     "LDR           r1,=OS_curr\n\t"
+     "LDR           r1,[r1,#0x00]\n\t"
+     "STR           sp,[r1,#0x00]\n\t"
 
 
-  "PendSV_restore:"
+  "PendSV_restore:\n\t"
 
-     "LDR           r1,=OS_next"
-     "LDR           r1,[r1,#0x00]"
-     "LDR           sp,[r1,#0x00]"
-
-
-  "LDR           r1,=OS_next"
-     "LDR           r1,[r1,#0x00]"
-     "LDR           r2,=OS_curr"
-     "STR           r1,[r2,#0x00]"
+     "LDR           r1,=OS_next\n\t"
+     "LDR           r1,[r1,#0x00]\n\t"
+     "LDR           sp,[r1,#0x00]\n\t"
 
 
-     "POP           {r4-r11}"
+  "LDR           r1,=OS_next\n\t"
+     "LDR           r1,[r1,#0x00]\n\t"
+     "LDR           r2,=OS_curr\n\t"
+     "STR           r1,[r2,#0x00]\n\t"
 
 
-     "CPSIE         I"
+     "POP           {r4-r11}\n\t"
 
 
-     "BX            lr"
+     "CPSIE         I\n\t"
+
+
+     "BX            lr\n\t"
  );
 }
 

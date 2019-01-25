@@ -12,6 +12,10 @@
  */
 #include "../include/os_api.h"
 
+os_task_t* volatile OS_curr;
+os_task_t* volatile OS_next;
+
+
 static os_queue_t* taskQueue;
 
 os_err_t os_task_create(os_task_t *me,
@@ -75,42 +79,42 @@ os_err_t os_task_switch_next(void){
 	/* context switch */
     __asm  (
 		/* __disable_irq(); */
-		"CPSID         I"
+		"CPSID         I\n\t"
 
     	/* if (OS_curr != (OSThread *)0) { */ 
-    	"LDR           r1,=OS_curr"
-    	"LDR           r1,[r1,#0x00]"
-    	"CBZ           r1,PendSV_restore"
+    	"LDR           r1,=OS_curr\n\t"
+    	"LDR           r1,[r1,#0x00]\n\t"
+    	"CBZ           r1,PendSV_restore\n\t"
 
     	/*     push registers r4-r11 on the stack */
-    	"PUSH          {r4-r11}"   
+    	"PUSH          {r4-r11}\n\t"   
 
     	/*     OS_curr->sp = sp; */ 
-    	"LDR           r1,=OS_curr"
-    	"LDR           r1,[r1,#0x00]"
-    	"STR           sp,[r1,#0x00]"
+    	"LDR           r1,=OS_curr\n\t"
+    	"LDR           r1,[r1,#0x00]\n\t"
+    	"STR           sp,[r1,#0x00]\n\t"
     	/* } */
 
-		"PendSV_restore:"   
+		"PendSV_restore:\n\t"   
     	/* sp = OS_next->sp; */
-    	"LDR           r1,=OS_next"
-    	"LDR           r1,[r1,#0x00]"
-    	"LDR           sp,[r1,#0x00]"
+    	"LDR           r1,=OS_next\n\t"
+    	"LDR           r1,[r1,#0x00]\n\t"
+    	"LDR           sp,[r1,#0x00]\n\t"
 
     	/* OS_curr = OS_next; */
-		"LDR           r1,=OS_next"
-   		"LDR           r1,[r1,#0x00]"
-   		"LDR           r2,=OS_curr"
-   		"STR           r1,[r2,#0x00]"
+		"LDR           r1,=OS_next\n\t"
+   		"LDR           r1,[r1,#0x00]\n\t"
+   		"LDR           r2,=OS_curr\n\t"
+   		"STR           r1,[r2,#0x00]\n\t"
 
     	/* pop registers r4-r11 */ 
-   		"POP           {r4-r11}"
+   		"POP           {r4-r11}\n\t"
 
     	/* __enable_irq(); */
-    	"CPSIE         I"
+    	"CPSIE         I\n\t"
 
     	/* return  thread */
-    	"BX            lr"
+    	"BX            lr\n\t"
 	);
 }
 
