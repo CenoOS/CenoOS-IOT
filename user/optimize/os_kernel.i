@@ -467,8 +467,21 @@ os_err_t os_tick(void){
 
 }
 
+os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
+
+}
+
 os_err_t os_sched(void){
  if(os_queue_size(osTaskQueue)<=0U){
   osTaskNext = osIdleTask;
+ }else{
+
+  osTaskNext = os_get_next_ready_from_task_queue(osTaskQueue);
  }
+
+
+    if (osTaskNext != osTaskCurr) {
+
+        *(uint32_t volatile *)0xE000ED04 = (1U << 28);
+    }
 }

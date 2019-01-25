@@ -29,5 +29,5 @@ os_err_t os_queue_clear(){
 }
 
 uint32_t os_queue_size(os_queue_t* queue){
-	
+
 }

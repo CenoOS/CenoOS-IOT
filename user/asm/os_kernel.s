@@ -135,6 +135,28 @@ os_tick:
 	bx	lr
 	.size	os_tick, .-os_tick
 	.align	2
+	.global	os_get_next_ready_from_task_queue
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	os_get_next_ready_from_task_queue, %function
+os_get_next_ready_from_task_queue:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 8
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
+	sub	sp, sp, #12
+	str	r0, [fp, #-8]
+	nop
+	mov	r0, r3
+	add	sp, fp, #0
+	@ sp needed
+	ldr	fp, [sp], #4
+	bx	lr
+	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
+	.align	2
 	.global	os_sched
 	.syntax unified
 	.arm
@@ -146,29 +168,50 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r3, .L12
+	ldr	r3, .L15
 	ldr	r3, [r3]
 	mov	r0, r3
 	bl	os_queue_size
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L11
-	ldr	r3, .L12+4
+	bne	.L12
+	ldr	r3, .L15+4
 	ldr	r3, [r3]
-	ldr	r2, .L12+8
+	ldr	r2, .L15+8
 	str	r3, [r2]
-.L11:
+	b	.L13
+.L12:
+	ldr	r3, .L15
+	ldr	r3, [r3]
+	mov	r0, r3
+	bl	os_get_next_ready_from_task_queue
+	mov	r2, r0
+	ldr	r3, .L15+8
+	str	r2, [r3]
+.L13:
+	ldr	r3, .L15+8
+	ldr	r2, [r3]
+	ldr	r3, .L15+12
+	ldr	r3, [r3]
+	cmp	r2, r3
+	beq	.L14
+	ldr	r3, .L15+16
+	mov	r2, #268435456
+	str	r2, [r3]
+.L14:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L13:
+.L16:
 	.align	2
-.L12:
+.L15:
 	.word	osTaskQueue
 	.word	osIdleTask
 	.word	osTaskNext
+	.word	osTaskCurr
+	.word	-536810236
 	.size	os_sched, .-os_sched
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"
