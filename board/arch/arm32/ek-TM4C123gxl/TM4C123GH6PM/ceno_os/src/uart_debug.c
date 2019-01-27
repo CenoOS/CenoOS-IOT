@@ -20,7 +20,7 @@ void uart_debug_init(void){
 
 void uart_debug_print(char* str){
 	while(*str){
-		uart_debug_print_char(*(string++));
+		uart_debug_print_char(*(str++));
 	}
 }
 
@@ -36,21 +36,7 @@ void uart_debug_reveive(char* rec){
 
 char uart_debug_reveive_char(void){
 	char c;
-	while((UART0->FR & (1<<1))!=0);
+	while((UART0->FR & (1<<4))!=0);
 	c = UART0->DR;
 	return c;
-}
-
-int main(){
-	uart_debug_init();
-	char c;
-	while(1){
-		uart_debug_print("test uart print");
-		uart_debug_reveive(c);
-		switch(c){
-			case '1':
-			break;
-		}
-	}
-
 }

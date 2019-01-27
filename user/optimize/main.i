@@ -223,6 +223,18 @@ extern volatile clock_t* l_tickCtr;
 void system_init(void);
 void delay_block(clock_t tick);
 # 3 "src/main.c" 2
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h" 1
+# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h"
+void uart_debug_init(void);
+
+void uart_debug_print(char* str);
+
+void uart_debug_print_char(char str);
+
+void uart_debug_reveive(char* rec);
+
+char uart_debug_reveive_char(void);
+# 4 "src/main.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 1
 # 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h"
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h" 1
@@ -443,12 +455,15 @@ os_err_t os_sched(void);
 
 extern os_task_t* volatile osIdleTask;
 # 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
-# 4 "src/main.c" 2
+# 5 "src/main.c" 2
 
 
 os_task_t* task_01;
 uint32_t stack_task_01[40];
 void task_01_thread(){
+
+  uart_debug_print("test uart debug");
+
   light_green_on();
   delay_block(1000);
 
@@ -468,7 +483,6 @@ int main(void)
     sizeof(stack_task_01),
     task_01
   );
-
 
   os_run();
 }

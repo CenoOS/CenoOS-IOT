@@ -12,6 +12,11 @@
 	.text
 	.comm	task_01,4,4
 	.comm	stack_task_01,160,4
+	.section	.rodata
+	.align	2
+.LC0:
+	.ascii	"test uart debug\000"
+	.text
 	.align	2
 	.global	task_01_thread
 	.syntax unified
@@ -24,6 +29,8 @@ task_01_thread:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
+	ldr	r0, .L2
+	bl	uart_debug_print
 	bl	light_green_on
 	mov	r0, #1000
 	bl	delay_block
@@ -35,10 +42,14 @@ task_01_thread:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
+.L3:
+	.align	2
+.L2:
+	.word	.LC0
 	.size	task_01_thread, .-task_01_thread
 	.section	.rodata
 	.align	2
-.LC0:
+.LC1:
 	.ascii	"task_01\000"
 	.text
 	.align	2
@@ -55,16 +66,16 @@ main:
 	add	fp, sp, #4
 	sub	sp, sp, #16
 	bl	bsp_init
-	ldr	r3, .L4
+	ldr	r3, .L6
 	ldr	r0, [r3]
-	ldr	r3, .L4
+	ldr	r3, .L6
 	ldr	r3, [r3]
 	str	r3, [sp, #4]
 	mov	r3, #160
 	str	r3, [sp]
-	ldr	r3, .L4+4
+	ldr	r3, .L6+4
 	mov	r2, #5
-	ldr	r1, .L4+8
+	ldr	r1, .L6+8
 	bl	os_task_create
 	mov	r3, r0
 	strb	r3, [fp, #-5]
@@ -75,11 +86,11 @@ main:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L5:
+.L7:
 	.align	2
-.L4:
+.L6:
 	.word	task_01
 	.word	stack_task_01
-	.word	.LC0
+	.word	.LC1
 	.size	main, .-main
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

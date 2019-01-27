@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "../include/bsp.h"
+#include "../include/uart_debug.h"
 #include "TM4C123GH6PM.h"
 
 
@@ -12,6 +13,8 @@ void os_on_startup(void){
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
     /* set the SysTick interrupt priority (highest) */
     NVIC_SetPriority(SysTick_IRQn, 0U);
+
+	uart_debug_init();
 }
 
 

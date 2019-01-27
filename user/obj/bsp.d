@@ -8,6 +8,7 @@ obj/bsp.o: \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_intsup.h \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_stdint.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h \
+ /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/cmsis_version.h \

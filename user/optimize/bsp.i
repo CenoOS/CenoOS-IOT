@@ -223,6 +223,18 @@ extern volatile clock_t* l_tickCtr;
 void system_init(void);
 void delay_block(clock_t tick);
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
+# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
+void uart_debug_init(void);
+
+void uart_debug_print(char* str);
+
+void uart_debug_print_char(char str);
+
+void uart_debug_reveive(char* rec);
+
+char uart_debug_reveive_char(void);
+# 4 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h" 1
 # 63 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"
 typedef enum {
@@ -3032,7 +3044,7 @@ typedef struct {
   volatile uint32_t CHMAP2;
   volatile uint32_t CHMAP3;
 } UDMA_Type;
-# 4 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
+# 5 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 
 
 static clock_t tickCtr = 0;
@@ -3044,6 +3056,8 @@ void os_on_startup(void){
     SysTick_Config(SystemCoreClock / 10U);
 
     __NVIC_SetPriority(SysTick_IRQn, 0U);
+
+ uart_debug_init();
 }
 
 

@@ -44,6 +44,7 @@
         "os_ring_buffer.h": "c",
         "os_list.h": "c",
         "uartstdio.h": "c",
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "uart_debug.h": "c"
     }
 }
