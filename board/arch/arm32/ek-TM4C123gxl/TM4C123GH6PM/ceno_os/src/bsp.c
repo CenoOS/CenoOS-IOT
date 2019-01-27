@@ -15,6 +15,7 @@ void os_on_startup(void){
 }
 
 
+
 void disable_irq(void){
 	__asm	(
 		"CPSID	I\n\t"

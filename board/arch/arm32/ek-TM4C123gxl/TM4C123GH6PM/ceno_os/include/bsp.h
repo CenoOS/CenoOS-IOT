@@ -23,18 +23,14 @@ void light_red_off(void);
 void light_green_off(void);
 void light_blue_off(void);
 
-#define BSP_TICKS_PER_SEC 1000U
+#define BSP_TICKS_PER_SEC 10U
 
 
 
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
-void os_on_startup(void);
-
-void disable_irq(void);
-void enable_irq(void);
-
+void system_init(void);
 void delay_block(clock_t tick);
 
 #endif

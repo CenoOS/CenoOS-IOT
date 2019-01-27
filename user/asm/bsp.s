@@ -136,7 +136,7 @@ os_on_startup:
 	ldr	r2, [r3]
 	ldr	r1, .L13+4
 	umull	r3, r4, r2, r1
-	lsr	r3, r4, #6
+	lsr	r3, r4, #3
 	mov	r0, r3
 	bl	SysTick_Config
 	mov	r1, #0
@@ -151,7 +151,7 @@ os_on_startup:
 	.align	2
 .L13:
 	.word	SystemCoreClock
-	.word	274877907
+	.word	-858993459
 	.size	os_on_startup, .-os_on_startup
 	.align	2
 	.global	disable_irq
@@ -167,7 +167,7 @@ disable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 19 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 20 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSID	I
 	
 @ 0 "" 2
@@ -193,7 +193,7 @@ enable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 24 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 25 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSIE	I
 	
 @ 0 "" 2

@@ -220,11 +220,7 @@ void light_blue_off(void);
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
-void os_on_startup(void);
-
-void disable_irq(void);
-void enable_irq(void);
-
+void system_init(void);
 void delay_block(clock_t tick);
 # 3 "src/main.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 1
