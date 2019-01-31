@@ -145,27 +145,6 @@ uart_debug_print_char:
 	.word	1073790976
 	.size	uart_debug_print_char, .-uart_debug_print_char
 	.align	2
-	.global	uart_debug_reveive
-	.syntax unified
-	.arm
-	.fpu softvfp
-	.type	uart_debug_reveive, %function
-uart_debug_reveive:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 8
-	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
-	sub	sp, sp, #12
-	str	r0, [fp, #-8]
-	nop
-	add	sp, fp, #0
-	@ sp needed
-	ldr	fp, [sp], #4
-	bx	lr
-	.size	uart_debug_reveive, .-uart_debug_reveive
-	.align	2
 	.global	uart_debug_reveive_char
 	.syntax unified
 	.arm
@@ -180,13 +159,13 @@ uart_debug_reveive_char:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	nop
-.L13:
-	ldr	r3, .L15
+.L12:
+	ldr	r3, .L14
 	ldr	r3, [r3, #24]
 	and	r3, r3, #16
 	cmp	r3, #0
-	bne	.L13
-	ldr	r3, .L15
+	bne	.L12
+	ldr	r3, .L14
 	ldr	r3, [r3]
 	strb	r3, [fp, #-5]
 	ldrb	r3, [fp, #-5]	@ zero_extendqisi2
@@ -195,9 +174,9 @@ uart_debug_reveive_char:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L16:
-	.align	2
 .L15:
+	.align	2
+.L14:
 	.word	1073790976
 	.size	uart_debug_reveive_char, .-uart_debug_reveive_char
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

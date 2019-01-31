@@ -224,14 +224,12 @@ void system_init(void);
 void delay_block(clock_t tick);
 # 3 "src/main.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h"
+# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h"
 void uart_debug_init(void);
 
 void uart_debug_print(char* str);
 
-void uart_debug_print_char(char str);
-
-void uart_debug_reveive(char* rec);
+void uart_debug_print_char(char c);
 
 char uart_debug_reveive_char(void);
 # 4 "src/main.c" 2
@@ -466,7 +464,6 @@ void task_01_thread(){
 
   light_green_on();
   delay_block(1000);
-
   light_green_off();
   delay_block(1000);
 }

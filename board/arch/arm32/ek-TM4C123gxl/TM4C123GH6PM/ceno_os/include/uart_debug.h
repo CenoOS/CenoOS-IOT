@@ -10,6 +10,7 @@
 * Contract Information：
 * https://www.cenocloud.com
 ****************************************************/
+
 #ifndef __CENO_RTOS_UART_DEBUG__
 #define __CENO_RTOS_UART_DEBUG__
 
@@ -17,9 +18,7 @@ void uart_debug_init(void);
 
 void uart_debug_print(char* str);
 
-void uart_debug_print_char(char str);
-
-void uart_debug_reveive(char* rec);
+void uart_debug_print_char(char c);
 
 char uart_debug_reveive_char(void);
 

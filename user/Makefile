@@ -85,6 +85,9 @@ openOCD_boards:
 openOCD_connect:
 	nohup openocd -f ${OPENOCD_SCRIPT_DIR}/${OCD_CFG_FILE} &
 
+openOCD_bug:
+	openocd -f interface/dummy.cfg -f ${OPENOCD_SCRIPT_DIR}/${OCD_CFG_FILE}
+
 flash:
 	(echo halt;echo flash erase_sector 0 0 ${FLASH_SECTOR};echo flash write_image erase ${BASE_DIR}/user/bin/${PROJECT_NAME}.bin 0;echo reset;) | telnet localhost 4444 | grep "#0"
 

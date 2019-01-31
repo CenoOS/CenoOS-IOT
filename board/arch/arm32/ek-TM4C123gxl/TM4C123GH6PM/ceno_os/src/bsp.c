@@ -17,13 +17,12 @@ void os_on_startup(void){
 	uart_debug_init();
 }
 
-
-
 void disable_irq(void){
 	__asm	(
 		"CPSID	I\n\t"
 	);
 }
+
 void enable_irq(void){
 	__asm	(
 		"CPSIE	I\n\t"

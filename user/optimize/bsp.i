@@ -224,14 +224,12 @@ void system_init(void);
 void delay_block(clock_t tick);
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
+# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
 void uart_debug_init(void);
 
 void uart_debug_print(char* str);
 
-void uart_debug_print_char(char str);
-
-void uart_debug_reveive(char* rec);
+void uart_debug_print_char(char c);
 
 char uart_debug_reveive_char(void);
 # 4 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
@@ -3060,13 +3058,12 @@ void os_on_startup(void){
  uart_debug_init();
 }
 
-
-
 void disable_irq(void){
  __asm (
   "CPSID	I\n\t"
  );
 }
+
 void enable_irq(void){
  __asm (
   "CPSIE	I\n\t"

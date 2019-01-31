@@ -3,18 +3,17 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c"
+# 14 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c"
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
+# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
 void uart_debug_init(void);
 
 void uart_debug_print(char* str);
 
-void uart_debug_print_char(char str);
-
-void uart_debug_reveive(char* rec);
+void uart_debug_print_char(char c);
 
 char uart_debug_reveive_char(void);
-# 2 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 2
+# 15 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h" 1
 # 63 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"
 typedef enum {
@@ -3023,7 +3022,7 @@ typedef struct {
   volatile uint32_t CHMAP2;
   volatile uint32_t CHMAP3;
 } UDMA_Type;
-# 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 2
+# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 2
 
 void uart_debug_init(void){
  ((SYSCTL_Type *) 0x400FE000UL)->RCGCUART |= (1<<0);
@@ -3048,14 +3047,9 @@ void uart_debug_print(char* str){
  }
 }
 
-void uart_debug_print_char(char str){
+void uart_debug_print_char(char c){
  while((((UART0_Type *) 0x4000C000UL)->FR & (1<<5))!=0);
- ((UART0_Type *) 0x4000C000UL)->DR = str;
-}
-
-
-void uart_debug_reveive(char* rec){
-
+ ((UART0_Type *) 0x4000C000UL)->DR = c;
 }
 
 char uart_debug_reveive_char(void){

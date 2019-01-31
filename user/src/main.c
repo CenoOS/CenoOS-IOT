@@ -7,12 +7,11 @@
 os_task_t* task_01;
 uint32_t stack_task_01[40];
 void task_01_thread(){
-
+  
   uart_debug_print("test uart debug");
 
   light_green_on();
   delay_block(1000);
-  
   light_green_off();
   delay_block(1000);
 }

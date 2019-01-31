@@ -17,7 +17,6 @@ uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
 
-	// test 
 	//	(*((volatile unsigned long *)0x400FE108)) |= 0x20;
     // 	(*((volatile unsigned long *)0x40025400)) |= 0x0000000E;
    	// 	(*((volatile unsigned long *)0x4002551C)) |= 0x0000000E;
@@ -43,6 +42,7 @@ os_err_t os_init(void){
     	sizeof(stackTaskIdle),
     	os_idle
 	);
+	
 	if(isOsIdleTaskInit==OS_ERR){
 		return isOsIdleTaskInit;
 	}

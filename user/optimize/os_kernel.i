@@ -429,7 +429,7 @@ os_task_t* volatile osIdleTask;
 uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
-# 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+# 29 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
  os_err_t isOsObjectContainerInit = os_obj_container_init();
  if(isOsObjectContainerInit==OS_ERR){
   return isOsObjectContainerInit;
@@ -446,6 +446,7 @@ os_err_t os_init(void){
      sizeof(stackTaskIdle),
      os_idle
  );
+
  if(isOsIdleTaskInit==OS_ERR){
   return isOsIdleTaskInit;
  }
