@@ -8,6 +8,7 @@
 * Copyright (C) 2018 CenoCloud. All Rights Reserved 
 *
 * Contract Information：
+* nerosoft@outlook.com
 * https://www.cenocloud.com
 ****************************************************/
 #include "../include/os_api.h"

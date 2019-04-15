@@ -3,7 +3,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_semphore.c"
-# 13 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_semphore.c"
+# 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_semphore.c"
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h"
 # 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 1 3 4
@@ -423,7 +423,7 @@ os_err_t os_sched(void);
 
 extern os_task_t* volatile osIdleTask;
 # 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
-# 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_semphore.c" 2
+# 15 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_semphore.c" 2
 
 
 

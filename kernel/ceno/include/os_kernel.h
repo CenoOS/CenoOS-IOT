@@ -1,4 +1,4 @@
-/**
+/***************************************************
  *	Ceno RTOS task 
  * 	
  * 2018-12-17 
@@ -9,7 +9,7 @@
  * Contract Information：
  * nerosoft@outlook.com
  * https://www.cenocloud.com
- */
+ ****************************************************/
 
 
 #ifndef __CENO_RTOS_KERNEL_H__
