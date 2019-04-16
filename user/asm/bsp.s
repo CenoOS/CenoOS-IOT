@@ -136,13 +136,12 @@ os_on_startup:
 	ldr	r2, [r3]
 	ldr	r1, .L13+4
 	umull	r3, r4, r2, r1
-	lsr	r3, r4, #3
+	lsr	r3, r4, #6
 	mov	r0, r3
 	bl	SysTick_Config
 	mov	r1, #0
 	mvn	r0, #0
 	bl	__NVIC_SetPriority
-	bl	uart_debug_init
 	nop
 	sub	sp, fp, #12
 	@ sp needed
@@ -152,7 +151,7 @@ os_on_startup:
 	.align	2
 .L13:
 	.word	SystemCoreClock
-	.word	-858993459
+	.word	274877907
 	.size	os_on_startup, .-os_on_startup
 	.align	2
 	.global	disable_irq
@@ -168,7 +167,7 @@ disable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 21 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 19 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSID	I
 	
 @ 0 "" 2
@@ -194,7 +193,7 @@ enable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 27 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 25 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSIE	I
 	
 @ 0 "" 2
@@ -264,23 +263,21 @@ bsp_init:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L22
-	ldr	r3, [r3]
+	ldr	r3, [r3, #1544]
 	ldr	r2, .L22
 	orr	r3, r3, #32
-	str	r3, [r2]
+	str	r3, [r2, #1544]
 	ldr	r3, .L22+4
-	ldr	r3, [r3]
+	mov	r2, #14
+	str	r2, [r3, #1024]
+	ldr	r3, .L22+4
+	mov	r2, #14
+	str	r2, [r3, #1308]
+	ldr	r3, .L22+4
+	ldr	r3, [r3, #1020]
 	ldr	r2, .L22+4
-	orr	r3, r3, #14
-	str	r3, [r2]
-	ldr	r3, .L22+8
-	ldr	r3, [r3]
-	ldr	r2, .L22+8
-	orr	r3, r3, #14
-	str	r3, [r2]
-	ldr	r3, .L22+12
-	mov	r2, #0
-	str	r2, [r3]
+	bic	r3, r3, #14
+	str	r3, [r2, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -289,10 +286,8 @@ bsp_init:
 .L23:
 	.align	2
 .L22:
-	.word	1074782472
-	.word	1073894400
-	.word	1073894684
-	.word	1073893432
+	.word	1074782208
+	.word	1073893376
 	.size	bsp_init, .-bsp_init
 	.align	2
 	.global	light_red_on
@@ -308,10 +303,8 @@ light_red_on:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L25
-	ldr	r3, [r3]
-	ldr	r2, .L25
-	orr	r3, r3, #2
-	str	r3, [r2]
+	mov	r2, #2
+	str	r2, [r3, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -320,7 +313,7 @@ light_red_on:
 .L26:
 	.align	2
 .L25:
-	.word	1073893432
+	.word	1073893376
 	.size	light_red_on, .-light_red_on
 	.align	2
 	.global	light_green_on
@@ -336,10 +329,8 @@ light_green_on:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L28
-	ldr	r3, [r3]
-	ldr	r2, .L28
-	orr	r3, r3, #8
-	str	r3, [r2]
+	mov	r2, #8
+	str	r2, [r3, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -348,7 +339,7 @@ light_green_on:
 .L29:
 	.align	2
 .L28:
-	.word	1073893432
+	.word	1073893376
 	.size	light_green_on, .-light_green_on
 	.align	2
 	.global	light_blue_on
@@ -364,10 +355,8 @@ light_blue_on:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L31
-	ldr	r3, [r3]
-	ldr	r2, .L31
-	orr	r3, r3, #4
-	str	r3, [r2]
+	mov	r2, #4
+	str	r2, [r3, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -376,7 +365,7 @@ light_blue_on:
 .L32:
 	.align	2
 .L31:
-	.word	1073893432
+	.word	1073893376
 	.size	light_blue_on, .-light_blue_on
 	.align	2
 	.global	light_red_off
@@ -392,10 +381,10 @@ light_red_off:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L34
-	ldr	r3, [r3]
+	ldr	r3, [r3, #1020]
 	ldr	r2, .L34
 	bic	r3, r3, #2
-	str	r3, [r2]
+	str	r3, [r2, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -404,7 +393,7 @@ light_red_off:
 .L35:
 	.align	2
 .L34:
-	.word	1073893432
+	.word	1073893376
 	.size	light_red_off, .-light_red_off
 	.align	2
 	.global	light_green_off
@@ -420,10 +409,10 @@ light_green_off:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L37
-	ldr	r3, [r3]
+	ldr	r3, [r3, #1020]
 	ldr	r2, .L37
 	bic	r3, r3, #8
-	str	r3, [r2]
+	str	r3, [r2, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -432,7 +421,7 @@ light_green_off:
 .L38:
 	.align	2
 .L37:
-	.word	1073893432
+	.word	1073893376
 	.size	light_green_off, .-light_green_off
 	.align	2
 	.global	light_blue_off
@@ -448,10 +437,10 @@ light_blue_off:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	ldr	r3, .L40
-	ldr	r3, [r3]
+	ldr	r3, [r3, #1020]
 	ldr	r2, .L40
 	bic	r3, r3, #4
-	str	r3, [r2]
+	str	r3, [r2, #1020]
 	nop
 	add	sp, fp, #0
 	@ sp needed
@@ -460,6 +449,6 @@ light_blue_off:
 .L41:
 	.align	2
 .L40:
-	.word	1073893432
+	.word	1073893376
 	.size	light_blue_off, .-light_blue_off
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

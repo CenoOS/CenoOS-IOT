@@ -15,7 +15,7 @@
 	.section	.rodata
 	.align	2
 .LC0:
-	.ascii	"test uart debug\000"
+	.ascii	"test uart debug\012\015\000"
 	.text
 	.align	2
 	.global	task_01_thread
@@ -47,11 +47,6 @@ task_01_thread:
 .L2:
 	.word	.LC0
 	.size	task_01_thread, .-task_01_thread
-	.section	.rodata
-	.align	2
-.LC1:
-	.ascii	"task_01\000"
-	.text
 	.align	2
 	.global	main
 	.syntax unified
@@ -60,37 +55,14 @@ task_01_thread:
 	.type	main, %function
 main:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 8
+	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	sub	sp, sp, #16
 	bl	bsp_init
-	ldr	r3, .L6
-	ldr	r0, [r3]
-	ldr	r3, .L6
-	ldr	r3, [r3]
-	str	r3, [sp, #4]
-	mov	r3, #160
-	str	r3, [sp]
-	ldr	r3, .L6+4
-	mov	r2, #5
-	ldr	r1, .L6+8
-	bl	os_task_create
-	mov	r3, r0
-	strb	r3, [fp, #-5]
-	bl	os_run
-	mov	r3, #0
-	mov	r0, r3
-	sub	sp, fp, #4
-	@ sp needed
-	pop	{fp, lr}
-	bx	lr
-.L7:
-	.align	2
-.L6:
-	.word	task_01
-	.word	stack_task_01
-	.word	.LC1
+	bl	uart_debug_init
+.L5:
+	bl	task_01_thread
+	b	.L5
 	.size	main, .-main
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

@@ -3051,11 +3051,9 @@ volatile clock_t* l_tickCtr = &tickCtr;
 extern void os_init(void);
 void os_on_startup(void){
     SystemCoreClockUpdate();
-    SysTick_Config(SystemCoreClock / 10U);
+    SysTick_Config(SystemCoreClock / 1000);
 
     __NVIC_SetPriority(SysTick_IRQn, 0U);
-
- uart_debug_init();
 }
 
 void disable_irq(void){
@@ -3079,28 +3077,39 @@ void delay_block(clock_t tick){
 
 
 void bsp_init(void){
- (*((volatile unsigned long *)0x400FE108)) |= 0x20;
-    (*((volatile unsigned long *)0x40025400)) |= 0x0000000E;
-    (*((volatile unsigned long *)0x4002551C)) |= 0x0000000E;
-    (*((volatile unsigned long *)0x40025038)) = 0;
+ ((SYSCTL_Type *) 0x400FE000UL)->RCGCGPIO |= (1<<5);
+ ((GPIOA_Type *) 0x40025000UL)->DIR = (1<<1) | (1<<2) | (1<<3);
+ ((GPIOA_Type *) 0x40025000UL)->DEN = (1<<1) | (1<<2) | (1<<3);
+ ((GPIOA_Type *) 0x40025000UL)->DATA &= ~((1<<1) | (1<<2) | (1<<3));
+
+
+
+
+
 }
 
 void light_red_on(void){
- (*((volatile unsigned long *)0x40025038)) |= (0x02);
+ ((GPIOA_Type *) 0x40025000UL)->DATA = (1<<1);
+
 }
 void light_green_on(void){
- (*((volatile unsigned long *)0x40025038)) |= (0x08);
+ ((GPIOA_Type *) 0x40025000UL)->DATA = (1<<3);
+
 }
 void light_blue_on(void){
- (*((volatile unsigned long *)0x40025038)) |= (0x04);
+ ((GPIOA_Type *) 0x40025000UL)->DATA = (1<<2);
+
 }
 
 void light_red_off(void){
- (*((volatile unsigned long *)0x40025038)) &= ~(0x02);
+ ((GPIOA_Type *) 0x40025000UL)->DATA &= ~(1<<1);
+
 }
 void light_green_off(void){
- (*((volatile unsigned long *)0x40025038)) &= ~(0x08);
+ ((GPIOA_Type *) 0x40025000UL)->DATA &= ~(1<<3);
+
 }
 void light_blue_off(void){
- (*((volatile unsigned long *)0x40025038)) &= ~(0x04);
+ ((GPIOA_Type *) 0x40025000UL)->DATA &= ~(1<<2);
+
 }

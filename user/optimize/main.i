@@ -460,7 +460,7 @@ os_task_t* task_01;
 uint32_t stack_task_01[40];
 void task_01_thread(){
 
-  uart_debug_print("test uart debug");
+  uart_debug_print("test uart debug\n\r");
 
   light_green_on();
   delay_block(1000);
@@ -471,7 +471,10 @@ void task_01_thread(){
 int main(void)
 {
   bsp_init();
-
+  uart_debug_init();
+  while(1){
+    task_01_thread();
+  }
   os_err_t task_01_err = os_task_create(
     task_01,
     "task_01",
