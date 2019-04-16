@@ -3,7 +3,7 @@
 #include "../include/uart_debug.h"
 #include "TM4C123GH6PM.h"
 
-
+#define BSP_TICKS_PER_SEC 1000
 static clock_t tickCtr = 0;
 volatile clock_t* l_tickCtr = &tickCtr;
 
@@ -13,8 +13,6 @@ void os_on_startup(void){
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
     /* set the SysTick interrupt priority (highest) */
     NVIC_SetPriority(SysTick_IRQn, 0U);
-
-	uart_debug_init();
 }
 
 void disable_irq(void){
@@ -38,28 +36,39 @@ void delay_block(clock_t tick){
 
 
 void bsp_init(void){
-	SYS_CTRL_RCGC2 |= CLK_GPIOF;
-   	PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
-   	PORTF_DEN |= 0x0000000E;    //enable PF1, PF2, PF3
-   	PORTF_DATA = 0;
+	SYSCTL->RCGCGPIO |= (1<<5); // enable clock on PortF
+	GPIOF->DIR = (1<<1) | (1<<2) | (1<<3); // make LED Pins PF1, PF2, PF3 outputs
+	GPIOF->DEN = (1<<1) | (1<<2) | (1<<3); // enable degital function on LED pins;
+	GPIOF->DATA &= ~((1<<1) | (1<<2) | (1<<3)); // turn off leds
+
+	// SYS_CTRL_RCGC2 |= CLK_GPIOF;
+   	// PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
+   	// PORTF_DEN |= 0x0000000E;    //enable PF1, PF2, PF3
+   	// PORTF_DATA = 0;
 }
 
 void light_red_on(void){
-	PORTF_DATA |= (PF1);
+	GPIOF->DATA = (1<<1);
+	//PORTF_DATA |= (PF1);
 }
 void light_green_on(void){
-	PORTF_DATA |= (PF3);
+	GPIOF->DATA = (1<<3);
+	//PORTF_DATA |= (PF3);
 }
 void light_blue_on(void){
-	PORTF_DATA |= (PF2);
+	GPIOF->DATA = (1<<2);
+	//PORTF_DATA |= (PF2);
 }
 
 void light_red_off(void){
-	PORTF_DATA &= ~(PF1);
+	GPIOF->DATA &= ~(1<<1);
+	//PORTF_DATA &= ~(PF1);
 }
 void light_green_off(void){
-	PORTF_DATA &= ~(PF3);
+	GPIOF->DATA &= ~(1<<3);
+	//PORTF_DATA &= ~(PF3);
 }
 void light_blue_off(void){
-	PORTF_DATA &= ~(PF2);
+	GPIOF->DATA &= ~(1<<2);
+	//PORTF_DATA &= ~(PF2);
 }

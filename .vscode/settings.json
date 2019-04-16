@@ -46,5 +46,6 @@
         "uartstdio.h": "c",
         "gpio.h": "c",
         "uart_debug.h": "c"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }
