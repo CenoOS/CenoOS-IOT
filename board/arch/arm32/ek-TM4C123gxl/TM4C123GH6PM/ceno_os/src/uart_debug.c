@@ -14,12 +14,6 @@
 #include "../include/uart_debug.h"
 #include "TM4C123GH6PM.h"
 
-#define UART_FR_TXFF            0x00000020  // UART Transmit FIFO Full
-#define UART_FR_RXFE            0x00000010  // UART Receive FIFO Empty
-#define UART_LCRH_WLEN_8        0x00000060  // 8 bit word length
-#define UART_LCRH_FEN           0x00000010  // UART Enable FIFOs
-#define UART_CTL_UARTEN         0x00000001  // UART Enable
-
 void uart_debug_init(void){
 	// 1. Enable the UART module using the RCGCUART register (see page 319).
 	SYSCTL->RCGCUART |= (1<<0);
