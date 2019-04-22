@@ -58,6 +58,8 @@ CENO_KERNEL=$(BASE_DIR)/kernel/ceno/include
 DRIVERS=$(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/include
 # bsp
 BSP=$(BASE_DIR)/board/arch/${ARCH}/${BOARD}/${MCU}/ceno_os/include
+# user_config
+USER_CONFIG=$(BASE_DIR)/user/include
 # include
 CPPFLAGS=-I include
 CPPFLAGS += -I ${DRIVERS}
@@ -65,6 +67,7 @@ CPPFLAGS += -I ${CMSIS}
 CPPFLAGS += -I ${QPC}
 CPPFLAGS += -I ${CENO_KERNEL}
 CPPFLAGS += -I ${BSP}
+CPPFLAGS += -I ${USER_CONFIG}
 # ====================================================================
 CFLAGS=-ggdb -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 # CFLAGS += -Os -ffunction-sections -fdata-sections -MD -std=c99

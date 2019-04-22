@@ -8,6 +8,7 @@ obj/os_ring_buffer.o: \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_newlib_version.h \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_intsup.h \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_stdint.h \
+ /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_list.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_obj.h \

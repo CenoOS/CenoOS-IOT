@@ -19,6 +19,7 @@
 #define __CENO_RTOS_CONFIG_QUEUE_ON__
 #define __CENO_RTOS_CONFIG_RING_BUFFER_ON__
 
+#define __CENO_RTOS_UART_DEBUG_ON__
 
 #endif // ! __CENO_RTOS_CONFIG_H__
 

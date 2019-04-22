@@ -203,9 +203,20 @@ typedef __uint_least64_t uint_least64_t;
 # 10 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 2 3 4
 # 18 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 
-# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h" 1
-# 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h"
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h" 1
+# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h"
 
+# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h"
+void uart_debug_init(void);
+
+void uart_debug_print(char* str);
+
+void uart_debug_print_char(char c);
+
+char uart_debug_reveive_char(void);
+# 20 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+
+# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h"
 typedef unsigned int os_task_id_t;
 typedef unsigned int os_time_t;
@@ -231,7 +242,7 @@ typedef unsigned int sem_count_t;
 typedef unsigned int tick_t;
 
 typedef long clock_t;
-# 20 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 22 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_list.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_list.h"
 typedef struct os_list{
@@ -250,7 +261,7 @@ os_err_t os_list_add(os_list_t* head, os_list_t* elem);
 os_err_t os_list_rm(os_list_t* elem);
 
 os_err_t os_list_rm_init(os_list_t* elem);
-# 21 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 23 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_obj.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_obj.h"
 typedef enum obj_type{
@@ -275,7 +286,7 @@ typedef struct os_obj_list{
 
 
 os_err_t os_obj_container_init(void);
-# 22 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 24 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_queue.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_queue.h"
 typedef struct os_queue{
@@ -306,7 +317,7 @@ os_err_t os_queue_remove();
 os_err_t os_queue_clear();
 
 uint32_t os_queue_size(os_queue_t* queue);
-# 23 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 25 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h"
 typedef struct os_ring_buffer{
@@ -324,7 +335,7 @@ uint8_t os_ring_buffer_pop(os_ring_buffer_t* buffer);
 uint8_t os_ring_buffer_is_full(os_ring_buffer_t* buffer);
 
 uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
-# 24 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
 # 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
 typedef void (*os_task_handler_t)();
@@ -373,7 +384,7 @@ extern os_queue_t* osTaskQueue;
 
 extern os_task_t* volatile osTaskCurr;
 extern os_task_t* volatile osTaskNext;
-# 25 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 27 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h"
 typedef struct os_semphore{
@@ -396,7 +407,7 @@ os_err_t os_sem_take(os_semphore_t* sem, tick_t ticks);
 os_err_t os_sem_count_get(os_semphore_t* sem, sem_count_t* count);
 
 os_err_t os_sem_count_set(os_semphore_t* sem, sem_count_t count);
-# 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_mutex.h" 1
 # 18 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_mutex.h"
 typedef struct os_mutex{
@@ -407,7 +418,7 @@ typedef struct os_mutex{
 }os_mutex_t;
 
 os_err_t os_mutex_create(os_mutex_t mutex, cpu_char_t cpu);
-# 27 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 29 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_kernel.h" 1
 # 18 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_kernel.h"
 os_err_t os_init(void);
@@ -422,7 +433,7 @@ os_err_t os_sched(void);
 
 
 extern os_task_t* volatile osIdleTask;
-# 28 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
+# 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_ring_buffer.c" 2
 
 os_err_t os_ring_buffer_init(os_ring_buffer_t* buffer){

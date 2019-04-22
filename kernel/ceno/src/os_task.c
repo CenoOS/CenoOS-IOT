@@ -23,10 +23,12 @@ os_err_t os_task_create(os_task_t *me,
 					cpu_stk_t stkPtr, 
 					cpu_stk_size_t stackSize,
 					os_task_handler_t taskHandler){
-	
+	uart_debug_print("[task] create task:");
+	uart_debug_print(name);
+	uart_debug_print("\n\r");
 	/**
 	 * round down the stack top to the 8-byte boundary
-     * NOTE: ARM Cortex-M stack grows down from hi -> low memory
+     * NOTE: ARM Cortex-M stack grows down from high -> low memory
      */
     uint32_t *sp = (uint32_t *)((((uint32_t)stkPtr + stackSize) / 8) * 8);
     uint32_t *stk_limit;
@@ -53,9 +55,9 @@ os_err_t os_task_create(os_task_t *me,
     me->stkPtr = sp;
     
     /* round up the bottom of the stack to the 8-byte boundary */
-    stk_limit = (uint32_t *)(((((uint32_t)stackSize - 1U) / 8) + 1U) * 8);
-
-    /* pre-fill the unused part of the stack with 0xDEADBEEF */
+    stk_limit = (uint32_t *)(((((uint32_t)stkPtr - 1U) / 8) + 1U) * 8);
+    
+	/* pre-fill the unused part of the stack with 0xDEADBEEF */
     for (sp = sp - 1U; sp >= stk_limit; --sp) {
         *sp = 0xDEADBEEFU;
     }
@@ -68,14 +70,15 @@ os_err_t os_task_create(os_task_t *me,
 		me->state=OS_STATE_READY;
 	}
 
-
 	os_err_t err = os_queue_add_item(osTaskQueue,me);
 	if(err==OS_ERR){
 		/* add to task queue failed */
 	}
+	uart_debug_print("[task] task add to queue.\n\r");
 }
 
 os_err_t os_task_switch_next(void){
+	uart_debug_print("[task] task switch next.\n\r");
 	/* context switch */
     __asm  (
 		/* __disable_irq(); */

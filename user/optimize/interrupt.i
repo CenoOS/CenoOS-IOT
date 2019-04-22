@@ -132,7 +132,9 @@ void PWM1Fault_IRQHandler(void);
 void SystemException_ISR(void);
 # 2 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/interrupt.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h"
+
+
+
 void bsp_init(void);
 
 void light_red_on(void);
@@ -142,8 +144,6 @@ void light_blue_on(void);
 void light_red_off(void);
 void light_green_off(void);
 void light_blue_off(void);
-
-
 
 
 

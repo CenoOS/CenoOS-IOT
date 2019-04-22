@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include "../include/bsp.h"
 #include "../include/uart_debug.h"
 #include "TM4C123GH6PM.h"
@@ -36,39 +35,30 @@ void delay_block(clock_t tick){
 
 
 void bsp_init(void){
+	
 	SYSCTL->RCGCGPIO |= (1<<5); // enable clock on PortF
 	GPIOF->DIR = (1<<1) | (1<<2) | (1<<3); // make LED Pins PF1, PF2, PF3 outputs
 	GPIOF->DEN = (1<<1) | (1<<2) | (1<<3); // enable degital function on LED pins;
 	GPIOF->DATA &= ~((1<<1) | (1<<2) | (1<<3)); // turn off leds
-
-	// SYS_CTRL_RCGC2 |= CLK_GPIOF;
-   	// PORTF_DIR |= 0x0000000E;    //set PF1, PF2, PF3 as output
-   	// PORTF_DEN |= 0x0000000E;    //enable PF1, PF2, PF3
-   	// PORTF_DATA = 0;
+	uart_debug_init();
 }
 
 void light_red_on(void){
 	GPIOF->DATA = (1<<1);
-	//PORTF_DATA |= (PF1);
 }
 void light_green_on(void){
 	GPIOF->DATA = (1<<3);
-	//PORTF_DATA |= (PF3);
 }
 void light_blue_on(void){
 	GPIOF->DATA = (1<<2);
-	//PORTF_DATA |= (PF2);
 }
 
 void light_red_off(void){
 	GPIOF->DATA &= ~(1<<1);
-	//PORTF_DATA &= ~(PF1);
 }
 void light_green_off(void){
 	GPIOF->DATA &= ~(1<<3);
-	//PORTF_DATA &= ~(PF3);
 }
 void light_blue_off(void){
 	GPIOF->DATA &= ~(1<<2);
-	//PORTF_DATA &= ~(PF2);
 }

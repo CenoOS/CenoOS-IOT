@@ -3,6 +3,137 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c"
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h" 1
+
+
+
+void bsp_init(void);
+
+void light_red_on(void);
+void light_green_on(void);
+void light_blue_on(void);
+
+void light_red_off(void);
+void light_green_off(void);
+void light_blue_off(void);
+
+
+
+typedef long clock_t;
+extern volatile clock_t* l_tickCtr;
+
+void system_init(void);
+void delay_block(clock_t tick);
+# 2 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
+# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
+void uart_debug_init(void);
+
+void uart_debug_print(char* str);
+
+void uart_debug_print_char(char c);
+
+char uart_debug_reveive_char(void);
+# 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h" 1
+# 63 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"
+typedef enum {
+
+  Reset_IRQn = -15,
+  NonMaskableInt_IRQn = -14,
+  HardFault_IRQn = -13,
+  MemoryManagement_IRQn = -12,
+
+  BusFault_IRQn = -11,
+
+  UsageFault_IRQn = -10,
+  SVCall_IRQn = -5,
+  DebugMonitor_IRQn = -4,
+  PendSV_IRQn = -2,
+  SysTick_IRQn = -1,
+
+  GPIOA_IRQn = 0,
+  GPIOB_IRQn = 1,
+  GPIOC_IRQn = 2,
+  GPIOD_IRQn = 3,
+  GPIOE_IRQn = 4,
+  UART0_IRQn = 5,
+  UART1_IRQn = 6,
+  SSI0_IRQn = 7,
+  I2C0_IRQn = 8,
+  PWM0_FAULT_IRQn = 9,
+  PWM0_0_IRQn = 10,
+  PWM0_1_IRQn = 11,
+  PWM0_2_IRQn = 12,
+  QEI0_IRQn = 13,
+  ADC0SS0_IRQn = 14,
+  ADC0SS1_IRQn = 15,
+  ADC0SS2_IRQn = 16,
+  ADC0SS3_IRQn = 17,
+  WATCHDOG0_IRQn = 18,
+  TIMER0A_IRQn = 19,
+  TIMER0B_IRQn = 20,
+  TIMER1A_IRQn = 21,
+  TIMER1B_IRQn = 22,
+  TIMER2A_IRQn = 23,
+  TIMER2B_IRQn = 24,
+  COMP0_IRQn = 25,
+  COMP1_IRQn = 26,
+  SYSCTL_IRQn = 28,
+  FLASH_CTRL_IRQn = 29,
+  GPIOF_IRQn = 30,
+  UART2_IRQn = 33,
+  SSI1_IRQn = 34,
+  TIMER3A_IRQn = 35,
+  TIMER3B_IRQn = 36,
+  I2C1_IRQn = 37,
+  QEI1_IRQn = 38,
+  CAN0_IRQn = 39,
+  CAN1_IRQn = 40,
+  HIB_IRQn = 43,
+  USB0_IRQn = 44,
+  PWM0_3_IRQn = 45,
+  UDMA_IRQn = 46,
+  UDMAERR_IRQn = 47,
+  ADC1SS0_IRQn = 48,
+  ADC1SS1_IRQn = 49,
+  ADC1SS2_IRQn = 50,
+  ADC1SS3_IRQn = 51,
+  SSI2_IRQn = 57,
+  SSI3_IRQn = 58,
+  UART3_IRQn = 59,
+  UART4_IRQn = 60,
+  UART5_IRQn = 61,
+  UART6_IRQn = 62,
+  UART7_IRQn = 63,
+  I2C2_IRQn = 68,
+  I2C3_IRQn = 69,
+  TIMER4A_IRQn = 70,
+  TIMER4B_IRQn = 71,
+  TIMER5A_IRQn = 92,
+  TIMER5B_IRQn = 93,
+  WTIMER0A_IRQn = 94,
+  WTIMER0B_IRQn = 95,
+  WTIMER1A_IRQn = 96,
+  WTIMER1B_IRQn = 97,
+  WTIMER2A_IRQn = 98,
+  WTIMER2B_IRQn = 99,
+  WTIMER3A_IRQn = 100,
+  WTIMER3B_IRQn = 101,
+  WTIMER4A_IRQn = 102,
+  WTIMER4B_IRQn = 103,
+  WTIMER5A_IRQn = 104,
+  WTIMER5B_IRQn = 105,
+  SYSEXC_IRQn = 106,
+  PWM1_0_IRQn = 134,
+  PWM1_1_IRQn = 135,
+  PWM1_2_IRQn = 136,
+  PWM1_3_IRQn = 137,
+  PWM1_FAULT_IRQn = 138
+} IRQn_Type;
+# 312 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"
+# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h" 1
+# 34 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h"
 # 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 1 3 4
 # 9 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 3 4
 # 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/stdint.h" 1 3 4
@@ -198,139 +329,7 @@ typedef __uint_least64_t uint_least64_t;
   typedef long long int int_fast64_t;
   typedef long long unsigned int uint_fast64_t;
 # 10 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 2 3 4
-# 2 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
-# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h" 1
-# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h"
-
-# 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/bsp.h"
-void bsp_init(void);
-
-void light_red_on(void);
-void light_green_on(void);
-void light_blue_on(void);
-
-void light_red_off(void);
-void light_green_off(void);
-void light_blue_off(void);
-
-
-
-
-
-typedef long clock_t;
-extern volatile clock_t* l_tickCtr;
-
-void system_init(void);
-void delay_block(clock_t tick);
-# 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
-# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
-# 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
-void uart_debug_init(void);
-
-void uart_debug_print(char* str);
-
-void uart_debug_print_char(char c);
-
-char uart_debug_reveive_char(void);
-# 4 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
-# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h" 1
-# 63 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"
-typedef enum {
-
-  Reset_IRQn = -15,
-  NonMaskableInt_IRQn = -14,
-  HardFault_IRQn = -13,
-  MemoryManagement_IRQn = -12,
-
-  BusFault_IRQn = -11,
-
-  UsageFault_IRQn = -10,
-  SVCall_IRQn = -5,
-  DebugMonitor_IRQn = -4,
-  PendSV_IRQn = -2,
-  SysTick_IRQn = -1,
-
-  GPIOA_IRQn = 0,
-  GPIOB_IRQn = 1,
-  GPIOC_IRQn = 2,
-  GPIOD_IRQn = 3,
-  GPIOE_IRQn = 4,
-  UART0_IRQn = 5,
-  UART1_IRQn = 6,
-  SSI0_IRQn = 7,
-  I2C0_IRQn = 8,
-  PWM0_FAULT_IRQn = 9,
-  PWM0_0_IRQn = 10,
-  PWM0_1_IRQn = 11,
-  PWM0_2_IRQn = 12,
-  QEI0_IRQn = 13,
-  ADC0SS0_IRQn = 14,
-  ADC0SS1_IRQn = 15,
-  ADC0SS2_IRQn = 16,
-  ADC0SS3_IRQn = 17,
-  WATCHDOG0_IRQn = 18,
-  TIMER0A_IRQn = 19,
-  TIMER0B_IRQn = 20,
-  TIMER1A_IRQn = 21,
-  TIMER1B_IRQn = 22,
-  TIMER2A_IRQn = 23,
-  TIMER2B_IRQn = 24,
-  COMP0_IRQn = 25,
-  COMP1_IRQn = 26,
-  SYSCTL_IRQn = 28,
-  FLASH_CTRL_IRQn = 29,
-  GPIOF_IRQn = 30,
-  UART2_IRQn = 33,
-  SSI1_IRQn = 34,
-  TIMER3A_IRQn = 35,
-  TIMER3B_IRQn = 36,
-  I2C1_IRQn = 37,
-  QEI1_IRQn = 38,
-  CAN0_IRQn = 39,
-  CAN1_IRQn = 40,
-  HIB_IRQn = 43,
-  USB0_IRQn = 44,
-  PWM0_3_IRQn = 45,
-  UDMA_IRQn = 46,
-  UDMAERR_IRQn = 47,
-  ADC1SS0_IRQn = 48,
-  ADC1SS1_IRQn = 49,
-  ADC1SS2_IRQn = 50,
-  ADC1SS3_IRQn = 51,
-  SSI2_IRQn = 57,
-  SSI3_IRQn = 58,
-  UART3_IRQn = 59,
-  UART4_IRQn = 60,
-  UART5_IRQn = 61,
-  UART6_IRQn = 62,
-  UART7_IRQn = 63,
-  I2C2_IRQn = 68,
-  I2C3_IRQn = 69,
-  TIMER4A_IRQn = 70,
-  TIMER4B_IRQn = 71,
-  TIMER5A_IRQn = 92,
-  TIMER5B_IRQn = 93,
-  WTIMER0A_IRQn = 94,
-  WTIMER0B_IRQn = 95,
-  WTIMER1A_IRQn = 96,
-  WTIMER1B_IRQn = 97,
-  WTIMER2A_IRQn = 98,
-  WTIMER2B_IRQn = 99,
-  WTIMER3A_IRQn = 100,
-  WTIMER3B_IRQn = 101,
-  WTIMER4A_IRQn = 102,
-  WTIMER4B_IRQn = 103,
-  WTIMER5A_IRQn = 104,
-  WTIMER5B_IRQn = 105,
-  SYSEXC_IRQn = 106,
-  PWM1_0_IRQn = 134,
-  PWM1_1_IRQn = 135,
-  PWM1_2_IRQn = 136,
-  PWM1_3_IRQn = 137,
-  PWM1_FAULT_IRQn = 138
-} IRQn_Type;
-# 312 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"
-# 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h" 1
+# 35 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h" 2
 # 63 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h"
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/cmsis_version.h" 1
 # 64 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/core_cm4.h" 2
@@ -347,7 +346,9 @@ typedef enum {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpacked"
 #pragma GCC diagnostic ignored "-Wattributes"
-  struct __attribute__((packed)) T_UINT32 { uint32_t v; };
+  
+# 74 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/cmsis_gcc.h"
+ struct __attribute__((packed)) T_UINT32 { uint32_t v; };
 #pragma GCC diagnostic pop
 
 
@@ -3042,7 +3043,7 @@ typedef struct {
   volatile uint32_t CHMAP2;
   volatile uint32_t CHMAP3;
 } UDMA_Type;
-# 5 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
+# 4 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 
 
 static clock_t tickCtr = 0;
@@ -3077,39 +3078,30 @@ void delay_block(clock_t tick){
 
 
 void bsp_init(void){
+
  ((SYSCTL_Type *) 0x400FE000UL)->RCGCGPIO |= (1<<5);
  ((GPIOA_Type *) 0x40025000UL)->DIR = (1<<1) | (1<<2) | (1<<3);
  ((GPIOA_Type *) 0x40025000UL)->DEN = (1<<1) | (1<<2) | (1<<3);
  ((GPIOA_Type *) 0x40025000UL)->DATA &= ~((1<<1) | (1<<2) | (1<<3));
-
-
-
-
-
+ uart_debug_init();
 }
 
 void light_red_on(void){
  ((GPIOA_Type *) 0x40025000UL)->DATA = (1<<1);
-
 }
 void light_green_on(void){
  ((GPIOA_Type *) 0x40025000UL)->DATA = (1<<3);
-
 }
 void light_blue_on(void){
  ((GPIOA_Type *) 0x40025000UL)->DATA = (1<<2);
-
 }
 
 void light_red_off(void){
  ((GPIOA_Type *) 0x40025000UL)->DATA &= ~(1<<1);
-
 }
 void light_green_off(void){
  ((GPIOA_Type *) 0x40025000UL)->DATA &= ~(1<<3);
-
 }
 void light_blue_off(void){
  ((GPIOA_Type *) 0x40025000UL)->DATA &= ~(1<<2);
-
 }

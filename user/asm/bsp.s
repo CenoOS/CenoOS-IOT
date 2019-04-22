@@ -167,7 +167,7 @@ disable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 19 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 18 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSID	I
 	
 @ 0 "" 2
@@ -193,7 +193,7 @@ enable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 25 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 24 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSIE	I
 	
 @ 0 "" 2
@@ -259,9 +259,8 @@ bsp_init:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
 	ldr	r3, .L22
 	ldr	r3, [r3, #1544]
 	ldr	r2, .L22
@@ -278,10 +277,11 @@ bsp_init:
 	ldr	r2, .L22+4
 	bic	r3, r3, #14
 	str	r3, [r2, #1020]
+	bl	uart_debug_init
 	nop
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
 .L23:
 	.align	2

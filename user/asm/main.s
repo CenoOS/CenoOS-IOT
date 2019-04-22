@@ -12,11 +12,6 @@
 	.text
 	.comm	task_01,4,4
 	.comm	stack_task_01,160,4
-	.section	.rodata
-	.align	2
-.LC0:
-	.ascii	"test uart debug\012\015\000"
-	.text
 	.align	2
 	.global	task_01_thread
 	.syntax unified
@@ -29,8 +24,6 @@ task_01_thread:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L2
-	bl	uart_debug_print
 	bl	light_green_on
 	mov	r0, #1000
 	bl	delay_block
@@ -42,11 +35,18 @@ task_01_thread:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L3:
-	.align	2
-.L2:
-	.word	.LC0
 	.size	task_01_thread, .-task_01_thread
+	.section	.rodata
+	.align	2
+.LC0:
+	.ascii	"[debug] _______________begin______________\012\015\000"
+	.align	2
+.LC1:
+	.ascii	"[main] main start.\012\015\000"
+	.align	2
+.LC2:
+	.ascii	"task_01\000"
+	.text
 	.align	2
 	.global	main
 	.syntax unified
@@ -55,14 +55,43 @@ task_01_thread:
 	.type	main, %function
 main:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
+	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
+	sub	sp, sp, #16
 	bl	bsp_init
-	bl	uart_debug_init
+	ldr	r0, .L4
+	bl	uart_debug_print
+	ldr	r0, .L4+4
+	bl	uart_debug_print
+	ldr	r3, .L4+8
+	ldr	r0, [r3]
+	ldr	r3, .L4+8
+	ldr	r3, [r3]
+	str	r3, [sp, #4]
+	mov	r3, #160
+	str	r3, [sp]
+	ldr	r3, .L4+12
+	mov	r2, #5
+	ldr	r1, .L4+16
+	bl	os_task_create
+	mov	r3, r0
+	strb	r3, [fp, #-5]
+	bl	os_run
+	mov	r3, #0
+	mov	r0, r3
+	sub	sp, fp, #4
+	@ sp needed
+	pop	{fp, lr}
+	bx	lr
 .L5:
-	bl	task_01_thread
-	b	.L5
+	.align	2
+.L4:
+	.word	.LC0
+	.word	.LC1
+	.word	task_01
+	.word	stack_task_01
+	.word	.LC2
 	.size	main, .-main
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

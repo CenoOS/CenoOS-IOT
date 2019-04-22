@@ -3024,69 +3024,67 @@ typedef struct {
 } UDMA_Type;
 # 16 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 2
 
+# 1 "include/os_config.h" 1
+# 18 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 2
+
+
+
+ void uart_debug_init(void){
+
+  ((SYSCTL_Type *) 0x400FE000UL)->RCGCUART |= (1<<0);
+
+
+
+  ((SYSCTL_Type *) 0x400FE000UL)->RCGCGPIO |= (1<<0);
+
+
+
+  ((GPIOA_Type *) 0x40004000UL)->AFSEL = (1<<1) | (1<<0);
 
 
 
 
 
 
-void uart_debug_init(void){
+  ((GPIOA_Type *) 0x40004000UL)->PCTL = (1<<0) | (1<<4);
 
- ((SYSCTL_Type *) 0x400FE000UL)->RCGCUART |= (1<<0);
-
-
-
- ((SYSCTL_Type *) 0x400FE000UL)->RCGCGPIO |= (1<<0);
+  ((GPIOA_Type *) 0x40004000UL)->DEN = (1<<0) | (1<<1);
+# 49 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c"
+  ((UART0_Type *) 0x4000C000UL)->CTL &= ~(1<<0);
 
 
+  ((UART0_Type *) 0x4000C000UL)->IBRD = 104;
 
- ((GPIOA_Type *) 0x40004000UL)->AFSEL = (1<<1) | (1<<0);
 
-
+  ((UART0_Type *) 0x4000C000UL)->FBRD = 11;
 
 
 
-
- ((GPIOA_Type *) 0x40004000UL)->PCTL = (1<<0) | (1<<4);
-
- ((GPIOA_Type *) 0x40004000UL)->DEN = (1<<0) | (1<<1);
-# 51 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c"
- ((UART0_Type *) 0x4000C000UL)->CTL &= ~(1<<0);
+  ((UART0_Type *) 0x4000C000UL)->LCRH = (0x3<<5);
 
 
- ((UART0_Type *) 0x4000C000UL)->IBRD = 104;
-
-
- ((UART0_Type *) 0x4000C000UL)->FBRD = 11;
-
-
-
- ((UART0_Type *) 0x4000C000UL)->LCRH = (0x3<<5);
-
-
- ((UART0_Type *) 0x4000C000UL)->CC = 0x0;
+  ((UART0_Type *) 0x4000C000UL)->CC = 0x0;
 
 
 
 
 
- ((UART0_Type *) 0x4000C000UL)->CTL = (1<<0)|(1<<8)|(1<<9);
-}
-
-void uart_debug_print(char* str){
- while(*str){
-  uart_debug_print_char(*(str++));
+  ((UART0_Type *) 0x4000C000UL)->CTL = (1<<0)|(1<<8)|(1<<9);
  }
-}
+ void uart_debug_print(char* str){
+  while(*str){
+   uart_debug_print_char(*(str++));
+  }
+ }
 
-void uart_debug_print_char(char c){
- while((((UART0_Type *) 0x4000C000UL)->FR & (1<<5)) != 0);
-   ((UART0_Type *) 0x4000C000UL)->DR = c;
-}
+ void uart_debug_print_char(char c){
+  while((((UART0_Type *) 0x4000C000UL)->FR & (1<<5)) != 0);
+    ((UART0_Type *) 0x4000C000UL)->DR = c;
+ }
 
-char uart_debug_reveive_char(void){
- char c;
- while((((UART0_Type *) 0x4000C000UL)->FR & (1<<4))!=0);
- c = ((UART0_Type *) 0x4000C000UL)->DR;
- return c;
-}
+ char uart_debug_reveive_char(void){
+  char c;
+  while((((UART0_Type *) 0x4000C000UL)->FR & (1<<4))!=0);
+  c = ((UART0_Type *) 0x4000C000UL)->DR;
+  return c;
+ }

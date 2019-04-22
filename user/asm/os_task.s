@@ -13,6 +13,17 @@
 	.comm	osTaskCurr,4,4
 	.comm	osTaskNext,4,4
 	.comm	osTaskQueue,4,4
+	.section	.rodata
+	.align	2
+.LC0:
+	.ascii	"[task] create task:\000"
+	.align	2
+.LC1:
+	.ascii	"\012\015\000"
+	.align	2
+.LC2:
+	.ascii	"[task] task add to queue.\012\015\000"
+	.text
 	.align	2
 	.global	os_task_create
 	.syntax unified
@@ -30,6 +41,12 @@ os_task_create:
 	str	r1, [fp, #-28]
 	str	r2, [fp, #-32]
 	str	r3, [fp, #-36]
+	ldr	r0, .L5
+	bl	uart_debug_print
+	ldr	r0, [fp, #-28]
+	bl	uart_debug_print
+	ldr	r0, .L5+4
+	bl	uart_debug_print
 	ldr	r2, [fp, #-36]
 	ldr	r3, [fp, #4]
 	add	r3, r2, r3
@@ -134,7 +151,7 @@ os_task_create:
 	ldr	r3, [fp, #-24]
 	ldr	r2, [fp, #-8]
 	str	r2, [r3, #20]
-	ldr	r3, [fp, #4]
+	ldr	r3, [fp, #-36]
 	sub	r3, r3, #1
 	bic	r3, r3, #7
 	add	r3, r3, #8
@@ -145,7 +162,7 @@ os_task_create:
 	b	.L2
 .L3:
 	ldr	r3, [fp, #-8]
-	ldr	r2, .L5
+	ldr	r2, .L5+8
 	str	r2, [r3]
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
@@ -171,13 +188,15 @@ os_task_create:
 	mov	r2, #2
 	strb	r2, [r3, #32]
 .L4:
-	ldr	r3, .L5+4
+	ldr	r3, .L5+12
 	ldr	r3, [r3]
 	ldr	r1, [fp, #-24]
 	mov	r0, r3
 	bl	os_queue_add_item
 	mov	r3, r0
 	strb	r3, [fp, #-13]
+	ldr	r0, .L5+16
+	bl	uart_debug_print
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
@@ -187,9 +206,17 @@ os_task_create:
 .L6:
 	.align	2
 .L5:
+	.word	.LC0
+	.word	.LC1
 	.word	-559038737
 	.word	osTaskQueue
+	.word	.LC2
 	.size	os_task_create, .-os_task_create
+	.section	.rodata
+	.align	2
+.LC3:
+	.ascii	"[task] task switch next.\012\015\000"
+	.text
 	.align	2
 	.global	os_task_switch_next
 	.syntax unified
@@ -200,11 +227,12 @@ os_task_switch_next:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
+	ldr	r0, .L8
+	bl	uart_debug_print
 	.syntax divided
-@ 80 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+@ 83 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID         I
 	LDR           r1,=osTaskCurr
 	LDR           r1,[r1,#0x00]
@@ -230,10 +258,14 @@ os_task_switch_next:
 	.syntax unified
 	nop
 	mov	r0, r3
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
+.L9:
+	.align	2
+.L8:
+	.word	.LC3
 	.size	os_task_switch_next, .-os_task_switch_next
 	.align	2
 	.global	os_task_exit

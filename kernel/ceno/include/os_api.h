@@ -16,6 +16,8 @@
 
 #include <stdint.h>
 
+#include "uart_debug.h"
+
 #include "os.h"
 #include "os_list.h"
 #include "os_obj.h"

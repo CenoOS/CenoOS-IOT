@@ -14,4 +14,5 @@ uart_debug.o: \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/cmsis_compiler.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/cmsis_gcc.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../../../../../../lib/CMSIS/Include/mpu_armv7.h \
- /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../include/system_TM4C123GH6PM.h
+ /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/../include/system_TM4C123GH6PM.h \
+ include/os_config.h
