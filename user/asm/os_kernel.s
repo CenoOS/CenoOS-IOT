@@ -112,6 +112,11 @@ os_run:
 .L8:
 	.word	.LC2
 	.size	os_run, .-os_run
+	.section	.rodata
+	.align	2
+.LC3:
+	.ascii	"[kernel] os idle.\012\015\000"
+	.text
 	.align	2
 	.global	os_idle
 	.syntax unified
@@ -122,16 +127,26 @@ os_idle:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
+	ldr	r0, .L11
+	bl	uart_debug_print
 	nop
 	mov	r0, r3
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
+.L12:
+	.align	2
+.L11:
+	.word	.LC3
 	.size	os_idle, .-os_idle
+	.section	.rodata
+	.align	2
+.LC4:
+	.ascii	"[kernel] os tick.\012\015\000"
+	.text
 	.align	2
 	.global	os_tick
 	.syntax unified
@@ -142,15 +157,20 @@ os_tick:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
+	ldr	r0, .L14
+	bl	uart_debug_print
 	nop
 	mov	r0, r3
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
+.L15:
+	.align	2
+.L14:
+	.word	.LC4
 	.size	os_tick, .-os_tick
 	.align	2
 	.global	os_get_next_ready_from_task_queue
@@ -176,7 +196,7 @@ os_get_next_ready_from_task_queue:
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
 	.align	2
-.LC3:
+.LC5:
 	.ascii	"[kernel] os sched.\012\015\000"
 	.text
 	.align	2
@@ -191,49 +211,49 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L17
+	ldr	r0, .L21
 	bl	uart_debug_print
-	ldr	r3, .L17+4
+	ldr	r3, .L21+4
 	ldr	r3, [r3]
 	mov	r0, r3
 	bl	os_queue_size
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L14
-	ldr	r3, .L17+8
+	bne	.L18
+	ldr	r3, .L21+8
 	ldr	r3, [r3]
-	ldr	r2, .L17+12
+	ldr	r2, .L21+12
 	str	r3, [r2]
-	b	.L15
-.L14:
-	ldr	r3, .L17+4
+	b	.L19
+.L18:
+	ldr	r3, .L21+4
 	ldr	r3, [r3]
 	mov	r0, r3
 	bl	os_get_next_ready_from_task_queue
 	mov	r2, r0
-	ldr	r3, .L17+12
+	ldr	r3, .L21+12
 	str	r2, [r3]
-.L15:
-	ldr	r3, .L17+12
+.L19:
+	ldr	r3, .L21+12
 	ldr	r2, [r3]
-	ldr	r3, .L17+16
+	ldr	r3, .L21+16
 	ldr	r3, [r3]
 	cmp	r2, r3
-	beq	.L16
-	ldr	r3, .L17+20
+	beq	.L20
+	ldr	r3, .L21+20
 	mov	r2, #268435456
 	str	r2, [r3]
-.L16:
+.L20:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L18:
+.L22:
 	.align	2
-.L17:
-	.word	.LC3
+.L21:
+	.word	.LC5
 	.word	osTaskQueue
 	.word	osIdleTask
 	.word	osTaskNext

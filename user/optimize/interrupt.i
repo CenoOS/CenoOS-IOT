@@ -7,6 +7,36 @@
 
 
 
+# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h" 1
+# 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h"
+typedef unsigned int os_task_id_t;
+typedef unsigned int os_time_t;
+
+typedef enum os_err{
+ OS_ERR = 1,
+ OS_ERR_NONE = 0
+}os_err_t;
+
+typedef void* cpu_stk_t;
+typedef unsigned int cpu_stk_size_t;
+typedef char cpu_char_t;
+
+typedef unsigned int priority_t;
+
+
+typedef unsigned int queue_size_t;
+
+
+
+typedef unsigned int sem_count_t;
+
+typedef unsigned int tick_t;
+
+typedef long clock_t;
+# 5 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/interrupt.h" 2
+
+extern os_err_t os_tick(void);
+
 void SysTick_Handler(void);
 void PendSV_Handler(void);
 void NMI_Handler(void);
@@ -155,7 +185,9 @@ void delay_block(clock_t tick);
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/interrupt.c" 2
 
 
+
 void SysTick_Handler(void){
+ os_tick();
  if (*l_tickCtr > 0x00){
   (*l_tickCtr)--;
  }

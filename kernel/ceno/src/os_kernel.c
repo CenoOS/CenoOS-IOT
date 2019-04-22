@@ -55,15 +55,18 @@ os_err_t os_run(void){
 }
 
 os_err_t os_idle(void){
+	uart_debug_print("[kernel] os idle.\n\r");
 
 }
 
 os_err_t os_tick(void){
+	uart_debug_print("[kernel] os tick.\n\r");
+	// count down the timeout. and set task state
 
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
-
+	// get the first task from task queue sorted by priority
 }
 
 os_err_t os_sched(void){

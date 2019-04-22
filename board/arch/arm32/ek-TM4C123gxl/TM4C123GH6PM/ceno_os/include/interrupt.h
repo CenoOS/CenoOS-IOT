@@ -1,6 +1,10 @@
 #ifndef __CENO_RTOS_INTERRUPT_H__
 #define __CENO_RTOS_INTERRUPT_H__
 
+#include "os.h"
+
+extern os_err_t os_tick(void);
+
 void SysTick_Handler(void);
 void PendSV_Handler(void);
 void NMI_Handler(void);

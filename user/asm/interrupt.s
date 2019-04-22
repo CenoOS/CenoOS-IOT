@@ -20,9 +20,9 @@ SysTick_Handler:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
+	bl	os_tick
 	ldr	r3, .L4
 	ldr	r3, [r3]
 	ldr	r3, [r3]
@@ -35,9 +35,9 @@ SysTick_Handler:
 	str	r2, [r3]
 .L3:
 	nop
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
 .L5:
 	.align	2

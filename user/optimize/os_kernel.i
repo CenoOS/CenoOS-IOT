@@ -479,10 +479,13 @@ os_err_t os_run(void){
 }
 
 os_err_t os_idle(void){
+ uart_debug_print("[kernel] os idle.\n\r");
 
 }
 
 os_err_t os_tick(void){
+ uart_debug_print("[kernel] os tick.\n\r");
+
 
 }
 

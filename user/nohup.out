@@ -26512,3 +26512,37 @@ target halted due to breakpoint, current mode: Handler HardFault
 xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fe0
 wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.581321s (10.321 KiB/s)
 adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000e20 msp: 0x20007fdc
+erased sectors 0 through 255 on flash bank 0 in 0.039027s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fdc
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.590073s (10.168 KiB/s)
+adapter speed: 1 kHz
+invalid command name "halr"
+invalid command name "hakt"
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000e28 msp: 0x20007fdc
+erased sectors 0 through 255 on flash bank 0 in 0.038614s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fdc
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.589888s (10.171 KiB/s)
+adapter speed: 1 kHz
