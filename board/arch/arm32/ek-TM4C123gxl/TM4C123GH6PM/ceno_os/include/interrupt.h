@@ -3,7 +3,9 @@
 
 #include "os.h"
 
+
 extern os_err_t os_tick(void);
+extern os_err_t os_idle(void);
 
 void SysTick_Handler(void);
 void PendSV_Handler(void);
