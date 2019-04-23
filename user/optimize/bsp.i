@@ -3050,7 +3050,6 @@ typedef struct {
 static clock_t tickCtr = 0;
 volatile clock_t* l_tickCtr = &tickCtr;
 
-extern void os_init(void);
 void os_on_startup(void){
     SystemCoreClockUpdate();
     SysTick_Config(SystemCoreClock / 1000);

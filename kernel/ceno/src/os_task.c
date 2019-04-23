@@ -15,17 +15,15 @@
 os_task_t* volatile osTaskCurr;
 os_task_t* volatile osTaskNext;
 
-os_queue_t*  osTaskQueue;
-
 os_err_t os_task_create(os_task_t *me,
 					cpu_char_t *name, 
 					priority_t priority, 
 					cpu_stk_t stkPtr, 
 					cpu_stk_size_t stackSize,
 					os_task_handler_t taskHandler){
-	uart_debug_print("[task] create task:");
+	uart_debug_print("[task] create task : '");
 	uart_debug_print(name);
-	uart_debug_print("\n\r");
+	uart_debug_print("'\n\r");
 	/**
 	 * round down the stack top to the 8-byte boundary
      * NOTE: ARM Cortex-M stack grows down from high -> low memory
@@ -65,6 +63,8 @@ os_err_t os_task_create(os_task_t *me,
 	/* 将线程放到线程数组里*/
 	me->id = 1;
 	me->obj.name = name;
+	uart_debug_print(me->obj.name);
+	uart_debug_print(name);
 	me->priority = priority;
 	if(priority > 0U ){
 		me->state=OS_STATE_READY;
@@ -74,11 +74,21 @@ os_err_t os_task_create(os_task_t *me,
 	if(err==OS_ERR){
 		/* add to task queue failed */
 	}
-	uart_debug_print("[task] task add to queue.\n\r");
+	uart_debug_print("[task] task '");
+	uart_debug_print(me->obj.name);
+	uart_debug_print("' add to queue '");
+	uart_debug_print(osTaskQueue->obj.name);
+	uart_debug_print("'.\n\r");
 }
 
 os_err_t os_task_switch_next(void){
 	uart_debug_print("[task] task switch next.\n\r");
+	if(!osTaskCurr){
+		uart_debug_print("[task] task current is null.\n\r");
+	}
+	if(!osTaskNext){
+		uart_debug_print("[task] task next is null.\n\r");
+	}
 	/* context switch */
     __asm  (
 		/* __disable_irq(); */

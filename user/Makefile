@@ -81,9 +81,18 @@ debug:
 openOCD_boards:
 	ls ${OPENOCD_SCRIPT_DIR}
 
+
+openOCD_kill:
+	OPENOCD_PIDS=$$(ps -ef | grep "openocd" | grep -v "$$0" | grep -v "grep" | awk '{print $$2}'); \
+	echo $$OPENOCD_PIDS; \
+	if [ $$OPENOCD_PIDS ]; then \
+		kill -9 $$OPENOCD_PIDS; \
+	fi
+		
 # 连接
-openOCD_connect:
+openOCD_connect:	openOCD_kill	
 	nohup openocd -f ${OPENOCD_SCRIPT_DIR}/${OCD_CFG_FILE} &
+	telnet localhost 4444
 
 openOCD_bug:
 	openocd -f interface/dummy.cfg -f ${OPENOCD_SCRIPT_DIR}/${OCD_CFG_FILE}

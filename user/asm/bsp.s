@@ -167,7 +167,7 @@ disable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 18 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSID	I
 	
 @ 0 "" 2
@@ -193,7 +193,7 @@ enable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 24 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 23 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSIE	I
 	
 @ 0 "" 2

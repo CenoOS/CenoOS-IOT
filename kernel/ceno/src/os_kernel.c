@@ -12,6 +12,8 @@
  */
 #include "../include/os_api.h"
 
+os_queue_t*  osTaskQueue;
+
 os_task_t* volatile osIdleTask;
 uint32_t stackTaskIdle[40];
 
@@ -24,6 +26,12 @@ os_err_t os_init(void){
 	if(isOsObjectContainerInit==OS_ERR){
 		return isOsObjectContainerInit;
 	}
+
+	os_err_t isOsTaskQueueCreate = os_queue_create(osTaskQueue,"task queue",32);
+	if(isOsTaskQueueCreate==OS_ERR){
+		return isOsTaskQueueCreate;
+	}
+
 
 	/**
 	 * os idle task init
@@ -46,7 +54,6 @@ os_err_t os_run(void){
 	uart_debug_print("[kernel] os run.\n\r");
 	/* callback to configure and start interrupts */
 	os_on_startup();
-	os_init();
 
     disable_irq();
     os_sched();

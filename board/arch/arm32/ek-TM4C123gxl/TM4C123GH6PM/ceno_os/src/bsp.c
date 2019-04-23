@@ -6,7 +6,6 @@
 static clock_t tickCtr = 0;
 volatile clock_t* l_tickCtr = &tickCtr;
 
-extern void os_init(void);
 void os_on_startup(void){
     SystemCoreClockUpdate();
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
@@ -34,7 +33,7 @@ void delay_block(clock_t tick){
 }
 
 void delay(clock_t tick){
-	
+
 }
 
 

@@ -88,6 +88,7 @@ main:
 	bl	uart_debug_print
 	ldr	r0, .L7+4
 	bl	uart_debug_print
+	bl	os_init
 	ldr	r3, .L7+8
 	ldr	r0, [r3]
 	ldr	r3, .L7+8

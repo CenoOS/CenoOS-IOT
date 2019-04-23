@@ -436,6 +436,8 @@ extern os_task_t* volatile osIdleTask;
 # 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c" 2
 
+os_queue_t* osTaskQueue;
+
 os_task_t* volatile osIdleTask;
 uint32_t stackTaskIdle[40];
 
@@ -448,6 +450,12 @@ os_err_t os_init(void){
  if(isOsObjectContainerInit==OS_ERR){
   return isOsObjectContainerInit;
  }
+
+ os_err_t isOsTaskQueueCreate = os_queue_create(osTaskQueue,"task queue",32);
+ if(isOsTaskQueueCreate==OS_ERR){
+  return isOsTaskQueueCreate;
+ }
+
 
 
 
@@ -470,7 +478,6 @@ os_err_t os_run(void){
  uart_debug_print("[kernel] os run.\n\r");
 
  os_on_startup();
- os_init();
 
     disable_irq();
     os_sched();
@@ -486,7 +493,7 @@ os_err_t os_tick(void){
 
  os_task_t *t = (os_task_t *)osTaskQueue->elems;
  t->state = OS_STATE_READY;
-# 75 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+# 82 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){

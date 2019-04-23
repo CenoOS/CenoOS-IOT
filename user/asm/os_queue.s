@@ -10,6 +10,14 @@
 	.eabi_attribute 18, 4
 	.file	"os_queue.c"
 	.text
+	.section	.rodata
+	.align	2
+.LC0:
+	.ascii	"[queue] queue create : \000"
+	.align	2
+.LC1:
+	.ascii	"\012\015\000"
+	.text
 	.align	2
 	.global	os_queue_create
 	.syntax unified
@@ -20,13 +28,18 @@ os_queue_create:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 32
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
-	sub	sp, sp, #36
+	push	{fp, lr}
+	add	fp, sp, #4
+	sub	sp, sp, #32
 	str	r0, [fp, #-24]
 	str	r1, [fp, #-28]
 	str	r2, [fp, #-32]
+	ldr	r0, .L4
+	bl	uart_debug_print
+	ldr	r0, [fp, #-28]
+	bl	uart_debug_print
+	ldr	r0, .L4+4
+	bl	uart_debug_print
 	ldr	r3, [fp, #-32]
 	cmp	r3, #0
 	bne	.L2
@@ -47,10 +60,15 @@ os_queue_create:
 	str	r2, [r3, #16]
 .L1:
 	mov	r0, r3
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
+.L5:
+	.align	2
+.L4:
+	.word	.LC0
+	.word	.LC1
 	.size	os_queue_create, .-os_queue_create
 	.align	2
 	.global	os_queue_add_item
@@ -68,6 +86,9 @@ os_queue_add_item:
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
 	str	r1, [fp, #-12]
+	ldr	r3, [fp, #-8]
+	ldr	r2, [fp, #-12]
+	str	r2, [r3, #36]
 	nop
 	mov	r0, r3
 	add	sp, fp, #0

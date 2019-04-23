@@ -27,8 +27,11 @@ int main(void)
 {
 
   bsp_init();
+
   uart_debug_print("[debug] _______________begin______________\n\r");
   uart_debug_print("[main] main start.\n\r");
+
+  os_init();
 
   os_err_t task_01_err = os_task_create(
     task_01,

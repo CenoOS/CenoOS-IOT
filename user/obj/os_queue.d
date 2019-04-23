@@ -17,4 +17,15 @@ obj/os_queue.o: \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_mutex.h \
- /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_kernel.h
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_kernel.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_ansi.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/newlib.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/config.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/machine/ieeefp.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h \
+ /Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/machine/_types.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/lock.h \
+ /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/machine/malloc.h
