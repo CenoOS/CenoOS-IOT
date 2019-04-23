@@ -10,7 +10,7 @@
 	.eabi_attribute 18, 4
 	.file	"main.c"
 	.text
-	.comm	task_01,4,4
+	.comm	task_01,52,4
 	.comm	stack_task_01,160,4
 	.align	2
 	.global	task_01_thread
@@ -33,7 +33,7 @@ task_01_thread:
 	bl	delay_block
 	b	.L2
 	.size	task_01_thread, .-task_01_thread
-	.comm	task_02,4,4
+	.comm	task_02,52,4
 	.comm	stack_task_02,160,4
 	.align	2
 	.global	task_02_thread
@@ -90,28 +90,24 @@ main:
 	bl	uart_debug_print
 	bl	os_init
 	ldr	r3, .L7+8
-	ldr	r0, [r3]
-	ldr	r3, .L7+8
-	ldr	r3, [r3]
 	str	r3, [sp, #4]
 	mov	r3, #160
 	str	r3, [sp]
 	ldr	r3, .L7+12
 	mov	r2, #5
 	ldr	r1, .L7+16
+	ldr	r0, .L7+20
 	bl	os_task_create
 	mov	r3, r0
 	strb	r3, [fp, #-5]
-	ldr	r3, .L7+20
-	ldr	r0, [r3]
-	ldr	r3, .L7+20
-	ldr	r3, [r3]
+	ldr	r3, .L7+24
 	str	r3, [sp, #4]
 	mov	r3, #160
 	str	r3, [sp]
-	ldr	r3, .L7+24
+	ldr	r3, .L7+28
 	mov	r2, #4
-	ldr	r1, .L7+28
+	ldr	r1, .L7+32
+	ldr	r0, .L7+36
 	bl	os_task_create
 	mov	r3, r0
 	strb	r3, [fp, #-6]
@@ -127,11 +123,13 @@ main:
 .L7:
 	.word	.LC0
 	.word	.LC1
-	.word	task_01
+	.word	task_01_thread
 	.word	stack_task_01
 	.word	.LC2
-	.word	task_02
+	.word	task_01
+	.word	task_02_thread
 	.word	stack_task_02
 	.word	.LC3
+	.word	task_02
 	.size	main, .-main
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

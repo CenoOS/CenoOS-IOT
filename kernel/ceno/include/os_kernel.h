@@ -19,6 +19,7 @@ os_err_t os_init(void);
 
 os_err_t os_run(void);
 
+void task_idle_thread(void);
 os_err_t os_idle(void);
 
 os_err_t os_tick(void);
@@ -26,6 +27,6 @@ os_err_t os_tick(void);
 os_err_t os_sched(void);
 
 
-extern os_task_t* volatile osIdleTask;
+extern volatile  os_task_t  osIdleTask;
 
 #endif

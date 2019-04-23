@@ -378,8 +378,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 os_err_t os_task_exit(void);
 
 
-extern os_queue_t* osTaskQueue;
-
+extern os_queue_t osTaskQueue;
 
 extern os_task_t* volatile osTaskCurr;
 extern os_task_t* volatile osTaskNext;
@@ -424,6 +423,7 @@ os_err_t os_init(void);
 
 os_err_t os_run(void);
 
+void task_idle_thread(void);
 os_err_t os_idle(void);
 
 os_err_t os_tick(void);
@@ -431,7 +431,7 @@ os_err_t os_tick(void);
 os_err_t os_sched(void);
 
 
-extern os_task_t* volatile osIdleTask;
+extern volatile os_task_t osIdleTask;
 # 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 2 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_queue.c" 2
 # 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 1 3
@@ -1049,5 +1049,5 @@ os_err_t os_queue_clear(){
 }
 
 uint32_t os_queue_size(os_queue_t* queue){
-
+ return 0U;
 }

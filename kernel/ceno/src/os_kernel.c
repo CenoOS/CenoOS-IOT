@@ -12,9 +12,9 @@
  */
 #include "../include/os_api.h"
 
-os_queue_t*  osTaskQueue;
+os_queue_t  osTaskQueue;
 
-os_task_t* volatile osIdleTask;
+volatile os_task_t osIdleTask;
 uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
@@ -27,7 +27,7 @@ os_err_t os_init(void){
 		return isOsObjectContainerInit;
 	}
 
-	os_err_t isOsTaskQueueCreate = os_queue_create(osTaskQueue,"task queue",32);
+	os_err_t isOsTaskQueueCreate = os_queue_create(&osTaskQueue,"task queue",32);
 	if(isOsTaskQueueCreate==OS_ERR){
 		return isOsTaskQueueCreate;
 	}
@@ -37,17 +37,23 @@ os_err_t os_init(void){
 	 * os idle task init
 	 */
 	os_err_t isOsIdleTaskInit = os_task_create(
-		osIdleTask,
+		&osIdleTask,
     	"taskIdle",
     	0,
     	stackTaskIdle,
     	sizeof(stackTaskIdle),
-    	os_idle
+    	&os_idle
 	);
 	
+	osTaskCurr = &osIdleTask;
+
 	if(isOsIdleTaskInit==OS_ERR){
 		return isOsIdleTaskInit;
 	}
+}
+
+void task_idle_thread(){
+	uart_debug_print("[task] idle.\n\r");
 }
 
 os_err_t os_run(void){
@@ -61,13 +67,14 @@ os_err_t os_run(void){
 }
 
 os_err_t os_idle(void){
-	uart_debug_print("[kernel] os idle.\n\r");
-
+	while(1){
+		task_idle_thread();
+	}
 }
 
 os_err_t os_tick(void){
 	// Traversing the tasks in queue
-	os_task_t *t = (os_task_t *)osTaskQueue->elems;
+	os_task_t *t = (os_task_t *)osTaskQueue.elems;
 	t->state = OS_STATE_READY;
 	// while(t){
 	// 	/* count down the timeout */
@@ -83,22 +90,23 @@ os_err_t os_tick(void){
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 	// get the first task from task queue sorted by priority
-	 return (os_task_t *)osTaskQueue->elems;
+	 return (os_task_t *)osTaskQueue.elems;
 }
 
 os_err_t os_sched(void){
 	uart_debug_print("[kernel] os sched.\n\r");
-	if(os_queue_size(osTaskQueue)<=0U){
-		osTaskNext = osIdleTask;
+	if(os_queue_size(&osTaskQueue)<=0U){
+		osTaskNext = &osIdleTask;
 	}else{
 		/* get first ready task from task queue, task queue is sorted by priority */
-		osTaskNext = os_get_next_ready_from_task_queue(osTaskQueue);
+		osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
 	}
-	// hard trigger
-	*(uint32_t volatile *)0xE000ED04 = (1U << 28);
+
+	/* hard trigger PendSV*/
+	  *(uint32_t volatile *)0xE000ED04 = (1U << 28);
+
 	/* trigger PendSV, if needed */
  	if (osTaskNext != osTaskCurr) {
-		uart_debug_print("[kernel] PendSV trigger.\n\r");
 		/* todo : this need be a hal function */
         *(uint32_t volatile *)0xE000ED04 = (1U << 28);
     }

@@ -401,8 +401,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 os_err_t os_task_exit(void);
 
 
-extern os_queue_t* osTaskQueue;
-
+extern os_queue_t osTaskQueue;
 
 extern os_task_t* volatile osTaskCurr;
 extern os_task_t* volatile osTaskNext;
@@ -447,6 +446,7 @@ os_err_t os_init(void);
 
 os_err_t os_run(void);
 
+void task_idle_thread(void);
 os_err_t os_idle(void);
 
 os_err_t os_tick(void);
@@ -454,11 +454,11 @@ os_err_t os_tick(void);
 os_err_t os_sched(void);
 
 
-extern os_task_t* volatile osIdleTask;
+extern volatile os_task_t osIdleTask;
 # 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 3 "src/main.c" 2
 
-os_task_t* task_01;
+os_task_t task_01;
 uint32_t stack_task_01[40];
 void task_01_thread(){
   while(1){
@@ -469,7 +469,7 @@ void task_01_thread(){
   }
 }
 
-os_task_t* task_02;
+os_task_t task_02;
 uint32_t stack_task_02[40];
 void task_02_thread(){
   while(1){
@@ -491,21 +491,21 @@ int main(void)
   os_init();
 
   os_err_t task_01_err = os_task_create(
-    task_01,
+    &task_01,
     "task_01",
     5,
     stack_task_01,
     sizeof(stack_task_01),
-    task_01
+    &task_01_thread
   );
 
   os_err_t task_02_err = os_task_create(
-    task_02,
+    &task_02,
     "task_02",
     4,
     stack_task_02,
     sizeof(stack_task_02),
-    task_02
+    &task_02_thread
   );
 
   os_run();

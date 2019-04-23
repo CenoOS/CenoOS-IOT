@@ -70,19 +70,21 @@ os_err_t os_task_create(os_task_t *me,
 		me->state=OS_STATE_READY;
 	}
 
-	os_err_t err = os_queue_add_item(osTaskQueue,me);
+	os_err_t err = os_queue_add_item(&osTaskQueue,me);
 	if(err==OS_ERR){
 		/* add to task queue failed */
 	}
 	uart_debug_print("[task] task '");
 	uart_debug_print(me->obj.name);
 	uart_debug_print("' add to queue '");
-	uart_debug_print(osTaskQueue->obj.name);
+	uart_debug_print(osTaskQueue.obj.name);
 	uart_debug_print("'.\n\r");
 }
 
 os_err_t os_task_switch_next(void){
-	uart_debug_print("[task] task switch next.\n\r");
+	uart_debug_print("[task] task switch next : '");
+	uart_debug_print(osTaskNext->obj.name);
+	uart_debug_print("'.\n\r");
 	if(!osTaskCurr){
 		uart_debug_print("[task] task current is null.\n\r");
 	}

@@ -199,10 +199,8 @@ os_task_create:
 	mov	r2, #2
 	strb	r2, [r3, #32]
 .L4:
-	ldr	r3, .L5+12
-	ldr	r3, [r3]
 	ldr	r1, [fp, #-24]
-	mov	r0, r3
+	ldr	r0, .L5+12
 	bl	os_queue_add_item
 	mov	r3, r0
 	strb	r3, [fp, #-13]
@@ -215,7 +213,6 @@ os_task_create:
 	ldr	r0, .L5+20
 	bl	uart_debug_print
 	ldr	r3, .L5+12
-	ldr	r3, [r3]
 	ldr	r3, [r3, #8]
 	mov	r0, r3
 	bl	uart_debug_print
@@ -241,7 +238,7 @@ os_task_create:
 	.section	.rodata
 	.align	2
 .LC5:
-	.ascii	"[task] task switch next.\012\015\000"
+	.ascii	"[task] task switch next : '\000"
 	.align	2
 .LC6:
 	.ascii	"[task] task current is null.\012\015\000"
@@ -265,20 +262,27 @@ os_task_switch_next:
 	bl	uart_debug_print
 	ldr	r3, .L10+4
 	ldr	r3, [r3]
-	cmp	r3, #0
-	bne	.L8
+	ldr	r3, [r3, #12]
+	mov	r0, r3
+	bl	uart_debug_print
 	ldr	r0, .L10+8
 	bl	uart_debug_print
-.L8:
 	ldr	r3, .L10+12
 	ldr	r3, [r3]
 	cmp	r3, #0
-	bne	.L9
+	bne	.L8
 	ldr	r0, .L10+16
+	bl	uart_debug_print
+.L8:
+	ldr	r3, .L10+4
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bne	.L9
+	ldr	r0, .L10+20
 	bl	uart_debug_print
 .L9:
 	.syntax divided
-@ 93 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+@ 95 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID         I
 	LDR           r1,=osTaskCurr
 	LDR           r1,[r1,#0x00]
@@ -312,9 +316,10 @@ os_task_switch_next:
 	.align	2
 .L10:
 	.word	.LC5
+	.word	osTaskNext
+	.word	.LC4
 	.word	osTaskCurr
 	.word	.LC6
-	.word	osTaskNext
 	.word	.LC7
 	.size	os_task_switch_next, .-os_task_switch_next
 	.align	2

@@ -379,8 +379,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 os_err_t os_task_exit(void);
 
 
-extern os_queue_t* osTaskQueue;
-
+extern os_queue_t osTaskQueue;
 
 extern os_task_t* volatile osTaskCurr;
 extern os_task_t* volatile osTaskNext;
@@ -425,6 +424,7 @@ os_err_t os_init(void);
 
 os_err_t os_run(void);
 
+void task_idle_thread(void);
 os_err_t os_idle(void);
 
 os_err_t os_tick(void);
@@ -432,13 +432,13 @@ os_err_t os_tick(void);
 os_err_t os_sched(void);
 
 
-extern os_task_t* volatile osIdleTask;
+extern volatile os_task_t osIdleTask;
 # 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c" 2
 
-os_queue_t* osTaskQueue;
+os_queue_t osTaskQueue;
 
-os_task_t* volatile osIdleTask;
+volatile os_task_t osIdleTask;
 uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
@@ -451,7 +451,7 @@ os_err_t os_init(void){
   return isOsObjectContainerInit;
  }
 
- os_err_t isOsTaskQueueCreate = os_queue_create(osTaskQueue,"task queue",32);
+ os_err_t isOsTaskQueueCreate = os_queue_create(&osTaskQueue,"task queue",32);
  if(isOsTaskQueueCreate==OS_ERR){
   return isOsTaskQueueCreate;
  }
@@ -461,17 +461,23 @@ os_err_t os_init(void){
 
 
  os_err_t isOsIdleTaskInit = os_task_create(
-  osIdleTask,
+  &osIdleTask,
      "taskIdle",
      0,
      stackTaskIdle,
      sizeof(stackTaskIdle),
-     os_idle
+     &os_idle
  );
+
+ osTaskCurr = &osIdleTask;
 
  if(isOsIdleTaskInit==OS_ERR){
   return isOsIdleTaskInit;
  }
+}
+
+void task_idle_thread(){
+ uart_debug_print("[task] idle.\n\r");
 }
 
 os_err_t os_run(void){
@@ -485,35 +491,37 @@ os_err_t os_run(void){
 }
 
 os_err_t os_idle(void){
- uart_debug_print("[kernel] os idle.\n\r");
-
+ while(1){
+  task_idle_thread();
+ }
 }
 
 os_err_t os_tick(void){
 
- os_task_t *t = (os_task_t *)osTaskQueue->elems;
+ os_task_t *t = (os_task_t *)osTaskQueue.elems;
  t->state = OS_STATE_READY;
-# 82 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+# 89 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 
-  return (os_task_t *)osTaskQueue->elems;
+  return (os_task_t *)osTaskQueue.elems;
 }
 
 os_err_t os_sched(void){
  uart_debug_print("[kernel] os sched.\n\r");
- if(os_queue_size(osTaskQueue)<=0U){
-  osTaskNext = osIdleTask;
+ if(os_queue_size(&osTaskQueue)<=0U){
+  osTaskNext = &osIdleTask;
  }else{
 
-  osTaskNext = os_get_next_ready_from_task_queue(osTaskQueue);
+  osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
  }
 
- *(uint32_t volatile *)0xE000ED04 = (1U << 28);
+
+   *(uint32_t volatile *)0xE000ED04 = (1U << 28);
+
 
   if (osTaskNext != osTaskCurr) {
-  uart_debug_print("[kernel] PendSV trigger.\n\r");
 
         *(uint32_t volatile *)0xE000ED04 = (1U << 28);
     }

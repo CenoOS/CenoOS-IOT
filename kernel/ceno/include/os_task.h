@@ -57,8 +57,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 os_err_t os_task_exit(void);
 
 
-extern os_queue_t*  osTaskQueue;
-
+extern os_queue_t  osTaskQueue;
 
 extern os_task_t* volatile osTaskCurr;
 extern os_task_t* volatile osTaskNext;

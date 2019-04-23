@@ -151,7 +151,7 @@ os_queue_size:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	nop
+	mov	r3, #0
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
