@@ -550,5 +550,5 @@ os_err_t os_task_exit(void){
 }
 
 os_err_t os_task_switch_context(os_task_t *next){
-
+ osTaskCurr = next;
 }

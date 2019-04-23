@@ -18,5 +18,6 @@ extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
+void delay(clock_t tick);
 
 #endif

@@ -24,6 +24,7 @@ extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
+void delay(clock_t tick);
 # 2 "src/main.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h"
@@ -460,10 +461,23 @@ extern os_task_t* volatile osIdleTask;
 os_task_t* task_01;
 uint32_t stack_task_01[40];
 void task_01_thread(){
-  light_green_on();
-  delay_block(1000);
-  light_green_off();
-  delay_block(1000);
+  while(1){
+    light_green_on();
+    delay_block(1000);
+    light_green_off();
+    delay_block(1000);
+  }
+}
+
+os_task_t* task_02;
+uint32_t stack_task_02[40];
+void task_02_thread(){
+  while(1){
+    light_red_on();
+    delay_block(1000);
+    light_red_off();
+    delay_block(1000);
+  }
 }
 
 int main(void)
@@ -480,6 +494,15 @@ int main(void)
     stack_task_01,
     sizeof(stack_task_01),
     task_01
+  );
+
+  os_err_t task_02_err = os_task_create(
+    task_02,
+    "task_02",
+    4,
+    stack_task_02,
+    sizeof(stack_task_02),
+    task_02
   );
 
   os_run();

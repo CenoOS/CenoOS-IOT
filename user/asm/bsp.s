@@ -250,6 +250,27 @@ delay_block:
 	.word	l_tickCtr
 	.size	delay_block, .-delay_block
 	.align	2
+	.global	delay
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	delay, %function
+delay:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 8
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
+	sub	sp, sp, #12
+	str	r0, [fp, #-8]
+	nop
+	add	sp, fp, #0
+	@ sp needed
+	ldr	fp, [sp], #4
+	bx	lr
+	.size	delay, .-delay
+	.align	2
 	.global	bsp_init
 	.syntax unified
 	.arm
@@ -261,20 +282,20 @@ bsp_init:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r3, .L22
+	ldr	r3, .L23
 	ldr	r3, [r3, #1544]
-	ldr	r2, .L22
+	ldr	r2, .L23
 	orr	r3, r3, #32
 	str	r3, [r2, #1544]
-	ldr	r3, .L22+4
+	ldr	r3, .L23+4
 	mov	r2, #14
 	str	r2, [r3, #1024]
-	ldr	r3, .L22+4
+	ldr	r3, .L23+4
 	mov	r2, #14
 	str	r2, [r3, #1308]
-	ldr	r3, .L22+4
+	ldr	r3, .L23+4
 	ldr	r3, [r3, #1020]
-	ldr	r2, .L22+4
+	ldr	r2, .L23+4
 	bic	r3, r3, #14
 	str	r3, [r2, #1020]
 	bl	uart_debug_init
@@ -283,9 +304,9 @@ bsp_init:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L23:
+.L24:
 	.align	2
-.L22:
+.L23:
 	.word	1074782208
 	.word	1073893376
 	.size	bsp_init, .-bsp_init
@@ -302,7 +323,7 @@ light_red_on:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L25
+	ldr	r3, .L26
 	mov	r2, #2
 	str	r2, [r3, #1020]
 	nop
@@ -310,9 +331,9 @@ light_red_on:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L26:
+.L27:
 	.align	2
-.L25:
+.L26:
 	.word	1073893376
 	.size	light_red_on, .-light_red_on
 	.align	2
@@ -328,7 +349,7 @@ light_green_on:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L28
+	ldr	r3, .L29
 	mov	r2, #8
 	str	r2, [r3, #1020]
 	nop
@@ -336,9 +357,9 @@ light_green_on:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L29:
+.L30:
 	.align	2
-.L28:
+.L29:
 	.word	1073893376
 	.size	light_green_on, .-light_green_on
 	.align	2
@@ -354,7 +375,7 @@ light_blue_on:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L31
+	ldr	r3, .L32
 	mov	r2, #4
 	str	r2, [r3, #1020]
 	nop
@@ -362,9 +383,9 @@ light_blue_on:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L32:
+.L33:
 	.align	2
-.L31:
+.L32:
 	.word	1073893376
 	.size	light_blue_on, .-light_blue_on
 	.align	2
@@ -380,9 +401,9 @@ light_red_off:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L34
+	ldr	r3, .L35
 	ldr	r3, [r3, #1020]
-	ldr	r2, .L34
+	ldr	r2, .L35
 	bic	r3, r3, #2
 	str	r3, [r2, #1020]
 	nop
@@ -390,9 +411,9 @@ light_red_off:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L35:
+.L36:
 	.align	2
-.L34:
+.L35:
 	.word	1073893376
 	.size	light_red_off, .-light_red_off
 	.align	2
@@ -408,9 +429,9 @@ light_green_off:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L37
+	ldr	r3, .L38
 	ldr	r3, [r3, #1020]
-	ldr	r2, .L37
+	ldr	r2, .L38
 	bic	r3, r3, #8
 	str	r3, [r2, #1020]
 	nop
@@ -418,9 +439,9 @@ light_green_off:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L38:
+.L39:
 	.align	2
-.L37:
+.L38:
 	.word	1073893376
 	.size	light_green_off, .-light_green_off
 	.align	2
@@ -436,9 +457,9 @@ light_blue_off:
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	ldr	r3, .L40
+	ldr	r3, .L41
 	ldr	r3, [r3, #1020]
-	ldr	r2, .L40
+	ldr	r2, .L41
 	bic	r3, r3, #4
 	str	r3, [r2, #1020]
 	nop
@@ -446,9 +467,9 @@ light_blue_off:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L41:
+.L42:
 	.align	2
-.L40:
+.L41:
 	.word	1073893376
 	.size	light_blue_off, .-light_blue_off
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

@@ -33,6 +33,10 @@ void delay_block(clock_t tick){
     while((*l_tickCtr)>0);
 }
 
+void delay(clock_t tick){
+	
+}
+
 
 void bsp_init(void){
 	

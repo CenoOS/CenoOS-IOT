@@ -24,6 +24,7 @@ extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
+void delay(clock_t tick);
 # 2 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
@@ -3074,6 +3075,10 @@ int volatile counter = 0;
 void delay_block(clock_t tick){
    *l_tickCtr = tick;
     while((*l_tickCtr)>0);
+}
+
+void delay(clock_t tick){
+
 }
 
 

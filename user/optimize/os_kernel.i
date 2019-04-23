@@ -470,7 +470,6 @@ os_err_t os_run(void){
  uart_debug_print("[kernel] os run.\n\r");
 
  os_on_startup();
-
  os_init();
 
     disable_irq();
@@ -484,13 +483,15 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
- uart_debug_print("[kernel] os tick.\n\r");
 
-
+ os_task_t *t = (os_task_t *)osTaskQueue->elems;
+ t->state = OS_STATE_READY;
+# 75 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 
+  return (os_task_t *)osTaskQueue->elems;
 }
 
 os_err_t os_sched(void){
@@ -502,8 +503,10 @@ os_err_t os_sched(void){
   osTaskNext = os_get_next_ready_from_task_queue(osTaskQueue);
  }
 
+ *(uint32_t volatile *)0xE000ED04 = (1U << 28);
 
-    if (osTaskNext != osTaskCurr) {
+  if (osTaskNext != osTaskCurr) {
+  uart_debug_print("[kernel] PendSV trigger.\n\r");
 
         *(uint32_t volatile *)0xE000ED04 = (1U << 28);
     }

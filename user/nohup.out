@@ -26546,3 +26546,2815 @@ target halted due to breakpoint, current mode: Handler HardFault
 xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fdc
 wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.589888s (10.171 KiB/s)
 adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler SysTick
+xPSR: 0x2100000f pc: 0x0000154a msp: 0x20007f68
+erased sectors 0 through 255 on flash bank 0 in 0.040114s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler SysTick
+xPSR: 0x6100000f pc: 0x20000042 msp: 0x20007f68
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.574959s (10.436 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler SysTick
+xPSR: 0x2100000f pc: 0x00001544 msp: 0x20007f68
+erased sectors 0 through 255 on flash bank 0 in 0.039705s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler SysTick
+xPSR: 0x6100000f pc: 0x20000042 msp: 0x20007f68
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.590323s (10.164 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0xfffffffe msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.048934s
+auto erase enabled
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007fc0
+erased sectors 0 through 255 on flash bank 0 in 0.028635s
+auto erase enabled
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 7.098599s (0.845 KiB/s)
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0xfffffffe msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.038378s
+auto erase enabled
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007fc0
+erased sectors 0 through 255 on flash bank 0 in 0.030570s
+auto erase enabled
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 6.931765s (0.866 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000e34 msp: 0x20007fe0
+erased sectors 0 through 255 on flash bank 0 in 0.038834s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fe0
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.589542s (10.177 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0xfffffffe msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.038210s
+auto erase enabled
+Error: timeout waiting for algorithm, a target reset is recommended
+Error: error -902 executing stellaris flash write algorithm
+Error: flash writing failed with CRIS: 0x0
+Error: error writing to flash at address 0x00000000 at offset 0x00000000
+
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0xfffffffe msp: 0x20007fc0
+erased sectors 0 through 255 on flash bank 0 in 0.030800s
+auto erase enabled
+Error: Target is already running an algorithm
+Error: error starting target flash write algorithm
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 6.985303s (0.859 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000e18 msp: 0x20007fe0
+erased sectors 0 through 255 on flash bank 0 in 0.037741s
+auto erase enabled
+Error: couldn't open /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin
+
+erased sectors 0 through 255 on flash bank 0 in 0.029183s
+auto erase enabled
+Error: couldn't open /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin
+
+erased sectors 0 through 255 on flash bank 0 in 0.030052s
+auto erase enabled
+Error: couldn't open /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin
+
+erased sectors 0 through 255 on flash bank 0 in 0.030864s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fe0
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.583706s (10.279 KiB/s)
+adapter speed: 1 kHz
+target halted due to debug-request, current mode: Handler PendSV
+xPSR: 0x0100000e pc: 0x00000b7e msp: 0x20008000
+erased sectors 0 through 255 on flash bank 0 in 0.038003s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler PendSV
+xPSR: 0x6100000e pc: 0x20000042 msp: 0x20008000
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.591282s (10.147 KiB/s)
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Info : dropped 'telnet' connection
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Info : accepting 'telnet' connection on tcp/4444
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Info : dropped 'telnet' connection
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 9270
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+adapter speed: 1 kHz
+invalid command name "exset"
+adapter speed: 1 kHz
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 9270
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000e94 msp: 0x20007fe0
+erased sectors 0 through 255 on flash bank 0 in 0.037845s
+adapter speed: 1 kHz
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 700ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 1500ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 3100ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Info : dropped 'telnet' connection
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Error: jtag status contains invalid mode value - communication failure
+Polling target tm4c123gh6pm.cpu failed, trying to reexamine
+Examination failed, GDB will be halted. Polling again in 6300ms
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 9270
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x010060ee msp: 0x20000fc8
+erased sectors 0 through 255 on flash bank 0 in 0.032672s
+auto erase enabled
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20000fc8
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.585094s (10.255 KiB/s)
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+adapter speed: 1 kHz
+Info : dropped 'telnet' connection
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 500 kHz
+Info : RCLK (adaptive clock speed)
+Info : ICDI Firmware version: 9270
+Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : accepting 'telnet' connection on tcp/4444
+target halted due to debug-request, current mode: Handler HardFault
+xPSR: 0x01000003 pc: 0x00000ea0 msp: 0x20007fe0
+erased sectors 0 through 255 on flash bank 0 in 0.037524s
+auto erase enabled
+target halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x20000042 msp: 0x20007fe0
+wrote 6144 bytes from file /Users/neroyang/project/Ceno-RTOS/user/bin/CenoRTOS.bin in 0.581161s (10.324 KiB/s)
+adapter speed: 1 kHz

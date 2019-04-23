@@ -24,18 +24,38 @@ task_01_thread:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
+.L2:
 	bl	light_green_on
 	mov	r0, #1000
 	bl	delay_block
 	bl	light_green_off
 	mov	r0, #1000
 	bl	delay_block
-	nop
-	sub	sp, fp, #4
-	@ sp needed
-	pop	{fp, lr}
-	bx	lr
+	b	.L2
 	.size	task_01_thread, .-task_01_thread
+	.comm	task_02,4,4
+	.comm	stack_task_02,160,4
+	.align	2
+	.global	task_02_thread
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	task_02_thread, %function
+task_02_thread:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{fp, lr}
+	add	fp, sp, #4
+.L4:
+	bl	light_red_on
+	mov	r0, #1000
+	bl	delay_block
+	bl	light_red_off
+	mov	r0, #1000
+	bl	delay_block
+	b	.L4
+	.size	task_02_thread, .-task_02_thread
 	.section	.rodata
 	.align	2
 .LC0:
@@ -46,6 +66,9 @@ task_01_thread:
 	.align	2
 .LC2:
 	.ascii	"task_01\000"
+	.align	2
+.LC3:
+	.ascii	"task_02\000"
 	.text
 	.align	2
 	.global	main
@@ -61,23 +84,36 @@ main:
 	add	fp, sp, #4
 	sub	sp, sp, #16
 	bl	bsp_init
-	ldr	r0, .L4
+	ldr	r0, .L7
 	bl	uart_debug_print
-	ldr	r0, .L4+4
+	ldr	r0, .L7+4
 	bl	uart_debug_print
-	ldr	r3, .L4+8
+	ldr	r3, .L7+8
 	ldr	r0, [r3]
-	ldr	r3, .L4+8
+	ldr	r3, .L7+8
 	ldr	r3, [r3]
 	str	r3, [sp, #4]
 	mov	r3, #160
 	str	r3, [sp]
-	ldr	r3, .L4+12
+	ldr	r3, .L7+12
 	mov	r2, #5
-	ldr	r1, .L4+16
+	ldr	r1, .L7+16
 	bl	os_task_create
 	mov	r3, r0
 	strb	r3, [fp, #-5]
+	ldr	r3, .L7+20
+	ldr	r0, [r3]
+	ldr	r3, .L7+20
+	ldr	r3, [r3]
+	str	r3, [sp, #4]
+	mov	r3, #160
+	str	r3, [sp]
+	ldr	r3, .L7+24
+	mov	r2, #4
+	ldr	r1, .L7+28
+	bl	os_task_create
+	mov	r3, r0
+	strb	r3, [fp, #-6]
 	bl	os_run
 	mov	r3, #0
 	mov	r0, r3
@@ -85,13 +121,16 @@ main:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L5:
+.L8:
 	.align	2
-.L4:
+.L7:
 	.word	.LC0
 	.word	.LC1
 	.word	task_01
 	.word	stack_task_01
 	.word	.LC2
+	.word	task_02
+	.word	stack_task_02
+	.word	.LC3
 	.size	main, .-main
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

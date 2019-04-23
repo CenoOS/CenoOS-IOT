@@ -11,7 +11,8 @@ void SysTick_Handler(void){
 }
 
 void PendSV_Handler(void){
-
+	uart_debug_print("[kernel] PendSV triggered.\n\r");
+	os_task_switch_next();
 }
 
 void NMI_Handler(void){

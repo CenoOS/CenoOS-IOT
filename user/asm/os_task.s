@@ -302,11 +302,18 @@ os_task_switch_context:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
+	ldr	r2, .L12
+	ldr	r3, [fp, #-8]
+	str	r3, [r2]
 	nop
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
+.L13:
+	.align	2
+.L12:
+	.word	osTaskCurr
 	.size	os_task_switch_context, .-os_task_switch_context
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

@@ -44,6 +44,11 @@ SysTick_Handler:
 .L4:
 	.word	l_tickCtr
 	.size	SysTick_Handler, .-SysTick_Handler
+	.section	.rodata
+	.align	2
+.LC0:
+	.ascii	"[kernel] PendSV triggered.\012\015\000"
+	.text
 	.align	2
 	.global	PendSV_Handler
 	.syntax unified
@@ -54,14 +59,20 @@ PendSV_Handler:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
+	ldr	r0, .L7
+	bl	uart_debug_print
+	bl	os_task_switch_next
 	nop
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
+.L8:
+	.align	2
+.L7:
+	.word	.LC0
 	.size	PendSV_Handler, .-PendSV_Handler
 	.align	2
 	.global	NMI_Handler

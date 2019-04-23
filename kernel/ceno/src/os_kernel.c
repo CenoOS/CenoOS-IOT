@@ -46,7 +46,6 @@ os_err_t os_run(void){
 	uart_debug_print("[kernel] os run.\n\r");
 	/* callback to configure and start interrupts */
 	os_on_startup();
-
 	os_init();
 
     disable_irq();
@@ -60,13 +59,24 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-	uart_debug_print("[kernel] os tick.\n\r");
-	// count down the timeout. and set task state
-
+	// Traversing the tasks in queue
+	os_task_t *t = (os_task_t *)osTaskQueue->elems;
+	t->state = OS_STATE_READY;
+	// while(t){
+	// 	/* count down the timeout */
+	// 	t->timeout--;
+	// 	if (t->timeout == 0U) {
+	// 		/* set task state */
+	// 		t->state = OS_STATE_READY;	
+	// 	}
+	// 	t = t->next;
+	// }
+	
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 	// get the first task from task queue sorted by priority
+	 return (os_task_t *)osTaskQueue->elems;
 }
 
 os_err_t os_sched(void){
@@ -77,9 +87,11 @@ os_err_t os_sched(void){
 		/* get first ready task from task queue, task queue is sorted by priority */
 		osTaskNext = os_get_next_ready_from_task_queue(osTaskQueue);
 	}
-	 
+	// hard trigger
+	*(uint32_t volatile *)0xE000ED04 = (1U << 28);
 	/* trigger PendSV, if needed */
-    if (osTaskNext != osTaskCurr) {
+ 	if (osTaskNext != osTaskCurr) {
+		uart_debug_print("[kernel] PendSV trigger.\n\r");
 		/* todo : this need be a hal function */
         *(uint32_t volatile *)0xE000ED04 = (1U << 28);
     }

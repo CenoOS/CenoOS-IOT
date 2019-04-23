@@ -142,11 +142,6 @@ os_idle:
 .L11:
 	.word	.LC3
 	.size	os_idle, .-os_idle
-	.section	.rodata
-	.align	2
-.LC4:
-	.ascii	"[kernel] os tick.\012\015\000"
-	.text
 	.align	2
 	.global	os_tick
 	.syntax unified
@@ -155,22 +150,29 @@ os_idle:
 	.type	os_tick, %function
 os_tick:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
+	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 1, uses_anonymous_args = 0
-	push	{fp, lr}
-	add	fp, sp, #4
-	ldr	r0, .L14
-	bl	uart_debug_print
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
+	sub	sp, sp, #12
+	ldr	r3, .L14
+	ldr	r3, [r3]
+	ldr	r3, [r3, #36]
+	str	r3, [fp, #-8]
+	ldr	r3, [fp, #-8]
+	mov	r2, #2
+	strb	r2, [r3, #32]
 	nop
 	mov	r0, r3
-	sub	sp, fp, #4
+	add	sp, fp, #0
 	@ sp needed
-	pop	{fp, lr}
+	ldr	fp, [sp], #4
 	bx	lr
 .L15:
 	.align	2
 .L14:
-	.word	.LC4
+	.word	osTaskQueue
 	.size	os_tick, .-os_tick
 	.align	2
 	.global	os_get_next_ready_from_task_queue
@@ -187,17 +189,26 @@ os_get_next_ready_from_task_queue:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	nop
+	ldr	r3, .L18
+	ldr	r3, [r3]
+	ldr	r3, [r3, #36]
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
+.L19:
+	.align	2
+.L18:
+	.word	osTaskQueue
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
 	.align	2
-.LC5:
+.LC4:
 	.ascii	"[kernel] os sched.\012\015\000"
+	.align	2
+.LC5:
+	.ascii	"[kernel] PendSV trigger.\012\015\000"
 	.text
 	.align	2
 	.global	os_sched
@@ -211,53 +222,59 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L21
+	ldr	r0, .L24
 	bl	uart_debug_print
-	ldr	r3, .L21+4
+	ldr	r3, .L24+4
 	ldr	r3, [r3]
 	mov	r0, r3
 	bl	os_queue_size
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L18
-	ldr	r3, .L21+8
+	bne	.L21
+	ldr	r3, .L24+8
 	ldr	r3, [r3]
-	ldr	r2, .L21+12
+	ldr	r2, .L24+12
 	str	r3, [r2]
-	b	.L19
-.L18:
-	ldr	r3, .L21+4
+	b	.L22
+.L21:
+	ldr	r3, .L24+4
 	ldr	r3, [r3]
 	mov	r0, r3
 	bl	os_get_next_ready_from_task_queue
 	mov	r2, r0
-	ldr	r3, .L21+12
+	ldr	r3, .L24+12
 	str	r2, [r3]
-.L19:
-	ldr	r3, .L21+12
-	ldr	r2, [r3]
-	ldr	r3, .L21+16
-	ldr	r3, [r3]
-	cmp	r2, r3
-	beq	.L20
-	ldr	r3, .L21+20
+.L22:
+	ldr	r3, .L24+16
 	mov	r2, #268435456
 	str	r2, [r3]
-.L20:
+	ldr	r3, .L24+12
+	ldr	r2, [r3]
+	ldr	r3, .L24+20
+	ldr	r3, [r3]
+	cmp	r2, r3
+	beq	.L23
+	ldr	r0, .L24+24
+	bl	uart_debug_print
+	ldr	r3, .L24+16
+	mov	r2, #268435456
+	str	r2, [r3]
+.L23:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L22:
+.L25:
 	.align	2
-.L21:
-	.word	.LC5
+.L24:
+	.word	.LC4
 	.word	osTaskQueue
 	.word	osIdleTask
 	.word	osTaskNext
-	.word	osTaskCurr
 	.word	-536810236
+	.word	osTaskCurr
+	.word	.LC5
 	.size	os_sched, .-os_sched
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

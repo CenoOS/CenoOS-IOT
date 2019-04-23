@@ -6,6 +6,7 @@
 
 extern os_err_t os_tick(void);
 extern os_err_t os_idle(void);
+extern os_err_t os_task_switch_next(void);
 
 void SysTick_Handler(void);
 void PendSV_Handler(void);

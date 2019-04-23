@@ -35,7 +35,10 @@ typedef unsigned int tick_t;
 typedef long clock_t;
 # 5 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/interrupt.h" 2
 
+
 extern os_err_t os_tick(void);
+extern os_err_t os_idle(void);
+extern os_err_t os_task_switch_next(void);
 
 void SysTick_Handler(void);
 void PendSV_Handler(void);
@@ -182,6 +185,7 @@ extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
+void delay(clock_t tick);
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/interrupt.c" 2
 
 
@@ -194,7 +198,8 @@ void SysTick_Handler(void){
 }
 
 void PendSV_Handler(void){
-
+ uart_debug_print("[kernel] PendSV triggered.\n\r");
+ os_task_switch_next();
 }
 
 void NMI_Handler(void){
