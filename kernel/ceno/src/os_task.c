@@ -18,7 +18,7 @@ os_task_t* volatile osTaskNext;
 os_err_t os_task_create(os_task_t *me,
 					cpu_char_t *name, 
 					priority_t priority, 
-					cpu_stk_t stkPtr, 
+					cpu_stk_t stkSto, 
 					cpu_stk_size_t stackSize,
 					os_task_handler_t taskHandler){
 	uart_debug_print("[task] create task : '");
@@ -28,7 +28,7 @@ os_err_t os_task_create(os_task_t *me,
 	 * round down the stack top to the 8-byte boundary
      * NOTE: ARM Cortex-M stack grows down from high -> low memory
      */
-    uint32_t *sp = (uint32_t *)((((uint32_t)stkPtr + stackSize) / 8) * 8);
+    uint32_t *sp = (uint32_t *)((((uint32_t)stkSto + stackSize) / 8) * 8);
     uint32_t *stk_limit;
 
  	*(--sp) = (1U << 24);  /* xPSR */
@@ -50,10 +50,10 @@ os_err_t os_task_create(os_task_t *me,
     *(--sp) = 0x00000004U; /* R4 */
 
     /* save the top of the stack in the thread's attibute */
-    me->stkPtr = sp;
+    me->sp = sp;
     
     /* round up the bottom of the stack to the 8-byte boundary */
-    stk_limit = (uint32_t *)(((((uint32_t)stkPtr - 1U) / 8) + 1U) * 8);
+    stk_limit = (uint32_t *)(((((uint32_t)stkSto - 1U) / 8) + 1U) * 8);
     
 	/* pre-fill the unused part of the stack with 0xDEADBEEF */
     for (sp = sp - 1U; sp >= stk_limit; --sp) {
@@ -63,8 +63,6 @@ os_err_t os_task_create(os_task_t *me,
 	/* 将线程放到线程数组里*/
 	me->id = 1;
 	me->obj.name = name;
-	uart_debug_print(me->obj.name);
-	uart_debug_print(name);
 	me->priority = priority;
 	if(priority > 0U ){
 		me->state=OS_STATE_READY;
@@ -85,6 +83,7 @@ os_err_t os_task_switch_next(void){
 	uart_debug_print("[task] task switch next : '");
 	uart_debug_print(osTaskNext->obj.name);
 	uart_debug_print("'.\n\r");
+	osTaskCurr = (os_task_t *)0;
 	if(!osTaskCurr){
 		uart_debug_print("[task] task current is null.\n\r");
 	}
@@ -92,44 +91,44 @@ os_err_t os_task_switch_next(void){
 		uart_debug_print("[task] task next is null.\n\r");
 	}
 	/* context switch */
-    __asm  (
+    __asm(
 		/* __disable_irq(); */
-		"CPSID         I\n\t"
+		"CPSID		 I\n\t"
 
-    	/* if (OS_curr != (OSThread *)0) { */ 
-    	"LDR           r1,=osTaskCurr\n\t"
-    	"LDR           r1,[r1,#0x00]\n\t"
-    	"CBZ           r1,PendSV_restore\n\t"
+    	/* if (osTaskCurr != (os_task_t *)0) { */ 
+    		"LDR		r1,=osTaskCurr\n\t"
+    		"LDR		r1,[r1,#0x00]\n\t"
+    		"CBZ		r1,PendSV_restore\n\t"
 
     	/*     push registers r4-r11 on the stack */
-    	"PUSH          {r4-r11}\n\t"   
+    		"PUSH		{r4-r11}\n\t"
 
-    	/*     OS_curr->sp = sp; */ 
-    	"LDR           r1,=osTaskCurr\n\t"
-    	"LDR           r1,[r1,#0x00]\n\t"
-    	"STR           sp,[r1,#0x00]\n\t"
+    	/*     osTaskCurr->sp = sp; */
+    		"LDR		r1,=osTaskCurr\n\t"
+    		"LDR		r1,[r1,#0x00]\n\t"
+    		"STR		sp,[r1,#0x00]\n\t"
     	/* } */
 
-		"PendSV_restore:\n\t"   
-    	/* sp = OS_next->sp; */
-    	"LDR           r1,=osTaskNext\n\t"
-    	"LDR           r1,[r1,#0x00]\n\t"
-    	"LDR           sp,[r1,#0x00]\n\t"
+	"PendSV_restore:\n\t"   
+    	/* sp = osTaskNext->sp; */
+    	"LDR		r1,=osTaskNext\n\t"
+    	"LDR		r1,[r1,#0x00]\n\t"
+    	"LDR		sp,[r1,#0x00]\n\t"
 
-    	/* OS_curr = OS_next; */
-		"LDR           r1,=osTaskNext\n\t"
-   		"LDR           r1,[r1,#0x00]\n\t"
-   		"LDR           r2,=osTaskCurr\n\t"
-   		"STR           r1,[r2,#0x00]\n\t"
+    	/* osTaskCurr = osTaskNext; */
+		"LDR		r1,=osTaskNext\n\t"
+   		"LDR		r1,[r1,#0x00]\n\t"
+   		"LDR		r2,=osTaskCurr\n\t"
+   		"STR		r1,[r2,#0x00]\n\t"
 
-    	/* pop registers r4-r11 */ 
-   		"POP           {r4-r11}\n\t"
+    	/* pop registers r4-r11 */
+   		"POP		{r4-r11}\n\t"
 
     	/* __enable_irq(); */
-    	"CPSIE         I\n\t"
+    	"CPSIE		I\n\t"
 
     	/* return  thread */
-    	"BX            lr\n\t"
+    	"BX		lr"
 	);
 }
 

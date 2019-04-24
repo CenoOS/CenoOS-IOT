@@ -155,7 +155,7 @@ os_task_create:
 	str	r2, [r3]
 	ldr	r3, [fp, #-24]
 	ldr	r2, [fp, #-8]
-	str	r2, [r3, #20]
+	str	r2, [r3]
 	ldr	r3, [fp, #-36]
 	sub	r3, r3, #1
 	bic	r3, r3, #7
@@ -179,16 +179,10 @@ os_task_create:
 	bcs	.L3
 	ldr	r3, [fp, #-24]
 	mov	r2, #1
-	str	r2, [r3]
-	ldr	r3, [fp, #-24]
-	ldr	r2, [fp, #-28]
 	str	r2, [r3, #12]
 	ldr	r3, [fp, #-24]
-	ldr	r3, [r3, #12]
-	mov	r0, r3
-	bl	uart_debug_print
-	ldr	r0, [fp, #-28]
-	bl	uart_debug_print
+	ldr	r2, [fp, #-28]
+	str	r2, [r3, #24]
 	ldr	r3, [fp, #-24]
 	ldr	r2, [fp, #-32]
 	str	r2, [r3, #40]
@@ -207,7 +201,7 @@ os_task_create:
 	ldr	r0, .L5+16
 	bl	uart_debug_print
 	ldr	r3, [fp, #-24]
-	ldr	r3, [r3, #12]
+	ldr	r3, [r3, #24]
 	mov	r0, r3
 	bl	uart_debug_print
 	ldr	r0, .L5+20
@@ -262,11 +256,14 @@ os_task_switch_next:
 	bl	uart_debug_print
 	ldr	r3, .L10+4
 	ldr	r3, [r3]
-	ldr	r3, [r3, #12]
+	ldr	r3, [r3, #24]
 	mov	r0, r3
 	bl	uart_debug_print
 	ldr	r0, .L10+8
 	bl	uart_debug_print
+	ldr	r3, .L10+12
+	mov	r2, #0
+	str	r2, [r3]
 	ldr	r3, .L10+12
 	ldr	r3, [r3]
 	cmp	r3, #0
@@ -282,27 +279,26 @@ os_task_switch_next:
 	bl	uart_debug_print
 .L9:
 	.syntax divided
-@ 95 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
-	CPSID         I
-	LDR           r1,=osTaskCurr
-	LDR           r1,[r1,#0x00]
-	CBZ           r1,PendSV_restore
-	PUSH          {r4-r11}
-	LDR           r1,=osTaskCurr
-	LDR           r1,[r1,#0x00]
-	STR           sp,[r1,#0x00]
+@ 94 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+	CPSID		 I
+	LDR		r1,=osTaskCurr
+	LDR		r1,[r1,#0x00]
+	CBZ		r1,PendSV_restore
+	PUSH		{r4-r11}
+	LDR		r1,=osTaskCurr
+	LDR		r1,[r1,#0x00]
+	STR		sp,[r1,#0x00]
 	PendSV_restore:
-	LDR           r1,=osTaskNext
-	LDR           r1,[r1,#0x00]
-	LDR           sp,[r1,#0x00]
-	LDR           r1,=osTaskNext
-	LDR           r1,[r1,#0x00]
-	LDR           r2,=osTaskCurr
-	STR           r1,[r2,#0x00]
-	POP           {r4-r11}
-	CPSIE         I
-	BX            lr
-	
+	LDR		r1,=osTaskNext
+	LDR		r1,[r1,#0x00]
+	LDR		sp,[r1,#0x00]
+	LDR		r1,=osTaskNext
+	LDR		r1,[r1,#0x00]
+	LDR		r2,=osTaskCurr
+	STR		r1,[r2,#0x00]
+	POP		{r4-r11}
+	CPSIE		I
+	BX		lr
 @ 0 "" 2
 	.arm
 	.syntax unified

@@ -350,12 +350,13 @@ typedef enum task_state{
 }task_state_t;
 
 typedef struct os_task{
- os_task_id_t id;
- os_obj_t obj;
-
- cpu_stk_t stkPtr;
+ cpu_stk_t sp;
  cpu_stk_size_t stackSize;
  os_task_handler_t taskHandler;
+
+ os_task_id_t id;
+
+ os_obj_t obj;
 
  task_state_t state;
  os_time_t timeout;
@@ -368,7 +369,7 @@ typedef struct os_task{
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
-     cpu_stk_t stkPtr,
+     cpu_stk_t stkSto,
      cpu_stk_size_t stackSize,
      os_task_handler_t taskHandler);
 
@@ -442,7 +443,7 @@ os_task_t* volatile osTaskNext;
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
-     cpu_stk_t stkPtr,
+     cpu_stk_t stkSto,
      cpu_stk_size_t stackSize,
      os_task_handler_t taskHandler){
  uart_debug_print("[task] create task : '");
@@ -452,7 +453,7 @@ os_err_t os_task_create(os_task_t *me,
 
 
 
-    uint32_t *sp = (uint32_t *)((((uint32_t)stkPtr + stackSize) / 8) * 8);
+    uint32_t *sp = (uint32_t *)((((uint32_t)stkSto + stackSize) / 8) * 8);
     uint32_t *stk_limit;
 
   *(--sp) = (1U << 24);
@@ -474,10 +475,10 @@ os_err_t os_task_create(os_task_t *me,
     *(--sp) = 0x00000004U;
 
 
-    me->stkPtr = sp;
+    me->sp = sp;
 
 
-    stk_limit = (uint32_t *)(((((uint32_t)stkPtr - 1U) / 8) + 1U) * 8);
+    stk_limit = (uint32_t *)(((((uint32_t)stkSto - 1U) / 8) + 1U) * 8);
 
 
     for (sp = sp - 1U; sp >= stk_limit; --sp) {
@@ -487,8 +488,6 @@ os_err_t os_task_create(os_task_t *me,
 
  me->id = 1;
  me->obj.name = name;
- uart_debug_print(me->obj.name);
- uart_debug_print(name);
  me->priority = priority;
  if(priority > 0U ){
   me->state=OS_STATE_READY;
@@ -509,6 +508,7 @@ os_err_t os_task_switch_next(void){
  uart_debug_print("[task] task switch next : '");
  uart_debug_print(osTaskNext->obj.name);
  uart_debug_print("'.\n\r");
+ osTaskCurr = (os_task_t *)0;
  if(!osTaskCurr){
   uart_debug_print("[task] task current is null.\n\r");
  }
@@ -516,44 +516,44 @@ os_err_t os_task_switch_next(void){
   uart_debug_print("[task] task next is null.\n\r");
  }
 
-    __asm (
+    __asm(
 
-  "CPSID         I\n\t"
-
-
-     "LDR           r1,=osTaskCurr\n\t"
-     "LDR           r1,[r1,#0x00]\n\t"
-     "CBZ           r1,PendSV_restore\n\t"
+  "CPSID		 I\n\t"
 
 
-     "PUSH          {r4-r11}\n\t"
+      "LDR		r1,=osTaskCurr\n\t"
+      "LDR		r1,[r1,#0x00]\n\t"
+      "CBZ		r1,PendSV_restore\n\t"
 
 
-     "LDR           r1,=osTaskCurr\n\t"
-     "LDR           r1,[r1,#0x00]\n\t"
-     "STR           sp,[r1,#0x00]\n\t"
+      "PUSH		{r4-r11}\n\t"
 
 
-  "PendSV_restore:\n\t"
-
-     "LDR           r1,=osTaskNext\n\t"
-     "LDR           r1,[r1,#0x00]\n\t"
-     "LDR           sp,[r1,#0x00]\n\t"
+      "LDR		r1,=osTaskCurr\n\t"
+      "LDR		r1,[r1,#0x00]\n\t"
+      "STR		sp,[r1,#0x00]\n\t"
 
 
-  "LDR           r1,=osTaskNext\n\t"
-     "LDR           r1,[r1,#0x00]\n\t"
-     "LDR           r2,=osTaskCurr\n\t"
-     "STR           r1,[r2,#0x00]\n\t"
+ "PendSV_restore:\n\t"
+
+     "LDR		r1,=osTaskNext\n\t"
+     "LDR		r1,[r1,#0x00]\n\t"
+     "LDR		sp,[r1,#0x00]\n\t"
 
 
-     "POP           {r4-r11}\n\t"
+  "LDR		r1,=osTaskNext\n\t"
+     "LDR		r1,[r1,#0x00]\n\t"
+     "LDR		r2,=osTaskCurr\n\t"
+     "STR		r1,[r2,#0x00]\n\t"
 
 
-     "CPSIE         I\n\t"
+     "POP		{r4-r11}\n\t"
 
 
-     "BX            lr\n\t"
+     "CPSIE		I\n\t"
+
+
+     "BX		lr"
  );
 }
 

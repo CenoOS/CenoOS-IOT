@@ -349,12 +349,13 @@ typedef enum task_state{
 }task_state_t;
 
 typedef struct os_task{
- os_task_id_t id;
- os_obj_t obj;
-
- cpu_stk_t stkPtr;
+ cpu_stk_t sp;
  cpu_stk_size_t stackSize;
  os_task_handler_t taskHandler;
+
+ os_task_id_t id;
+
+ os_obj_t obj;
 
  task_state_t state;
  os_time_t timeout;
@@ -367,7 +368,7 @@ typedef struct os_task{
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
-     cpu_stk_t stkPtr,
+     cpu_stk_t stkSto,
      cpu_stk_size_t stackSize,
      os_task_handler_t taskHandler);
 
