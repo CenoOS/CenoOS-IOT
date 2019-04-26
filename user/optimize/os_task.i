@@ -338,7 +338,7 @@ uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
 # 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
-typedef void (*os_task_handler_t)();
+typedef os_err_t (*os_task_handler_t)();
 
 typedef enum task_state{
   OS_STATE_DORMANT = 1,
@@ -505,10 +505,11 @@ os_err_t os_task_create(os_task_t *me,
 }
 
 os_err_t os_task_switch_next(void){
+
  uart_debug_print("[task] task switch next : '");
  uart_debug_print(osTaskNext->obj.name);
  uart_debug_print("'.\n\r");
- osTaskCurr = (os_task_t *)0;
+
  if(!osTaskCurr){
   uart_debug_print("[task] task current is null.\n\r");
  }
@@ -521,7 +522,7 @@ os_err_t os_task_switch_next(void){
   "CPSID		 I\n\t"
 
 
-      "LDR		r1,=osTaskCurr\n\t"
+      "LDR		r1,[%[osTaskCurr]]\n\t"
       "LDR		r1,[r1,#0x00]\n\t"
       "CBZ		r1,PendSV_restore\n\t"
 
@@ -529,21 +530,24 @@ os_err_t os_task_switch_next(void){
       "PUSH		{r4-r11}\n\t"
 
 
-      "LDR		r1,=osTaskCurr\n\t"
+      "LDR		r1,[%[osTaskCurr]]\n\t"
       "LDR		r1,[r1,#0x00]\n\t"
       "STR		sp,[r1,#0x00]\n\t"
 
 
  "PendSV_restore:\n\t"
 
-     "LDR		r1,=osTaskNext\n\t"
+     "LDR		r1,[%[osTaskNext]]\n\t"
      "LDR		r1,[r1,#0x00]\n\t"
      "LDR		sp,[r1,#0x00]\n\t"
 
+  "mov	r0, #50\n\t"
+  "bl	uart_debug_print_char\n\t"
 
-  "LDR		r1,=osTaskNext\n\t"
+
+  "LDR		r1,[%[osTaskNext]]\n\t"
      "LDR		r1,[r1,#0x00]\n\t"
-     "LDR		r2,=osTaskCurr\n\t"
+     "LDR		r2,[%[osTaskCurr]]\n\t"
      "STR		r1,[r2,#0x00]\n\t"
 
 
@@ -554,7 +558,10 @@ os_err_t os_task_switch_next(void){
 
 
      "BX		lr"
+  :[osTaskCurr] "=r" (osTaskCurr) , [osTaskNext] "=r" (osTaskNext)
+  :
  );
+ uart_debug_print("[task] contex switch finished.\n\r");
 }
 
 os_err_t os_task_exit(void){

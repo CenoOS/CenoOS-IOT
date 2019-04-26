@@ -37,7 +37,7 @@ int main(void)
     &task_01,
     "task_01",
     5,
-    stack_task_01,
+    &stack_task_01,
     sizeof(stack_task_01),
     &task_01_thread
   );
@@ -46,7 +46,7 @@ int main(void)
     &task_02,
     "task_02",
     4,
-    stack_task_02,
+    &stack_task_02,
     sizeof(stack_task_02),
     &task_02_thread
   );

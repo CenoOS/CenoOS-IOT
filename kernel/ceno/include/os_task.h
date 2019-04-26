@@ -16,7 +16,7 @@
 
 
 
-typedef void (*os_task_handler_t)();
+typedef os_err_t (*os_task_handler_t)();
 
 typedef	enum task_state{
  	OS_STATE_DORMANT 		=	1,

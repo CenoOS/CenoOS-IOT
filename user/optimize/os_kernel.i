@@ -338,7 +338,7 @@ uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
 # 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
-typedef void (*os_task_handler_t)();
+typedef os_err_t (*os_task_handler_t)();
 
 typedef enum task_state{
   OS_STATE_DORMANT = 1,
@@ -498,15 +498,12 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-
- os_task_t *t = (os_task_t *)osTaskQueue.elems;
- t->state = OS_STATE_READY;
 # 89 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 
-  return (os_task_t *)osTaskQueue.elems;
+ return (os_task_t *)osTaskQueue.elems;
 }
 
 os_err_t os_sched(void){
@@ -515,7 +512,7 @@ os_err_t os_sched(void){
   osTaskNext = &osIdleTask;
  }else{
 
-  osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
+  osTaskNext = &osIdleTask;
  }
 
 

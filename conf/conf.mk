@@ -94,6 +94,8 @@ CXX=~/gcc-arm-none-eabi/bin/arm-none-eabi-g++
 LD=~/gcc-arm-none-eabi/bin/arm-none-eabi-ld
 OBJCOPY=~/gcc-arm-none-eabi/bin/arm-none-eabi-objcopy
 ELFREAD=~/gcc-arm-none-eabi/bin/arm-none-eabi-readelf
+
+GDB=~/gcc-arm-none-eabi/bin/arm-none-eabi-gdb
 # ====================================================================
 MKDIR=@mkdir -p $(@D)
 # ====================================================================

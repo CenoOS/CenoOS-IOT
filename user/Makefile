@@ -112,6 +112,9 @@ usb:
 	# system_profiler SPUSBDataType
 	lsusb
 
+gdb:
+	$(GDB)
+
 all: clean optimize asm  build
 # doc:
  	# /usr/local/Cellar/node/7.4.0/lib/node_modules/docsify-cli/bin/docsify serve ../docs/docs

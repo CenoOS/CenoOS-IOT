@@ -1,5 +1,5 @@
 /**
- *	Ceno RTOS task 
+ * Ceno RTOS task 
  * 	
  * 2018-12-17 
  * neroyang
@@ -80,10 +80,11 @@ os_err_t os_task_create(os_task_t *me,
 }
 
 os_err_t os_task_switch_next(void){
+
 	uart_debug_print("[task] task switch next : '");
 	uart_debug_print(osTaskNext->obj.name);
 	uart_debug_print("'.\n\r");
-	osTaskCurr = (os_task_t *)0;
+	//osTaskCurr = (os_task_t *)0;
 	if(!osTaskCurr){
 		uart_debug_print("[task] task current is null.\n\r");
 	}
@@ -96,29 +97,32 @@ os_err_t os_task_switch_next(void){
 		"CPSID		 I\n\t"
 
     	/* if (osTaskCurr != (os_task_t *)0) { */ 
-    		"LDR		r1,=osTaskCurr\n\t"
+    		"LDR		r1,[%[osTaskCurr]]\n\t"
     		"LDR		r1,[r1,#0x00]\n\t"
     		"CBZ		r1,PendSV_restore\n\t"
-
+			
     	/*     push registers r4-r11 on the stack */
     		"PUSH		{r4-r11}\n\t"
 
     	/*     osTaskCurr->sp = sp; */
-    		"LDR		r1,=osTaskCurr\n\t"
+    		"LDR		r1,[%[osTaskCurr]]\n\t"
     		"LDR		r1,[r1,#0x00]\n\t"
     		"STR		sp,[r1,#0x00]\n\t"
     	/* } */
-
+		
 	"PendSV_restore:\n\t"   
     	/* sp = osTaskNext->sp; */
-    	"LDR		r1,=osTaskNext\n\t"
+    	"LDR		r1,[%[osTaskNext]]\n\t"
     	"LDR		r1,[r1,#0x00]\n\t"
-    	"LDR		sp,[r1,#0x00]\n\t"
+    	"LDR		sp,[r1,#0x00]\n\t" /* 问题在这里,下面的2打印不出来 */
+
+		"mov	r0, #50\n\t"
+		"bl	uart_debug_print_char\n\t"
 
     	/* osTaskCurr = osTaskNext; */
-		"LDR		r1,=osTaskNext\n\t"
+		"LDR		r1,[%[osTaskNext]]\n\t"
    		"LDR		r1,[r1,#0x00]\n\t"
-   		"LDR		r2,=osTaskCurr\n\t"
+   		"LDR		r2,[%[osTaskCurr]]\n\t"
    		"STR		r1,[r2,#0x00]\n\t"
 
     	/* pop registers r4-r11 */
@@ -129,7 +133,10 @@ os_err_t os_task_switch_next(void){
 
     	/* return  thread */
     	"BX		lr"
+		:[osTaskCurr] "=r" (osTaskCurr) , [osTaskNext] "=r" (osTaskNext)
+		:
 	);
+	uart_debug_print("[task] contex switch finished.\n\r");
 }
 
 os_err_t os_task_exit(void){

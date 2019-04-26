@@ -239,6 +239,9 @@ os_task_create:
 	.align	2
 .LC7:
 	.ascii	"[task] task next is null.\012\015\000"
+	.align	2
+.LC8:
+	.ascii	"[task] contex switch finished.\012\015\000"
 	.text
 	.align	2
 	.global	os_task_switch_next
@@ -262,9 +265,6 @@ os_task_switch_next:
 	ldr	r0, .L10+8
 	bl	uart_debug_print
 	ldr	r3, .L10+12
-	mov	r2, #0
-	str	r2, [r3]
-	ldr	r3, .L10+12
 	ldr	r3, [r3]
 	cmp	r3, #0
 	bne	.L8
@@ -279,22 +279,24 @@ os_task_switch_next:
 	bl	uart_debug_print
 .L9:
 	.syntax divided
-@ 94 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+@ 95 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID		 I
-	LDR		r1,=osTaskCurr
+	LDR		r1,[r2]
 	LDR		r1,[r1,#0x00]
 	CBZ		r1,PendSV_restore
 	PUSH		{r4-r11}
-	LDR		r1,=osTaskCurr
+	LDR		r1,[r2]
 	LDR		r1,[r1,#0x00]
 	STR		sp,[r1,#0x00]
 	PendSV_restore:
-	LDR		r1,=osTaskNext
+	LDR		r1,[r3]
 	LDR		r1,[r1,#0x00]
 	LDR		sp,[r1,#0x00]
-	LDR		r1,=osTaskNext
+	mov	r0, #50
+	bl	uart_debug_print_char
+	LDR		r1,[r3]
 	LDR		r1,[r1,#0x00]
-	LDR		r2,=osTaskCurr
+	LDR		r2,[r2]
 	STR		r1,[r2,#0x00]
 	POP		{r4-r11}
 	CPSIE		I
@@ -302,6 +304,12 @@ os_task_switch_next:
 @ 0 "" 2
 	.arm
 	.syntax unified
+	ldr	r1, .L10+12
+	str	r2, [r1]
+	ldr	r2, .L10+4
+	str	r3, [r2]
+	ldr	r0, .L10+24
+	bl	uart_debug_print
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
@@ -317,6 +325,7 @@ os_task_switch_next:
 	.word	osTaskCurr
 	.word	.LC6
 	.word	.LC7
+	.word	.LC8
 	.size	os_task_switch_next, .-os_task_switch_next
 	.align	2
 	.global	os_task_exit

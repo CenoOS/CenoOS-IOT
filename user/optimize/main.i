@@ -360,7 +360,7 @@ uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_task.h" 1
 # 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_task.h"
-typedef void (*os_task_handler_t)();
+typedef os_err_t (*os_task_handler_t)();
 
 typedef enum task_state{
   OS_STATE_DORMANT = 1,
@@ -495,7 +495,7 @@ int main(void)
     &task_01,
     "task_01",
     5,
-    stack_task_01,
+    &stack_task_01,
     sizeof(stack_task_01),
     &task_01_thread
   );
@@ -504,7 +504,7 @@ int main(void)
     &task_02,
     "task_02",
     4,
-    stack_task_02,
+    &stack_task_02,
     sizeof(stack_task_02),
     &task_02_thread
   );

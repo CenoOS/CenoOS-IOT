@@ -1,5 +1,5 @@
 /**
- *	Ceno RTOS task 
+ * Ceno RTOS task 
  * 	
  * 2018-12-17 
  * neroyang
@@ -74,8 +74,8 @@ os_err_t os_idle(void){
 
 os_err_t os_tick(void){
 	// Traversing the tasks in queue
-	os_task_t *t = (os_task_t *)osTaskQueue.elems;
-	t->state = OS_STATE_READY;
+	// os_task_t *t = (os_task_t *)osTaskQueue.elems;
+	// t->state = OS_STATE_READY;
 	// while(t){
 	// 	/* count down the timeout */
 	// 	t->timeout--;
@@ -90,7 +90,7 @@ os_err_t os_tick(void){
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 	// get the first task from task queue sorted by priority
-	 return (os_task_t *)osTaskQueue.elems;
+	return (os_task_t *)osTaskQueue.elems;
 }
 
 os_err_t os_sched(void){
@@ -99,7 +99,7 @@ os_err_t os_sched(void){
 		osTaskNext = &osIdleTask;
 	}else{
 		/* get first ready task from task queue, task queue is sorted by priority */
-		osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
+		osTaskNext = &osIdleTask;//os_get_next_ready_from_task_queue(&osTaskQueue);
 	}
 
 	/* hard trigger PendSV*/

@@ -185,28 +185,17 @@ os_idle:
 	.type	os_tick, %function
 os_tick:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 8
+	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	sub	sp, sp, #12
-	ldr	r3, .L17
-	ldr	r3, [r3, #36]
-	str	r3, [fp, #-8]
-	ldr	r3, [fp, #-8]
-	mov	r2, #2
-	strb	r2, [r3, #32]
 	nop
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L18:
-	.align	2
-.L17:
-	.word	osTaskQueue
 	.size	os_tick, .-os_tick
 	.align	2
 	.global	os_get_next_ready_from_task_queue
@@ -223,16 +212,16 @@ os_get_next_ready_from_task_queue:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	ldr	r3, .L21
+	ldr	r3, .L19
 	ldr	r3, [r3, #36]
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L22:
+.L20:
 	.align	2
-.L21:
+.L19:
 	.word	osTaskQueue
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
@@ -252,46 +241,44 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L27
+	ldr	r0, .L25
 	bl	uart_debug_print
-	ldr	r0, .L27+4
+	ldr	r0, .L25+4
 	bl	os_queue_size
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L24
-	ldr	r3, .L27+8
-	ldr	r2, .L27+12
+	bne	.L22
+	ldr	r3, .L25+8
+	ldr	r2, .L25+12
 	str	r2, [r3]
-	b	.L25
-.L24:
-	ldr	r0, .L27+4
-	bl	os_get_next_ready_from_task_queue
-	mov	r2, r0
-	ldr	r3, .L27+8
+	b	.L23
+.L22:
+	ldr	r3, .L25+8
+	ldr	r2, .L25+12
 	str	r2, [r3]
-.L25:
-	ldr	r3, .L27+16
+.L23:
+	ldr	r3, .L25+16
 	mov	r2, #268435456
 	str	r2, [r3]
-	ldr	r3, .L27+8
+	ldr	r3, .L25+8
 	ldr	r2, [r3]
-	ldr	r3, .L27+20
+	ldr	r3, .L25+20
 	ldr	r3, [r3]
 	cmp	r2, r3
-	beq	.L26
-	ldr	r3, .L27+16
+	beq	.L24
+	ldr	r3, .L25+16
 	mov	r2, #268435456
 	str	r2, [r3]
-.L26:
+.L24:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L28:
+.L26:
 	.align	2
-.L27:
+.L25:
 	.word	.LC5
 	.word	osTaskQueue
 	.word	osTaskNext
