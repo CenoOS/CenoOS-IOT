@@ -30,7 +30,7 @@ def run():
             if isCache(folder_name):
                 os.remove(os.path.join(os.getcwd(), folder_name))
 
-    print 'All log files cleaned.'
+    print("All log files cleaned.")
 
 
 if __name__ == '__main__':
