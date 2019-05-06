@@ -29,6 +29,7 @@ typedef	enum task_state{
 
 typedef struct os_task{
 	cpu_stk_t 		sp;
+
 	cpu_stk_size_t 		stackSize;
 	os_task_handler_t taskHandler;
 
@@ -60,8 +61,8 @@ os_err_t os_task_exit(void);
 
 extern os_queue_t  osTaskQueue;
 
-extern os_task_t* volatile osTaskCurr;
-extern os_task_t* volatile osTaskNext;
+extern os_task_t * volatile osTaskCurr;
+extern os_task_t * volatile osTaskNext;
 #endif // !__CENO_RTOS_TASK_H__
 
 

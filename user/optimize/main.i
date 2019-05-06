@@ -373,6 +373,7 @@ typedef enum task_state{
 
 typedef struct os_task{
  cpu_stk_t sp;
+
  cpu_stk_size_t stackSize;
  os_task_handler_t taskHandler;
 
@@ -404,8 +405,8 @@ os_err_t os_task_exit(void);
 
 extern os_queue_t osTaskQueue;
 
-extern os_task_t* volatile osTaskCurr;
-extern os_task_t* volatile osTaskNext;
+extern os_task_t * volatile osTaskCurr;
+extern os_task_t * volatile osTaskNext;
 # 27 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_semphore.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_semphore.h"

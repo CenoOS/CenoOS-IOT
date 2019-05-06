@@ -1,0 +1,293 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX root = tjumain.tex
+
+\iffalse
+\bibliography{reference/reference.bib} % 欺骗latextools获取bib文件
+\fi
+
+%%%%%%% 正文 %%%%%%%
+
+\chapter{绪论}
+
+谷雨过后长安的清晨, 一片雾蒙蒙的, 
+隐约可见刚冒出小芽的青草顶着晶莹的露珠,
+附身的翰墨慢慢蹲下,撩了撩挡住视线的头发,抬起头说道“小草真像一个个背着包袱的小人儿,”
+
+花无邪低头微微一笑,殊不知,这一笑,便是整个世界.
+
+就在这时, 一个偏瘦的男子, 头戴斗笠, 右手握着滴血的剑已经下垂,略显疲惫, 骑着马向这边飞奔而来, 不时回头看.
+
+
+\chapter{设计}
+\subsection{初衷}
+\subsection{架构设计}
+
+\chapter{实现}
+
+\section{StartUp}
+\subsection{Interrupt Vector Table}
+首先我们从中断向量表(既中断服务程序入口地址)开始,当中断或异常发生的时候, CPU自动将PC指向一个特定的地址, 这个地址就是中断向量表。 Arm的中断向量表一般位于内存0x00000000\textasciitilde0x0000001C处, 结构如下:
+\begin{table}[htbp]
+    \caption{ Arm 中断向量表}\label{tab:table1}
+    \vspace{0.5em}\centering\wuhao
+    \begin{tabular}{ccccc}
+    \toprule[1.5pt]
+    Address & Interrupt Handler \\
+    \midrule[1pt]
+    \dots & \dots \\
+    0x00000040 & WWDG\_IRQHandler \\
+    0x0000003C & SysTick\_Handler \\
+    0x00000038 & PendSV\_Handler \\
+    0x00000034 & Reserved \\
+    0x00000030 & DebugMon\_Handler \\
+    0x0000002C & SVC\_Handler \\
+    0x00000028 & Reserved \\
+    0x00000024 & Reserved \\
+    0x00000020 & Reserved \\
+    0x0000001C & Reserved \\
+    0x00000018 & UsageFault\_Handler \\
+    0x00000014 & BusFault\_Handler \\
+    0x00000010 & MemManage\_Handler \\
+    0x0000000C & HardFault\_Handler \\
+    0x00000008 & NMI\_Handler \\
+    0x00000004 & Reset\_Handler \\
+    0x00000000 & Top\_Of\_Stack \\
+    \bottomrule[1.5pt]
+    \end{tabular}
+    \vspace{\baselineskip}
+    \end{table}
+
+内存中的第一个4字节用来初始化Main Stack Pointer(MSP), 第二个4字节是指向reset handler函数的指针, 是起始地址, 或者被称为reset handler 函数的入口点, 用来初始化Program Counter(PC).
+\subsection{BOOT}
+当处理器启动时首先读取两个引脚,包括引脚boot0和引脚boot1,处理器根据这两个引脚确定引导模式.
+然后,处理器将存储在地址0x00000000的值复制到Main Stack Pointer(MSP),这一步基本上完成了Main Stack Pointer(MSP) 的初始化.
+接着处理器将存储在地址0x00000004的值复制到Program Counter(PC).程序计数器始终保存下一个要由处理器执行的操作的内存地址,因此,在处理器启动后,处理器将立即开始执行reset handler.
+通常,reset handler首先执行一些硬件初始化,例如数据段和BSS段的初始化, 然后reset handler调用main()函数将控件传递给main函数.
+\begin{table}[htbp]
+    \caption{ Boot Mode }\label{tab:table1}
+    \vspace{0.5em}\centering\wuhao
+    \begin{tabular}{ccccc}
+    \toprule[1.5pt]
+    BOOT1 & BOOT0 & BOOT MODE \\
+    \midrule[1pt]
+    x & 0 & Boot from main flash memory \\
+    0 & 1 & Boot from system  memory(bootloader) \\
+    1 & 1 & Boot from embeded SRAM  \\
+    \bottomrule[1.5pt]
+    \end{tabular}
+    \vspace{\baselineskip}
+    \end{table}
+
+大多数Cortex-M处理器支持至少三种不同的引导模式,
+处理器可以从片内存储器,系统存储器或片内SRAM启动.
+存储在系统存储器中的代码称为引导加载程序(bootloader),
+引导加载程序(bootloader)通常由芯片制造商提供.
+引导加载程序(bootloader)可以升级内部闪存内的固件.
+所有STM32微处理器在只读存储器区域(ROM)中都带有预编程的引导加载程序(bootloader),
+该ROM区域称为系统存储器.
+\begin{table}[tb]
+    \caption{ Memory Map }\label{tab:table1}
+    \vspace{0.5em}\centering\wuhao
+    \begin{tabular}{ccccc}
+    \toprule[1.5pt]
+    Size & Address & Memory \\
+    \midrule[1pt]
+    0.5G & 0xE0000000\textasciitilde0xFFFFFFFF & System \\
+    1G    & 0xA0000000\textasciitilde0xE0000000 & External Device \\
+    1G    & 0x60000000\textasciitilde0xA0000000 & External RAM \\
+    0.5G & 0x40000000\textasciitilde0x60000000 & Peripheral \\
+    0.5G & 0x20000000\textasciitilde0x40000000 & Internal SRAM \\
+    0.5G & 0x00000000\textasciitilde0x20000000 & Code \\
+  
+    \bottomrule[1.5pt]
+    \end{tabular}
+    \vspace{\baselineskip}
+    \end{table}
+
+但是,有时您需要开发自定义引导加载程序(bootloader),
+例如:您需要加密固件并将其放在Internet上,以便客户可以升级固件.
+在这种情况下,您必须编写自定义引导加载程序(bootloader)来解码加密的固件.
+表~3-3是Arm Cortex-M处理器的内存映射:
+
+
+每个存储区的地址范围是固定的.接下来看一下代码区域(表~3-4),
+代码区域的范围是0x00000000到0x1FFFFFFF.
+顶部区域(0x1FFF000\textasciitilde0x1FFFFFFF)是保留用于存储引导加载程序的ROM区域.
+中间区域是片内闪存.
+底部区域是可以物理映射到内部闪存,系统内存的区域.可以物理映射到内部闪存,系统内存和内部SRAM的区域.
+
+内部闪存,系统存储器和内部SRAM的起始地址也是固定的.
+具体来说,内部闪存的起始地址为0x08000000,系统内存的地址从0x1FFF0000开始.
+\begin{table}[htbp]
+    \caption{ Code Area }\label{tab:table1}
+    \vspace{0.5em}\centering\wuhao
+    \begin{tabular}{ccccc}
+    \toprule[1.5pt]
+    Size & Address & Memory \\
+    \midrule[1pt]
+    todo & 0x1FFF77FF\textasciitilde0x1FFFFFFF & Options Bytes \\
+    todo & 0x1FFF0000\textasciitilde0x1FFF77FF & System memory (bootloader)\\
+    todo & 0x080X0000\textasciitilde0x1FFF0000 & Reserved \\
+    todo & 0x08000000\textasciitilde0x080X0000 & Internal Flash \\
+    todo & 0x00000000\textasciitilde0x08000000 & Alias to flash, system memory or SRAM \\
+  
+    \bottomrule[1.5pt]
+    \end{tabular}
+    \vspace{\baselineskip}
+    \end{table}
+
+现在,我们回头再看一下引导模式(表~3-2).引导模式由引脚boot1和引脚boot0上的电压决定.
+
+如果引脚boot0接地,则处理器将从内部闪存引导.
+如果引脚boot0接地,处理器将物理映射内部闪存到底部区域.
+例如,内存地址0x08000000将物理映射到地址0x00000000.
+换句话说,闪存内容可以从地址0x00000000或0x08000000访问.
+所以,当处理器启动时,它总是从内存地址0x00000000和0x00000004分别获取堆栈指针(SP)和程序计数器(PC)的值.
+因为内部闪存已经被物理映射到了起始地址0x00000000,所以实际上闪存就是是启动内存。
+
+当引脚boot1为低电平且引脚引导0为高电平时,系统存储器将物理映射到底部区域.
+当处理器从内存地址0x00000004获取程序计数器(PC)的值时,处理器实际上是从系统存储器中获取值.
+也就是说,系统存储器被选为引导存储器.
+在此启动模式下,处理器可以重新编程闪存或执行设备固件升级.
+
+当引脚boot1和引脚boot0都为高电平时,
+内部SRAM物理映射到底部区域,内存地址0x20000000物理映射到内存地址0x00000000
+因此处理器从SRAM引导.
+
+简单一点总结就是 arm 处理器从哪儿引导由pcb设计说了算,然后根据boot0/1两个针脚的电压决定把内存的哪块映射到0地址区域.然后处理器取4地址的值放到pc寄存器开始运行.
+
+\subsection{StartUp code}
+
+那么,我们从开发者的角度看一下Start Up是如何做到的,以及如何将启动代码放到目标引导内存中:
+
+当链接器(Linker)将对象和库文件组合成单个可执行文件时,
+链接器脚本(Linker Script)提供两种关键类型的操作,
+如何对数据和代码段进行操作以及每个部分应放在内存中的位置进行操作.
+编程人员可以修改链接描述文件(Linker Script)以将代码放在目标引导内存中.
+例如这个项目中的链接描述文件:
+
+\begin{lstlisting}
+MEMORY {
+    FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 256K
+    RAM (rwx) : ORIGIN = 0x20000000, LENGTH = 32K
+}
+SECTIONS { 
+     PROVIDE( _stack_ptr = ORIGIN(RAM) + LENGTH(RAM));
+    .text :
+    {   _text = .;
+        KEEP(*(.vector_table))
+        *(.text*)
+        *(.rodata*)
+        _etext = .; } > FLASH
+    .data : 
+    {   _data = .;
+        *(.data*)  
+        _edata = .; } > RAM AT >FLASH
+    .bss :
+    {   _bss = .;
+        *(.bss*)
+        *(COMMON)       
+        _ebss = .; } > RAM
+}
+\end{lstlisting}
+
+从上面的描述文件可以看到代码段,数据段再内存里面的位置.(此处应有解释)
+
+
+然后,我们再看一下如何将值(Main Stack Pointer(SP)和Program Counter(PC))存在内存的0x00000000地址和0x00000004地址,也就是启动代码,比如启动汇编文件中放置了这几个值,例如:
+\begin{lstlisting}[language={[ANSI]C}]
+Stack_Size      EQU     0x00000400
+                AREA  STACK, NOINIT, READWRITE, ALIGN=3
+Stack_Mem       SPACE Stack_Size
+__initial_sp
+...
+__Vectors       DCD     __initial_sp    ;Top of Stack
+                DCD     Reset_Handler   ;ResetHandler
+...
+\end{lstlisting}
+
+代码中\_\_initial\_sp便是Stack Pointer(SP),Reset\_Handler便是Program Counter(PC)的初始值.
+
+
+\section{Interrupt}
+接下来我们看一下中断是如何在Arm Cortex-M微处理器上工作的,
+以及为什么需要中断,
+假设我们需要开发一个程序,按下按钮打开红色LED灯,
+有两种方法可以监视连接到按钮的输入引脚的逻辑状态,
+一种是轮询,另一种是中断,
+轮询方法就像是每隔几秒接起电话来查看是不是有电话打进来,
+中断方法就像等待电话铃响,显而易见,中断方法更高效.
+你可以做任何事情,知道电话响了再把它接起来.
+下面是简化了的轮询代码:
+
+\begin{lstlisting}[language={[ANSI]C}]
+while(1){
+    read_botton_input;
+    if(pushed){
+        exit;
+    }
+}
+turn_on_LED;
+\end{lstlisting}
+
+在这个循环中,程序不断读取连接到按钮的引脚,直到按键被按下,程序跳出循环,
+打开LED灯.
+轮询方法是一种忙等待的方法,处理器不停地读取输入直到按钮被按下,
+显然,轮询方法很简单但是低效.
+中断方法比轮询更高效,
+如果用户按下按钮,则产生称为中断请求的电信号,
+当处理器收到中断请求时,
+它会自动暂停正常程序的执行,
+并开始执行一个称为中断处理程序的特殊定义函数.
+在中断处理程序完成后,处理器从暂停的地方重新启动执行常规程序.
+
+然后我们回头看一下Cortex-M4的内存映射(表~3-3),以及代码区(表~3-4)和中断向量表(表~3-1),
+中断向量表保存一个存储器地址数组,
+中断表中的每个条目长度为4个字节,
+每个条目包含一个中断服务程序的起始地址,
+简单地说,中断表包含一个函数指针数组.
+为每个中断类型分配一个编号,称为中断号. 
+中断号用于索引中断向量表,
+当触发中断x时,NVIC使用中断号x作为索引值来查找中断x的相应中断服务程序的地址,
+并强制处理器跳转并执行该中断服务程序.
+\begin{table}[htbp]
+    \caption{  Interrupt Vector Table }\label{tab:table1}
+    \vspace{0.5em}\centering\wuhao
+    \begin{tabular}{ccccc}
+    \toprule[1.5pt]
+    Interrupt Number (8 bits) & Memory Address of ISR (32 bits) \\
+    \midrule[1pt]
+    1    &      Interrupt Service Routine for interrupt 1 \\
+    2    &      Interrupt Service Routine for interrupt 2 \\
+    3    &      Interrupt Service Routine for interrupt 3 \\
+    4    &      Interrupt Service Routine for interrupt 4 \\
+    5    &      Interrupt Service Routine for interrupt 5 \\
+    \dots &     \dots \\
+  
+    \bottomrule[1.5pt]
+    \end{tabular}
+    \vspace{\baselineskip}
+    \end{table}
+
+那么,NVIC控制器如何使用中断号来查找中断向量表.
+
+
+\subsection{SysTick}
+\subsection{PendSV }
+\section{TCB}
+\section{Context Switch}
+\section{Thread Scheduling}
+
+\section{Critical Section}
+\section{Semphore}
+\section{Mutex}
+\section{MQ}
+
+
+%%%%%%% 结论 %%%%%%%
+
+\addcontentsline{toc}{chapter}{结\quad 论} %添加到目录中
+
+\chapter*{结\quad 论}
+
+杨兴锋是个大傻逼

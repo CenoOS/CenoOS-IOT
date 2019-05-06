@@ -232,15 +232,6 @@ os_task_create:
 	.section	.rodata
 	.align	2
 .LC5:
-	.ascii	"[task] task switch next : '\000"
-	.align	2
-.LC6:
-	.ascii	"[task] task current is null.\012\015\000"
-	.align	2
-.LC7:
-	.ascii	"[task] task next is null.\012\015\000"
-	.align	2
-.LC8:
 	.ascii	"[task] contex switch finished.\012\015\000"
 	.text
 	.align	2
@@ -255,60 +246,38 @@ os_task_switch_next:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L10
-	bl	uart_debug_print
-	ldr	r3, .L10+4
-	ldr	r3, [r3]
-	ldr	r3, [r3, #24]
-	mov	r0, r3
-	bl	uart_debug_print
-	ldr	r0, .L10+8
-	bl	uart_debug_print
-	ldr	r3, .L10+12
-	ldr	r3, [r3]
-	cmp	r3, #0
-	bne	.L8
-	ldr	r0, .L10+16
-	bl	uart_debug_print
-.L8:
-	ldr	r3, .L10+4
-	ldr	r3, [r3]
-	cmp	r3, #0
-	bne	.L9
-	ldr	r0, .L10+20
-	bl	uart_debug_print
-.L9:
 	.syntax divided
-@ 95 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
-	CPSID		 I
-	LDR		r1,[r2]
-	LDR		r1,[r1,#0x00]
-	CBZ		r1,PendSV_restore
+@ 96 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+	CPSID	I
+	ldr	r3, [r2]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	beq	PendSV_restore
 	PUSH		{r4-r11}
-	LDR		r1,[r2]
-	LDR		r1,[r1,#0x00]
-	STR		sp,[r1,#0x00]
+	ldr	r3, [r2]
+	ldr	r3, [r3]
+	ldr	r2, [fp, #-8]
+	str	r2, [r3]
 	PendSV_restore:
-	LDR		r1,[r3]
-	LDR		r1,[r1,#0x00]
-	LDR		sp,[r1,#0x00]
-	mov	r0, #50
-	bl	uart_debug_print_char
-	LDR		r1,[r3]
-	LDR		r1,[r1,#0x00]
-	LDR		r2,[r2]
-	STR		r1,[r2,#0x00]
+	ldr	r3,	[r3]
+	ldr	r3, [r3]
+	ldr	r3, [r3]
+	str	r3, [fp, #-8]
+	ldr	r3, [r3]
+	ldr	r3, [r3]
+	ldr	r2, [r2]
+	str	r3, [r2]
 	POP		{r4-r11}
-	CPSIE		I
-	BX		lr
+	CPSIE	I
+	bx	lr
 @ 0 "" 2
 	.arm
 	.syntax unified
-	ldr	r1, .L10+12
+	ldr	r1, .L8
 	str	r2, [r1]
-	ldr	r2, .L10+4
+	ldr	r2, .L8+4
 	str	r3, [r2]
-	ldr	r0, .L10+24
+	ldr	r0, .L8+8
 	bl	uart_debug_print
 	nop
 	mov	r0, r3
@@ -316,16 +285,12 @@ os_task_switch_next:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L11:
+.L9:
 	.align	2
-.L10:
-	.word	.LC5
-	.word	osTaskNext
-	.word	.LC4
+.L8:
 	.word	osTaskCurr
-	.word	.LC6
-	.word	.LC7
-	.word	.LC8
+	.word	osTaskNext
+	.word	.LC5
 	.size	os_task_switch_next, .-os_task_switch_next
 	.align	2
 	.global	os_task_exit
@@ -362,7 +327,7 @@ os_task_switch_context:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	ldr	r2, .L14
+	ldr	r2, .L12
 	ldr	r3, [fp, #-8]
 	str	r3, [r2]
 	nop
@@ -371,9 +336,9 @@ os_task_switch_context:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L15:
+.L13:
 	.align	2
-.L14:
+.L12:
 	.word	osTaskCurr
 	.size	os_task_switch_context, .-os_task_switch_context
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

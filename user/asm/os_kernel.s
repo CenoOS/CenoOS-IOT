@@ -39,6 +39,11 @@ os_init:
 	sub	sp, sp, #16
 	ldr	r0, .L6
 	bl	uart_debug_print
+	ldr	r3, .L6+4
+	ldr	r3, [r3]
+	ldr	r2, .L6+4
+	orr	r3, r3, #16711680
+	str	r3, [r2]
 	bl	os_obj_container_init
 	mov	r3, r0
 	strb	r3, [fp, #-5]
@@ -49,8 +54,8 @@ os_init:
 	b	.L1
 .L2:
 	mov	r2, #32
-	ldr	r1, .L6+4
-	ldr	r0, .L6+8
+	ldr	r1, .L6+8
+	ldr	r0, .L6+12
 	bl	os_queue_create
 	mov	r3, r0
 	strb	r3, [fp, #-6]
@@ -60,19 +65,19 @@ os_init:
 	ldrb	r3, [fp, #-6]	@ zero_extendqisi2
 	b	.L1
 .L4:
-	ldr	r3, .L6+12
+	ldr	r3, .L6+16
 	str	r3, [sp, #4]
 	mov	r3, #160
 	str	r3, [sp]
-	ldr	r3, .L6+16
+	ldr	r3, .L6+20
 	mov	r2, #0
-	ldr	r1, .L6+20
-	ldr	r0, .L6+24
+	ldr	r1, .L6+24
+	ldr	r0, .L6+28
 	bl	os_task_create
 	mov	r3, r0
 	strb	r3, [fp, #-7]
-	ldr	r3, .L6+28
-	ldr	r2, .L6+24
+	ldr	r3, .L6+32
+	ldr	r2, .L6+28
 	str	r2, [r3]
 	ldrb	r3, [fp, #-7]	@ zero_extendqisi2
 	cmp	r3, #1
@@ -90,6 +95,7 @@ os_init:
 	.align	2
 .L6:
 	.word	.LC0
+	.word	-536810208
 	.word	.LC1
 	.word	osTaskQueue
 	.word	os_idle

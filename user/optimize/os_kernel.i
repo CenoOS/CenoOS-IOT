@@ -351,6 +351,7 @@ typedef enum task_state{
 
 typedef struct os_task{
  cpu_stk_t sp;
+
  cpu_stk_size_t stackSize;
  os_task_handler_t taskHandler;
 
@@ -382,8 +383,8 @@ os_err_t os_task_exit(void);
 
 extern os_queue_t osTaskQueue;
 
-extern os_task_t* volatile osTaskCurr;
-extern os_task_t* volatile osTaskNext;
+extern os_task_t * volatile osTaskCurr;
+extern os_task_t * volatile osTaskNext;
 # 27 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_semphore.h"
@@ -447,6 +448,14 @@ os_err_t os_init(void){
 
 
 
+
+  *(uint32_t volatile *)0xE000ED20 |= (0xFFU << 16);
+
+
+
+
+
+
  os_err_t isOsObjectContainerInit = os_obj_container_init();
  if(isOsObjectContainerInit==OS_ERR){
   return isOsObjectContainerInit;
@@ -498,7 +507,7 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-# 89 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+# 97 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
