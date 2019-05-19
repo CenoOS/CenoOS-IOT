@@ -31,7 +31,7 @@ os_err_t os_task_create(os_task_t *me,
     uint32_t *sp = (uint32_t *)((((uint32_t)stkSto + stackSize) / 8) * 8);
     uint32_t *stk_limit;
 
- 	*(--sp) = (1U << 24);  /* xPSR */
+ 	*(--sp) = (1U << 24);  /* xPSR */ /* 0x01000000 */
     *(--sp) = (uint32_t)taskHandler; /* PC */
     *(--sp) = 0x0000000EU; /* LR  */
     *(--sp) = 0x0000000CU; /* R12 */
@@ -81,16 +81,16 @@ os_err_t os_task_create(os_task_t *me,
 
 os_err_t os_task_switch_next(void){
 
-	// uart_debug_print("[task] task switch next : '");
-	// uart_debug_print(osTaskNext->obj.name);
-	// uart_debug_print("'.\n\r");
-	// osTaskCurr = (os_task_t *)0;
-	// if(!osTaskCurr){
-	// 	uart_debug_print("[task] task current is null.\n\r");
-	// }
-	// if(!osTaskNext){
-	// 	uart_debug_print("[task] task next is null.\n\r");
-	// }
+	uart_debug_print("[task] task switch next : '");
+	uart_debug_print(osTaskNext->obj.name);
+	uart_debug_print("'.\n\r");
+	osTaskCurr = (os_task_t *)0;
+	if(!osTaskCurr){
+		uart_debug_print("[task] task current is null.\n\r");
+	}
+	if(!osTaskNext){
+		uart_debug_print("[task] task next is null.\n\r");
+	}
 
 	/* context switch */
 	__asm(

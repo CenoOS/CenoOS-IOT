@@ -232,6 +232,15 @@ os_task_create:
 	.section	.rodata
 	.align	2
 .LC5:
+	.ascii	"[task] task switch next : '\000"
+	.align	2
+.LC6:
+	.ascii	"[task] task current is null.\012\015\000"
+	.align	2
+.LC7:
+	.ascii	"[task] task next is null.\012\015\000"
+	.align	2
+.LC8:
 	.ascii	"[task] contex switch finished.\012\015\000"
 	.text
 	.align	2
@@ -246,6 +255,32 @@ os_task_switch_next:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
+	ldr	r0, .L10
+	bl	uart_debug_print
+	ldr	r3, .L10+4
+	ldr	r3, [r3]
+	ldr	r3, [r3, #24]
+	mov	r0, r3
+	bl	uart_debug_print
+	ldr	r0, .L10+8
+	bl	uart_debug_print
+	ldr	r3, .L10+12
+	mov	r2, #0
+	str	r2, [r3]
+	ldr	r3, .L10+12
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bne	.L8
+	ldr	r0, .L10+16
+	bl	uart_debug_print
+.L8:
+	ldr	r3, .L10+4
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bne	.L9
+	ldr	r0, .L10+20
+	bl	uart_debug_print
+.L9:
 	.syntax divided
 @ 96 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID	I
@@ -273,11 +308,11 @@ os_task_switch_next:
 @ 0 "" 2
 	.arm
 	.syntax unified
-	ldr	r1, .L8
+	ldr	r1, .L10+12
 	str	r2, [r1]
-	ldr	r2, .L8+4
+	ldr	r2, .L10+4
 	str	r3, [r2]
-	ldr	r0, .L8+8
+	ldr	r0, .L10+24
 	bl	uart_debug_print
 	nop
 	mov	r0, r3
@@ -285,12 +320,16 @@ os_task_switch_next:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L9:
+.L11:
 	.align	2
-.L8:
-	.word	osTaskCurr
-	.word	osTaskNext
+.L10:
 	.word	.LC5
+	.word	osTaskNext
+	.word	.LC4
+	.word	osTaskCurr
+	.word	.LC6
+	.word	.LC7
+	.word	.LC8
 	.size	os_task_switch_next, .-os_task_switch_next
 	.align	2
 	.global	os_task_exit
@@ -327,7 +366,7 @@ os_task_switch_context:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	ldr	r2, .L12
+	ldr	r2, .L14
 	ldr	r3, [fp, #-8]
 	str	r3, [r2]
 	nop
@@ -336,9 +375,9 @@ os_task_switch_context:
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L13:
+.L15:
 	.align	2
-.L12:
+.L14:
 	.word	osTaskCurr
 	.size	os_task_switch_context, .-os_task_switch_context
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

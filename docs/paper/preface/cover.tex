@@ -16,13 +16,62 @@
 \cdate{\the\year~年~\the\month~月~\the\day~日}
 
 \cabstract{
-中文摘要一般在~400~字以内，简要介绍毕业论文的研究目的、方法、结果和结论，语言力求精炼。中英文摘要均要有关键词，一般为~3~—~7~个。字体为小四号宋体，各关键词之间要有分号。英文摘要应与中文摘要相对应，字体为小四号~Times New Roman，详见模板。
+嵌入式设备网络化、功能复杂化的趋势,
+使越来越多的、过去可以用裸奔实现的嵌入式产品,
+产生了应用操作系统的需求.
+芯片成本的连续下降,
+以及MCU性能和内存资源的迅速提高,
+又为大面积嵌入式实时操作系统(RTOS)提供了物质基础.
+实时多任务操作系统(RTOS)是嵌入式应用软件的基础和开发平台.
+目前大多数嵌入式开发还是在单片机上直接进行,没有RTOS,
+但仍要有一个主程序负责调度各个任务.
+RTOS是一段嵌入在目标代码中的程序,
+系统复位后首先执行,相当于用户的主程序,
+用户的其他应用程序都建立在RTOS之上.
+不仅如此,RTOS还是一个标准的内核,
+将CPU时间、中断、I/O、定时器等资源都包装起来,
+留给用户一个标准的API(系统调用),
+并根据各个任务的优先级,
+合理地在不同任务之间分配CPU时间.
+随着这几年中国物联网的快速崛起,
+使得RTOS将会被更加广泛的应用.
+应用拉动技术,技术推动应用发展.
+中国在物联网OS这个点上是有很大机会的,
+因为物联网时代目前是中国在引领,应用需求很大,
+会极大地拉动相关技术,包括IoT OS的发展.
+
+本课题旨在TivaC-LaunchPadGXL123 (ARM Cortex-M4 MCU TM4C123GH6PM) 开发版上实现一个具有抢占式任务调度, 任务同步, 任务间通讯的嵌入式实时操作系统. 以及定义HAL接口,以方便其他开发板的移植.
+
 }
 
-\ckeywords{~RTOS；~CORTEX-M；~ARM；~SwitchContex；~Scheduing}
+\ckeywords{~RTOS；~CORTEX-M；~ARM；~任务同步；~任务调度}
 
 \eabstract{
-The upper bound of the number of Chinese characters is 400. The abstract aims at introducing the research purpose, research methods, research results, and research conclusion of graduation thesis, with refining words. Generally speaking, both the Chinese and English abstracts require the keywords, the number of which varies from 3 to 7, with a semicolon between adjacent words. The font of the English Abstract is Times New Roman, with the size of 12pt(small four).
+	The trend of networked devices and complex functions of embedded devices,
+	Making more and more embedded products that can be implemented in streaking in the past,
+	Produced the need to apply operating systems.
+	The continuous decline in chip cost,
+	And the rapid improvement of MCU performance and memory resources,
+	It also provides a material basis for large-area embedded real-time operating systems (RTOS).
+	Real-time multitasking operating system (RTOS) is the foundation and development platform of embedded application software.
+	At present, most embedded developments are still carried out directly on the microcontroller, without RTOS.
+	But still have a main program responsible for scheduling each task.
+	RTOS is a program embedded in the target code.
+	First executed after system reset, equivalent to the user's main program,
+	The user's other applications are built on top of the RTOS.
+	Not only that, RTOS is still a standard kernel.
+	Wrap up CPU time, interrupts, I/O, timers, etc.
+	Leave the user with a standard API (system call),
+	And according to the priority of each task,
+	Reasonably allocate CPU time between different tasks.
+	With the rapid rise of the Chinese Internet of Things in recent years,
+	Make RTOS will be more widely used.
+	Application of pulling technology, technology to promote application development.
+	China has a great opportunity at the point of the Internet of Things OS.
+	Because the Internet of Things era is currently leading China, the application needs are great.
+	Will greatly stimulate related technologies, including the development of IoT OS.
+	
+	This project aims to implement an embedded real-time operating system with preemptive task scheduling, task synchronization, and inter-task communication on the TivaC-LaunchPadGXL123 (ARM Cortex-M4 MCU TM4C123GH6PM) development version. It also defines the HAL interface to facilitate other development boards. transplant.
 }
 
 \ekeywords{~RTOS；~CORTEX-M；~ARM；~SwitchContex；~Scheduing}

@@ -506,7 +506,19 @@ os_err_t os_task_create(os_task_t *me,
 }
 
 os_err_t os_task_switch_next(void){
-# 96 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
+
+ uart_debug_print("[task] task switch next : '");
+ uart_debug_print(osTaskNext->obj.name);
+ uart_debug_print("'.\n\r");
+ osTaskCurr = (os_task_t *)0;
+ if(!osTaskCurr){
+  uart_debug_print("[task] task current is null.\n\r");
+ }
+ if(!osTaskNext){
+  uart_debug_print("[task] task next is null.\n\r");
+ }
+
+
  __asm(
 
   "CPSID	I\n\t"
