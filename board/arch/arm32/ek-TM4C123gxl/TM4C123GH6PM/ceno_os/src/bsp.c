@@ -2,7 +2,7 @@
 #include "../include/uart_debug.h"
 #include "TM4C123GH6PM.h"
 
-#define BSP_TICKS_PER_SEC 1000
+#define BSP_TICKS_PER_SEC 1
 static clock_t tickCtr = 0;
 volatile clock_t* l_tickCtr = &tickCtr;
 
@@ -11,6 +11,7 @@ void os_on_startup(void){
     SysTick_Config(SystemCoreClock / BSP_TICKS_PER_SEC);
     /* set the SysTick interrupt priority (highest) */
     NVIC_SetPriority(SysTick_IRQn, 0U);
+	enable_irq();
 }
 
 void disable_irq(void){
@@ -44,6 +45,7 @@ void bsp_init(void){
 	GPIOF->DEN = (1<<1) | (1<<2) | (1<<3); // enable degital function on LED pins;
 	GPIOF->DATA &= ~((1<<1) | (1<<2) | (1<<3)); // turn off leds
 	uart_debug_init();
+	disable_irq();
 }
 
 void light_red_on(void){

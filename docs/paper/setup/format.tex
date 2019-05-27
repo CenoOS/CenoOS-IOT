@@ -162,19 +162,19 @@
 \def\lstbasicfont{\fontfamily{pcr}\selectfont\footnotesize}
 \lstset{%
 % indexing
-   % numbers=left,
-   % numberstyle=\small,%
+   numbers=left,
+  %  numberstyle=\small,
 % character display
     showstringspaces=false,
-    showspaces=false,%
-    tabsize=4,%
+    showspaces=false,
+    tabsize=4,
 % style
-    frame=lines,%
-    basicstyle={\footnotesize\lstbasicfont},%
-    keywordstyle=\color{darkblue}\bfseries,%
-    identifierstyle=,%
-    commentstyle=\color{darkgreen},%\itshape,%
-    stringstyle=\color{black}%
+    frame=lines,
+    basicstyle={\linespread{1}\footnotesize\lstbasicfont},
+    keywordstyle=\color{darkblue}\bfseries,
+    identifierstyle=,
+    commentstyle=\color{darkgreen},
+    stringstyle=\color{black}
 }
 \lstloadlanguages{C,C++,Java,Matlab,Mathematica,Python}
 

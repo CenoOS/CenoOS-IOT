@@ -15,6 +15,8 @@
 os_task_t * volatile osTaskCurr;
 os_task_t * volatile osTaskNext;
 
+
+
 os_err_t os_task_create(os_task_t *me,
 					cpu_char_t *name, 
 					priority_t priority, 
@@ -91,100 +93,62 @@ os_err_t os_task_switch_next(void){
 	if(!osTaskNext){
 		uart_debug_print("[task] task next is null.\n\r");
 	}
-
-	/* context switch */
-	__asm(
-		/* __disable_irq(); */
-		"CPSID	I\n\t"
-
-		/* if (osTaskCurr != (os_task_t *)0) { */
-		"ldr	r3, [%[osTaskCurr]]\n\t"
-		"ldr	r3, [r3]\n\t"
-		"cmp	r3, #0\n\t"
-		"beq	PendSV_restore\n\t"
-
-		/*     push registers r4-r11 on the stack */
-     	"PUSH		{r4-r11}\n\t"
-
-		/*     osTaskCurr->sp = sp; */
-		"ldr	r3, [%[osTaskCurr]]\n\t"
-		"ldr	r3, [r3]\n\t"
-		"ldr	r2, [fp, #-8]\n\t"
-		"str	r2, [r3]\n\t"
-		/* } */
-
-	"PendSV_restore:\n\t"
-		/* sp = osTaskNext->sp; */
-		"ldr	r3,	[%[osTaskNext]]\n\t"
-		"ldr	r3, [r3]\n\t"
-		"ldr	r3, [r3]\n\t"
-		"str	r3, [fp, #-8]\n\t"
-
-		/* osTaskCurr = osTaskNext; */
-		"ldr	r3, [%[osTaskNext]]\n\t"
-		"ldr	r3, [r3]\n\t"
-		"ldr	r2, [%[osTaskCurr]]\n\t"
-		"str	r3, [r2]\n\t"
-
-		/* pop registers r4-r11 */
-   		"POP		{r4-r11}\n\t"
-
-		// "nop\n\t"
-		// "mov	r0, r3\n\t"
-		// "add	sp, fp, #0\n\t"
-		// "ldr	fp, [sp], #4\n\t"
-
-		/* __enable_irq(); */
-		"CPSIE	I\n\t"
-
-		/* return  thread */
-		"bx	lr"
-		:[osTaskCurr] "=r" (osTaskCurr) , [osTaskNext] "=r" (osTaskNext)
-		:
-	);
 	
 	/* context switch */
-    // __asm(
-	// 	/* __disable_irq(); */
-	// 	"CPSID		 I\n\t"
+     __asm(
+	 	/* __disable_irq(); */
+	 	"CPSID		 I\n\t"
 
-    // 	/* if (osTaskCurr != (os_task_t *)0) { */ 
-    // 		"LDR		r1,[%[osTaskCurr]]\n\t"
-	// 		"LDR		r1,[r1,#0x00]\n\t"
-    // 		"CBZ		r1,PendSV_restore\n\t"
+     	/* if (osTaskCurr != (os_task_t *)0) { */ 
+     		"LDR		r1,.L10+12\n\t"
+	 		"LDR		r1,[r1,#0x00]\n\t"
+     		"CBZ		r1,PendSV_restore\n\t"
 			
-    // 	/*     push registers r4-r11 on the stack */
-    // 		"PUSH		{r4-r11}\n\t"
+			/* uart_debug_print(osTaskCurr->obj.name); */
+			"ldr	r3, .L10+12\n\t"
+			"ldr	r3, [r3]\n\t"
+			"ldr	r3, [r3, #24]\n\t"
+			"mov	r0, r3\n\t"
+			"bl	uart_debug_print\n\t"
 
-    // 	/*     osTaskCurr->sp = sp; */
-    // 		"LDR		r1,[%[osTaskCurr]]\n\t"
-	// 		"LDR		r1,[r1,#0x00]\n\t"
-    // 		"STR		sp,[r1,#0x00]\n\t"
-    // 	/* } */
+     	/*     push registers r4-r11 on the stack */
+     		"PUSH		{r4-r11}\n\t"
+
+     	/*     osTaskCurr->sp = sp; */
+     		"LDR		r1,.L10+12\n\t"
+	 		"LDR		r1,[r1,#0x00]\n\t"
+     		"STR		sp,[r1,#0x00]\n\t"
+     	/* } */
 		
-	// "PendSV_restore:\n\t"  
-    // 	/* sp = osTaskNext->sp; */
-    // 	"LDR		r1,[%[osTaskNext]]\n\t"
-	// 	"LDR		r1,[r1,#0x00]\n\t"
-    // 	"LDR		sp,[r1,#0x00]\n\t"
+	 "PendSV_restore:\n\t"  
+     	/* sp = osTaskNext->sp; */
+     	"LDR		r1,.L10+4\n\t"
+	 	"LDR		r1,[r1,#0x00]\n\t"
+		"LDR		sp,[r1,#0x00]\n\t"
+     	
 
-    // 	/* osTaskCurr = osTaskNext; */ 
-	// 	"LDR		r1,[%[osTaskNext]]\n\t"
-   	// 	"LDR		r1,[r1,#0x00]\n\t"
-   	// 	"LDR		r2,[%[osTaskCurr]]\n\t"
-   	// 	"STR		r1,[r2,#0x00]\n\t"
+		/* uart_debug_print(osTaskNext->obj.name); */
+		"ldr	r3, .L10+4\n\t"
+		"ldr	r3, [r3]\n\t"
+		"ldr	r3, [r3, #24]\n\t"
+		"mov	r0, r3\n\t"
+		"bl	uart_debug_print\n\t"
 
-    // 	/* pop registers r4-r11 */
-   	// 	"POP		{r4-r11}\n\t"
+     	/* osTaskCurr = osTaskNext; */ 
+	 	"LDR		r1,.L10+4\n\t"
+   	 	"LDR		r1,[r1,#0x00]\n\t"
+   	 	"LDR		r2,.L10+12\n\t"
+   	 	"STR		r1,[r2,#0x00]\n\t"
+
+     	/* pop registers r4-r11 */
+   	 	"POP		{r4-r11}\n\t"
 		   
-    // 	/* __enable_irq(); */
-    // 	"CPSIE		I\n\t"
+     	/* __enable_irq(); */
+     	"CPSIE		I\n\t"
 
-    // 	/* return  thread */
-    // 	"BX		lr"
-	// 	:[osTaskCurr] "=r" (osTaskCurr) , [osTaskNext] "=r" (osTaskNext)
-	// 	:
-	// );
+     	/* return  thread */
+     	"BX		lr"
+	 );
 	uart_debug_print("[task] contex switch finished.\n\r");
 }
 

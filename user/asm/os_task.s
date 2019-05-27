@@ -282,36 +282,39 @@ os_task_switch_next:
 	bl	uart_debug_print
 .L9:
 	.syntax divided
-@ 96 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
-	CPSID	I
-	ldr	r3, [r2]
+@ 98 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+	CPSID		 I
+	LDR		r1,.L10+12
+	LDR		r1,[r1,#0x00]
+	CBZ		r1,PendSV_restore
+	ldr	r3, .L10+12
 	ldr	r3, [r3]
-	cmp	r3, #0
-	beq	PendSV_restore
+	ldr	r3, [r3, #24]
+	mov	r0, r3
+	bl	uart_debug_print
 	PUSH		{r4-r11}
-	ldr	r3, [r2]
-	ldr	r3, [r3]
-	ldr	r2, [fp, #-8]
-	str	r2, [r3]
+	LDR		r1,.L10+12
+	LDR		r1,[r1,#0x00]
+	STR		sp,[r1,#0x00]
 	PendSV_restore:
-	ldr	r3,	[r3]
+	LDR		r1,.L10+4
+	LDR		r1,[r1,#0x00]
+	LDR		sp,[r1,#0x00]
+	ldr	r3, .L10+4
 	ldr	r3, [r3]
-	ldr	r3, [r3]
-	str	r3, [fp, #-8]
-	ldr	r3, [r3]
-	ldr	r3, [r3]
-	ldr	r2, [r2]
-	str	r3, [r2]
+	ldr	r3, [r3, #24]
+	mov	r0, r3
+	bl	uart_debug_print
+	LDR		r1,.L10+4
+	LDR		r1,[r1,#0x00]
+	LDR		r2,.L10+12
+	STR		r1,[r2,#0x00]
 	POP		{r4-r11}
-	CPSIE	I
-	bx	lr
+	CPSIE		I
+	BX		lr
 @ 0 "" 2
 	.arm
 	.syntax unified
-	ldr	r1, .L10+12
-	str	r2, [r1]
-	ldr	r2, .L10+4
-	str	r3, [r2]
 	ldr	r0, .L10+24
 	bl	uart_debug_print
 	nop

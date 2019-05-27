@@ -4,77 +4,37 @@
 %%  第274行 \setlength{\@title@width}{8cm}中 8cm 这个参数来 控制封面中下划线的长度。
 
 \cheading{天津大学~2019~届本科生毕业论文}      % 设置正文的页眉，需要填上对应的毕业年份
-\ctitle{基于CortexM的嵌入式实时操作系统设计与实现}    % 封面用论文标题，自己可手动断行
+\ctitle{本科生毕业论文}    % 封面用论文标题，自己可手动断行
 \caffil{智能与计算学部} % 学院名称
 \csubject{软件工程}   % 专业名称
 \cgrade{2015~级}            % 年级
 \cauthor{杨兴锋}            % 学生姓名
 \cnumber{3015218102}        % 学生学号
 \csupervisor{毕重科}        % 导师姓名
-\crank{副教授}              % 导师职称
+% \crank{副教授}              % 导师职称
 
 \cdate{\the\year~年~\the\month~月~\the\day~日}
 
 \cabstract{
-嵌入式设备网络化、功能复杂化的趋势,
-使越来越多的、过去可以用裸奔实现的嵌入式产品,
-产生了应用操作系统的需求.
-芯片成本的连续下降,
-以及MCU性能和内存资源的迅速提高,
-又为大面积嵌入式实时操作系统(RTOS)提供了物质基础.
-实时多任务操作系统(RTOS)是嵌入式应用软件的基础和开发平台.
-目前大多数嵌入式开发还是在单片机上直接进行,没有RTOS,
-但仍要有一个主程序负责调度各个任务.
-RTOS是一段嵌入在目标代码中的程序,
-系统复位后首先执行,相当于用户的主程序,
-用户的其他应用程序都建立在RTOS之上.
-不仅如此,RTOS还是一个标准的内核,
-将CPU时间、中断、I/O、定时器等资源都包装起来,
-留给用户一个标准的API(系统调用),
-并根据各个任务的优先级,
-合理地在不同任务之间分配CPU时间.
-随着这几年中国物联网的快速崛起,
-使得RTOS将会被更加广泛的应用.
-应用拉动技术,技术推动应用发展.
-中国在物联网OS这个点上是有很大机会的,
-因为物联网时代目前是中国在引领,应用需求很大,
-会极大地拉动相关技术,包括IoT OS的发展.
-
-本课题旨在TivaC-LaunchPadGXL123 (ARM Cortex-M4 MCU TM4C123GH6PM) 开发版上实现一个具有抢占式任务调度, 任务同步, 任务间通讯的嵌入式实时操作系统. 以及定义HAL接口,以方便其他开发板的移植.
-
+嵌入式计算机系统正在激增，
+但嵌入式软件的复杂性使得生产稳健可靠的系统变得越来越困难。
+随着嵌入式系统连接到网络并依赖于它控制或监控关键基础设施中的物理过程，
+这些挑战也在增加。
+本文描述了一个运行于TivaC-LaunchPadGXL123 (ARM Cortex-M4 MCU TM4C123GH6PM)\cite{morales2013introduction}上的RTOS的实现，
+向读者展示了一个RTOS实现所需要的必要知识和该RTOS实现的所有细节，
+希望可以有效地帮助读者获得一些嵌入式软件开发人员所需的知识和技能。
 }
 
-\ckeywords{~RTOS；~CORTEX-M；~ARM；~任务同步；~任务调度}
+\ckeywords{~RTOS；~CORTEX-M；~ARM；~多线程；~任务调度}
 
 \eabstract{
-	The trend of networked devices and complex functions of embedded devices,
-	Making more and more embedded products that can be implemented in streaking in the past,
-	Produced the need to apply operating systems.
-	The continuous decline in chip cost,
-	And the rapid improvement of MCU performance and memory resources,
-	It also provides a material basis for large-area embedded real-time operating systems (RTOS).
-	Real-time multitasking operating system (RTOS) is the foundation and development platform of embedded application software.
-	At present, most embedded developments are still carried out directly on the microcontroller, without RTOS.
-	But still have a main program responsible for scheduling each task.
-	RTOS is a program embedded in the target code.
-	First executed after system reset, equivalent to the user's main program,
-	The user's other applications are built on top of the RTOS.
-	Not only that, RTOS is still a standard kernel.
-	Wrap up CPU time, interrupts, I/O, timers, etc.
-	Leave the user with a standard API (system call),
-	And according to the priority of each task,
-	Reasonably allocate CPU time between different tasks.
-	With the rapid rise of the Chinese Internet of Things in recent years,
-	Make RTOS will be more widely used.
-	Application of pulling technology, technology to promote application development.
-	China has a great opportunity at the point of the Internet of Things OS.
-	Because the Internet of Things era is currently leading China, the application needs are great.
-	Will greatly stimulate related technologies, including the development of IoT OS.
-	
-	This project aims to implement an embedded real-time operating system with preemptive task scheduling, task synchronization, and inter-task communication on the TivaC-LaunchPadGXL123 (ARM Cortex-M4 MCU TM4C123GH6PM) development version. It also defines the HAL interface to facilitate other development boards. transplant.
+Embedded computer systems are proliferating, but the complexities of embedded software make it increasingly difficult to produce systems that are robust and reliable. These challenges increase as embedded systems are connected to networks and relied on to control or monitor physical processes in critical infrastructure.
+This article describes an implementation of an RTOS running on TivaC-LaunchPadGXL123 (ARM Cortex-M4 MCU TM4C123GH6PM).
+Explain to the reader the necessary knowledge of an RTOS implementation and all the details of the RTOS implementation.
+I hope to effectively help readers acquire the knowledge and skills required by some embedded software developers. 
 }
 
-\ekeywords{~RTOS；~CORTEX-M；~ARM；~SwitchContex；~Scheduing}
+\ekeywords{~RTOS；~CORTEX-M；~ARM；~Multithreading；~Scheduing}
 
 \makecover
 

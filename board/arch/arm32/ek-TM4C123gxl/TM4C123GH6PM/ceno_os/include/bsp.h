@@ -2,6 +2,8 @@
 #define __CENO_RTOS_BSP_H__
 
 void bsp_init(void);
+void enable_irq(void);
+void disable_irq(void);
 
 void light_red_on(void);
 void light_green_on(void);

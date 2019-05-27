@@ -5,6 +5,9 @@
 
 void SysTick_Handler(void){
 	os_tick();
+	disable_irq();
+	os_sched();
+	enable_irq();
 	if (*l_tickCtr > 0x00){
 		(*l_tickCtr)--;
 	}

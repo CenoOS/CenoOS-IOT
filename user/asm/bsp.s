@@ -129,29 +129,26 @@ os_on_startup:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	push	{r4, r5, fp, lr}
-	add	fp, sp, #12
+	push	{fp, lr}
+	add	fp, sp, #4
 	bl	SystemCoreClockUpdate
 	ldr	r3, .L13
-	ldr	r2, [r3]
-	ldr	r1, .L13+4
-	umull	r3, r4, r2, r1
-	lsr	r3, r4, #6
+	ldr	r3, [r3]
 	mov	r0, r3
 	bl	SysTick_Config
 	mov	r1, #0
 	mvn	r0, #0
 	bl	__NVIC_SetPriority
+	bl	enable_irq
 	nop
-	sub	sp, fp, #12
+	sub	sp, fp, #4
 	@ sp needed
-	pop	{r4, r5, fp, lr}
+	pop	{fp, lr}
 	bx	lr
 .L14:
 	.align	2
 .L13:
 	.word	SystemCoreClock
-	.word	274877907
 	.size	os_on_startup, .-os_on_startup
 	.align	2
 	.global	disable_irq
@@ -167,7 +164,7 @@ disable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 18 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSID	I
 	
 @ 0 "" 2
@@ -193,7 +190,7 @@ enable_irq:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 23 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
+@ 24 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 1
 	CPSIE	I
 	
 @ 0 "" 2
@@ -299,6 +296,7 @@ bsp_init:
 	bic	r3, r3, #14
 	str	r3, [r2, #1020]
 	bl	uart_debug_init
+	bl	disable_irq
 	nop
 	sub	sp, fp, #4
 	@ sp needed

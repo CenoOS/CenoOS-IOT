@@ -169,6 +169,8 @@ void SystemException_ISR(void);
 
 
 void bsp_init(void);
+void enable_irq(void);
+void disable_irq(void);
 
 void light_red_on(void);
 void light_green_on(void);
@@ -192,6 +194,9 @@ void delay(clock_t tick);
 
 void SysTick_Handler(void){
  os_tick();
+ disable_irq();
+ os_sched();
+ enable_irq();
  if (*l_tickCtr > 0x00){
   (*l_tickCtr)--;
  }

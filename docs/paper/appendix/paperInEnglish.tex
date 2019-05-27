@@ -7,7 +7,231 @@
 %\setcounter{page}{1}       % 如果需要从该页开始从 1 开始编页，则取消该注释
 \markboth{外文资料}{外文资料}
 \chapter*{外文资料}
+\subsection{Introduction}
+This paper introduces LiteOS, an operating system that
+provides Unix-like abstractions to wireless sensor networks.
+LiteOS maps a sensor network into a UNIX-like file system,
+and supports extremely resource-constrained nodes such as
+MicaZ. It supports C programming natively, and allows online debugging to locate application bugs. We believe that
+such an operating system could potentially expand the circle of sensor network application developers by providing
+a familiar programming environment. While TinyOS and
+its extensions have significantly improved programmability
+of mote-class embedded devices via a robust, modular environment, NesC and the event-based programming model
+introduce a learning curve for most developers outside the
+sensor networks circle. The purpose of LiteOS is to significantly reduce such a learning curve. This philosophy is
+the operating system equivalent of network directions taken
+by companies such as Arch Rock [1] (that superimposes a
+familiar IP space on mote platforms to reduce the learning
+curve of network programming and management).
 
-Here follows the English paper.
+Our key contribution is to present a familiar, Unix-like
+abstraction for wireless sensor networks by leveraging the
+likely existing knowledge that common system programmers (outside the current sensor network community) already have: Unix, threads, and C. By mapping sensor networks to file directories, it allows applying user-friendly
+operations, such as file directory commands, to sensor networks, therefore reducing the learning curve for operating
+and programming sensor networks.
 
-...
+LiteOS differs from both current sensor network operating systems and more conventional embedded operating
+systems. Compared to the former category, such as TinyOS,
+LiteOS provides a more familiar environment to the user. Its
+features are either not available in existing sensor network
+operating systems, such as the shell and the hierarchical file
+system, or are only partially supported. Compared to the
+latter category (conventional embedded operating systems),
+such as VxWorks [29], eCos [2], embedded Linux, and
+Windows CE, LiteOS has a much smaller code footprint,
+running on platforms such as MicaZ, with an 8MHz CPU,
+128K bytes of program flash, and 4K bytes of RAM. Embedded operating systems, such as VxWorks, require more
+computation power (e.g., ARM-based or XScale-based processors) and more RAM (at least tens of KBytes), and thus
+cannot be easily ported to MicaZ-class hardware platforms
+(such as MicaZ, Tmote, and Telos).
+A possible counter-argument to our investment in asmall-footprint UNIX-like operating system is that, in the
+near future, Moore’s law will make it possible for conventional Linux and embedded operating systems to run on
+motes. For example, the recent iMote2 [6] platform by
+CrossBow features an XScale processor that supports embedded Linux. Sun and Intel also demonstrated more powerful sensor network hardware platforms [3, 24]. While it is
+true that more resources will be available within the current
+mote form factor, Moore’s law can also be harvested by decreasing the form factor while keeping resources constant.
+For example, the current MicaZ form factor is far from adequate for wearable computing applications. Wearable body
+networks can have a significant future impact on healthcare, leisure, and social applications if sensor nodes could
+be made small enough to be unobtrusively embedded in attire and personal effects. These applications will drive the
+need for small-footprint operating systems and middleware
+as computation migrates to nodes that are smaller, cheaper,
+and more power-efficient. This paper serves as a proof of
+concept by pushing the envelope within the constraints of a
+current device; namely, the MicaZ motes.
+
+
+
+\subsection{LiteShell Subsystem}
+The LiteShell subsystem provides Unix-like commandline interface to sensor nodes. This shell runs on the base
+station PC side. Therefore, it is a front-end that interacts
+with the user. The motes do not maintain command-specific
+state, and only respond to translated messages (represented
+by compressed tokens) from the shell, which are sufficiently
+simple to parse. Such an asymmetric design choice not only
+significantly reduces the code footprint of the LiteOS kernel
+that runs on motes, but also allows us to easily extend the
+shell with more complicated commands, such as authentication and security.
+
+
+\subsubsection{File Operation Commands}
+File commands generally maintain their Unix meanings.
+For example, the ls command lists directory contents. It
+supports a -l option to display detailed file information, such
+as type, size, and protection. To reduce system overhead,
+LiteOS does not provide any time synchronization service,
+which is not needed by every application. Hence, there is
+no time information listed. As an example, a ls -l command
+may return the following:
+\begin{lstlisting}[language={[ANSI]C},keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}]
+$ ls -l
+Name Type Size Protection
+usrfile file 100 rwxrwxrwx
+usrdir dir --- rwxrwx---
+\end{lstlisting}
+
+In this example, there are two files in the current directory (a directory is also a file): usrfile and usrdir. LiteOS
+enforces a simple multilevel access control scheme. All
+users are classified into three levels, from 0 to 2, and 2 is
+the highest level. Each level is represented by three bits,
+stored on sensor nodes. For instance, the usrdir directory
+can be read or written by users with levels 1 and 2.
+
+Once sensor nodes are mounted, a user uses the above
+commands to navigate the different directories (nodes) as if
+they are local. Some common tasks can be greatly simplified. For example, by using the cp command, a user can
+either copy a file from the base to a node to achieve wireless download, or from a node to the base to retrieve data
+results. The remaining file operation commands are intuitive. Since LiteFS supports a hierarchical file system, it
+provides mkdir, rm and cd commands.
+
+\subsubsection{Process Operation Commands}
+LiteOS has a multithreaded kernel to run applications as
+threads concurrently. LiteShell provides three commands
+to control thread behavior: ps, exec, and kill. We illustrate
+these commands through an application called Blink, which
+blinks LEDs periodically. Suppose that this application has
+been compiled into a binary file called Blink.lhex1, and is
+located under the C drive of the user’s laptop. To install it
+on a node named node101 (that maps to a directory with the
+same name) in a sensor network named sn01, the user may
+use the following commands:
+\begin{lstlisting}[language={[ANSI]C},keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}]
+$ pwd
+Current directory is /sn01/node101/apps
+$ cp /c/Blink.lhex Blink.lhex
+Copy complete
+$ exec Blink.lhex
+File Blink.lhex successfully started
+$ ps
+Name State
+Blink Sleep
+\end{lstlisting}
+
+As illustrated in this example, we first copy an application, Blink.lhex, into the /apps directory, so that it is stored
+in the LiteFS file system. We then use the exec command to
+start this application. The implementation of exec is as follows. The processor architecture of Atmega128 follows the
+Harvard architecture, which provides a separate program
+space (flash) from its data space (RAM). Only instructions
+that have been programmed into the program space can be
+executed. Hence, LiteOS reprograms part of the flash to run
+the application.
+
+Once the Blink application is started, the user may view
+its thread information using the ps command. Finally, the
+kill command is used to terminate threads.
+
+\subsubsection{Debugging Commands}
+We now describe the debugging commands. Eight commands are provided, including those for setting up the debugging environment (debug), watching and setting variables (list, print, and set), adding/removing breakpoints
+(breakpoint and continue), and application checkpoints
+(snapshot and restore). Note that all debugging commands
+keep information on the front-end, i.e., the PC side. In
+fact, there is no debugging state stored on the mote, which
+means that there is no limit on the maximum number of
+variables (or the size of variables) can be watched, or how
+many breakpoints can be added. We now briefly explain
+these commands. Detailed documentation of these commands can be found in the LiteOS manual.
+
+The user first invokes the debug command to initiate
+the environment. This command takes the source code directory of the application as its parameter. For example,
+if supplied with the kernel source code location, it allows
+debugging the kernel itself. Once invoked, this command
+parses the source code as well as the generated assembly
+to gather necessary information, such as memory locations
+of variables. Such information is then used by other debugging commands for diagnosis purposes. For instance,
+it is used by the command list to display the current variables and their sizes, commands print and set to watch
+and change variable values, and commands breakpoint and
+continue to add and remove breakpoints. Once a breakpoint
+is added, the command ps tells whether a thread has reached
+the breakpoint.
+
+We now explain the commands snapshot and restore.
+Snapshot allows adding a checkpoint to an active thread,
+by exporting all its memory information, including variable
+values, stack, and the program counter, to an external file.
+Restore, on the other hand, allows importing such memory information from a previously generated file, essentially
+restoring a thread to a previous state. Combined use of these
+two commands allows replaying part of an application by
+rewinding it, and is particularly useful for locating unexpected bugs.
+
+\subsubsection{Environment Commands}
+The next four commands support environment management: history for displaying previously used commands,
+who for showing the current user, man for command references, and echo for displaying strings. The meanings of
+these commands are similar to their Unix counterparts.
+
+\subsubsection{Device Commands}
+The LiteOS shell provides an easy way to interact with the
+sensors. Every time the file system is initialized, a directory
+dev is created, which contains files that map to actual device
+drivers. On MicaZ, the dev directory contains the following
+files:
+\begin{lstlisting}[language={[ANSI]C},keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}]
+$ls
+led, light, temp, magnet, accel, radio
+\end{lstlisting}
+
+In this directory, led refers to the LED device. There are
+four sensors, light, temperature, magnetic, and accelerator,
+respectively. There is also the radio device, which sends and
+receives packets. An example of reading 100 data samples
+from the light sensor at a frequency of 50 milliseconds is
+written as follows, where the first parameter is the frequency
+and the second parameter is the number of readings.
+
+\begin{lstlisting}[language={[ANSI]C},keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}]
+./light 50 100
+\end{lstlisting}   
+
+
+\subsection{LiteFS Subsystem}
+\subsubsection{Implementation of LiteFS}
+Figure 3 shows the architecture of LiteFS, which is partitioned into three modules. It uses RAM to keep opened files
+and the allocation information of EEPROM and the data
+flash in the first module, uses EEPROM to keep hierarchical
+directory information in the second, and uses the data flash
+to store files in the third. Just like Unix, files in LiteFS represent different entities, such as data, application binaries,
+and device drivers. A variety of device driver files, including radio, sensor, and LED, are supported. Their read/write
+operations are mapped to real hardware operations. For example, writing a message to the radio file (either through the
+shell by a user or through a system call by an application)
+maps to broadcasting this message.
+
+In RAM, our current version of LiteOS supports eight
+file handles (this number is adjustable according to application needs), where each handle occupies eight bytes. Hence,
+at most eight files can be opened simultaneously. LiteFS
+uses two bit vectors to keep track of EEPROM/flash allocation, one with 8 bytes for EEPROM, the other with 32 bytes
+for the serial flash. A total of 104 bytes of RAM are used to
+support these bit vectors.
+
+In EEPROM, each file is represented as a 32-byte control block. LiteFS currently uses 2080 bytes of the 4096
+bytes available in EEPROM to store hierarchical directories, while the remaining EEPROM is available for other
+needs. These 2080 bytes are partitioned into 65 blocks. The
+first block is the root block, which is initialized every time
+the file system is formatted. The other 64 blocks are either
+directory blocks (specified with D) or file blocks (specified
+with F) according to application needs. Just like Unix, files
+represent data, binary applications, and device drivers.
+
+We follow three design choices in LiteFS. First, the maximal length of a file name is 12 bytes. Therefore, the Eight
+Dot Three naming system is supported. Second, a file control block addresses at most ten logical flash pages. Each
+page holds 2K bytes of data (or 8 physical flash pages). If a
+file occupies more than 20K bytes, LiteFS allocates another
+control block for this file, and stores the address of the new
+block in the old one. Third, all control blocks reside in EEPROM rather than in RAM.

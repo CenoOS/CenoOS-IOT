@@ -8,6 +8,8 @@
 
 
 void bsp_init(void);
+void enable_irq(void);
+void disable_irq(void);
 
 void light_red_on(void);
 void light_green_on(void);
@@ -3052,9 +3054,10 @@ volatile clock_t* l_tickCtr = &tickCtr;
 
 void os_on_startup(void){
     SystemCoreClockUpdate();
-    SysTick_Config(SystemCoreClock / 1000);
+    SysTick_Config(SystemCoreClock / 1);
 
     __NVIC_SetPriority(SysTick_IRQn, 0U);
+ enable_irq();
 }
 
 void disable_irq(void){
@@ -3088,6 +3091,7 @@ void bsp_init(void){
  ((GPIOA_Type *) 0x40025000UL)->DEN = (1<<1) | (1<<2) | (1<<3);
  ((GPIOA_Type *) 0x40025000UL)->DATA &= ~((1<<1) | (1<<2) | (1<<3));
  uart_debug_init();
+ disable_irq();
 }
 
 void light_red_on(void){

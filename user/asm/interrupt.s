@@ -23,6 +23,9 @@ SysTick_Handler:
 	push	{fp, lr}
 	add	fp, sp, #4
 	bl	os_tick
+	bl	disable_irq
+	bl	os_sched
+	bl	enable_irq
 	ldr	r3, .L4
 	ldr	r3, [r3]
 	ldr	r3, [r3]

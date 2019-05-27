@@ -252,7 +252,7 @@ typedef struct os_list{
 
 os_err_t os_list_init(os_list_t* listHead);
 
-uint8_t is_list_empty(os_list_t*list);
+uint8_t os_list_empty(os_list_t*list);
 
 os_err_t os_list_insert(os_list_t* head, os_list_t* elem);
 
@@ -441,6 +441,8 @@ extern volatile os_task_t osIdleTask;
 os_task_t * volatile osTaskCurr;
 os_task_t * volatile osTaskNext;
 
+
+
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
@@ -519,56 +521,60 @@ os_err_t os_task_switch_next(void){
  }
 
 
- __asm(
+     __asm(
 
-  "CPSID	I\n\t"
+   "CPSID		 I\n\t"
 
 
-  "ldr	r3, [%[osTaskCurr]]\n\t"
+       "LDR		r1,.L10+12\n\t"
+    "LDR		r1,[r1,#0x00]\n\t"
+       "CBZ		r1,PendSV_restore\n\t"
+
+
+   "ldr	r3, .L10+12\n\t"
+   "ldr	r3, [r3]\n\t"
+   "ldr	r3, [r3, #24]\n\t"
+   "mov	r0, r3\n\t"
+   "bl	uart_debug_print\n\t"
+
+
+       "PUSH		{r4-r11}\n\t"
+
+
+       "LDR		r1,.L10+12\n\t"
+    "LDR		r1,[r1,#0x00]\n\t"
+       "STR		sp,[r1,#0x00]\n\t"
+
+
+  "PendSV_restore:\n\t"
+
+      "LDR		r1,.L10+4\n\t"
+   "LDR		r1,[r1,#0x00]\n\t"
+  "LDR		sp,[r1,#0x00]\n\t"
+
+
+
+  "ldr	r3, .L10+4\n\t"
   "ldr	r3, [r3]\n\t"
-  "cmp	r3, #0\n\t"
-  "beq	PendSV_restore\n\t"
+  "ldr	r3, [r3, #24]\n\t"
+  "mov	r0, r3\n\t"
+  "bl	uart_debug_print\n\t"
 
 
-      "PUSH		{r4-r11}\n\t"
+   "LDR		r1,.L10+4\n\t"
+      "LDR		r1,[r1,#0x00]\n\t"
+      "LDR		r2,.L10+12\n\t"
+      "STR		r1,[r2,#0x00]\n\t"
 
 
-  "ldr	r3, [%[osTaskCurr]]\n\t"
-  "ldr	r3, [r3]\n\t"
-  "ldr	r2, [fp, #-8]\n\t"
-  "str	r2, [r3]\n\t"
+      "POP		{r4-r11}\n\t"
 
 
- "PendSV_restore:\n\t"
-
-  "ldr	r3,	[%[osTaskNext]]\n\t"
-  "ldr	r3, [r3]\n\t"
-  "ldr	r3, [r3]\n\t"
-  "str	r3, [fp, #-8]\n\t"
+      "CPSIE		I\n\t"
 
 
-  "ldr	r3, [%[osTaskNext]]\n\t"
-  "ldr	r3, [r3]\n\t"
-  "ldr	r2, [%[osTaskCurr]]\n\t"
-  "str	r3, [r2]\n\t"
-
-
-     "POP		{r4-r11}\n\t"
-
-
-
-
-
-
-
-  "CPSIE	I\n\t"
-
-
-  "bx	lr"
-  :[osTaskCurr] "=r" (osTaskCurr) , [osTaskNext] "=r" (osTaskNext)
-  :
- );
-# 188 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
+      "BX		lr"
+  );
  uart_debug_print("[task] contex switch finished.\n\r");
 }
 

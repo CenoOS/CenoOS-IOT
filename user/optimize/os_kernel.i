@@ -252,7 +252,7 @@ typedef struct os_list{
 
 os_err_t os_list_init(os_list_t* listHead);
 
-uint8_t is_list_empty(os_list_t*list);
+uint8_t os_list_empty(os_list_t*list);
 
 os_err_t os_list_insert(os_list_t* head, os_list_t* elem);
 
