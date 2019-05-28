@@ -82,6 +82,7 @@ os_err_t os_task_create(os_task_t *me,
 }
 
 os_err_t os_task_switch_next(void){
+
 	uart_debug_print("[task] task switch next : '");
 	uart_debug_print(osTaskNext->obj.name);
 	uart_debug_print("'.\n\r");
@@ -144,7 +145,10 @@ os_err_t os_task_switch_next(void){
 		   
      	/* __enable_irq(); */
      	"CPSIE		I\n\t"
-		
+
+	
+		"MOV	r0, lr\n\t"
+		"BL	uart_debug_print\n\t"
      	/* return  thread */
      	"BX		lr"
 		// "MOV	PC, LR\n\t"

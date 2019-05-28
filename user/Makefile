@@ -54,6 +54,11 @@ $(OPTMIZE)%.i: $(BASE_DIR)/kernel/ceno/src/%.c
 	$(CC) -E $^ -o $@ $(CPPFLAGS) $(CFLAGS)
 
 # ==================================================================
+dump: bin/$(PROJECT_NAME).asm
+
+bin/$(PROJECT_NAME).asm: bin/$(PROJECT_NAME).bin
+	$(OBJDUMP) -D -b binary -m arm $< > $@
+
 asm: $(ASMCODES) 
 # 汇编代码生成
 $(ASMCODE)%.s: $(OPTMIZE)/%.i
@@ -115,6 +120,6 @@ usb:
 gdb:
 	$(GDB)
 
-all: clean optimize asm  build
+all: clean optimize asm  build dump
 # doc:
  	# /usr/local/Cellar/node/7.4.0/lib/node_modules/docsify-cli/bin/docsify serve ../docs/docs

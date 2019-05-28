@@ -467,9 +467,9 @@ uint32_t stack_task_01[40];
 void task_01_thread(){
   while(1){
     light_green_on();
-    delay_block(1000);
+    delay_block(1);
     light_green_off();
-    delay_block(1000);
+    delay_block(1);
   }
 }
 
@@ -478,9 +478,9 @@ uint32_t stack_task_02[40];
 void task_02_thread(){
   while(1){
     light_red_on();
-    delay_block(1000);
+    delay_block(1);
     light_red_off();
-    delay_block(1000);
+    delay_block(1);
   }
 }
 

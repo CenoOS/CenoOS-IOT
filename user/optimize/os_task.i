@@ -461,7 +461,7 @@ os_err_t os_task_create(os_task_t *me,
 
   *(--sp) = (1U << 24);
     *(--sp) = (uint32_t)taskHandler;
-    *(--sp) = (uint32_t)taskHandler;
+    *(--sp) = 0x0000000EU;
     *(--sp) = 0x0000000CU;
     *(--sp) = 0x00000003U;
     *(--sp) = 0x00000002U;
@@ -573,8 +573,11 @@ os_err_t os_task_switch_next(void){
       "CPSIE		I\n\t"
 
 
+  "MOV	r0, lr\n\t"
+  "BL	uart_debug_print\n\t"
 
-  "MOV	PC, LR"
+      "BX		lr"
+
   );
  uart_debug_print("[task] contex switch finished.\n\r");
 }

@@ -94,6 +94,7 @@ CXX=~/gcc-arm-none-eabi/bin/arm-none-eabi-g++
 LD=~/gcc-arm-none-eabi/bin/arm-none-eabi-ld
 OBJCOPY=~/gcc-arm-none-eabi/bin/arm-none-eabi-objcopy
 ELFREAD=~/gcc-arm-none-eabi/bin/arm-none-eabi-readelf
+OBJDUMP=~/gcc-arm-none-eabi/bin/arm-none-eabi-objdump
 
 GDB=~/gcc-arm-none-eabi/bin/arm-none-eabi-gdb
 # ====================================================================

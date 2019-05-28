@@ -26,10 +26,10 @@ task_01_thread:
 	add	fp, sp, #4
 .L2:
 	bl	light_green_on
-	mov	r0, #1000
+	mov	r0, #1
 	bl	delay_block
 	bl	light_green_off
-	mov	r0, #1000
+	mov	r0, #1
 	bl	delay_block
 	b	.L2
 	.size	task_01_thread, .-task_01_thread
@@ -49,10 +49,10 @@ task_02_thread:
 	add	fp, sp, #4
 .L4:
 	bl	light_red_on
-	mov	r0, #1000
+	mov	r0, #1
 	bl	delay_block
 	bl	light_red_off
-	mov	r0, #1000
+	mov	r0, #1
 	bl	delay_block
 	b	.L4
 	.size	task_02_thread, .-task_02_thread
