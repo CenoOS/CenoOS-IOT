@@ -213,7 +213,11 @@ void uart_debug_print(char* str);
 
 void uart_debug_print_char(char c);
 
+void uart_debug_print_i32(unsigned int v);
+
 char uart_debug_reveive_char(void);
+
+void uart_debug_print_os_register();
 # 20 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h" 1
@@ -461,7 +465,7 @@ os_err_t os_task_create(os_task_t *me,
 
   *(--sp) = (1U << 24);
     *(--sp) = (uint32_t)taskHandler;
-    *(--sp) = 0x0000000EU;
+    *(--sp) = (uint32_t)taskHandler;
     *(--sp) = 0x0000000CU;
     *(--sp) = 0x00000003U;
     *(--sp) = 0x00000002U;
@@ -568,13 +572,12 @@ os_err_t os_task_switch_next(void){
 
 
       "POP		{r4-r11}\n\t"
-
-
+  "POP		{r0-r3}\n\t"
+  "POP		{r12,lr}\n\t"
+# 159 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
       "CPSIE		I\n\t"
 
 
-  "MOV	r0, lr\n\t"
-  "BL	uart_debug_print\n\t"
 
       "BX		lr"
 

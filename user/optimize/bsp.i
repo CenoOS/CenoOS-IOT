@@ -36,7 +36,11 @@ void uart_debug_print(char* str);
 
 void uart_debug_print_char(char c);
 
+void uart_debug_print_i32(unsigned int v);
+
 char uart_debug_reveive_char(void);
+
+void uart_debug_print_os_register();
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h" 1
 # 63 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/include/TM4C123GH6PM.h"

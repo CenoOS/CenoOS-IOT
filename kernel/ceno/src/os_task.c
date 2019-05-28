@@ -35,7 +35,7 @@ os_err_t os_task_create(os_task_t *me,
 
  	*(--sp) = (1U << 24);  /* xPSR */ /* 0x01000000 */
     *(--sp) = (uint32_t)taskHandler; /* PC */
-    *(--sp) = 0x0000000EU; /* LR  */
+    *(--sp) = (uint32_t)taskHandler; /* LR  */
     *(--sp) = 0x0000000CU; /* R12 */
     *(--sp) = 0x00000003U; /* R3  */
     *(--sp) = 0x00000002U; /* R2  */
@@ -142,13 +142,23 @@ os_err_t os_task_switch_next(void){
 
      	/* pop registers r4-r11 */
    	 	"POP		{r4-r11}\n\t"
+		"POP		{r0-r3}\n\t"
+		"POP		{r12,lr}\n\t"
+
+		// "MOV	r0, lr\n\t"
+		// "BL	uart_debug_print_i32\n\t"
+		// "MOV	r0, r12\n\t"
+		// "BL	uart_debug_print_i32\n\t"
+		// "MOV	r0, r11\n\t"
+		// "BL	uart_debug_print_i32\n\t"
+		// "MOV	r0, r10\n\t"
+		// "BL	uart_debug_print_i32\n\t"
+		
 		   
      	/* __enable_irq(); */
      	"CPSIE		I\n\t"
-
 	
-		"MOV	r0, lr\n\t"
-		"BL	uart_debug_print\n\t"
+
      	/* return  thread */
      	"BX		lr"
 		// "MOV	PC, LR\n\t"

@@ -237,7 +237,11 @@ void uart_debug_print(char* str);
 
 void uart_debug_print_char(char c);
 
+void uart_debug_print_i32(unsigned int v);
+
 char uart_debug_reveive_char(void);
+
+void uart_debug_print_os_register();
 # 20 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 2
 
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h" 1

@@ -179,4 +179,199 @@ uart_debug_reveive_char:
 .L14:
 	.word	1073790976
 	.size	uart_debug_reveive_char, .-uart_debug_reveive_char
+	.align	2
+	.global	uart_debug_print_i32
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	uart_debug_print_i32, %function
+uart_debug_print_i32:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 16
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{fp, lr}
+	add	fp, sp, #4
+	sub	sp, sp, #16
+	str	r0, [fp, #-16]
+	mov	r0, #48
+	bl	uart_debug_print_char
+	mov	r0, #120
+	bl	uart_debug_print_char
+	mov	r3, #0
+	str	r3, [fp, #-8]
+	b	.L17
+.L34:
+	ldr	r3, [fp, #-8]
+	rsb	r3, r3, #7
+	lsl	r3, r3, #2
+	ldr	r2, [fp, #-16]
+	lsr	r3, r2, r3
+	and	r3, r3, #15
+	str	r3, [fp, #-12]
+	ldr	r3, [fp, #-12]
+	cmp	r3, #0
+	bne	.L18
+	mov	r0, #48
+	bl	uart_debug_print_char
+.L18:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #1
+	bne	.L19
+	mov	r0, #49
+	bl	uart_debug_print_char
+.L19:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #2
+	bne	.L20
+	mov	r0, #50
+	bl	uart_debug_print_char
+.L20:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #3
+	bne	.L21
+	mov	r0, #51
+	bl	uart_debug_print_char
+.L21:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #4
+	bne	.L22
+	mov	r0, #52
+	bl	uart_debug_print_char
+.L22:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #5
+	bne	.L23
+	mov	r0, #53
+	bl	uart_debug_print_char
+.L23:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #6
+	bne	.L24
+	mov	r0, #54
+	bl	uart_debug_print_char
+.L24:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #7
+	bne	.L25
+	mov	r0, #55
+	bl	uart_debug_print_char
+.L25:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #8
+	bne	.L26
+	mov	r0, #56
+	bl	uart_debug_print_char
+.L26:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #9
+	bne	.L27
+	mov	r0, #57
+	bl	uart_debug_print_char
+.L27:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #10
+	bne	.L28
+	mov	r0, #97
+	bl	uart_debug_print_char
+.L28:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #11
+	bne	.L29
+	mov	r0, #98
+	bl	uart_debug_print_char
+.L29:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #12
+	bne	.L30
+	mov	r0, #99
+	bl	uart_debug_print_char
+.L30:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #13
+	bne	.L31
+	mov	r0, #100
+	bl	uart_debug_print_char
+.L31:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #15
+	bne	.L32
+	mov	r0, #101
+	bl	uart_debug_print_char
+.L32:
+	ldr	r3, [fp, #-12]
+	cmp	r3, #15
+	bne	.L33
+	mov	r0, #102
+	bl	uart_debug_print_char
+.L33:
+	ldr	r3, [fp, #-8]
+	add	r3, r3, #1
+	str	r3, [fp, #-8]
+.L17:
+	ldr	r3, [fp, #-8]
+	cmp	r3, #7
+	ble	.L34
+	nop
+	sub	sp, fp, #4
+	@ sp needed
+	pop	{fp, lr}
+	bx	lr
+	.size	uart_debug_print_i32, .-uart_debug_print_i32
+	.align	2
+	.global	uart_debug_print_os_register
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	uart_debug_print_os_register, %function
+uart_debug_print_os_register:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
+	.syntax divided
+@ 147 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 1
+	MOV	r0, r15
+	BL	uart_debug_print_i32
+	MOV	r0, #10
+	BL	uart_debug_print_char
+	MOV	r0, pc
+	BL	uart_debug_print_i32
+	MOV	r0, lr
+	BL	uart_debug_print_i32
+	MOV	r0, r12
+	BL	uart_debug_print_i32
+	MOV	r0, r3
+	BL	uart_debug_print_i32
+	MOV	r0, r2
+	BL	uart_debug_print_i32
+	MOV	r0, r0
+	BL	uart_debug_print_i32
+	MOV	r0, r11
+	BL	uart_debug_print_i32
+	MOV	r0, r10
+	BL	uart_debug_print_i32
+	MOV	r0, r9
+	BL	uart_debug_print_i32
+	MOV	r0, r8
+	BL	uart_debug_print_i32
+	MOV	r0, r7
+	BL	uart_debug_print_i32
+	MOV	r0, r6
+	BL	uart_debug_print_i32
+	MOV	r0, r5
+	BL	uart_debug_print_i32
+	MOV	r0, r4
+	BL	uart_debug_print_i32
+	
+@ 0 "" 2
+	.arm
+	.syntax unified
+	nop
+	add	sp, fp, #0
+	@ sp needed
+	ldr	fp, [sp], #4
+	bx	lr
+	.size	uart_debug_print_os_register, .-uart_debug_print_os_register
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

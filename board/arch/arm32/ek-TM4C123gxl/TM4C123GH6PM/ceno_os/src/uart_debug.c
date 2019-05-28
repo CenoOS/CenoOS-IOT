@@ -84,6 +84,116 @@
 		c = UART0->DR;
 		return c;
 	}
+
+	void uart_debug_print_i32(unsigned int v){
+		uart_debug_print_char('0');
+		uart_debug_print_char('x');
+		for(int i = 0; i<8; i++){
+			unsigned int hex = ((v >> ((7-i)*4)) & 0xF);
+			if(hex == 0){
+				uart_debug_print_char('0');
+			}
+			if(hex == 1){
+				uart_debug_print_char('1');
+			}
+			if(hex == 2){
+				uart_debug_print_char('2');
+			}
+			if(hex == 3){
+				uart_debug_print_char('3');
+			}
+			if(hex == 4){
+				uart_debug_print_char('4');
+			}
+			if(hex == 5){
+				uart_debug_print_char('5');
+			}
+			if(hex == 6){
+				uart_debug_print_char('6');
+			}
+			if(hex == 7){
+				uart_debug_print_char('7');
+			}
+			if(hex == 8){
+				uart_debug_print_char('8');
+			}
+			if(hex == 9){
+				uart_debug_print_char('9');
+			}
+			if(hex == 10){
+				uart_debug_print_char('a');
+			}
+			if(hex == 11){
+				uart_debug_print_char('b');
+			}
+			if(hex == 12){
+				uart_debug_print_char('c');
+			}
+			if(hex == 13){
+				uart_debug_print_char('d');
+			}
+			if(hex == 15){
+				uart_debug_print_char('e');
+			}
+			if(hex == 15){
+				uart_debug_print_char('f');
+			}
+
+			
+		}
+	}
+
+	void uart_debug_print_os_register(){
+		 __asm(
+			"MOV	r0, r15\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, #10\n\t"
+			"BL	uart_debug_print_char\n\t"
+
+			"MOV	r0, pc\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, lr\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r12\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r3\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r2\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r0\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r11\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r10\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r9\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r8\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r7\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r6\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r5\n\t"
+			"BL	uart_debug_print_i32\n\t"
+
+			"MOV	r0, r4\n\t"
+			"BL	uart_debug_print_i32\n\t"
+		 );
+	}
 #else
 	void uart_debug_init(void){}
 	void uart_debug_print(char* str){}

@@ -72,8 +72,8 @@ os_task_create:
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
 	str	r3, [fp, #-8]
+	ldr	r2, [fp, #8]
 	ldr	r3, [fp, #-8]
-	mov	r2, #14
 	str	r2, [r3]
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
@@ -310,9 +310,9 @@ os_task_switch_next:
 	LDR		r2,.L10+12
 	STR		r1,[r2,#0x00]
 	POP		{r4-r11}
+	POP		{r0-r3}
+	POP		{r12,lr}
 	CPSIE		I
-	MOV	r0, lr
-	BL	uart_debug_print
 	BX		lr
 @ 0 "" 2
 	.arm
