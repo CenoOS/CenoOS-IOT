@@ -63,8 +63,7 @@ make openOCD_connect
 #### 构建
 
 ```bash
-make clean
-make build
+make all
 ```
 
 #### 烧写

@@ -461,7 +461,7 @@ os_err_t os_task_create(os_task_t *me,
 
   *(--sp) = (1U << 24);
     *(--sp) = (uint32_t)taskHandler;
-    *(--sp) = 0x0000000EU;
+    *(--sp) = (uint32_t)taskHandler;
     *(--sp) = 0x0000000CU;
     *(--sp) = 0x00000003U;
     *(--sp) = 0x00000002U;
@@ -531,11 +531,11 @@ os_err_t os_task_switch_next(void){
        "CBZ		r1,PendSV_restore\n\t"
 
 
-   "ldr	r3, .L10+12\n\t"
-   "ldr	r3, [r3]\n\t"
-   "ldr	r3, [r3, #24]\n\t"
-   "mov	r0, r3\n\t"
-   "bl	uart_debug_print\n\t"
+   "LDR	r3, .L10+12\n\t"
+   "LDR	r3, [r3]\n\t"
+   "LDR	r3, [r3, #24]\n\t"
+   "MOV	r0, r3\n\t"
+   "BL	uart_debug_print\n\t"
 
 
        "PUSH		{r4-r11}\n\t"
@@ -554,11 +554,11 @@ os_err_t os_task_switch_next(void){
 
 
 
-  "ldr	r3, .L10+4\n\t"
-  "ldr	r3, [r3]\n\t"
-  "ldr	r3, [r3, #24]\n\t"
-  "mov	r0, r3\n\t"
-  "bl	uart_debug_print\n\t"
+  "LDR	r3, .L10+4\n\t"
+  "LDR	r3, [r3]\n\t"
+  "LDR	r3, [r3, #24]\n\t"
+  "MOV	r0, r3\n\t"
+  "BL	uart_debug_print\n\t"
 
 
    "LDR		r1,.L10+4\n\t"
@@ -573,7 +573,8 @@ os_err_t os_task_switch_next(void){
       "CPSIE		I\n\t"
 
 
-      "BX		lr"
+
+  "MOV	PC, LR"
   );
  uart_debug_print("[task] contex switch finished.\n\r");
 }

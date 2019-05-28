@@ -525,7 +525,7 @@ os_err_t os_sched(void){
  }
 
 
-   *(uint32_t volatile *)0xE000ED04 = (1U << 28);
+ *(uint32_t volatile *)0xE000ED04 = (1U << 28);
 
 
   if (osTaskNext != osTaskCurr) {

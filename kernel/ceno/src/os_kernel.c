@@ -111,7 +111,7 @@ os_err_t os_sched(void){
 	}
 
 	/* hard trigger PendSV*/
-	  *(uint32_t volatile *)0xE000ED04 = (1U << 28);
+	*(uint32_t volatile *)0xE000ED04 = (1U << 28);
 
 	/* trigger PendSV, if needed */
  	if (osTaskNext != osTaskCurr) {

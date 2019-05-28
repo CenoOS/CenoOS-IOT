@@ -72,8 +72,8 @@ os_task_create:
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
 	str	r3, [fp, #-8]
+	ldr	r2, [fp, #8]
 	ldr	r3, [fp, #-8]
-	mov	r2, #14
 	str	r2, [r3]
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
@@ -287,11 +287,11 @@ os_task_switch_next:
 	LDR		r1,.L10+12
 	LDR		r1,[r1,#0x00]
 	CBZ		r1,PendSV_restore
-	ldr	r3, .L10+12
-	ldr	r3, [r3]
-	ldr	r3, [r3, #24]
-	mov	r0, r3
-	bl	uart_debug_print
+	LDR	r3, .L10+12
+	LDR	r3, [r3]
+	LDR	r3, [r3, #24]
+	MOV	r0, r3
+	BL	uart_debug_print
 	PUSH		{r4-r11}
 	LDR		r1,.L10+12
 	LDR		r1,[r1,#0x00]
@@ -300,18 +300,18 @@ os_task_switch_next:
 	LDR		r1,.L10+4
 	LDR		r1,[r1,#0x00]
 	LDR		sp,[r1,#0x00]
-	ldr	r3, .L10+4
-	ldr	r3, [r3]
-	ldr	r3, [r3, #24]
-	mov	r0, r3
-	bl	uart_debug_print
+	LDR	r3, .L10+4
+	LDR	r3, [r3]
+	LDR	r3, [r3, #24]
+	MOV	r0, r3
+	BL	uart_debug_print
 	LDR		r1,.L10+4
 	LDR		r1,[r1,#0x00]
 	LDR		r2,.L10+12
 	STR		r1,[r2,#0x00]
 	POP		{r4-r11}
 	CPSIE		I
-	BX		lr
+	MOV	PC, LR
 @ 0 "" 2
 	.arm
 	.syntax unified
