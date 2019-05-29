@@ -10,6 +10,7 @@ obj/os_list.o: \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_stdint.h \
  /Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/include/uart_debug.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h \
+ /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_heap.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_list.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_obj.h \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_queue.h \

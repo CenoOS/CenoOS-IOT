@@ -1,9 +1,9 @@
-# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
+# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_heap.c"
 # 1 "/Users/neroyang/project/Ceno-RTOS/user//"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
-# 13 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
+# 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_heap.c"
+# 13 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_heap.c"
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h"
 # 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 1 3 4
@@ -485,155 +485,91 @@ os_err_t os_sched(void);
 
 extern volatile os_task_t osIdleTask;
 # 31 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
-# 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 2
-
-os_task_t * volatile osTaskCurr;
-os_task_t * volatile osTaskNext;
+# 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_heap.c" 2
 
 
 
-os_err_t os_task_create(os_task_t *me,
-     cpu_char_t *name,
-     priority_t priority,
-     cpu_stk_t stkSto,
-     cpu_stk_size_t stackSize,
-     os_task_handler_t taskHandler){
- uart_debug_print("[task] create task : '");
- uart_debug_print(name);
- uart_debug_print("'\n\r");
+static char *HEAP_START_ADDR;
 
+os_heap_block_t* lastHeapBlock;
 
+uint32_t os_heap_is_free(os_heap_block_t* block){
+ return ((0x1 & block->meta) << 30) & 0xFFFFFFFF;
+}
 
+uint32_t os_heap_size(os_heap_block_t* block){
+ return (block->meta >> 1) & 0xFFFFFFFF;
+}
 
-    uint32_t *sp = (uint32_t *)((((uint32_t)stkSto + stackSize) / 8) * 8);
-    uint32_t *stk_limit;
+char *sbrk(os_size_t incr){
+    char *prevHeapEnd;
+    if (HEAP_START_ADDR == ((void*)0)){
+      HEAP_START_ADDR = &_ebss;
+ }
+    prevHeapEnd = HEAP_START_ADDR;
 
-  *(--sp) = (1U << 24);
-    *(--sp) = (uint32_t)taskHandler;
-    *(--sp) = (uint32_t)taskHandler;
-    *(--sp) = 0x0000000CU;
-    *(--sp) = 0x00000003U;
-    *(--sp) = 0x00000002U;
-    *(--sp) = 0x00000001U;
-    *(--sp) = 0x00000000U;
+    if (HEAP_START_ADDR + incr > &_stack_ptr)
+ {
 
-    *(--sp) = 0x0000000BU;
-    *(--sp) = 0x0000000AU;
-    *(--sp) = 0x00000009U;
-    *(--sp) = 0x00000008U;
-    *(--sp) = 0x00000007U;
-    *(--sp) = 0x00000006U;
-    *(--sp) = 0x00000005U;
-    *(--sp) = 0x00000004U;
-
-
-    me->sp = sp;
-
-
-    stk_limit = (uint32_t *)(((((uint32_t)stkSto - 1U) / 8) + 1U) * 8);
-
-
-    for (sp = sp - 1U; sp >= stk_limit; --sp) {
-        *sp = 0xDEADBEEFU;
+     uart_debug_print("[heap] _sbrk: Heap and stack collision\n\r");
     }
-
-
- me->id = 1;
- me->obj.name = name;
- me->priority = priority;
- if(priority > 0U ){
-  me->state=OS_STATE_READY;
- }
-
- os_err_t err = os_queue_add_item(&osTaskQueue,me);
- if(err==OS_ERR){
-
- }
- uart_debug_print("[task] task '");
- uart_debug_print(me->obj.name);
- uart_debug_print("' add to queue '");
- uart_debug_print(osTaskQueue.obj.name);
- uart_debug_print("'.\n\r");
+    HEAP_START_ADDR += incr;
+  return prevHeapEnd;
 }
 
-os_err_t os_task_switch_next(void){
-
- uart_debug_print("[task] task switch next : '");
- uart_debug_print(osTaskNext->obj.name);
- uart_debug_print("'.\n\r");
- osTaskCurr = (os_task_t *)0;
- if(!osTaskCurr){
-  uart_debug_print("[task] task current is null.\n\r");
- }
- if(!osTaskNext){
-  uart_debug_print("[task] task next is null.\n\r");
- }
-
-
-     __asm(
-
-   "CPSID		 I\n\t"
-
-
-       "LDR		r1,.L10+12\n\t"
-    "LDR		r1,[r1,#0x00]\n\t"
-       "CBZ		r1,PendSV_restore\n\t"
-
-
-   "LDR	r3, .L10+12\n\t"
-   "LDR	r3, [r3]\n\t"
-   "LDR	r3, [r3, #24]\n\t"
-   "MOV	r0, r3\n\t"
-   "BL	uart_debug_print\n\t"
-
-
-       "PUSH		{r4-r11}\n\t"
-
-
-       "LDR		r1,.L10+12\n\t"
-    "LDR		r1,[r1,#0x00]\n\t"
-       "STR		sp,[r1,#0x00]\n\t"
-
-
-  "PendSV_restore:\n\t"
-
-      "LDR		r1,.L10+4\n\t"
-   "LDR		r1,[r1,#0x00]\n\t"
-  "LDR		sp,[r1,#0x00]\n\t"
-
-
-
-  "LDR	r3, .L10+4\n\t"
-  "LDR	r3, [r3]\n\t"
-  "LDR	r3, [r3, #24]\n\t"
-  "MOV	r0, r3\n\t"
-  "BL	uart_debug_print\n\t"
-
-
-   "LDR		r1,.L10+4\n\t"
-      "LDR		r1,[r1,#0x00]\n\t"
-      "LDR		r2,.L10+12\n\t"
-      "STR		r1,[r2,#0x00]\n\t"
-
-
-      "POP		{r4-r11}\n\t"
-  "POP		{r0-r3}\n\t"
-  "POP		{r12,lr}\n\t"
-# 159 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
-      "CPSIE		I\n\t"
-
-
-
-      "BX		lr"
-
-  );
- uart_debug_print("[task] contex switch finished.\n\r");
+os_err_t os_heap_init(){
+ HEAP_START_ADDR = &_ebss;
+ uart_debug_print("[heap] heap initial at: '0x");
+ uart_debug_print_i32((unsigned int)HEAP_START_ADDR);
+ uart_debug_print("'\n\r");
+ uart_debug_print_i32(&_stack_ptr);
+ uart_debug_print("'\n\r");
+ uart_debug_print_i32((unsigned int)sbrk(2<<8));
+ uart_debug_print("'\n\r");
+ uart_debug_print_i32((unsigned int)sbrk(2<<8));
 }
 
-os_err_t os_task_exit(void){
+
+
+
+os_heap_block_t* os_heap_find_block(os_heap_block_t* last, os_size_t size){
+
+
+
+
 
 }
 
-os_err_t os_task_switch_context(os_task_t *next){
- osTaskCurr = next;
+os_heap_block_t* os_heap_extend(os_heap_block_t* last, os_size_t size){
+
+}
+
+inline os_size_t align8(os_size_t size) {
+    return (((size-1) >> 3) << 3) + 8;
+}
+
+void os_heap_split_block(os_heap_block_t* block, os_size_t size){
+
+
+
+
+
+
+}
+
+
+void* os_heap_malloc(os_size_t size){
+# 111 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_heap.c"
+}
+
+void* os_heap_calloc (os_size_t num, os_size_t size){
+
+}
+
+void* os_heap_realloc (void* ptr, os_size_t newSize){
+
+}
+
+uint32_t os_heap_free(void* ptr){
+
 }

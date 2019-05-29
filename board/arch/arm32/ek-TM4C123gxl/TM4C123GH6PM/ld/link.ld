@@ -7,8 +7,6 @@ MEMORY
 
 SECTIONS
 {
-
-
     /* 
      * initial stack pointer pointing to top of stack,starts from higher addresses
      * i.e ORIGIN(RAM) + LENGTH(RAM)-1 in this case 0x20007FFF to lower addesses i.e
@@ -16,7 +14,6 @@ SECTIONS
      * until it comes in contact with .bss or .data in which case a buffer overflow occurs
     */
     PROVIDE( _stack_ptr = ORIGIN(RAM) + LENGTH(RAM));
-
     /* constants  and other code stored in FLASH */
     .text :
     {
@@ -43,7 +40,4 @@ SECTIONS
         *(COMMON)       
         _ebss = .;      /* end of .bss segment */
     } > RAM
-
-
-
 }

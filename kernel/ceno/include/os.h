@@ -14,6 +14,8 @@
 #ifndef __CENO_RTOS_OS_H__
 #define __CENO_RTOS_OS_H__
 
+#define NULL ((void*)0)
+
 typedef	unsigned int os_task_id_t;
 typedef	unsigned int os_time_t;
 
@@ -25,6 +27,8 @@ typedef	enum os_err{
 typedef void* cpu_stk_t;
 typedef unsigned int cpu_stk_size_t;
 typedef char cpu_char_t;
+
+typedef unsigned int os_size_t;
 
 typedef unsigned int priority_t;
 

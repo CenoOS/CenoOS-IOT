@@ -19,12 +19,12 @@ uint32_t stackTaskIdle[40];
 
 os_err_t os_init(void){
 	uart_debug_print("[kernel] os init.\n\r");
+	os_heap_init();
 
 	/**
 	 * Set the pendSV interrput priority to the losest level
 	 */
-		*(uint32_t volatile *)0xE000ED20 |= (0xFFU << 16);
-
+	*(uint32_t volatile *)0xE000ED20 |= (0xFFU << 16);
 
 
 	/**
@@ -39,7 +39,6 @@ os_err_t os_init(void){
 	if(isOsTaskQueueCreate==OS_ERR){
 		return isOsTaskQueueCreate;
 	}
-
 
 	/**
 	 * os idle task init

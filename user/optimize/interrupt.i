@@ -8,7 +8,7 @@
 
 
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h" 1
-# 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h"
+# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h"
 typedef unsigned int os_task_id_t;
 typedef unsigned int os_time_t;
 
@@ -20,6 +20,8 @@ typedef enum os_err{
 typedef void* cpu_stk_t;
 typedef unsigned int cpu_stk_size_t;
 typedef char cpu_char_t;
+
+typedef unsigned int os_size_t;
 
 typedef unsigned int priority_t;
 

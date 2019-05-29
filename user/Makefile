@@ -57,7 +57,7 @@ $(OPTMIZE)%.i: $(BASE_DIR)/kernel/ceno/src/%.c
 dump: bin/$(PROJECT_NAME).asm
 
 bin/$(PROJECT_NAME).asm: bin/$(PROJECT_NAME).bin
-	$(OBJDUMP) -D -b binary -m arm $< > $@
+	$(OBJDUMP) -D -S -s  -b binary -m arm $< > $@
 
 asm: $(ASMCODES) 
 # 汇编代码生成

@@ -1,4 +1,4 @@
-os_list.o: /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_list.c \
+os_heap.o: /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_heap.c \
  /Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h \
  /Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h \
  /Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/stdint.h \

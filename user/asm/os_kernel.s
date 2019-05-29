@@ -39,6 +39,7 @@ os_init:
 	sub	sp, sp, #16
 	ldr	r0, .L6
 	bl	uart_debug_print
+	bl	os_heap_init
 	ldr	r3, .L6+4
 	ldr	r3, [r3]
 	ldr	r2, .L6+4
