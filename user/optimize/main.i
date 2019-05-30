@@ -289,11 +289,16 @@ typedef struct os_heap_block os_heap_block_t;
 struct os_heap_block{
 
  uint32_t meta;
- os_heap_block_t* nextBlock;
+ os_heap_block_t* next;
+ os_heap_block_t* prior;
 };
 
-uint32_t os_heap_is_free(os_heap_block_t* block);
-uint32_t os_heap_size(os_heap_block_t* block);
+
+uint32_t os_heap_block_free(os_heap_block_t* block);
+uint32_t os_heap_block_size(os_heap_block_t* block);
+
+void os_heap_block_free_set(os_heap_block_t* block,os_size_t free);
+void os_heap_block_size_set(os_heap_block_t* block,uint32_t size);
 
 os_err_t os_heap_init();
 
@@ -310,7 +315,7 @@ void* os_heap_realloc (void* ptr, os_size_t newSize);
 uint32_t os_heap_free(void* ptr);
 
 
-os_heap_block_t* os_heap_find_block(os_heap_block_t* last, os_size_t size);
+os_heap_block_t* os_heap_find_block(os_size_t size);
 
 os_heap_block_t* os_heap_extend(os_heap_block_t* last, os_size_t s);
 

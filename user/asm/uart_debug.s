@@ -89,6 +89,13 @@ uart_debug_print:
 	add	fp, sp, #4
 	sub	sp, sp, #8
 	str	r0, [fp, #-8]
+	.syntax divided
+@ 71 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 1
+	CPSID	I
+	
+@ 0 "" 2
+	.arm
+	.syntax unified
 	b	.L5
 .L6:
 	ldr	r3, [fp, #-8]
@@ -102,6 +109,13 @@ uart_debug_print:
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
 	bne	.L6
+	.syntax divided
+@ 77 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 1
+	CPSIE	I
+	
+@ 0 "" 2
+	.arm
+	.syntax unified
 	nop
 	sub	sp, fp, #4
 	@ sp needed
@@ -331,7 +345,7 @@ uart_debug_print_os_register:
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
 	.syntax divided
-@ 147 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 1
+@ 153 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/uart_debug.c" 1
 	MOV	r0, r15
 	BL	uart_debug_print_i32
 	MOV	r0, #10
