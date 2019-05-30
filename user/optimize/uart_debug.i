@@ -12,7 +12,7 @@ void uart_debug_print(char* str);
 
 void uart_debug_print_char(char c);
 
-void uart_debug_print_i32(unsigned int v);
+void uart_debug_print_i32(unsigned int v,unsigned int mode);
 
 char uart_debug_reveive_char(void);
 
@@ -3099,61 +3099,87 @@ typedef struct {
   return c;
  }
 
- void uart_debug_print_i32(unsigned int v){
-  uart_debug_print_char('0');
-  uart_debug_print_char('x');
-  for(int i = 0; i<8; i++){
-   unsigned int hex = ((v >> ((7-i)*4)) & 0xF);
-   if(hex == 0){
+ void uart_debug_print_number(unsigned int v,unsigned int zero){
+  if(v == 0){
+   if(zero == 1){
     uart_debug_print_char('0');
    }
-   if(hex == 1){
-    uart_debug_print_char('1');
-   }
-   if(hex == 2){
-    uart_debug_print_char('2');
-   }
-   if(hex == 3){
-    uart_debug_print_char('3');
-   }
-   if(hex == 4){
-    uart_debug_print_char('4');
-   }
-   if(hex == 5){
-    uart_debug_print_char('5');
-   }
-   if(hex == 6){
-    uart_debug_print_char('6');
-   }
-   if(hex == 7){
-    uart_debug_print_char('7');
-   }
-   if(hex == 8){
-    uart_debug_print_char('8');
-   }
-   if(hex == 9){
-    uart_debug_print_char('9');
-   }
-   if(hex == 10){
-    uart_debug_print_char('a');
-   }
-   if(hex == 11){
-    uart_debug_print_char('b');
-   }
-   if(hex == 12){
-    uart_debug_print_char('c');
-   }
-   if(hex == 13){
-    uart_debug_print_char('d');
-   }
-   if(hex == 15){
-    uart_debug_print_char('e');
-   }
-   if(hex == 15){
-    uart_debug_print_char('f');
-   }
+  }
+  if(v == 1){
+   uart_debug_print_char('1');
+  }
+  if(v == 2){
+   uart_debug_print_char('2');
+  }
+  if(v == 3){
+   uart_debug_print_char('3');
+  }
+  if(v == 4){
+   uart_debug_print_char('4');
+  }
+  if(v == 5){
+   uart_debug_print_char('5');
+  }
+  if(v == 6){
+   uart_debug_print_char('6');
+  }
+  if(v == 7){
+   uart_debug_print_char('7');
+  }
+  if(v == 8){
+   uart_debug_print_char('8');
+  }
+  if(v == 9){
+   uart_debug_print_char('9');
+  }
+  if(v == 10){
+   uart_debug_print_char('a');
+  }
+  if(v == 11){
+   uart_debug_print_char('b');
+  }
+  if(v == 12){
+   uart_debug_print_char('c');
+  }
+  if(v == 13){
+   uart_debug_print_char('d');
+  }
+  if(v == 15){
+   uart_debug_print_char('e');
+  }
+  if(v == 15){
+   uart_debug_print_char('f');
+  }
+ }
 
+ void uart_debug_print_i32(unsigned int v,unsigned int mode){
+  if(mode == 16){
+   uart_debug_print_char('0');
+   uart_debug_print_char('x');
+   for(int i = 0; i<8; i++){
+    unsigned int hex = ((v >> ((7-i)*4)) & 0xF);
+    uart_debug_print_number(hex,1);
+   }
+  }else if(mode == 10){
+   volatile unsigned int MAX = 1000000000;
+   unsigned int zero = 0;
+   while(MAX != 1){
+    unsigned int oct = v / MAX;
+    if(oct > 0){
+     zero = 1;
+    }
+    if(zero==0){
+     uart_debug_print_number(oct,0);
+    }else{
+     uart_debug_print_number(oct,1);
+    }
 
+    if(v >= MAX){
+     v = v - oct*MAX;
+    }
+    MAX = MAX / 10;
+   }
+   uart_debug_print_number(v,1);
   }
  }
 

@@ -213,7 +213,7 @@ void uart_debug_print(char* str);
 
 void uart_debug_print_char(char c);
 
-void uart_debug_print_i32(unsigned int v);
+void uart_debug_print_i32(unsigned int v,unsigned int mode);
 
 char uart_debug_reveive_char(void);
 
@@ -529,24 +529,32 @@ char *sbrk(os_size_t incr){
  if (HEAP_START_ADDR + incr > &_stack_ptr)
  {
 
-  uart_debug_print("[heap] _sbrk: Heap and stack collision\n\r");
+  uart_debug_print("[heap] sbrk: Heap and stack collision\n\r");
  }
  HEAP_START_ADDR += incr;
+ uart_debug_print("[heap] sbrk: expand '");
+ uart_debug_print_i32(incr,10);
+ uart_debug_print("' at '");
+ uart_debug_print_i32(HEAP_START_ADDR,16);
+ uart_debug_print("'\n\r");
  return prevHeapEnd;
 }
 
 os_err_t os_heap_init(){
  HEAP_START_ADDR = &_ebss;
  uart_debug_print("[heap] kernel heap: initial at '0x");
- uart_debug_print_i32((unsigned int)HEAP_START_ADDR);
+ uart_debug_print_i32((unsigned int)HEAP_START_ADDR,16);
  uart_debug_print("'\n\r");
 
  uart_debug_print("[heap] user heap: initial at '0x");
- uart_debug_print_i32((unsigned int)HEAP_START_ADDR + 2048);
+ uart_debug_print_i32((unsigned int)HEAP_START_ADDR + 2048,16);
  uart_debug_print("'\n\r");
 
+ uart_debug_print_i32(108,10);
+
  os_heap_block_t *block = sbrk((((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7));
- block->meta = (((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7);
+ os_heap_block_size_set(block,(((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7));
+ os_heap_block_free_set(block,1);
  block->next = block;
  block->prior = block;
 
@@ -554,27 +562,10 @@ os_err_t os_heap_init(){
  a[0] = 1;
  a[1] = 2;
  a[2] = 3;
- uart_debug_print_i32(a[0]);
- uart_debug_print("'\n\r");
- uart_debug_print_i32(a[1]);
- uart_debug_print("'\n\r");
- uart_debug_print_i32(a[2]);
- uart_debug_print("'\n\r");
-
  os_heap_free(a);
  uint32_t *b = os_heap_malloc(2*sizeof(uint32_t));
  b[0] = 4;
  b[1] = 5;
- uart_debug_print_i32(b[0]);
- uart_debug_print("'\n\r");
- uart_debug_print_i32(b[1]);
- uart_debug_print("'\n\r");
- uart_debug_print_i32(a[0]);
- uart_debug_print("'\n\r");
- uart_debug_print_i32(a[1]);
- uart_debug_print("'\n\r");
- uart_debug_print_i32(a[2]);
- uart_debug_print("'\n\r");
  uint32_t *c = os_heap_malloc(10*sizeof(uint32_t));
  uint32_t *d = os_heap_malloc(10*sizeof(uint32_t));
  uint32_t *e = os_heap_malloc(10*sizeof(uint32_t));
@@ -592,9 +583,9 @@ void print_heap(){
   }else{
    uart_debug_print("[heap] free block: at '");
   }
-  uart_debug_print_i32(block + (((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7));
+  uart_debug_print_i32(block + (((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7),16);
   uart_debug_print("',size ");
-  uart_debug_print_i32((block->meta >> 1) & 0xFFFFFFFF);
+  uart_debug_print_i32((block->meta >> 1) & 0xFFFFFFFF,10);
   uart_debug_print("\n\r");
 
   block = (block + ((block->meta >> 1) & 0xFFFFFFFF) + (((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7));
@@ -606,6 +597,7 @@ os_heap_block_t* os_heap_find_block(os_size_t size){
  for(block = ((os_heap_block_t *)&_ebss)->next;
      block != &_ebss && os_heap_block_size(block) < size;
      block = block->next);
+
  if(block != &_ebss){
   return block;
  }else{
@@ -624,6 +616,7 @@ void os_heap_split_block(os_heap_block_t* block, os_size_t size){
 void* os_heap_malloc(os_size_t size){
  os_size_t newSize = ((((((sizeof(os_heap_block_t)) + (8 -1)) & ~0x7) + size) + (8 -1)) & ~0x7);
  os_heap_block_t *block = os_heap_find_block(newSize);
+
  if(block == ((void*)0)){
   block = sbrk(newSize);
   if((long)block == -1){

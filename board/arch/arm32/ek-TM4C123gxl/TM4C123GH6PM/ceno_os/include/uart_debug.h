@@ -20,7 +20,7 @@ void uart_debug_print(char* str);
 
 void uart_debug_print_char(char c);
 
-void uart_debug_print_i32(unsigned int v);
+void uart_debug_print_i32(unsigned int v,unsigned int mode);
 
 char uart_debug_reveive_char(void);
 

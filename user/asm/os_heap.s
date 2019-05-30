@@ -145,7 +145,16 @@ os_heap_block_size_set:
 	.section	.rodata
 	.align	2
 .LC0:
-	.ascii	"[heap] _sbrk: Heap and stack collision\012\015\000"
+	.ascii	"[heap] sbrk: Heap and stack collision\012\015\000"
+	.align	2
+.LC1:
+	.ascii	"[heap] sbrk: expand '\000"
+	.align	2
+.LC2:
+	.ascii	"' at '\000"
+	.align	2
+.LC3:
+	.ascii	"'\012\015\000"
 	.text
 	.align	2
 	.global	sbrk
@@ -188,6 +197,20 @@ sbrk:
 	add	r3, r2, r3
 	ldr	r2, .L14
 	str	r3, [r2]
+	ldr	r0, .L14+16
+	bl	uart_debug_print
+	mov	r1, #10
+	ldr	r0, [fp, #-16]
+	bl	uart_debug_print_i32
+	ldr	r0, .L14+20
+	bl	uart_debug_print
+	ldr	r3, .L14
+	ldr	r3, [r3]
+	mov	r1, #16
+	mov	r0, r3
+	bl	uart_debug_print_i32
+	ldr	r0, .L14+24
+	bl	uart_debug_print
 	ldr	r3, [fp, #-8]
 	mov	r0, r3
 	sub	sp, fp, #4
@@ -201,16 +224,16 @@ sbrk:
 	.word	_ebss
 	.word	_stack_ptr
 	.word	.LC0
+	.word	.LC1
+	.word	.LC2
+	.word	.LC3
 	.size	sbrk, .-sbrk
 	.section	.rodata
 	.align	2
-.LC1:
+.LC4:
 	.ascii	"[heap] kernel heap: initial at '0x\000"
 	.align	2
-.LC2:
-	.ascii	"'\012\015\000"
-	.align	2
-.LC3:
+.LC5:
 	.ascii	"[heap] user heap: initial at '0x\000"
 	.text
 	.align	2
@@ -233,6 +256,7 @@ os_heap_init:
 	bl	uart_debug_print
 	ldr	r3, .L18
 	ldr	r3, [r3]
+	mov	r1, #16
 	mov	r0, r3
 	bl	uart_debug_print_i32
 	ldr	r0, .L18+12
@@ -242,16 +266,23 @@ os_heap_init:
 	ldr	r3, .L18
 	ldr	r3, [r3]
 	add	r3, r3, #2048
+	mov	r1, #16
 	mov	r0, r3
 	bl	uart_debug_print_i32
 	ldr	r0, .L18+12
 	bl	uart_debug_print
+	mov	r1, #10
+	mov	r0, #108
+	bl	uart_debug_print_i32
 	mov	r0, #16
 	bl	sbrk
 	str	r0, [fp, #-8]
-	ldr	r3, [fp, #-8]
-	mov	r2, #16
-	str	r2, [r3]
+	mov	r1, #16
+	ldr	r0, [fp, #-8]
+	bl	os_heap_block_size_set
+	mov	r1, #1
+	ldr	r0, [fp, #-8]
+	bl	os_heap_block_free_set
 	ldr	r3, [fp, #-8]
 	ldr	r2, [fp, #-8]
 	str	r2, [r3, #4]
@@ -272,26 +303,6 @@ os_heap_init:
 	add	r3, r3, #8
 	mov	r2, #3
 	str	r2, [r3]
-	ldr	r3, [fp, #-12]
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
-	ldr	r3, [fp, #-12]
-	add	r3, r3, #4
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
-	ldr	r3, [fp, #-12]
-	add	r3, r3, #8
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
 	ldr	r0, [fp, #-12]
 	bl	os_heap_free
 	mov	r0, #8
@@ -304,39 +315,6 @@ os_heap_init:
 	add	r3, r3, #4
 	mov	r2, #5
 	str	r2, [r3]
-	ldr	r3, [fp, #-16]
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
-	ldr	r3, [fp, #-16]
-	add	r3, r3, #4
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
-	ldr	r3, [fp, #-12]
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
-	ldr	r3, [fp, #-12]
-	add	r3, r3, #4
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
-	ldr	r3, [fp, #-12]
-	add	r3, r3, #8
-	ldr	r3, [r3]
-	mov	r0, r3
-	bl	uart_debug_print_i32
-	ldr	r0, .L18+12
-	bl	uart_debug_print
 	mov	r0, #40
 	bl	os_heap_malloc
 	str	r0, [fp, #-20]
@@ -358,22 +336,22 @@ os_heap_init:
 .L18:
 	.word	HEAP_START_ADDR
 	.word	_ebss
-	.word	.LC1
-	.word	.LC2
+	.word	.LC4
 	.word	.LC3
+	.word	.LC5
 	.size	os_heap_init, .-os_heap_init
 	.section	.rodata
 	.align	2
-.LC4:
+.LC6:
 	.ascii	"[heap] alloced block: at '\000"
 	.align	2
-.LC5:
+.LC7:
 	.ascii	"[heap] free block: at '\000"
 	.align	2
-.LC6:
+.LC8:
 	.ascii	"',size \000"
 	.align	2
-.LC7:
+.LC9:
 	.ascii	"\012\015\000"
 	.text
 	.align	2
@@ -407,6 +385,7 @@ print_heap:
 .L23:
 	ldr	r3, [fp, #-8]
 	add	r3, r3, #192
+	mov	r1, #16
 	mov	r0, r3
 	bl	uart_debug_print_i32
 	ldr	r0, .L25+12
@@ -414,6 +393,7 @@ print_heap:
 	ldr	r3, [fp, #-8]
 	ldr	r3, [r3]
 	lsr	r3, r3, #1
+	mov	r1, #10
 	mov	r0, r3
 	bl	uart_debug_print_i32
 	ldr	r0, .L25+16
@@ -443,10 +423,10 @@ print_heap:
 	.align	2
 .L25:
 	.word	_ebss
-	.word	.LC4
-	.word	.LC5
 	.word	.LC6
 	.word	.LC7
+	.word	.LC8
+	.word	.LC9
 	.word	_ebss+8192
 	.size	print_heap, .-print_heap
 	.align	2
