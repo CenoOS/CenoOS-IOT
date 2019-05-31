@@ -23,30 +23,7 @@
 
 static char *HEAP_START_ADDR;
 
-
 void *memcpy(void *dest, const void *src, os_size_t count);
-
-uint32_t os_heap_block_free(os_heap_block_t* block){
-	return ((0x1 & block->meta) << 30) & 0xFFFFFFFF;
-}
-
-uint32_t os_heap_block_size(os_heap_block_t* block){
-	return (block->meta >> 1) & 0xFFFFFFFF;
-}
-
-void os_heap_block_free_set(os_heap_block_t* block,os_size_t free){
-	block->meta &= (0xFFFFFFFE | free);
-}
-
-void os_heap_block_size_set(os_heap_block_t* block,uint32_t size){
-	if(block->meta & 1){
-		block->meta = size;
-		block->meta &= 0xFFFFFFFE;
-	}else{
-		block->meta = size;
-		block->meta |= 0xFFFFFFFE;
-	}
-}
 
 char *sbrk(os_size_t incr){
 	char *prevHeapEnd;
@@ -80,8 +57,7 @@ os_err_t os_heap_init(){
 	uart_debug_print("'\n\r");
 
 	os_heap_block_t *block = sbrk(BLOCK_META_SIZE);
-	os_heap_block_size_set(block,BLOCK_META_SIZE);
-	os_heap_block_free_set(block,1);
+	block->size = BLOCK_META_SIZE;
 	block->next = block;
 	block->prior = block;
 
@@ -94,35 +70,28 @@ os_err_t os_heap_init(){
 	b[0] = 4;
 	b[1] = 5;
 	uint32_t *c = os_heap_malloc(10*sizeof(uint32_t));
+	os_heap_free(c);
 	uint32_t *d = os_heap_malloc(10*sizeof(uint32_t));
+	os_heap_free(d);
 	uint32_t *e = os_heap_malloc(10*sizeof(uint32_t));
-
+	os_heap_block_t* blocks[11];
+	for(int i = 0; i<10;i++){
+		blocks[i] = os_heap_malloc(i*sizeof(uint32_t));
+	}
+	for(int i = 0; i<10;i++){
+		os_heap_free(blocks[i]);
+	}
 	print_heap();
 	
 	return OS_ERR_NONE;
 }
 
-void print_heap(){
-	os_heap_block_t *block = &_ebss;
-	while(block < &_ebss + KERNEL_HEAP_SIZE){
-		if(block->meta & 0x1){
-			uart_debug_print("[heap] alloced block: at '");
-		}else{
-			uart_debug_print("[heap] free block: at '");
-		}
-		uart_debug_print_i32(block + BLOCK_META_SIZE,16);
-		uart_debug_print("',size ");
-		uart_debug_print_i32((block->meta >> 1) & 0xFFFFFFFF,10);
-		uart_debug_print("\n\r");
 
-		block = (block + ((block->meta >> 1) & 0xFFFFFFFF) + BLOCK_META_SIZE);
-	}
-}
 
 os_heap_block_t* os_heap_find_block(os_size_t size){
 	os_heap_block_t *block;
 	for(block = ((os_heap_block_t *)&_ebss)->next;
-					block != &_ebss && os_heap_block_size(block) < size;
+					block != &_ebss && (block->size < size);
 					block = block->next);
 
 	if(block != &_ebss){
@@ -130,14 +99,6 @@ os_heap_block_t* os_heap_find_block(os_size_t size){
 	}else{
 		return NULL;
 	}
-}
-
-os_heap_block_t* os_heap_extend(os_heap_block_t* last, os_size_t size){
-
-}
-
-void os_heap_split_block(os_heap_block_t* block, os_size_t size){
-
 }
 
 void* os_heap_malloc(os_size_t size){
@@ -149,18 +110,14 @@ void* os_heap_malloc(os_size_t size){
 		if((long)block == -1){
 			return NULL;
 		}else{
-			block->meta = newSize | 1;
+			block->size = newSize | 1;
 		}
 	}else{
-		block->meta |= 1;
+		block->size |= 1;
 		block->prior->next = block->next;
 		block->next->prior = block->prior;
 	}
-	return (char *)block + BLOCK_META_SIZE;
-}
-
-void* os_heap_calloc (os_size_t num, os_size_t size){
-
+	return (char *)block + BLOCK_META_SIZE; /* pointer to payload */
 }
 
 void* os_heap_realloc (void* ptr, os_size_t newSize){
@@ -169,7 +126,7 @@ void* os_heap_realloc (void* ptr, os_size_t newSize){
 	if(newPtr == NULL){
 		return NULL;
 	}
-	uint32_t copySize = block->meta + BLOCK_META_SIZE;
+	uint32_t copySize = block->size + BLOCK_META_SIZE;
 	if(newSize < copySize){
 		copySize = newSize;
 	}
@@ -181,13 +138,16 @@ void* os_heap_realloc (void* ptr, os_size_t newSize){
 uint32_t os_heap_free(void* ptr){
 	os_heap_block_t *block = ptr - BLOCK_META_SIZE,
 						*head = &_ebss;
-	block->meta &= ~1;
+	block->size &= ~1;
 	block->next = head->next;
+	block->prior = head;
 	head->next = block;
-	head->next->prior = block;
+	block->next->prior = block;
 }
 
+void* os_heap_calloc (os_size_t num, os_size_t size){
 
+}
 
 void *memcpy(void *dest, const void *src, os_size_t count){
 	if (dest == NULL || src == NULL)
@@ -201,4 +161,22 @@ void *memcpy(void *dest, const void *src, os_size_t count){
 		*pdest++ = *psrc++;
 	}
 	return dest;
+}
+
+
+void print_heap(){
+	os_heap_block_t *block = &_ebss;
+	while(block < (os_heap_block_t *)(&_ebss + KERNEL_HEAP_SIZE)){
+		if(block->size & 1){
+			uart_debug_print("[heap] alloced block: at '");
+		}else{
+			uart_debug_print("[heap] free block: at '");
+		}
+		uart_debug_print_i32(block,16);
+		uart_debug_print("',size ");
+		uart_debug_print_i32((os_heap_block_t *)(block->size & ~1),10);
+		uart_debug_print("\n\r");
+
+		block = (os_heap_block_t *)((char *)block + (block->size & ~1));
+	}
 }

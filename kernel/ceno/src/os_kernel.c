@@ -60,7 +60,11 @@ os_err_t os_init(void){
 }
 
 void task_idle_thread(){
-	uart_debug_print("[task] idle.\n\r");
+	for(unsigned int i = 0;i<~0;i++){
+		uart_debug_print("[task] idle. ");
+		uart_debug_print_i32(i,10);
+		uart_debug_print("\n\r");
+	}
 }
 
 os_err_t os_run(void){

@@ -68,15 +68,9 @@
 		UART0->CTL  = (1<<0)|(1<<8)|(1<<9);
 	}
 	void uart_debug_print(char* str){
-		__asm	(
-			"CPSID	I\n\t"
-		);
 		while(*str){
 			uart_debug_print_char(*(str++));
 		}
-		__asm	(
-			"CPSIE	I\n\t"
-		);
 	}
 
 	void uart_debug_print_char(char c){

@@ -28,39 +28,21 @@ extern uint32_t _ebss;
 
 typedef struct os_heap_block os_heap_block_t;
 struct os_heap_block{
-	/* 31 bit size, 1 bit state*/
-	uint32_t meta;
+	os_size_t size;
 	os_heap_block_t* next;
 	os_heap_block_t* prior;
 };
 
 
-uint32_t os_heap_block_free(os_heap_block_t* block);
-uint32_t os_heap_block_size(os_heap_block_t* block);
-
-void os_heap_block_free_set(os_heap_block_t* block,os_size_t free);
-void os_heap_block_size_set(os_heap_block_t* block,uint32_t size);
-
 os_err_t os_heap_init();
-
+os_heap_block_t* os_heap_find_block(os_size_t size);
 void* os_heap_malloc(os_size_t size);
-
-/**
- * num Number of elements to allocate.
- * size Size of each element.
- */
-void* os_heap_calloc (os_size_t num, os_size_t size);
-
 void* os_heap_realloc (void* ptr, os_size_t newSize);
-
 uint32_t os_heap_free(void* ptr);
 
+void* os_heap_calloc (os_size_t num, os_size_t size);
 
-os_heap_block_t* os_heap_find_block(os_size_t size);
 
-os_heap_block_t* os_heap_extend(os_heap_block_t* last, os_size_t s); 
-
-void os_heap_split_block(os_heap_block_t* b, os_size_t s);
 
 
 

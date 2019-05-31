@@ -108,7 +108,10 @@ os_init:
 	.section	.rodata
 	.align	2
 .LC3:
-	.ascii	"[task] idle.\012\015\000"
+	.ascii	"[task] idle. \000"
+	.align	2
+.LC4:
+	.ascii	"\012\015\000"
 	.text
 	.align	2
 	.global	task_idle_thread
@@ -118,25 +121,43 @@ os_init:
 	.type	task_idle_thread, %function
 task_idle_thread:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
+	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L9
+	sub	sp, sp, #8
+	mov	r3, #0
+	str	r3, [fp, #-8]
+	b	.L9
+.L10:
+	ldr	r0, .L11
 	bl	uart_debug_print
+	mov	r1, #10
+	ldr	r0, [fp, #-8]
+	bl	uart_debug_print_i32
+	ldr	r0, .L11+4
+	bl	uart_debug_print
+	ldr	r3, [fp, #-8]
+	add	r3, r3, #1
+	str	r3, [fp, #-8]
+.L9:
+	ldr	r3, [fp, #-8]
+	cmn	r3, #1
+	bne	.L10
 	nop
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L10:
+.L12:
 	.align	2
-.L9:
+.L11:
 	.word	.LC3
+	.word	.LC4
 	.size	task_idle_thread, .-task_idle_thread
 	.section	.rodata
 	.align	2
-.LC4:
+.LC5:
 	.ascii	"[kernel] os run.\012\015\000"
 	.text
 	.align	2
@@ -151,7 +172,7 @@ os_run:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L12
+	ldr	r0, .L14
 	bl	uart_debug_print
 	bl	os_on_startup
 	bl	disable_irq
@@ -163,10 +184,10 @@ os_run:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L13:
+.L15:
 	.align	2
-.L12:
-	.word	.LC4
+.L14:
+	.word	.LC5
 	.size	os_run, .-os_run
 	.align	2
 	.global	os_idle
@@ -180,9 +201,9 @@ os_idle:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-.L15:
+.L17:
 	bl	task_idle_thread
-	b	.L15
+	b	.L17
 	.size	os_idle, .-os_idle
 	.align	2
 	.global	os_tick
@@ -219,21 +240,21 @@ os_get_next_ready_from_task_queue:
 	add	fp, sp, #0
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
-	ldr	r3, .L19
+	ldr	r3, .L21
 	ldr	r3, [r3, #36]
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
 	ldr	fp, [sp], #4
 	bx	lr
-.L20:
+.L22:
 	.align	2
-.L19:
+.L21:
 	.word	osTaskQueue
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
 	.align	2
-.LC5:
+.LC6:
 	.ascii	"[kernel] os sched.\012\015\000"
 	.text
 	.align	2
@@ -248,45 +269,45 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L25
+	ldr	r0, .L27
 	bl	uart_debug_print
-	ldr	r0, .L25+4
+	ldr	r0, .L27+4
 	bl	os_queue_size
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L22
-	ldr	r3, .L25+8
-	ldr	r2, .L25+12
+	bne	.L24
+	ldr	r3, .L27+8
+	ldr	r2, .L27+12
 	str	r2, [r3]
-	b	.L23
-.L22:
-	ldr	r3, .L25+8
-	ldr	r2, .L25+12
+	b	.L25
+.L24:
+	ldr	r3, .L27+8
+	ldr	r2, .L27+12
 	str	r2, [r3]
-.L23:
-	ldr	r3, .L25+16
+.L25:
+	ldr	r3, .L27+16
 	mov	r2, #268435456
 	str	r2, [r3]
-	ldr	r3, .L25+8
+	ldr	r3, .L27+8
 	ldr	r2, [r3]
-	ldr	r3, .L25+20
+	ldr	r3, .L27+20
 	ldr	r3, [r3]
 	cmp	r2, r3
-	beq	.L24
-	ldr	r3, .L25+16
+	beq	.L26
+	ldr	r3, .L27+16
 	mov	r2, #268435456
 	str	r2, [r3]
-.L24:
+.L26:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L26:
+.L28:
 	.align	2
-.L25:
-	.word	.LC5
+.L27:
+	.word	.LC6
 	.word	osTaskQueue
 	.word	osTaskNext
 	.word	osIdleTask
