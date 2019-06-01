@@ -113,6 +113,8 @@ os_err_t os_task_switch_next(void){
 			"BL	uart_debug_print\n\t"
 
      	/*     push registers r4-r11 on the stack */
+		 	"PUSH		{r12,lr}\n\t"
+			"PUSH		{r0,r3}\n\t"
      		"PUSH		{r4-r11}\n\t"
 
      	/*     osTaskCurr->sp = sp; */

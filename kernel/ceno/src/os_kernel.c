@@ -87,24 +87,27 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-	uint32_t i = osTaskQueue.front;
-	while( i != osTaskQueue.rear){
-		os_task_t *t = (os_task_t *)osTaskQueue.elems[i];
+	// uint32_t i = osTaskQueue.front;
+	// while( i != osTaskQueue.rear){
+		// os_task_t *t = (os_task_t *)osTaskQueue.elems[i];
 		// uart_debug_print_i32(t->timeout,10);
 		// uart_debug_print("\n\r");
 		// if(t->timeout > 0){
 		// 	t->timeout--;
-			if (t->timeout == 0U) {
-				t->state = OS_STATE_READY;	
-			}
+			// if (t->timeout == 0U) {
+			// 	t->state = OS_STATE_READY;	
+			// }
 		// }
-		i = (i+1) % osTaskQueue.size;
-	}
+		// i = (i+1) % osTaskQueue.size;
+	// }
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
-	// get the first task from task queue sorted by priority
-	return (os_task_t *)osTaskQueue.elems;
+	uart_debug_print_i32(os_queue_length(queue),10);
+	uint32_t ptrToTask;
+	os_queue_item_de(queue,&ptrToTask);
+	os_task_t* t = (os_task_t *)ptrToTask;
+	return t;
 }
 
 os_err_t os_sched(void){
@@ -112,9 +115,11 @@ os_err_t os_sched(void){
 	if(os_queue_length(&osTaskQueue)<=0U){
 		osTaskNext = &osIdleTask;
 	}else{
-		/* get first ready task from task queue, task queue is sorted by priority */
-		osTaskNext = &osIdleTask;//os_get_next_ready_from_task_queue(&osTaskQueue);
+		osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
 	}
+	uart_debug_print("[task next] name :");
+	uart_debug_print(osTaskNext->obj.name);
+	uart_debug_print("\n\r");
 
 	/* hard trigger PendSV*/
 	*(uint32_t volatile *)0xE000ED04 = (1U << 28);

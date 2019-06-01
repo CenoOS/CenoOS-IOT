@@ -208,7 +208,6 @@ os_idle:
 	bl	task_idle_thread
 	b	.L17
 	.size	os_idle, .-os_idle
-	.global	__aeabi_uidivmod
 	.align	2
 	.global	os_tick
 	.syntax unified
@@ -217,56 +216,17 @@ os_idle:
 	.type	os_tick, %function
 os_tick:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 8
+	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 1, uses_anonymous_args = 0
-	push	{fp, lr}
-	add	fp, sp, #4
-	sub	sp, sp, #8
-	ldr	r3, .L22
-	ldr	r3, [r3, #20]
-	str	r3, [fp, #-8]
-	b	.L19
-.L21:
-	ldr	r3, .L22
-	ldr	r2, [r3, #28]
-	ldr	r3, [fp, #-8]
-	lsl	r3, r3, #2
-	add	r3, r2, r3
-	ldr	r3, [r3]
-	str	r3, [fp, #-12]
-	ldr	r3, [fp, #-12]
-	ldr	r3, [r3, #36]
-	cmp	r3, #0
-	bne	.L20
-	ldr	r3, [fp, #-12]
-	mov	r2, #2
-	strb	r2, [r3, #32]
-.L20:
-	ldr	r3, [fp, #-8]
-	add	r2, r3, #1
-	ldr	r3, .L22
-	ldr	r3, [r3, #16]
-	mov	r1, r3
-	mov	r0, r2
-	bl	__aeabi_uidivmod
-	mov	r3, r1
-	str	r3, [fp, #-8]
-.L19:
-	ldr	r3, .L22
-	ldr	r3, [r3, #24]
-	ldr	r2, [fp, #-8]
-	cmp	r2, r3
-	bne	.L21
+	@ link register save eliminated.
+	str	fp, [sp, #-4]!
+	add	fp, sp, #0
 	nop
 	mov	r0, r3
-	sub	sp, fp, #4
+	add	sp, fp, #0
 	@ sp needed
-	pop	{fp, lr}
+	ldr	fp, [sp], #4
 	bx	lr
-.L23:
-	.align	2
-.L22:
-	.word	osTaskQueue
 	.size	os_tick, .-os_tick
 	.align	2
 	.global	os_get_next_ready_from_task_queue
@@ -276,29 +236,38 @@ os_tick:
 	.type	os_get_next_ready_from_task_queue, %function
 os_get_next_ready_from_task_queue:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 8
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
-	sub	sp, sp, #12
-	str	r0, [fp, #-8]
-	ldr	r3, .L26
-	ldr	r3, [r3, #28]
+	push	{fp, lr}
+	add	fp, sp, #4
+	sub	sp, sp, #16
+	str	r0, [fp, #-16]
+	ldr	r0, [fp, #-16]
+	bl	os_queue_length
+	mov	r3, r0
+	mov	r1, #10
 	mov	r0, r3
-	add	sp, fp, #0
+	bl	uart_debug_print_i32
+	sub	r3, fp, #12
+	mov	r1, r3
+	ldr	r0, [fp, #-16]
+	bl	os_queue_item_de
+	ldr	r3, [fp, #-12]
+	str	r3, [fp, #-8]
+	ldr	r3, [fp, #-8]
+	mov	r0, r3
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
-.L27:
-	.align	2
-.L26:
-	.word	osTaskQueue
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
 	.align	2
 .LC6:
 	.ascii	"[kernel] os sched.\012\015\000"
+	.align	2
+.LC7:
+	.ascii	"[task next] name :\000"
 	.text
 	.align	2
 	.global	os_sched
@@ -312,48 +281,61 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L32
+	ldr	r0, .L25
 	bl	uart_debug_print
-	ldr	r0, .L32+4
+	ldr	r0, .L25+4
 	bl	os_queue_length
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L29
-	ldr	r3, .L32+8
-	ldr	r2, .L32+12
+	bne	.L22
+	ldr	r3, .L25+8
+	ldr	r2, .L25+12
 	str	r2, [r3]
-	b	.L30
-.L29:
-	ldr	r3, .L32+8
-	ldr	r2, .L32+12
+	b	.L23
+.L22:
+	ldr	r0, .L25+4
+	bl	os_get_next_ready_from_task_queue
+	mov	r2, r0
+	ldr	r3, .L25+8
 	str	r2, [r3]
-.L30:
-	ldr	r3, .L32+16
+.L23:
+	ldr	r0, .L25+16
+	bl	uart_debug_print
+	ldr	r3, .L25+8
+	ldr	r3, [r3]
+	ldr	r3, [r3, #24]
+	mov	r0, r3
+	bl	uart_debug_print
+	ldr	r0, .L25+20
+	bl	uart_debug_print
+	ldr	r3, .L25+24
 	mov	r2, #268435456
 	str	r2, [r3]
-	ldr	r3, .L32+8
+	ldr	r3, .L25+8
 	ldr	r2, [r3]
-	ldr	r3, .L32+20
+	ldr	r3, .L25+28
 	ldr	r3, [r3]
 	cmp	r2, r3
-	beq	.L31
-	ldr	r3, .L32+16
+	beq	.L24
+	ldr	r3, .L25+24
 	mov	r2, #268435456
 	str	r2, [r3]
-.L31:
+.L24:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L33:
+.L26:
 	.align	2
-.L32:
+.L25:
 	.word	.LC6
 	.word	osTaskQueue
 	.word	osTaskNext
 	.word	osIdleTask
+	.word	.LC7
+	.word	.LC4
 	.word	-536810236
 	.word	osTaskCurr
 	.size	os_sched, .-os_sched

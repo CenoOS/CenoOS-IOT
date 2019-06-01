@@ -229,7 +229,7 @@ os_queue_item_de:
 	.ascii	"[queue] queue traverse \012\015\000"
 	.align	2
 .LC6:
-	.ascii	" |--[queue] item : '\000"
+	.ascii	" |--[queue item] at : '\000"
 	.align	2
 .LC7:
 	.ascii	"'\012\015\000"
@@ -346,13 +346,11 @@ os_queue_is_empty:
 	sub	sp, sp, #12
 	str	r0, [fp, #-8]
 	ldr	r3, [fp, #-8]
-	ldr	r2, [r3, #24]
+	ldr	r2, [r3, #20]
 	ldr	r3, [fp, #-8]
-	str	r2, [r3, #20]
-	ldr	r3, [fp, #-8]
-	ldr	r3, [r3, #20]
-	cmp	r3, #0
-	beq	.L26
+	ldr	r3, [r3, #24]
+	cmp	r2, r3
+	bne	.L26
 	mov	r3, #1
 	b	.L27
 .L26:

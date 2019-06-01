@@ -295,6 +295,8 @@ os_task_switch_next:
 	LDR	r3, [r3, #24]
 	MOV	r0, r3
 	BL	uart_debug_print
+	PUSH		{r12,lr}
+	PUSH		{r0,r3}
 	PUSH		{r4-r11}
 	LDR		r1,.L10+12
 	LDR		r1,[r1,#0x00]

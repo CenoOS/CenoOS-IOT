@@ -23,7 +23,6 @@
 #include "os_list.h"
 #include "os_obj.h"
 #include "os_queue.h"
-#include "os_ring_buffer.h"
 #include "os_task.h"
 #include "os_semphore.h"
 #include "os_mutex.h"

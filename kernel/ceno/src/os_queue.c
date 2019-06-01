@@ -51,7 +51,7 @@ uint32_t os_queue_traverse(os_queue_t* queue){
 	uint32_t i = queue->front;
 	uart_debug_print("[queue] queue traverse \n\r");
 	while( i != queue->rear){
-		uart_debug_print(" |--[queue] item : '");
+		uart_debug_print(" |--[queue item] at : '");
 		uart_debug_print_i32(queue->elems[i],16);
 		uart_debug_print("'\n\r");
 		i = (i+1) % queue->size;
@@ -63,7 +63,7 @@ uint32_t os_queue_length(os_queue_t* queue){
 }
 
 uint32_t os_queue_is_empty(os_queue_t* queue){
-	if(queue->front = queue->rear){
+	if(queue->front == queue->rear){
 		return TRUE;
 	}
 	return FALSE;
