@@ -15,6 +15,9 @@
 #define __CENO_RTOS_OS_H__
 
 #define NULL ((void*)0)
+#define TRUE 1
+#define FALSE 0
+
 
 typedef	unsigned int os_task_id_t;
 typedef	unsigned int os_time_t;

@@ -13,9 +13,6 @@
 #ifndef __CENO_RTOS_TASK_H__
 #define __CENO_RTOS_TASK_H__
 
-
-
-
 typedef os_err_t (*os_task_handler_t)();
 
 typedef	enum task_state{
@@ -28,21 +25,15 @@ typedef	enum task_state{
 }task_state_t;
 
 typedef struct os_task{
-	cpu_stk_t 		sp;
-
-	cpu_stk_size_t 		stackSize;
-	os_task_handler_t taskHandler;
-
-	os_task_id_t 	id;
-
-	os_obj_t obj;
-
-	task_state_t 		state;
-	os_time_t 		timeout;
-	priority_t 		priority;
-
-	os_list_t taskList;
-
+	cpu_stk_t	sp;
+	cpu_stk_size_t	stackSize;
+	os_task_handler_t	taskHandler;
+	os_task_id_t	id;
+	os_obj_t	obj;
+	task_state_t	state;
+	os_time_t	timeout;
+	priority_t	priority;
+	os_list_t	taskList;
 }os_task_t;
 
 os_err_t os_task_create(os_task_t *me,

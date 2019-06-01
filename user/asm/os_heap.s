@@ -182,6 +182,34 @@ os_heap_init:
 	add	r3, r3, #4
 	mov	r2, #5
 	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #8
+	mov	r2, #5
+	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #12
+	mov	r2, #5
+	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #16
+	mov	r2, #5
+	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #20
+	mov	r2, #5
+	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #24
+	mov	r2, #5
+	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #28
+	mov	r2, #5
+	str	r2, [r3]
+	ldr	r3, [fp, #-24]
+	add	r3, r3, #32
+	mov	r2, #5
+	str	r2, [r3]
 	mov	r0, #40
 	bl	os_heap_malloc
 	str	r0, [fp, #-28]
@@ -479,17 +507,21 @@ os_heap_calloc:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
-	sub	sp, sp, #12
+	push	{fp, lr}
+	add	fp, sp, #4
+	sub	sp, sp, #8
 	str	r0, [fp, #-8]
 	str	r1, [fp, #-12]
-	nop
+	ldr	r3, [fp, #-8]
+	ldr	r2, [fp, #-12]
+	mul	r1, r2, r3
+	mov	r0, r1
+	bl	os_heap_malloc
+	mov	r3, r0
 	mov	r0, r3
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
 	.size	os_heap_calloc, .-os_heap_calloc
 	.align	2
@@ -511,20 +543,20 @@ memcpy:
 	str	r2, [fp, #-24]
 	ldr	r3, [fp, #-16]
 	cmp	r3, #0
-	beq	.L37
+	beq	.L38
 	ldr	r3, [fp, #-20]
 	cmp	r3, #0
-	bne	.L38
-.L37:
-	mov	r3, #0
-	b	.L39
+	bne	.L39
 .L38:
+	mov	r3, #0
+	b	.L40
+.L39:
 	ldr	r3, [fp, #-16]
 	str	r3, [fp, #-8]
 	ldr	r3, [fp, #-20]
 	str	r3, [fp, #-12]
-	b	.L40
-.L41:
+	b	.L41
+.L42:
 	ldr	r2, [fp, #-12]
 	add	r3, r2, #1
 	str	r3, [fp, #-12]
@@ -533,14 +565,14 @@ memcpy:
 	str	r1, [fp, #-8]
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
-.L40:
+.L41:
 	ldr	r3, [fp, #-24]
 	sub	r2, r3, #1
 	str	r2, [fp, #-24]
 	cmp	r3, #0
-	bne	.L41
+	bne	.L42
 	ldr	r3, [fp, #-16]
-.L39:
+.L40:
 	mov	r0, r3
 	add	sp, fp, #0
 	@ sp needed
@@ -574,27 +606,27 @@ print_heap:
 	push	{fp, lr}
 	add	fp, sp, #4
 	sub	sp, sp, #8
-	ldr	r3, .L47
+	ldr	r3, .L48
 	str	r3, [fp, #-8]
-	b	.L43
-.L46:
+	b	.L44
+.L47:
 	ldr	r3, [fp, #-8]
 	ldr	r3, [r3]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L44
-	ldr	r0, .L47+4
+	beq	.L45
+	ldr	r0, .L48+4
 	bl	uart_debug_print
-	b	.L45
-.L44:
-	ldr	r0, .L47+8
-	bl	uart_debug_print
+	b	.L46
 .L45:
+	ldr	r0, .L48+8
+	bl	uart_debug_print
+.L46:
 	ldr	r3, [fp, #-8]
 	mov	r1, #16
 	mov	r0, r3
 	bl	uart_debug_print_i32
-	ldr	r0, .L47+12
+	ldr	r0, .L48+12
 	bl	uart_debug_print
 	ldr	r3, [fp, #-8]
 	ldr	r3, [r3]
@@ -602,7 +634,7 @@ print_heap:
 	mov	r1, #10
 	mov	r0, r3
 	bl	uart_debug_print_i32
-	ldr	r0, .L47+16
+	ldr	r0, .L48+16
 	bl	uart_debug_print
 	ldr	r3, [fp, #-8]
 	ldr	r3, [r3]
@@ -610,19 +642,19 @@ print_heap:
 	ldr	r2, [fp, #-8]
 	add	r3, r2, r3
 	str	r3, [fp, #-8]
-.L43:
-	ldr	r2, .L47+20
+.L44:
+	ldr	r2, .L48+20
 	ldr	r3, [fp, #-8]
 	cmp	r3, r2
-	bcc	.L46
+	bcc	.L47
 	nop
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L48:
+.L49:
 	.align	2
-.L47:
+.L48:
 	.word	_ebss
 	.word	.LC6
 	.word	.LC7

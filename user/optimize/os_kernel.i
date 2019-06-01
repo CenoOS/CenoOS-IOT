@@ -221,7 +221,7 @@ void uart_debug_print_os_register();
 # 20 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h" 1
-# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h"
+# 22 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h"
 typedef unsigned int os_task_id_t;
 typedef unsigned int os_time_t;
 
@@ -327,30 +327,26 @@ typedef struct os_queue{
  os_obj_t obj;
 
  uint32_t size;
- uint32_t start;
- uint32_t end;
-
  uint32_t front;
  uint32_t rear;
 
- void* elems;
- void* ext;
+ uint32_t* elems;
 }os_queue_t;
-
-typedef struct os_msg{
- os_queue_t msgQ;
-}os_msg_t;
 
 
 os_err_t os_queue_create(os_queue_t* me, const cpu_char_t* name, uint32_t size);
 
-os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr);
+os_err_t os_queue_item_en(os_queue_t* queue, uint32_t* itemPtr);
+os_err_t os_queue_item_de(os_queue_t* queue, uint32_t* itemPtr);
 
-os_err_t os_queue_remove();
+os_err_t os_queue_clear(os_queue_t* queue);
 
-os_err_t os_queue_clear();
+uint32_t os_queue_length(os_queue_t* queue);
 
-uint32_t os_queue_size(os_queue_t* queue);
+uint32_t os_queue_is_empty(os_queue_t* queue);
+uint32_t os_queue_is_full(os_queue_t* queue);
+
+uint32_t os_queue_traverse(os_queue_t* queue);
 # 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h"
@@ -371,7 +367,7 @@ uint8_t os_ring_buffer_is_full(os_ring_buffer_t* buffer);
 uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 27 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
-# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
+# 16 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
 typedef os_err_t (*os_task_handler_t)();
 
 typedef enum task_state{
@@ -385,20 +381,14 @@ typedef enum task_state{
 
 typedef struct os_task{
  cpu_stk_t sp;
-
  cpu_stk_size_t stackSize;
  os_task_handler_t taskHandler;
-
  os_task_id_t id;
-
  os_obj_t obj;
-
  task_state_t state;
  os_time_t timeout;
  priority_t priority;
-
  os_list_t taskList;
-
 }os_task_t;
 
 os_err_t os_task_create(os_task_t *me,
@@ -472,6 +462,8 @@ extern volatile os_task_t osIdleTask;
 # 31 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c" 2
 
+
+
 os_queue_t osTaskQueue;
 
 volatile os_task_t osIdleTask;
@@ -528,6 +520,7 @@ void task_idle_thread(){
 }
 
 os_err_t os_run(void){
+ os_queue_traverse(&osTaskQueue);
  uart_debug_print("[kernel] os run.\n\r");
 
  os_on_startup();
@@ -544,7 +537,19 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-# 100 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+ uint32_t i = osTaskQueue.front;
+ while( i != osTaskQueue.rear){
+  os_task_t *t = (os_task_t *)osTaskQueue.elems[i];
+
+
+
+
+   if (t->timeout == 0U) {
+    t->state = OS_STATE_READY;
+   }
+
+  i = (i+1) % osTaskQueue.size;
+ }
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
@@ -554,7 +559,7 @@ os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 
 os_err_t os_sched(void){
  uart_debug_print("[kernel] os sched.\n\r");
- if(os_queue_size(&osTaskQueue)<=0U){
+ if(os_queue_length(&osTaskQueue)<=0U){
   osTaskNext = &osIdleTask;
  }else{
 

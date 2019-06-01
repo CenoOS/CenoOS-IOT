@@ -220,7 +220,7 @@ void uart_debug_print_os_register();
 # 20 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h" 1
-# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h"
+# 22 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os.h"
 typedef unsigned int os_task_id_t;
 typedef unsigned int os_time_t;
 
@@ -326,30 +326,26 @@ typedef struct os_queue{
  os_obj_t obj;
 
  uint32_t size;
- uint32_t start;
- uint32_t end;
-
  uint32_t front;
  uint32_t rear;
 
- void* elems;
- void* ext;
+ uint32_t* elems;
 }os_queue_t;
-
-typedef struct os_msg{
- os_queue_t msgQ;
-}os_msg_t;
 
 
 os_err_t os_queue_create(os_queue_t* me, const cpu_char_t* name, uint32_t size);
 
-os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr);
+os_err_t os_queue_item_en(os_queue_t* queue, uint32_t* itemPtr);
+os_err_t os_queue_item_de(os_queue_t* queue, uint32_t* itemPtr);
 
-os_err_t os_queue_remove();
+os_err_t os_queue_clear(os_queue_t* queue);
 
-os_err_t os_queue_clear();
+uint32_t os_queue_length(os_queue_t* queue);
 
-uint32_t os_queue_size(os_queue_t* queue);
+uint32_t os_queue_is_empty(os_queue_t* queue);
+uint32_t os_queue_is_full(os_queue_t* queue);
+
+uint32_t os_queue_traverse(os_queue_t* queue);
 # 26 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_ring_buffer.h"
@@ -370,7 +366,7 @@ uint8_t os_ring_buffer_is_full(os_ring_buffer_t* buffer);
 uint8_t os_ring_buffer_is_empty(os_ring_buffer_t* buffer);
 # 27 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h" 1
-# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
+# 16 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_task.h"
 typedef os_err_t (*os_task_handler_t)();
 
 typedef enum task_state{
@@ -384,20 +380,14 @@ typedef enum task_state{
 
 typedef struct os_task{
  cpu_stk_t sp;
-
  cpu_stk_size_t stackSize;
  os_task_handler_t taskHandler;
-
  os_task_id_t id;
-
  os_obj_t obj;
-
  task_state_t state;
  os_time_t timeout;
  priority_t priority;
-
  os_list_t taskList;
-
 }os_task_t;
 
 os_err_t os_task_create(os_task_t *me,
@@ -470,589 +460,7 @@ os_err_t os_sched(void);
 extern volatile os_task_t osIdleTask;
 # 31 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
 # 2 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_queue.c" 2
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 1 3
 
-
-
-
-
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_ansi.h" 1 3
-# 10 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_ansi.h" 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/newlib.h" 1 3
-# 11 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_ansi.h" 2 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/config.h" 1 3
-
-
-
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/machine/ieeefp.h" 1 3
-# 5 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/config.h" 2 3
-# 12 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/_ansi.h" 2 3
-# 7 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 2 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 1 3
-# 14 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 1 3 4
-# 149 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 3 4
-
-# 149 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 3 4
-typedef int ptrdiff_t;
-# 216 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 3 4
-typedef unsigned int size_t;
-# 328 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 3 4
-typedef unsigned int wchar_t;
-# 15 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 2 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 1 3
-# 24 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/machine/_types.h" 1 3
-# 25 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 2 3
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/lock.h" 1 3
-# 33 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/lock.h" 3
-struct __lock;
-typedef struct __lock * _LOCK_T;
-
-
-
-
-
-
-extern void __retarget_lock_init(_LOCK_T *lock);
-
-extern void __retarget_lock_init_recursive(_LOCK_T *lock);
-
-extern void __retarget_lock_close(_LOCK_T lock);
-
-extern void __retarget_lock_close_recursive(_LOCK_T lock);
-
-extern void __retarget_lock_acquire(_LOCK_T lock);
-
-extern void __retarget_lock_acquire_recursive(_LOCK_T lock);
-
-extern int __retarget_lock_try_acquire(_LOCK_T lock);
-
-extern int __retarget_lock_try_acquire_recursive(_LOCK_T lock);
-
-
-extern void __retarget_lock_release(_LOCK_T lock);
-
-extern void __retarget_lock_release_recursive(_LOCK_T lock);
-# 26 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 2 3
-
-
-typedef long __blkcnt_t;
-
-
-
-typedef long __blksize_t;
-
-
-
-typedef __uint64_t __fsblkcnt_t;
-
-
-
-typedef __uint32_t __fsfilcnt_t;
-
-
-
-typedef long _off_t;
-
-
-
-
-
-typedef int __pid_t;
-
-
-
-typedef short __dev_t;
-
-
-
-typedef unsigned short __uid_t;
-
-
-typedef unsigned short __gid_t;
-
-
-
-typedef __uint32_t __id_t;
-
-
-
-
-
-
-
-typedef unsigned short __ino_t;
-# 88 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 3
-typedef __uint32_t __mode_t;
-
-
-
-
-
-__extension__ typedef long long _off64_t;
-
-
-
-
-
-typedef _off_t __off_t;
-
-
-typedef _off64_t __loff_t;
-
-
-typedef long __key_t;
-
-
-
-
-
-
-
-typedef long _fpos_t;
-# 129 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 3
-typedef unsigned int __size_t;
-# 145 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 3
-typedef signed int _ssize_t;
-# 156 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 3
-typedef _ssize_t __ssize_t;
-
-
-# 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 1 3 4
-# 357 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 3 4
-typedef unsigned int wint_t;
-# 160 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/_types.h" 2 3
-
-
-
-typedef struct
-{
-  int __count;
-  union
-  {
-    wint_t __wch;
-    unsigned char __wchb[4];
-  } __value;
-} _mbstate_t;
-
-
-
-typedef _LOCK_T _flock_t;
-
-
-
-
-typedef void *_iconv_t;
-
-
-
-
-
-
-typedef unsigned long __clock_t;
-
-
-
-
-
-
-typedef __int_least64_t __time_t;
-
-
-
-
-
-typedef unsigned long __clockid_t;
-
-
-typedef unsigned long __timer_t;
-
-
-typedef __uint8_t __sa_family_t;
-
-
-
-typedef __uint32_t __socklen_t;
-
-
-typedef unsigned short __nlink_t;
-typedef long __suseconds_t;
-typedef unsigned long __useconds_t;
-
-
-
-
-typedef char * __va_list;
-# 16 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 2 3
-
-
-
-
-
-
-typedef unsigned long __ULong;
-# 38 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-struct _reent;
-
-struct __locale_t;
-
-
-
-
-
-
-struct _Bigint
-{
-  struct _Bigint *_next;
-  int _k, _maxwds, _sign, _wds;
-  __ULong _x[1];
-};
-
-
-struct __tm
-{
-  int __tm_sec;
-  int __tm_min;
-  int __tm_hour;
-  int __tm_mday;
-  int __tm_mon;
-  int __tm_year;
-  int __tm_wday;
-  int __tm_yday;
-  int __tm_isdst;
-};
-
-
-
-
-
-
-
-struct _on_exit_args {
- void * _fnargs[32];
- void * _dso_handle[32];
-
- __ULong _fntypes;
-
-
- __ULong _is_cxa;
-};
-# 93 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-struct _atexit {
- struct _atexit *_next;
- int _ind;
-
- void (*_fns[32])(void);
-        struct _on_exit_args _on_exit_args;
-};
-# 117 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-struct __sbuf {
- unsigned char *_base;
- int _size;
-};
-# 181 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-struct __sFILE {
-  unsigned char *_p;
-  int _r;
-  int _w;
-  short _flags;
-  short _file;
-  struct __sbuf _bf;
-  int _lbfsize;
-
-
-
-
-
-
-  void * _cookie;
-
-  int (*_read) (struct _reent *, void *,
-        char *, int);
-  int (*_write) (struct _reent *, void *,
-         const char *,
-         int);
-  _fpos_t (*_seek) (struct _reent *, void *, _fpos_t, int);
-  int (*_close) (struct _reent *, void *);
-
-
-  struct __sbuf _ub;
-  unsigned char *_up;
-  int _ur;
-
-
-  unsigned char _ubuf[3];
-  unsigned char _nbuf[1];
-
-
-  struct __sbuf _lb;
-
-
-  int _blksize;
-  _off_t _offset;
-
-
-  struct _reent *_data;
-
-
-
-  _flock_t _lock;
-
-  _mbstate_t _mbstate;
-  int _flags2;
-};
-# 287 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-typedef struct __sFILE __FILE;
-
-
-
-struct _glue
-{
-  struct _glue *_next;
-  int _niobs;
-  __FILE *_iobs;
-};
-# 319 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-struct _rand48 {
-  unsigned short _seed[3];
-  unsigned short _mult[3];
-  unsigned short _add;
-
-
-
-
-};
-# 608 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-struct _reent
-{
-  int _errno;
-
-
-
-
-  __FILE *_stdin, *_stdout, *_stderr;
-
-  int _inc;
-  char _emergency[25];
-
-
-  int _unspecified_locale_info;
-  struct __locale_t *_locale;
-
-  int __sdidinit;
-
-  void (*__cleanup) (struct _reent *);
-
-
-  struct _Bigint *_result;
-  int _result_k;
-  struct _Bigint *_p5s;
-  struct _Bigint **_freelist;
-
-
-  int _cvtlen;
-  char *_cvtbuf;
-
-  union
-    {
-      struct
-        {
-          unsigned int _unused_rand;
-          char * _strtok_last;
-          char _asctime_buf[26];
-          struct __tm _localtime_buf;
-          int _gamma_signgam;
-          __extension__ unsigned long long _rand_next;
-          struct _rand48 _r48;
-          _mbstate_t _mblen_state;
-          _mbstate_t _mbtowc_state;
-          _mbstate_t _wctomb_state;
-          char _l64a_buf[8];
-          char _signal_buf[24];
-          int _getdate_err;
-          _mbstate_t _mbrlen_state;
-          _mbstate_t _mbrtowc_state;
-          _mbstate_t _mbsrtowcs_state;
-          _mbstate_t _wcrtomb_state;
-          _mbstate_t _wcsrtombs_state;
-   int _h_errno;
-        } _reent;
-
-
-
-      struct
-        {
-
-          unsigned char * _nextf[30];
-          unsigned int _nmalloc[30];
-        } _unused;
-    } _new;
-
-
-
-  struct _atexit *_atexit;
-  struct _atexit _atexit0;
-
-
-
-  void (**(_sig_func))(int);
-
-
-
-
-  struct _glue __sglue;
-
-  __FILE __sf[3];
-
-};
-# 814 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/sys/reent.h" 3
-extern struct _reent *_impure_ptr ;
-extern struct _reent *const _global_impure_ptr ;
-
-void _reclaim_reent (struct _reent *);
-# 8 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 2 3
-
-
-# 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h" 1 3 4
-# 11 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 2 3
-
-
-# 1 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/machine/malloc.h" 1 3
-# 14 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 2 3
-# 22 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 3
-struct mallinfo {
-  size_t arena;
-  size_t ordblks;
-  size_t smblks;
-  size_t hblks;
-  size_t hblkhd;
-  size_t usmblks;
-  size_t fsmblks;
-  size_t uordblks;
-  size_t fordblks;
-  size_t keepcost;
-};
-
-
-
-extern void *malloc (size_t);
-
-
-
-
-extern void *_malloc_r (struct _reent *, size_t);
-
-
-extern void free (void *);
-
-
-
-
-extern void _free_r (struct _reent *, void *);
-
-
-extern void *realloc (void *, size_t);
-
-
-
-
-extern void *_realloc_r (struct _reent *, void *, size_t);
-
-
-extern void *calloc (size_t, size_t);
-
-
-
-
-extern void *_calloc_r (struct _reent *, size_t, size_t);
-
-
-extern void *memalign (size_t, size_t);
-
-
-
-
-extern void *_memalign_r (struct _reent *, size_t, size_t);
-
-
-extern struct mallinfo mallinfo (void);
-
-
-
-
-extern struct mallinfo _mallinfo_r (struct _reent *);
-
-
-extern void malloc_stats (void);
-
-
-
-
-extern void _malloc_stats_r (struct _reent *);
-
-
-extern int mallopt (int, int);
-
-
-
-
-extern int _mallopt_r (struct _reent *, int, int);
-
-
-extern size_t malloc_usable_size (void *);
-
-
-
-
-extern size_t _malloc_usable_size_r (struct _reent *, void *);
-
-
-
-
-
-extern void *valloc (size_t);
-
-
-
-
-extern void *_valloc_r (struct _reent *, size_t);
-
-
-extern void *pvalloc (size_t);
-
-
-
-
-extern void *_pvalloc_r (struct _reent *, size_t);
-
-
-extern int malloc_trim (size_t);
-
-
-
-
-extern int _malloc_trim_r (struct _reent *, size_t);
-
-
-extern void __malloc_lock(struct _reent *);
-
-extern void __malloc_unlock(struct _reent *);
-
-
-
-extern void mstats (char *);
-
-
-
-
-extern void _mstats_r (struct _reent *, char *);
-# 166 "/Users/neroyang/gcc-arm-none-eabi/arm-none-eabi/include/malloc.h" 3
-extern void cfree (void *);
-# 3 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_queue.c" 2
-
-
-# 4 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_queue.c"
 os_err_t os_queue_create(os_queue_t* me, const cpu_char_t* name, uint32_t size){
  uart_debug_print("[queue] queue create : ");
  uart_debug_print(name);
@@ -1061,29 +469,70 @@ os_err_t os_queue_create(os_queue_t* me, const cpu_char_t* name, uint32_t size){
   return OS_ERR;
  }
 
+ me->elems = (uint32_t*)os_heap_malloc(size*sizeof(uint32_t));
+ if(!me->elems){
+  uart_debug_print("[queue] queue create : heap malloc failed!\n\r");
+  return OS_ERR;
+ }
  os_obj_t obj;
  obj.name = name;
  obj.objType = OS_OBJ_QUEUE_TYPE;
-
  me->obj = obj;
+ me->front = 0;
+ me->rear = 0;
  me->size = size;
 
-
-
+ return OS_ERR_NONE;
 }
 
-os_err_t os_queue_add_item(os_queue_t* queue, void* itemPtr){
- queue->elems = itemPtr;
+os_err_t os_queue_item_en(os_queue_t* queue, uint32_t* itemPtr){
+ if(os_queue_is_full(queue)==1){
+  uart_debug_print("[queue] queue en : queue is full!\n\r");
+  return OS_ERR;
+ }
+
+ queue->elems[queue->rear] = itemPtr;
+ queue->rear = (queue->rear + 1) % queue->size;
+
+ return OS_ERR_NONE;
 }
 
-os_err_t os_queue_remove(){
+os_err_t os_queue_item_de(os_queue_t* queue, uint32_t* itemPtr){
+ if(os_queue_is_empty(queue) == 1){
+  uart_debug_print("[queue] queue de : queue is empty!\n\r");
+  return OS_ERR;
+ }
+ *itemPtr = queue->elems[queue->front];
+ queue->front = (queue->front + 1) % queue->size;
 
+ return OS_ERR_NONE;
 }
 
-os_err_t os_queue_clear(){
-
+uint32_t os_queue_traverse(os_queue_t* queue){
+ uint32_t i = queue->front;
+ uart_debug_print("[queue] queue traverse \n\r");
+ while( i != queue->rear){
+  uart_debug_print(" |--[queue] item : '");
+  uart_debug_print_i32(queue->elems[i],16);
+  uart_debug_print("'\n\r");
+  i = (i+1) % queue->size;
+ }
 }
 
-uint32_t os_queue_size(os_queue_t* queue){
- return 0U;
+uint32_t os_queue_length(os_queue_t* queue){
+ return (queue->rear - queue->front + queue->size) % queue->size;
+}
+
+uint32_t os_queue_is_empty(os_queue_t* queue){
+ if(queue->front = queue->rear){
+  return 1;
+ }
+ return 0;
+}
+
+uint32_t os_queue_is_full(os_queue_t* queue){
+ if((queue->rear+1) % queue->size == queue->front){
+  return 1;
+ }
+ return 0;
 }

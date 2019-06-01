@@ -12,6 +12,8 @@
  */
 #include "../include/os_api.h"
 
+#define TASK_MAX_SIZE 32
+
 os_queue_t  osTaskQueue;
 
 volatile os_task_t osIdleTask;
@@ -35,7 +37,7 @@ os_err_t os_init(void){
 		return isOsObjectContainerInit;
 	}
 
-	os_err_t isOsTaskQueueCreate = os_queue_create(&osTaskQueue,"task queue",32);
+	os_err_t isOsTaskQueueCreate = os_queue_create(&osTaskQueue,"task queue",TASK_MAX_SIZE);
 	if(isOsTaskQueueCreate==OS_ERR){
 		return isOsTaskQueueCreate;
 	}
@@ -68,6 +70,7 @@ void task_idle_thread(){
 }
 
 os_err_t os_run(void){
+	os_queue_traverse(&osTaskQueue);
 	uart_debug_print("[kernel] os run.\n\r");
 	/* callback to configure and start interrupts */
 	os_on_startup();
@@ -84,19 +87,19 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-	// Traversing the tasks in queue
-	// os_task_t *t = (os_task_t *)osTaskQueue.elems;
-	// t->state = OS_STATE_READY;
-	// while(t){
-	// 	/* count down the timeout */
-	// 	t->timeout--;
-	// 	if (t->timeout == 0U) {
-	// 		/* set task state */
-	// 		t->state = OS_STATE_READY;	
-	// 	}
-	// 	t = t->next;
-	// }
-	
+	uint32_t i = osTaskQueue.front;
+	while( i != osTaskQueue.rear){
+		os_task_t *t = (os_task_t *)osTaskQueue.elems[i];
+		// uart_debug_print_i32(t->timeout,10);
+		// uart_debug_print("\n\r");
+		// if(t->timeout > 0){
+		// 	t->timeout--;
+			if (t->timeout == 0U) {
+				t->state = OS_STATE_READY;	
+			}
+		// }
+		i = (i+1) % osTaskQueue.size;
+	}
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
@@ -106,7 +109,7 @@ os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 
 os_err_t os_sched(void){
 	uart_debug_print("[kernel] os sched.\n\r");
-	if(os_queue_size(&osTaskQueue)<=0U){
+	if(os_queue_length(&osTaskQueue)<=0U){
 		osTaskNext = &osIdleTask;
 	}else{
 		/* get first ready task from task queue, task queue is sorted by priority */

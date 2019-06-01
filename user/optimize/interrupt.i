@@ -8,7 +8,7 @@
 
 
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h" 1
-# 19 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h"
+# 22 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os.h"
 typedef unsigned int os_task_id_t;
 typedef unsigned int os_time_t;
 

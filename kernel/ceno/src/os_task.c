@@ -65,12 +65,13 @@ os_err_t os_task_create(os_task_t *me,
 	/* 将线程放到线程数组里*/
 	me->id = 1;
 	me->obj.name = name;
+	me->timeout = 0;
 	me->priority = priority;
 	if(priority > 0U ){
 		me->state=OS_STATE_READY;
 	}
 
-	os_err_t err = os_queue_add_item(&osTaskQueue,me);
+	os_err_t err = os_queue_item_en(&osTaskQueue,me);
 	if(err==OS_ERR){
 		/* add to task queue failed */
 	}

@@ -69,6 +69,14 @@ os_err_t os_heap_init(){
 	uint32_t *b = os_heap_malloc(2*sizeof(uint32_t));
 	b[0] = 4;
 	b[1] = 5;
+	b[2] = 5;
+	b[3] = 5;
+	b[4] = 5;
+	b[5] = 5;
+	b[6] = 5;
+	b[7] = 5;
+	b[8] = 5;
+
 	uint32_t *c = os_heap_malloc(10*sizeof(uint32_t));
 	os_heap_free(c);
 	uint32_t *d = os_heap_malloc(10*sizeof(uint32_t));
@@ -146,7 +154,7 @@ uint32_t os_heap_free(void* ptr){
 }
 
 void* os_heap_calloc (os_size_t num, os_size_t size){
-
+	return os_heap_malloc(num*size);
 }
 
 void *memcpy(void *dest, const void *src, os_size_t count){

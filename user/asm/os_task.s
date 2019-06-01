@@ -184,6 +184,9 @@ os_task_create:
 	ldr	r2, [fp, #-28]
 	str	r2, [r3, #24]
 	ldr	r3, [fp, #-24]
+	mov	r2, #0
+	str	r2, [r3, #36]
+	ldr	r3, [fp, #-24]
 	ldr	r2, [fp, #-32]
 	str	r2, [r3, #40]
 	ldr	r3, [fp, #-32]
@@ -195,7 +198,7 @@ os_task_create:
 .L4:
 	ldr	r1, [fp, #-24]
 	ldr	r0, .L5+12
-	bl	os_queue_add_item
+	bl	os_queue_item_en
 	mov	r3, r0
 	strb	r3, [fp, #-13]
 	ldr	r0, .L5+16
@@ -282,7 +285,7 @@ os_task_switch_next:
 	bl	uart_debug_print
 .L9:
 	.syntax divided
-@ 98 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+@ 99 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID		 I
 	LDR		r1,.L10+12
 	LDR		r1,[r1,#0x00]
