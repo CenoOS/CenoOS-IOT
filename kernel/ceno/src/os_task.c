@@ -9,6 +9,32 @@
  * Contract Information：
  * nerosoft@outlook.com
  * https://www.cenocloud.com
+ * 
+ *  *
+ *				    ____________________
+ *			Stack |                         |
+ *				    |                        |
+ *  higher        |        R4              | <-- SP saved in TCB (64B context)
+ *  addresses    |        R5              |   ^
+ *      |  ^       |        R6              |   |
+ *      |  |       |        R7              |   | 8 registers pushed by handler:
+ *      |  |       |        R8              |   | R4..R11
+ *      |  |       |        R9              |   | Full task context is now stored
+ *      V  |       |        R10             |   |
+ *         |       |        R11             |   |
+ *   direction   |        R0              | <-- SP when SVC handler gets control
+ *   of growth   |        R1              |   ^
+ *                 |        R2              |   |
+ *                 |        R3              |   | 8 registers are pushed by
+ *                 |        R12             |   | the NVIC hardware:
+ *                 |        LR (R14)       |   | xPSR, PC, LR, R12, R3..R0
+ *                 |        PC (R15)       |   |
+ *                 |       xPSR             |   |
+ *                 |                         | <-- SP before SVC
+ *                 |      (stuff)          |
+ *     Stack +   |                         |
+ *    StackSize |____________________|
+ *
  */
 #include "../include/os_api.h"
 
@@ -35,7 +61,7 @@ os_err_t os_task_create(os_task_t *me,
 
  	*(--sp) = (1U << 24);  /* xPSR */ /* 0x01000000 */
     *(--sp) = (uint32_t)taskHandler; /* PC */
-    *(--sp) = (uint32_t)taskHandler; /* LR  */
+    *(--sp) = taskHandler; /* LR  */
     *(--sp) = 0x0000000CU; /* R12 */
     *(--sp) = 0x00000003U; /* R3  */
     *(--sp) = 0x00000002U; /* R2  */
@@ -73,7 +99,7 @@ os_err_t os_task_create(os_task_t *me,
 
 	os_err_t err = os_queue_item_en(&osTaskQueue,me);
 	if(err==OS_ERR){
-		/* add to task queue failed */
+		uart_debug_print("[task] task add to queue failed!\n\r");
 	}
 	uart_debug_print("[task] task '");
 	uart_debug_print(me->obj.name);
@@ -94,19 +120,19 @@ os_err_t os_task_switch_next(void){
 	if(!osTaskNext){
 		uart_debug_print("[task] task next is null.\n\r");
 	}
-	
+
 	/* context switch */
      __asm(
 	 	/* __disable_irq(); */
-	 	"CPSID		 I\n\t"
+		"CPSID		 I\n\t"
 
      	/* if (osTaskCurr != (os_task_t *)0) { */ 
-     		"LDR		r1,.L10+12\n\t"
+     		"LDR		r1,.L11+12\n\t"
 	 		"LDR		r1,[r1,#0x00]\n\t"
      		"CBZ		r1,PendSV_restore\n\t"
 			
 			/* uart_debug_print(osTaskCurr->obj.name); */
-			"LDR	r3, .L10+12\n\t"
+			"LDR	r3, .L11+12\n\t"
 			"LDR	r3, [r3]\n\t"
 			"LDR	r3, [r3, #24]\n\t"
 			"MOV	r0, r3\n\t"
@@ -118,29 +144,29 @@ os_err_t os_task_switch_next(void){
      		"PUSH		{r4-r11}\n\t"
 
      	/*     osTaskCurr->sp = sp; */
-     		"LDR		r1,.L10+12\n\t"
+     		"LDR		r1,.L11+12\n\t"
 	 		"LDR		r1,[r1,#0x00]\n\t"
      		"STR		sp,[r1,#0x00]\n\t"
      	/* } */
 		
-	 "PendSV_restore:\n\t"  
+	"PendSV_restore:\n\t"  
      	/* sp = osTaskNext->sp; */
-     	"LDR		r1,.L10+4\n\t"
+     	"LDR		r1,.L11+4\n\t"
 	 	"LDR		r1,[r1,#0x00]\n\t"
 		"LDR		sp,[r1,#0x00]\n\t"
      	
 
 		/* uart_debug_print(osTaskNext->obj.name); */
-		"LDR	r3, .L10+4\n\t"
+		"LDR	r3, .L11+4\n\t"
 		"LDR	r3, [r3]\n\t"
 		"LDR	r3, [r3, #24]\n\t"
 		"MOV	r0, r3\n\t"
 		"BL	uart_debug_print\n\t"
 
      	/* osTaskCurr = osTaskNext; */ 
-	 	"LDR		r1,.L10+4\n\t"
+	 	"LDR		r1,.L11+4\n\t"
    	 	"LDR		r1,[r1,#0x00]\n\t"
-   	 	"LDR		r2,.L10+12\n\t"
+   	 	"LDR		r2,.L11+12\n\t"
    	 	"STR		r1,[r2,#0x00]\n\t"
 
      	/* pop registers r4-r11 */
@@ -160,12 +186,11 @@ os_err_t os_task_switch_next(void){
 		   
      	/* __enable_irq(); */
      	"CPSIE		I\n\t"
-	
 
      	/* return  thread */
      	"BX		lr"
 		// "MOV	PC, LR\n\t"
-	 );
+	);
 	uart_debug_print("[task] contex switch finished.\n\r");
 }
 
@@ -175,4 +200,9 @@ os_err_t os_task_exit(void){
 
 os_err_t os_task_switch_context(os_task_t *next){
 	osTaskCurr = next;
+}
+
+void delay(clock_t tick){
+	osTaskCurr->state = OS_STATE_BLOCKED;
+	osTaskCurr->timeout = tick;
 }

@@ -373,6 +373,8 @@ typedef struct os_task{
  os_list_t taskList;
 }os_task_t;
 
+
+
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
@@ -386,6 +388,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
 
+void delay(clock_t tick);
 
 extern os_queue_t osTaskQueue;
 
@@ -519,11 +522,13 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-# 103 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
+# 106 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_kernel.c"
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
+ uart_debug_print("[kernel] os queue size : '");
  uart_debug_print_i32(os_queue_length(queue),10);
+ uart_debug_print("'\n\r");
  uint32_t ptrToTask;
  os_queue_item_de(queue,&ptrToTask);
  os_task_t* t = (os_task_t *)ptrToTask;
@@ -537,11 +542,12 @@ os_err_t os_sched(void){
  }else{
   osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
  }
- uart_debug_print("[task next] name :");
+ uart_debug_print("[scheduler] next task : '");
  uart_debug_print(osTaskNext->obj.name);
- uart_debug_print("\n\r");
+ uart_debug_print("'\n\r");
 
 
+ *(uint32_t volatile *)0xE000ED04 = 0;
  *(uint32_t volatile *)0xE000ED04 = (1U << 28);
 
 

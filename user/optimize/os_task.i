@@ -3,7 +3,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
-# 13 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
+# 39 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h"
 # 1 "/Users/neroyang/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/7.3.1/include/stdint.h" 1 3 4
@@ -373,6 +373,8 @@ typedef struct os_task{
  os_list_t taskList;
 }os_task_t;
 
+
+
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
@@ -386,6 +388,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
 
+void delay(clock_t tick);
 
 extern os_queue_t osTaskQueue;
 
@@ -442,7 +445,7 @@ os_err_t os_sched(void);
 
 extern volatile os_task_t osIdleTask;
 # 30 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/../include/os_api.h" 2
-# 14 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 2
+# 40 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 2
 
 os_task_t * volatile osTaskCurr;
 os_task_t * volatile osTaskNext;
@@ -467,7 +470,7 @@ os_err_t os_task_create(os_task_t *me,
 
   *(--sp) = (1U << 24);
     *(--sp) = (uint32_t)taskHandler;
-    *(--sp) = (uint32_t)taskHandler;
+    *(--sp) = taskHandler;
     *(--sp) = 0x0000000CU;
     *(--sp) = 0x00000003U;
     *(--sp) = 0x00000002U;
@@ -505,7 +508,7 @@ os_err_t os_task_create(os_task_t *me,
 
  os_err_t err = os_queue_item_en(&osTaskQueue,me);
  if(err==OS_ERR){
-
+  uart_debug_print("[task] task add to queue failed!\n\r");
  }
  uart_debug_print("[task] task '");
  uart_debug_print(me->obj.name);
@@ -530,15 +533,15 @@ os_err_t os_task_switch_next(void){
 
      __asm(
 
-   "CPSID		 I\n\t"
+  "CPSID		 I\n\t"
 
 
-       "LDR		r1,.L10+12\n\t"
+       "LDR		r1,.L11+12\n\t"
     "LDR		r1,[r1,#0x00]\n\t"
        "CBZ		r1,PendSV_restore\n\t"
 
 
-   "LDR	r3, .L10+12\n\t"
+   "LDR	r3, .L11+12\n\t"
    "LDR	r3, [r3]\n\t"
    "LDR	r3, [r3, #24]\n\t"
    "MOV	r0, r3\n\t"
@@ -550,43 +553,42 @@ os_err_t os_task_switch_next(void){
        "PUSH		{r4-r11}\n\t"
 
 
-       "LDR		r1,.L10+12\n\t"
+       "LDR		r1,.L11+12\n\t"
     "LDR		r1,[r1,#0x00]\n\t"
        "STR		sp,[r1,#0x00]\n\t"
 
 
-  "PendSV_restore:\n\t"
+ "PendSV_restore:\n\t"
 
-      "LDR		r1,.L10+4\n\t"
+      "LDR		r1,.L11+4\n\t"
    "LDR		r1,[r1,#0x00]\n\t"
   "LDR		sp,[r1,#0x00]\n\t"
 
 
 
-  "LDR	r3, .L10+4\n\t"
+  "LDR	r3, .L11+4\n\t"
   "LDR	r3, [r3]\n\t"
   "LDR	r3, [r3, #24]\n\t"
   "MOV	r0, r3\n\t"
   "BL	uart_debug_print\n\t"
 
 
-   "LDR		r1,.L10+4\n\t"
+   "LDR		r1,.L11+4\n\t"
       "LDR		r1,[r1,#0x00]\n\t"
-      "LDR		r2,.L10+12\n\t"
+      "LDR		r2,.L11+12\n\t"
       "STR		r1,[r2,#0x00]\n\t"
 
 
       "POP		{r4-r11}\n\t"
   "POP		{r0-r3}\n\t"
   "POP		{r12,lr}\n\t"
-# 162 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
+# 188 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c"
       "CPSIE		I\n\t"
-
 
 
       "BX		lr"
 
-  );
+ );
  uart_debug_print("[task] contex switch finished.\n\r");
 }
 
@@ -596,4 +598,9 @@ os_err_t os_task_exit(void){
 
 os_err_t os_task_switch_context(os_task_t *next){
  osTaskCurr = next;
+}
+
+void delay(clock_t tick){
+ osTaskCurr->state = OS_STATE_BLOCKED;
+ osTaskCurr->timeout = tick;
 }

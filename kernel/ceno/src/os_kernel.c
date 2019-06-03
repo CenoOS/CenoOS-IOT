@@ -24,7 +24,7 @@ os_err_t os_init(void){
 	os_heap_init();
 
 	/**
-	 * Set the pendSV interrput priority to the losest level
+	 * Set the pendSV interrput priority to the losest level 0xFF
 	 */
 	*(uint32_t volatile *)0xE000ED20 |= (0xFFU << 16);
 
@@ -89,21 +89,26 @@ os_err_t os_idle(void){
 os_err_t os_tick(void){
 	// uint32_t i = osTaskQueue.front;
 	// while( i != osTaskQueue.rear){
-		// os_task_t *t = (os_task_t *)osTaskQueue.elems[i];
-		// uart_debug_print_i32(t->timeout,10);
-		// uart_debug_print("\n\r");
-		// if(t->timeout > 0){
-		// 	t->timeout--;
-			// if (t->timeout == 0U) {
-			// 	t->state = OS_STATE_READY;	
-			// }
-		// }
-		// i = (i+1) % osTaskQueue.size;
+	// 	os_task_t *t =  (os_task_t *)osTaskQueue.elems[i];
+	// 	uart_debug_print("[task] task : '");
+	// 	uart_debug_print(t->obj.name);
+	// 	uart_debug_print("', timeout : '");
+	// 	uart_debug_print_i32(t->timeout,10);
+	// 	uart_debug_print("ms'\n\r");
+	// 	if(t->timeout > 0){
+	// 		t->timeout--;
+	// 		if (t->timeout == 0U) {
+	// 			t->state = OS_STATE_READY;	
+	// 		}
+	// 	}
+	// 	i = (i+1) % osTaskQueue.size;
 	// }
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
+	uart_debug_print("[kernel] os queue size : '");
 	uart_debug_print_i32(os_queue_length(queue),10);
+	uart_debug_print("'\n\r");
 	uint32_t ptrToTask;
 	os_queue_item_de(queue,&ptrToTask);
 	os_task_t* t = (os_task_t *)ptrToTask;
@@ -117,11 +122,12 @@ os_err_t os_sched(void){
 	}else{
 		osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
 	}
-	uart_debug_print("[task next] name :");
+	uart_debug_print("[scheduler] next task : '");
 	uart_debug_print(osTaskNext->obj.name);
-	uart_debug_print("\n\r");
+	uart_debug_print("'\n\r");
 
 	/* hard trigger PendSV*/
+	*(uint32_t volatile *)0xE000ED04 = 0;
 	*(uint32_t volatile *)0xE000ED04 = (1U << 28);
 
 	/* trigger PendSV, if needed */

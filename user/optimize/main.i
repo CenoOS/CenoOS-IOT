@@ -19,14 +19,11 @@ void light_red_off(void);
 void light_green_off(void);
 void light_blue_off(void);
 
-
-
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
-void delay(clock_t tick);
 # 2 "src/main.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/include/os_api.h"
@@ -397,6 +394,8 @@ typedef struct os_task{
  os_list_t taskList;
 }os_task_t;
 
+
+
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
@@ -410,6 +409,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
 
+void delay(clock_t tick);
 
 extern os_queue_t osTaskQueue;
 

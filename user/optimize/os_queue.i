@@ -372,6 +372,8 @@ typedef struct os_task{
  os_list_t taskList;
 }os_task_t;
 
+
+
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
@@ -385,6 +387,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
 
+void delay(clock_t tick);
 
 extern os_queue_t osTaskQueue;
 
@@ -472,7 +475,6 @@ os_err_t os_queue_item_en(os_queue_t* queue, uint32_t* itemPtr){
   uart_debug_print("[queue] queue en : queue is full!\n\r");
   return OS_ERR;
  }
-
  queue->elems[queue->rear] = itemPtr;
  queue->rear = (queue->rear + 1) % queue->size;
 
@@ -513,7 +515,7 @@ uint32_t os_queue_is_empty(os_queue_t* queue){
 }
 
 uint32_t os_queue_is_full(os_queue_t* queue){
- if((queue->rear+1) % queue->size == queue->front){
+ if((queue->rear + 1) % queue->size == queue->front){
   return 1;
  }
  return 0;

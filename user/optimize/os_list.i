@@ -372,6 +372,8 @@ typedef struct os_task{
  os_list_t taskList;
 }os_task_t;
 
+
+
 os_err_t os_task_create(os_task_t *me,
      cpu_char_t *name,
      priority_t priority,
@@ -385,6 +387,7 @@ os_err_t os_task_switch_context(os_task_t *next);
 
 os_err_t os_task_exit(void);
 
+void delay(clock_t tick);
 
 extern os_queue_t osTaskQueue;
 

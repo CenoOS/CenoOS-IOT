@@ -19,14 +19,11 @@ void light_red_off(void);
 void light_green_off(void);
 void light_blue_off(void);
 
-
-
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
-void delay(clock_t tick);
 # 2 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/bsp.c" 2
 # 1 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h" 1
 # 17 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/../include/uart_debug.h"
@@ -3083,9 +3080,6 @@ void delay_block(clock_t tick){
     while((*l_tickCtr)>0);
 }
 
-void delay(clock_t tick){
-
-}
 
 
 void bsp_init(void){

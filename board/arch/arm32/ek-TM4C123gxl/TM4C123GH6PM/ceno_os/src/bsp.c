@@ -33,13 +33,9 @@ void delay_block(clock_t tick){
     while((*l_tickCtr)>0);
 }
 
-void delay(clock_t tick){
-
-}
 
 
 void bsp_init(void){
-	
 	SYSCTL->RCGCGPIO |= (1<<5); // enable clock on PortF
 	GPIOF->DIR = (1<<1) | (1<<2) | (1<<3); // make LED Pins PF1, PF2, PF3 outputs
 	GPIOF->DEN = (1<<1) | (1<<2) | (1<<3); // enable degital function on LED pins;

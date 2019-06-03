@@ -29,7 +29,6 @@ os_err_t os_queue_item_en(os_queue_t* queue, uint32_t* itemPtr){
 		uart_debug_print("[queue] queue en : queue is full!\n\r");
 		return OS_ERR;	
 	}
-
 	queue->elems[queue->rear] = itemPtr;
 	queue->rear = (queue->rear + 1) % queue->size;
 
@@ -39,7 +38,7 @@ os_err_t os_queue_item_en(os_queue_t* queue, uint32_t* itemPtr){
 os_err_t os_queue_item_de(os_queue_t* queue, uint32_t* itemPtr){
 	if(os_queue_is_empty(queue) == TRUE){
 		uart_debug_print("[queue] queue de : queue is empty!\n\r");
-		return OS_ERR;	
+		return OS_ERR;
 	}
 	*itemPtr = queue->elems[queue->front];
 	queue->front = (queue->front + 1) % queue->size;
@@ -70,7 +69,7 @@ uint32_t os_queue_is_empty(os_queue_t* queue){
 }
 
 uint32_t os_queue_is_full(os_queue_t* queue){
-	if((queue->rear+1) % queue->size == queue->front){
+	if((queue->rear + 1) % queue->size == queue->front){
 		return TRUE;
 	}
 	return FALSE;

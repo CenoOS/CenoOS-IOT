@@ -182,14 +182,11 @@ void light_red_off(void);
 void light_green_off(void);
 void light_blue_off(void);
 
-
-
 typedef long clock_t;
 extern volatile clock_t* l_tickCtr;
 
 void system_init(void);
 void delay_block(clock_t tick);
-void delay(clock_t tick);
 # 3 "/Users/neroyang/project/Ceno-RTOS/board/arch/arm32/ek-TM4C123gxl/TM4C123GH6PM/ceno_os/src/interrupt.c" 2
 
 

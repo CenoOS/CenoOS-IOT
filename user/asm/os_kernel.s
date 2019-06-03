@@ -228,6 +228,14 @@ os_tick:
 	ldr	fp, [sp], #4
 	bx	lr
 	.size	os_tick, .-os_tick
+	.section	.rodata
+	.align	2
+.LC6:
+	.ascii	"[kernel] os queue size : '\000"
+	.align	2
+.LC7:
+	.ascii	"'\012\015\000"
+	.text
 	.align	2
 	.global	os_get_next_ready_from_task_queue
 	.syntax unified
@@ -242,12 +250,16 @@ os_get_next_ready_from_task_queue:
 	add	fp, sp, #4
 	sub	sp, sp, #16
 	str	r0, [fp, #-16]
+	ldr	r0, .L21
+	bl	uart_debug_print
 	ldr	r0, [fp, #-16]
 	bl	os_queue_length
 	mov	r3, r0
 	mov	r1, #10
 	mov	r0, r3
 	bl	uart_debug_print_i32
+	ldr	r0, .L21+4
+	bl	uart_debug_print
 	sub	r3, fp, #12
 	mov	r1, r3
 	ldr	r0, [fp, #-16]
@@ -260,14 +272,19 @@ os_get_next_ready_from_task_queue:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
+.L22:
+	.align	2
+.L21:
+	.word	.LC6
+	.word	.LC7
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
 	.align	2
-.LC6:
+.LC8:
 	.ascii	"[kernel] os sched.\012\015\000"
 	.align	2
-.LC7:
-	.ascii	"[task next] name :\000"
+.LC9:
+	.ascii	"[scheduler] next task : '\000"
 	.text
 	.align	2
 	.global	os_sched
@@ -281,61 +298,64 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L25
+	ldr	r0, .L27
 	bl	uart_debug_print
-	ldr	r0, .L25+4
+	ldr	r0, .L27+4
 	bl	os_queue_length
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L22
-	ldr	r3, .L25+8
-	ldr	r2, .L25+12
+	bne	.L24
+	ldr	r3, .L27+8
+	ldr	r2, .L27+12
 	str	r2, [r3]
-	b	.L23
-.L22:
-	ldr	r0, .L25+4
+	b	.L25
+.L24:
+	ldr	r0, .L27+4
 	bl	os_get_next_ready_from_task_queue
 	mov	r2, r0
-	ldr	r3, .L25+8
+	ldr	r3, .L27+8
 	str	r2, [r3]
-.L23:
-	ldr	r0, .L25+16
+.L25:
+	ldr	r0, .L27+16
 	bl	uart_debug_print
-	ldr	r3, .L25+8
+	ldr	r3, .L27+8
 	ldr	r3, [r3]
 	ldr	r3, [r3, #24]
 	mov	r0, r3
 	bl	uart_debug_print
-	ldr	r0, .L25+20
+	ldr	r0, .L27+20
 	bl	uart_debug_print
-	ldr	r3, .L25+24
+	ldr	r3, .L27+24
+	mov	r2, #0
+	str	r2, [r3]
+	ldr	r3, .L27+24
 	mov	r2, #268435456
 	str	r2, [r3]
-	ldr	r3, .L25+8
+	ldr	r3, .L27+8
 	ldr	r2, [r3]
-	ldr	r3, .L25+28
+	ldr	r3, .L27+28
 	ldr	r3, [r3]
 	cmp	r2, r3
-	beq	.L24
-	ldr	r3, .L25+24
+	beq	.L26
+	ldr	r3, .L27+24
 	mov	r2, #268435456
 	str	r2, [r3]
-.L24:
+.L26:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L26:
+.L28:
 	.align	2
-.L25:
-	.word	.LC6
+.L27:
+	.word	.LC8
 	.word	osTaskQueue
 	.word	osTaskNext
 	.word	osIdleTask
+	.word	.LC9
 	.word	.LC7
-	.word	.LC4
 	.word	-536810236
 	.word	osTaskCurr
 	.size	os_sched, .-os_sched
