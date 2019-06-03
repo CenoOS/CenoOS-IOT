@@ -6,4 +6,5 @@
 .vscode/launch.json
 .vscode/
 docs/paper/
-lib
+docs/slide/
+lib/
