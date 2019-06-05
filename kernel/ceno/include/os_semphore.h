@@ -18,9 +18,10 @@ typedef struct os_semphore{
 	os_obj_t obj;
 	sem_count_t count;
 	sem_count_t peakCount;
-	os_queue_t blockTasks; //the queue should be sorted by priorities
+	os_queue_t blockTasks;
 	os_list_t semList; 
 }os_semphore_t;
+
 
 
 os_err_t os_sem_create(os_semphore_t* sem, const cpu_char_t *name, sem_count_t count);
