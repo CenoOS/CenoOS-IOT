@@ -75,8 +75,8 @@ os_task_create:
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
 	str	r3, [fp, #-8]
-	ldr	r2, [fp, #8]
 	ldr	r3, [fp, #-8]
+	mov	r2, #14
 	str	r2, [r3]
 	ldr	r3, [fp, #-8]
 	sub	r3, r3, #4
@@ -254,7 +254,8 @@ os_task_create:
 	.ascii	"[task] task next is null.\012\015\000"
 	.align	2
 .LC9:
-	.ascii	"[task] contex switch finished.\012\015\000"
+	.ascii	"[task] contex switch finished. never be here!!!\012"
+	.ascii	"\015\000"
 	.text
 	.align	2
 	.global	os_task_switch_next
@@ -278,9 +279,6 @@ os_task_switch_next:
 	ldr	r0, .L11+8
 	bl	uart_debug_print
 	ldr	r3, .L11+12
-	mov	r2, #0
-	str	r2, [r3]
-	ldr	r3, .L11+12
 	ldr	r3, [r3]
 	cmp	r3, #0
 	bne	.L9
@@ -295,39 +293,26 @@ os_task_switch_next:
 	bl	uart_debug_print
 .L10:
 	.syntax divided
-@ 125 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
+@ 124 "/Users/neroyang/project/Ceno-RTOS/kernel/ceno/src/os_task.c" 1
 	CPSID		 I
-	LDR		r1,.L11+12
-	LDR		r1,[r1,#0x00]
-	CBZ		r1,PendSV_restore
-	LDR	r3, .L11+12
-	LDR	r3, [r3]
-	LDR	r3, [r3, #24]
-	MOV	r0, r3
-	BL	uart_debug_print
-	PUSH		{r12,lr}
-	PUSH		{r0,r3}
-	PUSH		{r4-r11}
-	LDR		r1,.L11+12
-	LDR		r1,[r1,#0x00]
-	STR		sp,[r1,#0x00]
-	PendSV_restore:
-	LDR		r1,.L11+4
-	LDR		r1,[r1,#0x00]
-	LDR		sp,[r1,#0x00]
-	LDR	r3, .L11+4
-	LDR	r3, [r3]
-	LDR	r3, [r3, #24]
-	MOV	r0, r3
-	BL	uart_debug_print
-	LDR		r1,.L11+4
-	LDR		r1,[r1,#0x00]
+	LDR		r3,.L11+12
+	LDR		r3,[r3,#0x00]
+	CBZ		r3,.PendSV_restore
+	PUSH {r4,r11}
+	LDR		r3,.L11+12
+	LDR		r3,[r3]
+	STR		sp,[r3]
+	.PendSV_restore:
+	LDR		r3,.L11+4
+	LDR		r3, [r3]
+	LDR		sp, [r3]
+	LDR		r3,.L11+4
+	LDR		r3,[r3]
 	LDR		r2,.L11+12
-	STR		r1,[r2,#0x00]
-	POP		{r4-r11}
-	POP		{r0-r3}
-	POP		{r12,lr}
+	STR		r3,[r2]
+	POP {r4,r11}
 	CPSIE		I
+	MOV r0,lr
 	BX		lr
 @ 0 "" 2
 	.arm

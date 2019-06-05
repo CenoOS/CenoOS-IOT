@@ -5,8 +5,7 @@ os_task_t task_01;
 uint32_t stack_task_01[40];
 void task_01_thread(){
   while(1){
-     uart_debug_print("[task] task 1 \n\r");
-    delay_block(1);
+    uart_debug_print("[task] task 1 \n\r");
   }
 }
 
@@ -15,7 +14,6 @@ uint32_t stack_task_02[40];
 void task_02_thread(){
   while(1){
     uart_debug_print("[task] task 2 \n\r");
-    delay_block(1);
   }
 }
 

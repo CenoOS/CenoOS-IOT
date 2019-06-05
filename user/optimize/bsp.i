@@ -3083,7 +3083,6 @@ void delay_block(clock_t tick){
 
 
 void bsp_init(void){
-
  ((SYSCTL_Type *) 0x400FE000UL)->RCGCGPIO |= (1<<5);
  ((GPIOA_Type *) 0x40025000UL)->DIR = (1<<1) | (1<<2) | (1<<3);
  ((GPIOA_Type *) 0x40025000UL)->DEN = (1<<1) | (1<<2) | (1<<3);

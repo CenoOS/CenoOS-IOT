@@ -61,7 +61,7 @@ os_err_t os_task_create(os_task_t *me,
 
  	*(--sp) = (1U << 24);  /* xPSR */ /* 0x01000000 */
     *(--sp) = (uint32_t)taskHandler; /* PC */
-    *(--sp) = taskHandler; /* LR  */
+    *(--sp) = 0x0000000EU; /* LR  */
     *(--sp) = 0x0000000CU; /* R12 */
     *(--sp) = 0x00000003U; /* R3  */
     *(--sp) = 0x00000002U; /* R2  */
@@ -109,11 +109,10 @@ os_err_t os_task_create(os_task_t *me,
 }
 
 os_err_t os_task_switch_next(void){
-
+	
 	uart_debug_print("[task] task switch next : '");
 	uart_debug_print(osTaskNext->obj.name);
 	uart_debug_print("'.\n\r");
-	osTaskCurr = (os_task_t *)0;
 	if(!osTaskCurr){
 		uart_debug_print("[task] task current is null.\n\r");
 	}
@@ -127,71 +126,40 @@ os_err_t os_task_switch_next(void){
 		"CPSID		 I\n\t"
 
      	/* if (osTaskCurr != (os_task_t *)0) { */ 
-     		"LDR		r1,.L11+12\n\t"
-	 		"LDR		r1,[r1,#0x00]\n\t"
-     		"CBZ		r1,PendSV_restore\n\t"
-			
-			/* uart_debug_print(osTaskCurr->obj.name); */
-			"LDR	r3, .L11+12\n\t"
-			"LDR	r3, [r3]\n\t"
-			"LDR	r3, [r3, #24]\n\t"
-			"MOV	r0, r3\n\t"
-			"BL	uart_debug_print\n\t"
+     		"LDR		r3,.L11+12\n\t"
+	 		"LDR		r3,[r3,#0x00]\n\t"
+     		"CBZ		r3,.PendSV_restore\n\t"
 
-     	/*     push registers r4-r11 on the stack */
-		 	"PUSH		{r12,lr}\n\t"
-			"PUSH		{r0,r3}\n\t"
-     		"PUSH		{r4-r11}\n\t"
+			"PUSH {r4,r11}\n\t"
 
      	/*     osTaskCurr->sp = sp; */
-     		"LDR		r1,.L11+12\n\t"
-	 		"LDR		r1,[r1,#0x00]\n\t"
-     		"STR		sp,[r1,#0x00]\n\t"
+     		"LDR		r3,.L11+12\n\t"
+	 		"LDR		r3,[r3]\n\t"
+     		"STR		sp,[r3]\n\t"
      	/* } */
 		
-	"PendSV_restore:\n\t"  
+	".PendSV_restore:\n\t"  
      	/* sp = osTaskNext->sp; */
-     	"LDR		r1,.L11+4\n\t"
-	 	"LDR		r1,[r1,#0x00]\n\t"
-		"LDR		sp,[r1,#0x00]\n\t"
+     	"LDR		r3,.L11+4\n\t"
+		"LDR		r3, [r3]\n\t"
+		"LDR		sp, [r3]\n\t"
      	
-
-		/* uart_debug_print(osTaskNext->obj.name); */
-		"LDR	r3, .L11+4\n\t"
-		"LDR	r3, [r3]\n\t"
-		"LDR	r3, [r3, #24]\n\t"
-		"MOV	r0, r3\n\t"
-		"BL	uart_debug_print\n\t"
-
      	/* osTaskCurr = osTaskNext; */ 
-	 	"LDR		r1,.L11+4\n\t"
-   	 	"LDR		r1,[r1,#0x00]\n\t"
+	 	"LDR		r3,.L11+4\n\t"
+   	 	"LDR		r3,[r3]\n\t"
    	 	"LDR		r2,.L11+12\n\t"
-   	 	"STR		r1,[r2,#0x00]\n\t"
+   	 	"STR		r3,[r2]\n\t"
 
-     	/* pop registers r4-r11 */
-   	 	"POP		{r4-r11}\n\t"
-		"POP		{r0-r3}\n\t"
-		"POP		{r12,lr}\n\t"
-
-		// "MOV	r0, lr\n\t"
-		// "BL	uart_debug_print_i32\n\t"
-		// "MOV	r0, r12\n\t"
-		// "BL	uart_debug_print_i32\n\t"
-		// "MOV	r0, r11\n\t"
-		// "BL	uart_debug_print_i32\n\t"
-		// "MOV	r0, r10\n\t"
-		// "BL	uart_debug_print_i32\n\t"
-		
-		   
+		"POP {r4,r11}\n\t"
+	
      	/* __enable_irq(); */
      	"CPSIE		I\n\t"
 
-     	/* return  thread */
+		"MOV r0,lr\n\t"
+
      	"BX		lr"
-		// "MOV	PC, LR\n\t"
 	);
-	uart_debug_print("[task] contex switch finished.\n\r");
+	uart_debug_print("[task] contex switch finished. never be here!!!\n\r");
 }
 
 os_err_t os_task_exit(void){

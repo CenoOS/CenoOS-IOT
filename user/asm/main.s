@@ -32,8 +32,6 @@ task_01_thread:
 .L2:
 	ldr	r0, .L3
 	bl	uart_debug_print
-	mov	r0, #1
-	bl	delay_block
 	b	.L2
 .L4:
 	.align	2
@@ -62,8 +60,6 @@ task_02_thread:
 .L6:
 	ldr	r0, .L7
 	bl	uart_debug_print
-	mov	r0, #1
-	bl	delay_block
 	b	.L6
 .L8:
 	.align	2

@@ -69,7 +69,7 @@ CPPFLAGS += -I ${CENO_KERNEL}
 CPPFLAGS += -I ${BSP}
 CPPFLAGS += -I ${USER_CONFIG}
 # ====================================================================
-CFLAGS=-ggdb -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
+CFLAGS=-ggdb -mthumb  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 # CFLAGS += -Os -ffunction-sections -fdata-sections -MD -std=c99
 CFLAGS += -MD -std=c99
 CFLAGS += -pedantic -DPART_${MCU} -c 

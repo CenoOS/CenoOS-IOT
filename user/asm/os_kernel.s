@@ -11,6 +11,7 @@
 	.file	"os_kernel.c"
 	.text
 	.comm	osTaskQueue,32,4
+	.comm	osReadyTaskQueue,32,4
 	.comm	osIdleTask,52,4
 	.comm	stackTaskIdle,160,4
 	.section	.rodata
@@ -22,6 +23,9 @@
 	.ascii	"task queue\000"
 	.align	2
 .LC2:
+	.ascii	"ready task queue\000"
+	.align	2
+.LC3:
 	.ascii	"taskIdle\000"
 	.text
 	.align	2
@@ -37,12 +41,12 @@ os_init:
 	push	{fp, lr}
 	add	fp, sp, #4
 	sub	sp, sp, #16
-	ldr	r0, .L6
+	ldr	r0, .L7
 	bl	uart_debug_print
 	bl	os_heap_init
-	ldr	r3, .L6+4
+	ldr	r3, .L7+4
 	ldr	r3, [r3]
-	ldr	r2, .L6+4
+	ldr	r2, .L7+4
 	orr	r3, r3, #16711680
 	str	r3, [r2]
 	bl	os_obj_container_init
@@ -55,8 +59,8 @@ os_init:
 	b	.L1
 .L2:
 	mov	r2, #32
-	ldr	r1, .L6+8
-	ldr	r0, .L6+12
+	ldr	r1, .L7+8
+	ldr	r0, .L7+12
 	bl	os_queue_create
 	mov	r3, r0
 	strb	r3, [fp, #-6]
@@ -66,51 +70,65 @@ os_init:
 	ldrb	r3, [fp, #-6]	@ zero_extendqisi2
 	b	.L1
 .L4:
-	ldr	r3, .L6+16
-	str	r3, [sp, #4]
-	mov	r3, #160
-	str	r3, [sp]
-	ldr	r3, .L6+20
-	mov	r2, #0
-	ldr	r1, .L6+24
-	ldr	r0, .L6+28
-	bl	os_task_create
+	mov	r2, #32
+	ldr	r1, .L7+16
+	ldr	r0, .L7+20
+	bl	os_queue_create
 	mov	r3, r0
 	strb	r3, [fp, #-7]
-	ldr	r3, .L6+32
-	ldr	r2, .L6+28
-	str	r2, [r3]
 	ldrb	r3, [fp, #-7]	@ zero_extendqisi2
 	cmp	r3, #1
 	bne	.L5
 	ldrb	r3, [fp, #-7]	@ zero_extendqisi2
 	b	.L1
 .L5:
+	ldr	r3, .L7+24
+	str	r3, [sp, #4]
+	mov	r3, #160
+	str	r3, [sp]
+	ldr	r3, .L7+28
+	mov	r2, #0
+	ldr	r1, .L7+32
+	ldr	r0, .L7+36
+	bl	os_task_create
+	mov	r3, r0
+	strb	r3, [fp, #-8]
+	ldr	r3, .L7+40
+	ldr	r2, .L7+36
+	str	r2, [r3]
+	ldrb	r3, [fp, #-8]	@ zero_extendqisi2
+	cmp	r3, #1
+	bne	.L6
+	ldrb	r3, [fp, #-8]	@ zero_extendqisi2
+	b	.L1
+.L6:
 .L1:
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L7:
+.L8:
 	.align	2
-.L6:
+.L7:
 	.word	.LC0
 	.word	-536810208
 	.word	.LC1
 	.word	osTaskQueue
+	.word	.LC2
+	.word	osReadyTaskQueue
 	.word	os_idle
 	.word	stackTaskIdle
-	.word	.LC2
+	.word	.LC3
 	.word	osIdleTask
 	.word	osTaskCurr
 	.size	os_init, .-os_init
 	.section	.rodata
 	.align	2
-.LC3:
+.LC4:
 	.ascii	"[task] idle. \000"
 	.align	2
-.LC4:
+.LC5:
 	.ascii	"\012\015\000"
 	.text
 	.align	2
@@ -128,36 +146,36 @@ task_idle_thread:
 	sub	sp, sp, #8
 	mov	r3, #0
 	str	r3, [fp, #-8]
-	b	.L9
-.L10:
-	ldr	r0, .L11
+	b	.L10
+.L11:
+	ldr	r0, .L12
 	bl	uart_debug_print
 	mov	r1, #10
 	ldr	r0, [fp, #-8]
 	bl	uart_debug_print_i32
-	ldr	r0, .L11+4
+	ldr	r0, .L12+4
 	bl	uart_debug_print
 	ldr	r3, [fp, #-8]
 	add	r3, r3, #1
 	str	r3, [fp, #-8]
-.L9:
+.L10:
 	ldr	r3, [fp, #-8]
 	cmn	r3, #1
-	bne	.L10
+	bne	.L11
 	nop
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L12:
+.L13:
 	.align	2
-.L11:
-	.word	.LC3
+.L12:
 	.word	.LC4
+	.word	.LC5
 	.size	task_idle_thread, .-task_idle_thread
 	.section	.rodata
 	.align	2
-.LC5:
+.LC6:
 	.ascii	"[kernel] os run.\012\015\000"
 	.text
 	.align	2
@@ -172,9 +190,9 @@ os_run:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L14
+	ldr	r0, .L15
 	bl	os_queue_traverse
-	ldr	r0, .L14+4
+	ldr	r0, .L15+4
 	bl	uart_debug_print
 	bl	os_on_startup
 	bl	disable_irq
@@ -186,11 +204,11 @@ os_run:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L15:
+.L16:
 	.align	2
-.L14:
+.L15:
 	.word	osTaskQueue
-	.word	.LC5
+	.word	.LC6
 	.size	os_run, .-os_run
 	.align	2
 	.global	os_idle
@@ -204,10 +222,25 @@ os_idle:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-.L17:
+.L18:
 	bl	task_idle_thread
-	b	.L17
+	b	.L18
 	.size	os_idle, .-os_idle
+	.section	.rodata
+	.align	2
+.LC7:
+	.ascii	"[task] tasks traverse \012\015\000"
+	.align	2
+.LC8:
+	.ascii	" |--[task] task : '\000"
+	.align	2
+.LC9:
+	.ascii	"', timeout : '\000"
+	.align	2
+.LC10:
+	.ascii	"ms'\012\015\000"
+	.global	__aeabi_uidivmod
+	.text
 	.align	2
 	.global	os_tick
 	.syntax unified
@@ -216,24 +249,113 @@ os_idle:
 	.type	os_tick, %function
 os_tick:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 1, uses_anonymous_args = 0
-	@ link register save eliminated.
-	str	fp, [sp, #-4]!
-	add	fp, sp, #0
+	push	{fp, lr}
+	add	fp, sp, #4
+	sub	sp, sp, #16
+	ldr	r3, .L24
+	ldr	r3, [r3, #20]
+	str	r3, [fp, #-8]
+	ldr	r0, .L24+4
+	bl	uart_debug_print
+	ldr	r3, .L24+8
+	str	r3, [fp, #-12]
+	b	.L20
+.L23:
+	ldr	r3, .L24
+	ldr	r2, [r3, #28]
+	ldr	r3, [fp, #-8]
+	lsl	r3, r3, #2
+	add	r3, r2, r3
+	ldr	r3, [r3]
+	str	r3, [fp, #-16]
+	ldr	r0, .L24+12
+	bl	uart_debug_print
+	ldr	r3, [fp, #-16]
+	ldr	r3, [r3, #24]
+	mov	r0, r3
+	bl	uart_debug_print
+	ldr	r0, .L24+16
+	bl	uart_debug_print
+	ldr	r3, [fp, #-16]
+	ldr	r3, [r3, #36]
+	mov	r1, #10
+	mov	r0, r3
+	bl	uart_debug_print_i32
+	ldr	r0, .L24+20
+	bl	uart_debug_print
+	ldr	r3, [fp, #-16]
+	ldr	r3, [r3, #36]
+	cmp	r3, #0
+	beq	.L21
+	ldr	r3, [fp, #-16]
+	ldr	r3, [r3, #36]
+	sub	r2, r3, #1
+	ldr	r3, [fp, #-16]
+	str	r2, [r3, #36]
+	ldr	r3, [fp, #-16]
+	ldr	r3, [r3, #36]
+	cmp	r3, #0
+	bne	.L21
+	ldr	r3, [fp, #-16]
+	mov	r2, #2
+	strb	r2, [r3, #32]
+.L21:
+	ldr	r3, [fp, #-16]
+	ldrb	r3, [r3, #32]	@ zero_extendqisi2
+	cmp	r3, #2
+	bne	.L22
+	ldr	r3, [fp, #-16]
+	ldr	r2, [r3, #40]
+	ldr	r3, [fp, #-12]
+	ldr	r3, [r3, #40]
+	cmp	r2, r3
+	bls	.L22
+	ldr	r3, [fp, #-16]
+	str	r3, [fp, #-12]
+.L22:
+	ldr	r3, [fp, #-8]
+	add	r2, r3, #1
+	ldr	r3, .L24
+	ldr	r3, [r3, #16]
+	mov	r1, r3
+	mov	r0, r2
+	bl	__aeabi_uidivmod
+	mov	r3, r1
+	str	r3, [fp, #-8]
+.L20:
+	ldr	r3, .L24
+	ldr	r3, [r3, #24]
+	ldr	r2, [fp, #-8]
+	cmp	r2, r3
+	bne	.L23
+	ldr	r1, [fp, #-12]
+	ldr	r0, .L24+24
+	bl	os_queue_item_en
 	nop
 	mov	r0, r3
-	add	sp, fp, #0
+	sub	sp, fp, #4
 	@ sp needed
-	ldr	fp, [sp], #4
+	pop	{fp, lr}
 	bx	lr
+.L25:
+	.align	2
+.L24:
+	.word	osTaskQueue
+	.word	.LC7
+	.word	osIdleTask
+	.word	.LC8
+	.word	.LC9
+	.word	.LC10
+	.word	osReadyTaskQueue
 	.size	os_tick, .-os_tick
 	.section	.rodata
 	.align	2
-.LC6:
-	.ascii	"[kernel] os queue size : '\000"
+.LC11:
+	.ascii	"[kernel] os ready queue size : '\000"
 	.align	2
-.LC7:
+.LC12:
 	.ascii	"'\012\015\000"
 	.text
 	.align	2
@@ -250,7 +372,7 @@ os_get_next_ready_from_task_queue:
 	add	fp, sp, #4
 	sub	sp, sp, #16
 	str	r0, [fp, #-16]
-	ldr	r0, .L21
+	ldr	r0, .L28
 	bl	uart_debug_print
 	ldr	r0, [fp, #-16]
 	bl	os_queue_length
@@ -258,7 +380,7 @@ os_get_next_ready_from_task_queue:
 	mov	r1, #10
 	mov	r0, r3
 	bl	uart_debug_print_i32
-	ldr	r0, .L21+4
+	ldr	r0, .L28+4
 	bl	uart_debug_print
 	sub	r3, fp, #12
 	mov	r1, r3
@@ -272,18 +394,18 @@ os_get_next_ready_from_task_queue:
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L22:
+.L29:
 	.align	2
-.L21:
-	.word	.LC6
-	.word	.LC7
+.L28:
+	.word	.LC11
+	.word	.LC12
 	.size	os_get_next_ready_from_task_queue, .-os_get_next_ready_from_task_queue
 	.section	.rodata
 	.align	2
-.LC8:
+.LC13:
 	.ascii	"[kernel] os sched.\012\015\000"
 	.align	2
-.LC9:
+.LC14:
 	.ascii	"[scheduler] next task : '\000"
 	.text
 	.align	2
@@ -298,65 +420,94 @@ os_sched:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{fp, lr}
 	add	fp, sp, #4
-	ldr	r0, .L27
+	ldr	r0, .L34
 	bl	uart_debug_print
-	ldr	r0, .L27+4
+	ldr	r0, .L34+4
 	bl	os_queue_length
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L24
-	ldr	r3, .L27+8
-	ldr	r2, .L27+12
+	bne	.L31
+	ldr	r3, .L34+8
+	ldr	r2, .L34+12
 	str	r2, [r3]
-	b	.L25
-.L24:
-	ldr	r0, .L27+4
+	b	.L32
+.L31:
+	ldr	r0, .L34+4
 	bl	os_get_next_ready_from_task_queue
 	mov	r2, r0
-	ldr	r3, .L27+8
+	ldr	r3, .L34+8
 	str	r2, [r3]
-.L25:
-	ldr	r0, .L27+16
+.L32:
+	ldr	r0, .L34+16
 	bl	uart_debug_print
-	ldr	r3, .L27+8
+	ldr	r3, .L34+8
 	ldr	r3, [r3]
 	ldr	r3, [r3, #24]
 	mov	r0, r3
 	bl	uart_debug_print
-	ldr	r0, .L27+20
+	ldr	r0, .L34+20
 	bl	uart_debug_print
-	ldr	r3, .L27+24
-	mov	r2, #0
+	ldr	r3, .L34+24
+	mov	r2, #134217728
 	str	r2, [r3]
-	ldr	r3, .L27+24
+	ldr	r3, .L34+24
+	ldr	r3, [r3]
+	lsr	r3, r3, #28
+	and	r3, r3, #1
+	mov	r1, #10
+	mov	r0, r3
+	bl	uart_debug_print_i32
+	ldr	r0, .L34+28
+	bl	uart_debug_print
+	ldr	r3, .L34+24
 	mov	r2, #268435456
 	str	r2, [r3]
-	ldr	r3, .L27+8
+	ldr	r3, .L34+24
+	ldr	r3, [r3]
+	lsr	r3, r3, #28
+	and	r3, r3, #1
+	mov	r1, #10
+	mov	r0, r3
+	bl	uart_debug_print_i32
+	ldr	r0, .L34+28
+	bl	uart_debug_print
+	ldr	r3, .L34+32
+	ldr	r3, [r3]
+	lsr	r3, r3, #10
+	and	r3, r3, #1
+	mov	r1, #10
+	mov	r0, r3
+	bl	uart_debug_print_i32
+	ldr	r0, .L34+28
+	bl	uart_debug_print
+	ldr	r3, .L34+8
 	ldr	r2, [r3]
-	ldr	r3, .L27+28
+	ldr	r3, .L34+36
 	ldr	r3, [r3]
 	cmp	r2, r3
-	beq	.L26
-	ldr	r3, .L27+24
+	beq	.L33
+	ldr	r3, .L34+24
 	mov	r2, #268435456
 	str	r2, [r3]
-.L26:
+.L33:
 	nop
 	mov	r0, r3
 	sub	sp, fp, #4
 	@ sp needed
 	pop	{fp, lr}
 	bx	lr
-.L28:
+.L35:
 	.align	2
-.L27:
-	.word	.LC8
-	.word	osTaskQueue
+.L34:
+	.word	.LC13
+	.word	osReadyTaskQueue
 	.word	osTaskNext
 	.word	osIdleTask
-	.word	.LC9
-	.word	.LC7
+	.word	.LC14
+	.word	.LC12
 	.word	-536810236
+	.word	.LC5
+	.word	-536810204
 	.word	osTaskCurr
 	.size	os_sched, .-os_sched
 	.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2018-q2-update) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"

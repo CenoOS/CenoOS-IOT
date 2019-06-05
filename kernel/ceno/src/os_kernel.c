@@ -15,6 +15,7 @@
 #define TASK_MAX_SIZE 32
 
 os_queue_t  osTaskQueue;
+os_queue_t  osReadyTaskQueue;
 
 volatile os_task_t osIdleTask;
 uint32_t stackTaskIdle[40];
@@ -37,9 +38,16 @@ os_err_t os_init(void){
 		return isOsObjectContainerInit;
 	}
 
+	/* task queue create*/
 	os_err_t isOsTaskQueueCreate = os_queue_create(&osTaskQueue,"task queue",TASK_MAX_SIZE);
 	if(isOsTaskQueueCreate==OS_ERR){
 		return isOsTaskQueueCreate;
+	}
+
+	/* ready task queue create*/
+	os_err_t isOsReadyTaskQueueCreate = os_queue_create(&osReadyTaskQueue,"ready task queue",TASK_MAX_SIZE);
+	if(isOsReadyTaskQueueCreate==OS_ERR){
+		return isOsReadyTaskQueueCreate;
 	}
 
 	/**
@@ -87,26 +95,33 @@ os_err_t os_idle(void){
 }
 
 os_err_t os_tick(void){
-	// uint32_t i = osTaskQueue.front;
-	// while( i != osTaskQueue.rear){
-	// 	os_task_t *t =  (os_task_t *)osTaskQueue.elems[i];
-	// 	uart_debug_print("[task] task : '");
-	// 	uart_debug_print(t->obj.name);
-	// 	uart_debug_print("', timeout : '");
-	// 	uart_debug_print_i32(t->timeout,10);
-	// 	uart_debug_print("ms'\n\r");
-	// 	if(t->timeout > 0){
-	// 		t->timeout--;
-	// 		if (t->timeout == 0U) {
-	// 			t->state = OS_STATE_READY;	
-	// 		}
-	// 	}
-	// 	i = (i+1) % osTaskQueue.size;
-	// }
+	uint32_t i = osTaskQueue.front;
+	uart_debug_print("[task] tasks traverse \n\r");
+	os_task_t *highTask = &osIdleTask;
+	while( i != osTaskQueue.rear){
+		os_task_t *t =  (os_task_t *)osTaskQueue.elems[i];
+		uart_debug_print(" |--[task] task : '");
+		uart_debug_print(t->obj.name);
+		uart_debug_print("', timeout : '");
+		uart_debug_print_i32(t->timeout,10);
+		uart_debug_print("ms'\n\r");
+		if(t->timeout > 0){
+			t->timeout--;
+			if (t->timeout == 0U) {
+				t->state = OS_STATE_READY;	
+			}
+		}
+		
+		if(t->state == OS_STATE_READY && (t->priority > highTask->priority)){
+			highTask = t;
+		}
+		i = (i+1) % osTaskQueue.size;
+	}
+	os_queue_item_en(&osReadyTaskQueue,highTask);
 }
 
 os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
-	uart_debug_print("[kernel] os queue size : '");
+	uart_debug_print("[kernel] os ready queue size : '");
 	uart_debug_print_i32(os_queue_length(queue),10);
 	uart_debug_print("'\n\r");
 	uint32_t ptrToTask;
@@ -117,18 +132,24 @@ os_task_t* os_get_next_ready_from_task_queue(os_queue_t* queue){
 
 os_err_t os_sched(void){
 	uart_debug_print("[kernel] os sched.\n\r");
-	if(os_queue_length(&osTaskQueue)<=0U){
+	if(os_queue_length(&osReadyTaskQueue)<=0U){
 		osTaskNext = &osIdleTask;
 	}else{
-		osTaskNext = os_get_next_ready_from_task_queue(&osTaskQueue);
+		osTaskNext = os_get_next_ready_from_task_queue(&osReadyTaskQueue);
 	}
 	uart_debug_print("[scheduler] next task : '");
 	uart_debug_print(osTaskNext->obj.name);
 	uart_debug_print("'\n\r");
+	
 
-	/* hard trigger PendSV*/
-	*(uint32_t volatile *)0xE000ED04 = 0;
+	*(uint32_t volatile *)0xE000ED04 = (1U << 27);
+	uart_debug_print_i32(*(uint32_t volatile *)0xE000ED04>>28 & 1,10);
+	uart_debug_print("\n\r");
 	*(uint32_t volatile *)0xE000ED04 = (1U << 28);
+	uart_debug_print_i32(*(uint32_t volatile *)0xE000ED04>>28 & 1,10);
+	uart_debug_print("\n\r");
+	uart_debug_print_i32(*(uint32_t volatile *)0xE000ED24>>10 & 1,10);
+	uart_debug_print("\n\r");
 
 	/* trigger PendSV, if needed */
  	if (osTaskNext != osTaskCurr) {
